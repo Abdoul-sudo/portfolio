@@ -25,6 +25,7 @@ import {
   carrent,
   jobit,
   tripguide,
+  onirix,
   threejs,
 } from '../assets';
 
@@ -218,6 +219,7 @@ const projects = [
     ],
     image: jobit,
     source_code_link: 'https://github.com/',
+    deployment_link: 'https://onirix.iteam-s.mg/',
   },
   {
     name: 'Trip Guide',
@@ -239,6 +241,33 @@ const projects = [
     ],
     image: tripguide,
     source_code_link: 'https://github.com/',
+    deployment_link: 'https://onirix.iteam-s.mg/',
+  },
+  {
+    name: 'Onirix',
+    description:
+      'An immersive platform unveiling the power of Onirix AI in unlocking the hidden meanings of dreams.',
+    tags: [
+      {
+        name: 'reactjs',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'pocketbase',
+        color: 'orange-text-gradient',
+      },
+      {
+        name: 'tailwindcss',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'chatgpt_api',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: onirix,
+    source_code_link: 'https://github.com/',
+    deployment_link: 'https://onirix.iteam-s.mg/',
   },
 ];
 

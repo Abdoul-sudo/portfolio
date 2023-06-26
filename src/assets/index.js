@@ -6,6 +6,8 @@ import web from './web.png';
 import github from './github.png';
 import menu from './menu.svg';
 import close from './close.svg';
+import online from './online.png';
+import online_icon from './online_icon.svg';
 
 import css from './tech/css.png';
 import docker from './tech/docker.png';
@@ -32,6 +34,7 @@ import sesame from './company/sesame.jpg';
 import carrent from './carrent.png';
 import jobit from './jobit.png';
 import tripguide from './tripguide.png';
+import onirix from './projects/onirix.png';
 
 export {
   logo,
@@ -40,6 +43,8 @@ export {
   mobile,
   web,
   github,
+  online,
+  online_icon,
   menu,
   close,
   css,
@@ -65,4 +70,5 @@ export {
   carrent,
   jobit,
   tripguide,
+  onirix,
 };
