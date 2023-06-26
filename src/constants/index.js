@@ -127,25 +127,41 @@ const experiences = [
         company_name: 'Sesame Program - Guidance and careers platform development',
         icon: sesame,
         iconBg: '#ffffff',
+        company_link: 'https://programme-sesame.mg/',
       },
     ],
   },
   {
     date: '2021 - 2023',
     works: [
-      { title: 'Full stack Developer', company_name: 'CPA Sarl', icon: cpa, iconBg: '#ffffff' },
+      {
+        title: 'Full stack Developer',
+        company_name: 'CPA Sarl',
+        icon: cpa,
+        iconBg: '#ffffff',
+        company_link: 'https://www.experts-cpa.com/apropos',
+      },
       {
         title: 'Frontend Developer',
         company_name: '24h by webcup Madagascar hackathon - 3rd place',
         icon: webcup,
         iconBg: '#ffffff',
+        company_link: 'https://24h.webcup.fr/',
       },
       // { title: 'Web Developer', company_name: 'Shopify', icon: shopify, iconBg: '#151030' },
     ],
   },
   {
     date: '2023 - Now ',
-    works: [{ title: 'Full stack Developer', company_name: 'Meta', icon: meta, iconBg: '#151030' }],
+    works: [
+      {
+        title: 'Full stack Developer',
+        company_name: 'Meta',
+        icon: meta,
+        iconBg: '#151030',
+        company_link: 'https://about.meta.com/fr/',
+      },
+    ],
   },
 ];
 
