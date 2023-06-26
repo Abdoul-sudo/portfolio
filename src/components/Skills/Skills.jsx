@@ -37,7 +37,7 @@ const Skills = () => {
           {experiences.map((experience) => (
             <motion.div className="app__skills-exp-item" key={experience.date}>
               <div className="app__skills-exp-year">
-                <p className="bold-text">{experience.date}</p>
+                <p className="text-[#915EFF] font-bold">{experience.date}</p>
               </div>
               <motion.div className="app__skills-exp-works">
                 {experience.works.map((work) => (
@@ -51,9 +51,12 @@ const Skills = () => {
                       key={work.title}
                     >
                       <div className="flex justify-center items-center gap-3">
-                        <div className="green-pink-gradient rounded-full p-[1.5px] w-[45px] h-[45px] flex justify-center items-center">
-                          <div className=" rounded-full p-1.5" style={{ background: work.iconBg }}>
-                            <img src={work.icon} alt={work.company_name} className="object-cover" />
+                        <div className="green-pink-gradient rounded-full p-[2px] w-[45px] h-[45px] flex justify-center items-center">
+                          <div
+                            className=" rounded-full p-1.5 w-full h-full flex justify-center items-center"
+                            style={{ background: work.iconBg }}
+                          >
+                            <img src={work.icon} alt={work.company_name} />
                           </div>
                         </div>
                         <div>

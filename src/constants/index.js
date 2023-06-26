@@ -19,6 +19,9 @@ import {
   starbucks,
   tesla,
   shopify,
+  cpa,
+  sesame,
+  webcup,
   carrent,
   jobit,
   tripguide,
@@ -116,53 +119,32 @@ const technologies = [
 
 const experiences = [
   {
-    date: '2020 - 2021',
-    points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
-    ],
+    date: '2021 - 2022',
     works: [
       {
-        title: 'React.js Developer',
-        company_name: 'Starbucks',
-        icon: starbucks,
-        iconBg: '#383E56',
+        title: 'Frontend Developer',
+        company_name: 'Sesame Program - Guidance and careers platform development',
+        icon: sesame,
+        iconBg: '#ffffff',
       },
     ],
   },
   {
-    date: '2021 - 2022',
-    points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
-    ],
+    date: '2021 - 2023',
     works: [
-      { title: 'React Native Developer', company_name: 'Tesla', icon: tesla, iconBg: '#E6DEDD' },
+      { title: 'Full stack Developer', company_name: 'CPA Sarl', icon: cpa, iconBg: '#ffffff' },
+      {
+        title: 'Frontend Developer',
+        company_name: '24h by webcup Madagascar hackathon - 3rd place',
+        icon: webcup,
+        iconBg: '#ffffff',
+      },
+      // { title: 'Web Developer', company_name: 'Shopify', icon: shopify, iconBg: '#151030' },
     ],
-  },
-  {
-    date: '2022 - 2023',
-    points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
-    ],
-    works: [{ title: 'Web Developer', company_name: 'Shopify', icon: shopify, iconBg: '#151030' }],
   },
   {
     date: '2023 - Now ',
-    points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
-    ],
-    works: [{ title: 'Full stack Developer', company_name: 'Meta', icon: meta, iconBg: '#E6DEDD' }],
+    works: [{ title: 'Full stack Developer', company_name: 'Meta', icon: meta, iconBg: '#151030' }],
   },
 ];
 
@@ -214,6 +196,7 @@ const projects = [
     ],
     image: carrent,
     source_code_link: 'https://github.com/',
+    deployment_link: 'https://onirix.iteam-s.mg/',
   },
   {
     name: 'Job IT',
