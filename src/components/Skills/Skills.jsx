@@ -52,7 +52,7 @@ const Skills = () => {
                     >
                       <div className="flex justify-center items-center gap-3">
                         <div
-                          className="green-pink-gradient rounded-full p-[2.5px] w-[50px] h-[50px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
+                          className="green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
                           onClick={() => window.open(work.company_link, '_blank')}
                         >
                           <div

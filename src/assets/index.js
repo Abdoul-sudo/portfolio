@@ -16,12 +16,22 @@ import git from './tech/git.png';
 import html from './tech/html.png';
 import javascript from './tech/javascript.png';
 import mongodb from './tech/mongodb.png';
-import nodejs from './tech/nodejs.png';
+import nodejs from './tech/nodejs.svg';
 import reactjs from './tech/reactjs.png';
 import redux from './tech/redux.png';
 import tailwind from './tech/tailwind.png';
 import typescript from './tech/typescript.png';
 import threejs from './tech/threejs.svg';
+import vuejs from './tech/vuejs.svg';
+import reactQuery from './tech/reactQuery.svg';
+import mysql from './tech/mysql.svg';
+import postgresql from './tech/postgresql.svg';
+import bootstrap from './tech/bootstrap.svg';
+import php from './tech/php.svg';
+import nextjs from './tech/nextjs.svg';
+import nestjs from './tech/nestjs.svg';
+import laravel from './tech/laravel.svg';
+import symfony from './tech/symfony.svg';
 
 import meta from './company/meta.png';
 import shopify from './company/shopify.png';
@@ -31,9 +41,9 @@ import cpa from './company/cpa.jfif';
 import webcup from './company/webcup.jfif';
 import sesame from './company/sesame.jpg';
 
-import carrent from './carrent.png';
-import jobit from './jobit.png';
-import tripguide from './tripguide.png';
+import carrent from './projects/carrent.png';
+import jobit from './projects/jobit.png';
+import tripguide from './projects/tripguide.png';
 import onirix from './projects/onirix.png';
 
 import profile from './abdoul.jpg';
@@ -50,6 +60,7 @@ export {
   online_icon,
   menu,
   close,
+  // tech
   css,
   docker,
   figma,
@@ -63,6 +74,17 @@ export {
   tailwind,
   typescript,
   threejs,
+  vuejs,
+  reactQuery,
+  mysql,
+  postgresql,
+  bootstrap,
+  php,
+  nextjs,
+  nestjs,
+  laravel,
+  symfony,
+  // companies
   meta,
   shopify,
   starbucks,
@@ -70,10 +92,12 @@ export {
   cpa,
   webcup,
   sesame,
+  // projects
   carrent,
   jobit,
   tripguide,
   onirix,
+  // profile
   profile,
   cv,
 };

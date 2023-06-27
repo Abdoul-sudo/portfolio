@@ -15,6 +15,16 @@ import {
   git,
   figma,
   docker,
+  vuejs,
+  reactQuery,
+  mysql,
+  postgresql,
+  bootstrap,
+  php,
+  laravel,
+  symfony,
+  nestjs,
+  nextjs,
   meta,
   starbucks,
   tesla,
@@ -35,6 +45,10 @@ export const navLinks = [
     title: 'About',
   },
   {
+    id: 'skills',
+    title: 'Skills',
+  },
+  {
     id: 'work',
     title: 'Work',
   },
@@ -50,7 +64,7 @@ const services = [
     icon: web,
   },
   {
-    title: 'React Native Developer',
+    title: 'Designer',
     icon: mobile,
   },
   {
@@ -58,7 +72,7 @@ const services = [
     icon: backend,
   },
   {
-    title: 'Content Creator',
+    title: 'Entrepreneur',
     icon: creator,
   },
 ];
@@ -73,6 +87,10 @@ const technologies = [
     icon: css,
   },
   {
+    name: 'PHP',
+    icon: php,
+  },
+  {
     name: 'JavaScript',
     icon: javascript,
   },
@@ -85,37 +103,73 @@ const technologies = [
     icon: reactjs,
   },
   {
+    name: 'Next JS',
+    icon: reactjs,
+  },
+  {
     name: 'Redux Toolkit',
     icon: redux,
+  },
+  {
+    name: 'React Query',
+    icon: reactQuery,
+  },
+  {
+    name: 'Vuejs',
+    icon: vuejs,
   },
   {
     name: 'Tailwind CSS',
     icon: tailwind,
   },
   {
+    name: 'Bootstrap',
+    icon: bootstrap,
+  },
+  {
     name: 'Node JS',
     icon: nodejs,
+  },
+  {
+    name: 'Nest JS',
+    icon: nestjs,
+  },
+  {
+    name: 'Laravel',
+    icon: laravel,
+  },
+  {
+    name: 'Symfony',
+    icon: symfony,
   },
   {
     name: 'MongoDB',
     icon: mongodb,
   },
   {
-    name: 'Three JS',
-    icon: threejs,
+    name: 'MySQL',
+    icon: mysql,
   },
   {
-    name: 'git',
+    name: 'PostgreSQL',
+    icon: postgresql,
+  },
+  // {
+  //   name: 'Three JS',
+  //   icon: threejs,
+  // },
+  {
+    name: 'Git',
     icon: git,
   },
   {
-    name: 'figma',
+    name: 'Figma',
     icon: figma,
   },
-  {
-    name: 'docker',
-    icon: docker,
-  },
+  // {
+  //   name: 'docker',
+  //   icon: docker,
+  // },
 ];
 
 const experiences = [
@@ -216,6 +270,33 @@ const projects = [
     deployment_link: 'https://onirix.iteam-s.mg/',
   },
   {
+    name: 'Onirix',
+    description:
+      'An immersive platform unveiling the power of Onirix AI in unlocking the hidden meanings of dreams.',
+    tags: [
+      {
+        name: 'reactjs',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'pocketbase',
+        color: 'orange-text-gradient',
+      },
+      {
+        name: 'tailwindcss',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'chatgpt_api',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: onirix,
+    source_code_link: 'https://github.com/Ntsoa2112/Webcup2023_Front_React',
+    deployment_link: 'https://onirix.iteam-s.mg/',
+  },
+
+  {
     name: 'Job IT',
     description:
       'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
@@ -256,32 +337,6 @@ const projects = [
       },
     ],
     image: tripguide,
-    source_code_link: 'https://github.com/',
-    deployment_link: 'https://onirix.iteam-s.mg/',
-  },
-  {
-    name: 'Onirix',
-    description:
-      'An immersive platform unveiling the power of Onirix AI in unlocking the hidden meanings of dreams.',
-    tags: [
-      {
-        name: 'reactjs',
-        color: 'blue-text-gradient',
-      },
-      {
-        name: 'pocketbase',
-        color: 'orange-text-gradient',
-      },
-      {
-        name: 'tailwindcss',
-        color: 'green-text-gradient',
-      },
-      {
-        name: 'chatgpt_api',
-        color: 'pink-text-gradient',
-      },
-    ],
-    image: onirix,
     source_code_link: 'https://github.com/',
     deployment_link: 'https://onirix.iteam-s.mg/',
   },
