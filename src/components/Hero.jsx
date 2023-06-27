@@ -3,35 +3,58 @@ import { motion } from 'framer-motion';
 import { styles } from '../styles';
 import { ComputersCanvas } from './canvas';
 import { profile } from '../assets';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { github } from '../assets';
 
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[120px] sm:top-[200px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
+          <div className="w-1 sm:h-80 h-60 violet-gradient" />
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visuals, user <br className="sm:block hidden" />
-            interfaces and web applications
-          </p>
+        <div className="flex max-md:flex-col w-full justify-between md:items-center">
+          <div>
+            {/* Header -------------------------------------------------------------------------------------------- */}
+            <h1 className={`${styles.heroHeadText} text-white`}>
+              Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
+            </h1>
+            <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+              I develop 3D visuals, user <br className="sm:block hidden" />
+              interfaces and web applications
+            </p>
+
+            {/* Social media icons ------------------------------------------------------------------------------- */}
+            <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
+              <div
+                onClick={() =>
+                  window.open('https://www.linkedin.com/in/abdoul-ismael-132a40210/', '_blank')
+                }
+                className=" w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+              >
+                <FaLinkedinIn />
+              </div>
+              <div
+                onClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')}
+                className=" w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+              >
+                <FaGithub />
+              </div>
+            </div>
+          </div>
+
+          {/* Profile -------------------------------------------------------------------------------------------- */}
+          <div className="home_profile max-md:w-[250px] max-md:h-[250px] max-md:mt-16"></div>
         </div>
       </div>
 
       {/* <ComputersCanvas /> */}
-      {/* <div className="">
-        <img src={profile} alt="profile" className="w-96 h-96 relative" />
-      </div> */}
 
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
+      <div className="absolute max-md:hidden sm:bottom-24 bottom-20 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
