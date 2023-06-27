@@ -28,7 +28,7 @@ const Hero = () => {
             </p>
 
             {/* Social media icons & CV ------------------------------------------------------------------------------- */}
-            <div className="flex justify-between items-center">
+            <div className="flex max-md:flex-col justify-between md:items-center">
               {/* Social media icons */}
               <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
                 <div
@@ -48,13 +48,13 @@ const Hero = () => {
               </div>
 
               {/* CV download */}
-              <div className="mt-7">
+              <div className="mt-7 flex flex-nowrap">
                 <a
                   href={cv}
                   download="ISMAEL Abdoul Wahhaab CV"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[#dfd9ff] font-medium text-[22px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe]`}
+                  className={`text-[#dfd9ff] font-medium text-[22px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] flex-nowrap`}
                 >
                   Download CV
                 </a>
