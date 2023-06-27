@@ -36,6 +36,8 @@ import jobit from './jobit.png';
 import tripguide from './tripguide.png';
 import onirix from './projects/onirix.png';
 
+import profile from './abdoul.jpg';
+
 export {
   logo,
   backend,
@@ -71,4 +73,5 @@ export {
   jobit,
   tripguide,
   onirix,
+  profile,
 };

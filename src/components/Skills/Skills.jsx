@@ -52,14 +52,18 @@ const Skills = () => {
                     >
                       <div className="flex justify-center items-center gap-3">
                         <div
-                          className="green-pink-gradient rounded-full p-[2px] w-[45px] h-[45px] flex justify-center items-center hover:shadow-[0_0_15px_#fef4f5]"
+                          className="green-pink-gradient rounded-full p-[2.5px] w-[50px] h-[50px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
                           onClick={() => window.open(work.company_link, '_blank')}
                         >
                           <div
-                            className=" rounded-full p-1.5 w-full h-full flex justify-center items-center"
+                            className=" rounded-full p-1.5 w-full h-full overflow-hidden"
                             style={{ background: work.iconBg }}
                           >
-                            <img src={work.icon} alt={work.company_name} />
+                            <img
+                              src={work.icon}
+                              alt={work.company_name}
+                              className="w-full h-full object-contain"
+                            />
                           </div>
                         </div>
                         <div className="cursor-text">
