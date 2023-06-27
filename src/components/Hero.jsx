@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-import { ComputersCanvas } from './canvas';
-import { profile } from '../assets';
+// import { ComputersCanvas } from './canvas';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
-import { github } from '../assets';
+import { cv } from '../assets';
 
 const Hero = () => {
   return (
@@ -28,21 +27,37 @@ const Hero = () => {
               interfaces and web applications
             </p>
 
-            {/* Social media icons ------------------------------------------------------------------------------- */}
-            <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
-              <div
-                onClick={() =>
-                  window.open('https://www.linkedin.com/in/abdoul-ismael-132a40210/', '_blank')
-                }
-                className=" w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
-              >
-                <FaLinkedinIn />
+            {/* Social media icons & CV ------------------------------------------------------------------------------- */}
+            <div className="flex justify-between items-center">
+              {/* Social media icons */}
+              <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
+                <div
+                  onClick={() =>
+                    window.open('https://www.linkedin.com/in/abdoul-ismael-132a40210/', '_blank')
+                  }
+                  className=" w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+                >
+                  <FaLinkedinIn />
+                </div>
+                <div
+                  onClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')}
+                  className=" w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+                >
+                  <FaGithub />
+                </div>
               </div>
-              <div
-                onClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')}
-                className=" w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
-              >
-                <FaGithub />
+
+              {/* CV download */}
+              <div className="mt-7">
+                <a
+                  href={cv}
+                  download="ISMAEL Abdoul Wahhaab CV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-[#dfd9ff] font-medium text-[22px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe]`}
+                >
+                  Download CV
+                </a>
               </div>
             </div>
           </div>

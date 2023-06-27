@@ -37,6 +37,7 @@ import tripguide from './tripguide.png';
 import onirix from './projects/onirix.png';
 
 import profile from './abdoul.jpg';
+import cv from './cv.pdf';
 
 export {
   logo,
@@ -74,4 +75,5 @@ export {
   tripguide,
   onirix,
   profile,
+  cv,
 };
