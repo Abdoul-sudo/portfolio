@@ -67,8 +67,6 @@ const Skills = () => {
                       </div>
                       <div className="cursor-text">
                         <h4 className="text-white font-bold">{work.title}</h4>
-                        {`${index}-${id}`}
-
                         <p className="font-medium text-sm text-secondary">{work.company_name}</p>
                       </div>
                     </div>
