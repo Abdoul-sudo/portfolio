@@ -94,17 +94,17 @@ const technologies = [
     name: 'JavaScript',
     icon: javascript,
   },
-  {
-    name: 'TypeScript',
-    icon: typescript,
-  },
+  // {
+  //   name: 'TypeScript',
+  //   icon: typescript,
+  // },
   {
     name: 'React JS',
     icon: reactjs,
   },
   {
     name: 'Next JS',
-    icon: reactjs,
+    icon: nextjs,
   },
   {
     name: 'Redux Toolkit',
@@ -130,10 +130,10 @@ const technologies = [
     name: 'Node JS',
     icon: nodejs,
   },
-  {
-    name: 'Nest JS',
-    icon: nestjs,
-  },
+  // {
+  //   name: 'Nest JS',
+  //   icon: nestjs,
+  // },
   {
     name: 'Laravel',
     icon: laravel,
