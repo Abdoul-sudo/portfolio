@@ -7,7 +7,7 @@ import { cv } from '../assets';
 
 const Hero = () => {
   return (
-    <section className={`w-full h-screen mx-auto`}>
+    <section className={`relative w-full h-screen mx-auto`}>
       <div
         className={` mt-10 sm:mt-24 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
@@ -70,7 +70,7 @@ const Hero = () => {
       {/* <ComputersCanvas /> */}
 
       {/* Scroll component */}
-      {/* <div className="absolute inset-0 max-md:hidden sm:bottom-24 bottom-20 w-full flex justify-center items-center">
+      <div className="absolute max-md:hidden sm:bottom-24 !bottom-64 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
@@ -86,7 +86,7 @@ const Hero = () => {
             />
           </div>
         </a>
-      </div> */}
+      </div>
     </section>
   );
 };
