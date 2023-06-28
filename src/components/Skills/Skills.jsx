@@ -20,10 +20,10 @@ const Skills = () => {
         <motion.div className="app__skills-list">
           {technologies.map((skill) => (
             <motion.div
+              key={skill.name}
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.5 }}
               className="app__skills-item app__flex"
-              key={skill.name}
             >
               <div className="app__flex" style={{ backgroundColor: skill.bgColor }}>
                 <img src={skill.icon} alt={skill.name} />
@@ -34,46 +34,45 @@ const Skills = () => {
         </motion.div>
 
         <div className="app__skills-exp">
-          {experiences.map((experience) => (
-            <motion.div className="app__skills-exp-item" key={experience.date}>
+          {experiences.map((experience, index) => (
+            <motion.div key={`${experience.date}-${index}`} className="app__skills-exp-item">
               <div className="app__skills-exp-year">
                 <p className="text-[#915EFF] font-bold">{experience.date}</p>
               </div>
               <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
-                  <>
-                    <motion.div
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className="app__skills-exp-work"
-                      data-tip
-                      data-for={work.title}
-                      key={work.title}
-                    >
-                      <div className="flex justify-center items-center gap-3">
+                {experience.works.map((work, id) => (
+                  <motion.div
+                    whileInView={{ opacity: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                    className="app__skills-exp-work"
+                    data-tip
+                    data-for={work.title}
+                    key={`${index}-${id}`}
+                  >
+                    <div className="flex justify-center items-center gap-3">
+                      <div
+                        className="green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
+                        onClick={() => window.open(work.company_link, '_blank')}
+                      >
                         <div
-                          className="green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
-                          onClick={() => window.open(work.company_link, '_blank')}
+                          className=" rounded-full p-1.5 w-full h-full overflow-hidden"
+                          style={{ background: work.iconBg }}
                         >
-                          <div
-                            className=" rounded-full p-1.5 w-full h-full overflow-hidden"
-                            style={{ background: work.iconBg }}
-                          >
-                            <img
-                              src={work.icon}
-                              alt={work.company_name}
-                              className="w-full h-full object-contain"
-                            />
-                          </div>
-                        </div>
-                        <div className="cursor-text">
-                          <h4 className="text-white font-bold">{work.title}</h4>
-
-                          <p className="font-medium text-sm text-secondary">{work.company_name}</p>
+                          <img
+                            src={work.icon}
+                            alt={work.company_name}
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                       </div>
-                    </motion.div>
-                  </>
+                      <div className="cursor-text">
+                        <h4 className="text-white font-bold">{work.title}</h4>
+                        {`${index}-${id}`}
+
+                        <p className="font-medium text-sm text-secondary">{work.company_name}</p>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </motion.div>

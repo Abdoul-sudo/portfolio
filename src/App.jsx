@@ -11,6 +11,7 @@ import {
   Works,
   StarsCanvas,
   Skills,
+  Cursor,
 } from './components';
 import './App.scss';
 
@@ -32,6 +33,7 @@ const App = () => {
           <Contact />
           <StarsCanvas />
         </div>
+        {/* <Cursor /> */}
       </div>
     </BrowserRouter>
   );
