@@ -9,7 +9,8 @@ const styles = {
     'text-[#dfd9ff] font-medium 2xl:text-[30px]  xl:text-[24px] sm:text-[20px] text-[16px] lg:leading-[40px]',
   heroSocialIcon:
     ' font-medium 2xl:text-[50px] sm:text-[40px] xs:text-[30px] text-[30px] lg:leading-[98px]',
-  sectionHeadText: 'text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]',
+  sectionHeadText:
+    'text-white font-black 2xl:text-[70px] xl:text-[60px] lg:text-[50px] md:text-[40px] text-[40px]',
   sectionSubText: 'sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider',
 };
 

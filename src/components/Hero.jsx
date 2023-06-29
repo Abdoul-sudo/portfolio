@@ -8,12 +8,12 @@ import { cv } from '../assets';
 const Hero = () => {
   return (
     <section
-      className={`relative w-full sm:h-[calc(100vh-100px)] max-sm:mb-20 mx-auto mt-10 sm:mt-24`}
+      className={`relative w-full sm:h-[calc(100vh-100px)] max-sm:mb-20 mx-auto mt-10 xl:mt-24 `}
     >
       <div className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-          <div className="w-1 md:h-80 h-60 violet-gradient" />
+          <div className="w-1 lg:h-80 h-60 violet-gradient" />
         </div>
 
         <div className="flex max-md:flex-col w-full justify-between md:items-center">
@@ -54,7 +54,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] flex-nowrap`}
+                  className={`text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] whitespace-nowrap  `}
                 >
                   Download CV
                 </a>
@@ -70,7 +70,7 @@ const Hero = () => {
       {/* <ComputersCanvas /> */}
 
       {/* Scroll component */}
-      <div className="absolute max-lg:hidden sm:bottom-24 lg:!bottom-16 2xl:!bottom-44 w-full flex justify-center items-center">
+      <div className="absolute max-lg:hidden sm:!bottom-24 2xl:!bottom-44 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
