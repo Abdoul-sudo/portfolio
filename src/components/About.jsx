@@ -39,18 +39,19 @@ const About = () => {
         variants={fadeIn('', '', 0.1, 1)}
         className="mt-4 text-secondary xl:text-[17px] lg:text-[14px] sm:text-[12px]  max-w-3xl leading-[30px]"
       >
-        I'm a skilled software developer with experience in JavaScript, and expertise in frameworks
-        like React.js and Node.js. I'm a quick learner with a passion for software development,
-        constantly seeking to expand my knowledge and skills. That drives fuel my enthusiasm for
-        creating innovative applications that push the boundaries of what is possible in the digital
-        world. Let's work together!
+        I'm a quick learner with <span className="blue-text-gradient font-bold">passion</span> for
+        software development, constantly seeking to expand my knowledge and skills. That drives fuel
+        my enthusiasm for creating{' '}
+        <span className="blue-text-gradient font-bold"> innovative </span> applications that push
+        the boundaries of what is possible in the digital world. <br />
+        <span className="orange-text-gradient text-2xl font-bold">Let's work together!</span>
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10">
+      {/* <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
