@@ -17,7 +17,7 @@ const Hero = () => {
         </div>
 
         <div className="flex max-md:flex-col w-full justify-between">
-          <div className="w-1/2">
+          <div className="md:w-1/2 w-full">
             {/* Header -------------------------------------------------------------------------------------------- */}
             <h1 className={`${styles.heroHeadText} text-white`}>
               Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
