@@ -17,7 +17,7 @@ const Hero = () => {
         </div>
 
         <div className="flex max-md:flex-col w-full justify-between md:items-center">
-          <div>
+          <div className="w-1/2">
             {/* Header -------------------------------------------------------------------------------------------- */}
             <h1 className={`${styles.heroHeadText} text-white`}>
               Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
@@ -54,7 +54,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[#dfd9ff] font-medium text-[22px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] flex-nowrap`}
+                  className={`text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] flex-nowrap`}
                 >
                   Download CV
                 </a>
@@ -63,14 +63,14 @@ const Hero = () => {
           </div>
 
           {/* Profile -------------------------------------------------------------------------------------------- */}
-          <div className="home_profile max-md:w-[250px] max-md:h-[250px] max-md:mt-16"></div>
+          <div className="home_profile max-2xl:w-[280px] max-2xl:h-[280px] max-xl:w-[230px] max-xl:h-[230px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[180px] max-md:h-[180px] max-md:mt-16"></div>
         </div>
       </div>
 
       {/* <ComputersCanvas /> */}
 
       {/* Scroll component */}
-      <div className="absolute max-md:hidden sm:bottom-24 !bottom-44 w-full flex justify-center items-center">
+      <div className="absolute max-lg:hidden sm:bottom-24 lg:!bottom-16 2xl:!bottom-44 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
