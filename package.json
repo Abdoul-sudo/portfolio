@@ -6,9 +6,9 @@
   "homepage": "https://Abdoul-sudo.github.io/portfolio",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build",
     "preview": "vite preview",
-    "predeploy": "vite build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
