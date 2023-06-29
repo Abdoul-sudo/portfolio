@@ -8,7 +8,7 @@ import { cv } from '../assets';
 const Hero = () => {
   return (
     <section
-      className={`relative w-full sm:h-[calc(100vh-100px)] max-sm:mb-20 mx-auto mt-10 xl:mt-24 `}
+      className={`relative w-full sm:max-md:h-[calc(100vh-100px)] lg:h-[calc(100vh-100px)]  max-sm:mb-20 mx-auto mt-10 xl:mt-24 `}
     >
       <div className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
         <div className="flex flex-col justify-center items-center mt-5">
@@ -16,7 +16,7 @@ const Hero = () => {
           <div className="w-1 lg:h-80 h-60 violet-gradient" />
         </div>
 
-        <div className="flex max-md:flex-col w-full justify-between md:items-center">
+        <div className="flex max-md:flex-col w-full justify-between">
           <div className="w-1/2">
             {/* Header -------------------------------------------------------------------------------------------- */}
             <h1 className={`${styles.heroHeadText} text-white`}>
