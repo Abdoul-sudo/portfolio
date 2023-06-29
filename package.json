@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Abdoul-sudo.github.io/Reactjs-portfolio",
+  "homepage": "https://Abdoul-sudo.github.io/portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
