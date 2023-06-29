@@ -37,14 +37,14 @@
   <defs>
     <linearGradient id="violetGradient" x1="0%" y1="100%" x2="0%" y2="0%">
       <stop offset="0%" style="stop-color:#804dee" />
-      <stop offset="100%" style="stop-color:#3C3350" />
+      <stop offset="100%" style="stop-color:#ef64fe" />
     </linearGradient>
    </defs>
   <g
      id="SvgjsG2685"
      featurekey="rootContainer"
      transform="matrix(0.9820592540669653,0,0,0.9820592540669653,-0.054560523427421584,0)"
-      stroke="url(#orangeGradient)" stroke-width="4">
+       stroke="url(#violetGradient)" stroke-width="4">
     <g
        id="g17">
       <path
@@ -75,8 +75,7 @@
   <g
      id="SvgjsG2686"
      featurekey="nameFeature-0"
-     transform="matrix(2.284354285447385,0,0,2.284354285447385,27.980055421585643,-5.609520280720151)"
-     fill="url(#orangeGradient)">
+     transform="matrix(2.284354285447385,0,0,2.284354285447385,27.980055421585643,-5.609520280720151)" fill="#fbe4ff">
     <path
        d="M9.6 16.48 l-0.32 4.24 c-0.08 1.8 2.6 1.96 2.72 0.2 l0.24 -4.28 c0.12 -1.76 -2.56 -1.96 -2.64 -0.16 z M0.48 11 l0 0 c0.04 0 20.48 -0.32 20.56 -0.2 c1.28 1.12 0.96 27.8 0.12 28.56 c-0.4 0.32 -4.64 0.56 -9.2 0.6 c-0.84 -3.84 -0.2 -8.32 -0.2 -8.32 c0.24 -1.8 -2.44 -2.12 -2.64 -0.4 c0 0.04 -0.64 4.52 0.16 8.76 c-4.56 -0.04 -8.68 -0.24 -8.92 -0.64 c-0.8 -1.44 0 -28.28 0.12 -28.36 z"
        id="path20" />
