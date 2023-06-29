@@ -30,19 +30,27 @@ const ProjectCard = ({
         <div className="relative w-full h-[230px]">
           <img src={image} alt="project_image" className="w-full h-full object-cover rounded-2xl" />
 
-          <div className="absolute inset-0 flex justify-between m-3 card-img_hover">
-            <div
-              onClick={() => window.open(deployment_link, '_blank')}
-              className="blue-pink-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-            >
-              <img src={online} alt="source code" className="w-2/3 h-2/3 object-contain" />
-            </div>
-            <div
-              onClick={() => window.open(source_code_link, '_blank')}
-              className="blue-pink-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-            >
-              <img src={github} alt="source code" className="w-3/4 h-3/4 object-contain" />
-            </div>
+          <div
+            className={`absolute inset-0  ${
+              deployment_link && source_code_link ? 'flex justify-between' : 'grid'
+            } m-3 card-img_hover`}
+          >
+            {deployment_link && (
+              <div
+                onClick={() => window.open(deployment_link, '_blank')}
+                className="blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+              >
+                <img src={online} alt="source code" className="w-2/3 h-2/3 object-contain" />
+              </div>
+            )}
+            {source_code_link && (
+              <div
+                onClick={() => window.open(source_code_link, '_blank')}
+                className="blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+              >
+                <img src={github} alt="source code" className="w-3/4 h-3/4 object-contain" />
+              </div>
+            )}
           </div>
         </div>
 

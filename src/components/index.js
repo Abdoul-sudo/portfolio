@@ -9,7 +9,6 @@ import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import CanvasLoader from './Loader';
 import Skills from './Skills/Skills';
-import { Cursor } from './Cursor';
 
 export {
   Hero,
@@ -26,5 +25,4 @@ export {
   ComputersCanvas,
   StarsCanvas,
   Skills,
-  Cursor,
 };

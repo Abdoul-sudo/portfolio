@@ -266,8 +266,8 @@ const projects = [
       },
     ],
     image: carrent,
-    source_code_link: 'https://github.com/',
-    deployment_link: 'https://onirix.iteam-s.mg/',
+    source_code_link: '',
+    deployment_link: '',
   },
   {
     name: 'Onirix',
@@ -292,7 +292,7 @@ const projects = [
       },
     ],
     image: onirix,
-    source_code_link: 'https://github.com/Ntsoa2112/Webcup2023_Front_React',
+    source_code_link: '',
     deployment_link: 'https://onirix.iteam-s.mg/',
   },
 
@@ -337,8 +337,8 @@ const projects = [
       },
     ],
     image: tripguide,
-    source_code_link: 'https://github.com/',
-    deployment_link: 'https://onirix.iteam-s.mg/',
+    source_code_link: '',
+    deployment_link: '',
   },
 ];
 
