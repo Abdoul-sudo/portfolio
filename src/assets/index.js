@@ -44,7 +44,7 @@ import tripguide from './projects/tripguide.png';
 import onirix from './projects/onirix.png';
 
 import profile from './abdoul.jpg';
-import cv from '../../public/cv.pdf';
+import cv from '../../public/ISMAEL Abdoul Wahhaab CV.pdf';
 
 export {
   logo,
