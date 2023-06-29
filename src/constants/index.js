@@ -4,7 +4,7 @@ import {
   creator,
   web,
   javascript,
-  typescript,
+  // typescript,
   html,
   css,
   reactjs,
@@ -14,7 +14,7 @@ import {
   mongodb,
   git,
   figma,
-  docker,
+  // docker,
   vuejs,
   reactQuery,
   mysql,
@@ -23,29 +23,18 @@ import {
   php,
   laravel,
   symfony,
-  nestjs,
+  // nestjs,
   nextjs,
-  // meta,
-  // starbucks,
-  // tesla,
-  // shopify,
-  // cpa,
-  // sesame,
-  // webcup,
+  meta,
+  cpa,
+  sesame,
+  webcup,
   carrent,
   jobit,
   tripguide,
   onirix,
   threejs,
 } from '../assets';
-
-import meta from '../assets/company/meta.png';
-import shopify from '../assets/company/shopify.png';
-import starbucks from '../assets/company/starbucks.png';
-import tesla from '../assets/company/tesla.png';
-import cpa from '../assets/company/cpa.jfif';
-import webcup from '../assets/company/webcup.jfif';
-import sesame from '../assets/company/sesame.jpg';
 
 export const navLinks = [
   {
