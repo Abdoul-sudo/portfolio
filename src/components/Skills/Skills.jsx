@@ -28,7 +28,7 @@ const Skills = () => {
               <div className="app__flex" style={{ backgroundColor: skill.bgColor }}>
                 <img src={skill.icon} alt={skill.name} />
               </div>
-              <p className="p-text text-secondary">{skill.name}</p>
+              {/* <p className="p-text text-secondary text-base">{skill.name}</p> */}
             </motion.div>
           ))}
         </motion.div>

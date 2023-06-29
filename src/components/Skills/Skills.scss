@@ -42,11 +42,10 @@
   transition: all 0.3s ease-in-out;
 
   div {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: #fff8fd;
-    box-shadow: 0 0 6px #fef4f5;
     img {
       width: 50%;
       height: 50%;
@@ -57,8 +56,8 @@
     }
 
     @media screen and (min-width: 2000px) {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
     }
 
     @media screen and (max-width: 450px) {

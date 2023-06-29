@@ -7,7 +7,7 @@ import CanvasLoader from '../Loader';
 const Earth = () => {
   const earth = useGLTF('./voxel_world/scene.gltf');
 
-  return <primitive object={earth.scene} scale={2} position-y={0} rotation-y={0} />;
+  return <primitive object={earth.scene} scale={1.8} position-y={0} rotation-y={0} />;
 };
 
 const EarthCanvas = () => {
