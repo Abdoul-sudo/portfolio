@@ -13,7 +13,7 @@ const StarWrapper = (Component, idName) =>
         viewport={{ once: true, amount: 0.25 }}
         className={`${styles.paddingX} max-w-7xl mx-auto relative z-0`}
       >
-        <span className="hidden sm:block md:mb-20 lg:pb-10" id={idName}>
+        <span className="block pb-20 lg:pb-10" id={idName}>
           &nbsp;
         </span>
 
