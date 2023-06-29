@@ -1,5 +1,5 @@
 import React from 'react';
-import Tilt from 'react-tilt';
+import {} from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
@@ -11,6 +11,7 @@ const ServiceCard = ({ index, title, icon }) => (
   <Tilt
     options={{
       max: 45,
+      Tilt,
     }}
     className="xs:w-[250px] w-full"
   >
