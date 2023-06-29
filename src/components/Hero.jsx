@@ -7,10 +7,8 @@ import { cv } from '../assets';
 
 const Hero = () => {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={` mt-10 sm:mt-24 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
+    <section className={`relative w-full h-[calc(100vh-100px)] mx-auto mt-10 sm:mt-24`}>
+      <div className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
           <div className="w-1 sm:h-80 h-60 violet-gradient" />
@@ -70,7 +68,7 @@ const Hero = () => {
       {/* <ComputersCanvas /> */}
 
       {/* Scroll component */}
-      <div className="absolute max-md:hidden sm:bottom-24 !bottom-64 w-full flex justify-center items-center">
+      <div className="absolute max-md:hidden sm:bottom-24 !bottom-44 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
