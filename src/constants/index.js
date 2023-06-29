@@ -311,8 +311,8 @@ const projects = [
       },
     ],
     image: jobit,
-    source_code_link: '',
-    deployment_link: '',
+    source_code_link: 'https://github.com/',
+    deployment_link: 'https://onirix.iteam-s.mg/',
   },
 ];
 
