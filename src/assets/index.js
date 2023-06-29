@@ -33,13 +33,13 @@ import nestjs from './tech/nestjs.svg';
 import laravel from './tech/laravel.svg';
 import symfony from './tech/symfony.svg';
 
-import meta from './company/meta.png';
-import shopify from './company/shopify.png';
-import starbucks from './company/starbucks.png';
-import tesla from './company/tesla.png';
-import cpa from './company/cpa.jfif';
-import webcup from './company/webcup.jfif';
-import sesame from './company/sesame.jpg';
+// import meta from './company/meta.png';
+// import shopify from './company/shopify.png';
+// import starbucks from './company/starbucks.png';
+// import tesla from './company/tesla.png';
+// import cpa from './company/cpa.jfif';
+// import webcup from './company/webcup.jfif';
+// import sesame from './company/sesame.jpg';
 
 import carrent from './projects/carrent.png';
 import jobit from './projects/jobit.png';
@@ -85,13 +85,13 @@ export {
   laravel,
   symfony,
   // companies
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  cpa,
-  webcup,
-  sesame,
+  // meta,
+  // shopify,
+  // starbucks,
+  // tesla,
+  // cpa,
+  // webcup,
+  // sesame,
   // projects
   carrent,
   jobit,
