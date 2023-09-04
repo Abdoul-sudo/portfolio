@@ -11,6 +11,7 @@ import {
   Works,
   StarsCanvas,
   Skills,
+  Trailer,
 } from './components';
 import './App.scss';
 
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
+        <Trailer />
         <StarsCanvas />
         {/* <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center"> */}
         <Navbar />

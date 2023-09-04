@@ -28,27 +28,41 @@ const ProjectCard = ({
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
         <div className="relative w-full sm:h-[230px]">
-          <img src={image} alt="project_image" className="w-full h-full object-cover rounded-2xl" />
+          <img
+            src={image}
+            alt="project_image"
+            className="w-full h-full object-cover rounded-2xl"
+          />
 
           <div
             className={`absolute inset-0  ${
-              deployment_link && source_code_link ? 'flex justify-between' : 'grid'
+              deployment_link && source_code_link
+                ? 'flex justify-between'
+                : 'grid'
             } m-3 card-img_hover`}
           >
             {deployment_link && (
               <div
                 onClick={() => window.open(deployment_link, '_blank')}
-                className="blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_10px_#ef64fe]"
               >
-                <img src={online} alt="source code" className="w-2/3 h-2/3 object-contain" />
+                <img
+                  src={online}
+                  alt="source code"
+                  className="w-2/3 h-2/3 object-contain"
+                />
               </div>
             )}
             {source_code_link && (
               <div
                 onClick={() => window.open(source_code_link, '_blank')}
-                className="blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_10px_#ef64fe]"
               >
-                <img src={github} alt="source code" className="w-3/4 h-3/4 object-contain" />
+                <img
+                  src={github}
+                  alt="source code"
+                  className="w-3/4 h-3/4 object-contain"
+                />
               </div>
             )}
           </div>
@@ -61,7 +75,10 @@ const ProjectCard = ({
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <p key={`${name}-${tag.name}`} className={`text-[14px] ${tag.color}`}>
+            <p
+              key={`${name}-${tag.name}`}
+              className={`text-[14px] ${tag.color}`}
+            >
               #{tag.name}
             </p>
           ))}
@@ -84,11 +101,13 @@ const Works = () => {
           variants={fadeIn('', '', 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          These projects demonstrate my skills and experience through real-world examples of my
-          work. Each project is described briefly and includes links to{' '}
+          These projects demonstrate my skills and experience through real-world
+          examples of my work. Each project is described briefly and includes
+          links to{' '}
           <span className="orange-text-gradient">code repositories</span> and{' '}
-          <span className="orange-text-gradient">live demos</span>. They showcase my ability to work
-          with various technologies, and effectively manage projects.
+          <span className="orange-text-gradient">live demos</span>. They
+          showcase my ability to work with various technologies, and effectively
+          manage projects.
         </motion.p>
       </div>
 

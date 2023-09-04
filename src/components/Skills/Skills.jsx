@@ -25,7 +25,10 @@ const Skills = () => {
               transition={{ duration: 0.5 }}
               className="app__skills-item app__flex"
             >
-              <div className="app__flex" style={{ backgroundColor: skill.bgColor }}>
+              <div
+                className="app__flex"
+                style={{ backgroundColor: skill.bgColor }}
+              >
                 <img src={skill.icon} alt={skill.name} />
               </div>
               {/* <p className="p-text text-secondary text-base">{skill.name}</p> */}
@@ -35,7 +38,10 @@ const Skills = () => {
 
         <div className="app__skills-exp">
           {experiences.map((experience, index) => (
-            <motion.div key={`${experience.date}-${index}`} className="app__skills-exp-item">
+            <motion.div
+              key={`${experience.date}-${index}`}
+              className="app__skills-exp-item"
+            >
               <div className="app__skills-exp-year">
                 <p className="text-[#915EFF] font-bold">{experience.date}</p>
               </div>
@@ -51,7 +57,7 @@ const Skills = () => {
                   >
                     <div className="flex justify-center items-center gap-3">
                       <div
-                        className="green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_15px_#fef4f5] overflow-hidden"
+                        className="interactable green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_5px_#fef4f5] overflow-hidden"
                         onClick={() => window.open(work.company_link, '_blank')}
                       >
                         <div

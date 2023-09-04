@@ -10,7 +10,9 @@ const Hero = () => {
     <section
       className={`relative w-full sm:max-md:h-[calc(100vh-100px)] lg:h-[calc(100vh-100px)]  max-sm:mb-20 mx-auto mt-10 xl:mt-24 `}
     >
-      <div className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
+      <div
+        className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+      >
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
           <div className="w-1 lg:h-80 h-60 violet-gradient" />
@@ -33,15 +35,20 @@ const Hero = () => {
               <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
                 <div
                   onClick={() =>
-                    window.open('https://www.linkedin.com/in/abdoul-ismael-132a40210/', '_blank')
+                    window.open(
+                      'https://www.linkedin.com/in/abdoul-ismael-132a40210/',
+                      '_blank'
+                    )
                   }
-                  className=" w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+                  className="interactable w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer  green-text-gradient "
                 >
                   <FaLinkedinIn />
                 </div>
                 <div
-                  onClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')}
-                  className=" w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe] green-text-gradient "
+                  onClick={() =>
+                    window.open('https://github.com/Abdoul-sudo', '_blank')
+                  }
+                  className="interactable w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer green-text-gradient "
                 >
                   <FaGithub />
                 </div>
@@ -54,7 +61,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-[#915eff] px-[28px] py-[12px] hover:shadow-[0_0_25px_#ef64fe] whitespace-nowrap  `}
+                  className={`interactable text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff] hover:shadow-none whitespace-nowrap  `}
                 >
                   Download CV
                 </a>
