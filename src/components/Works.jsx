@@ -44,7 +44,7 @@ const ProjectCard = ({
             {deployment_link && (
               <div
                 onClick={() => window.open(deployment_link, '_blank')}
-                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_10px_#ef64fe]"
+                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
               >
                 <img
                   src={online}
@@ -56,7 +56,7 @@ const ProjectCard = ({
             {source_code_link && (
               <div
                 onClick={() => window.open(source_code_link, '_blank')}
-                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_10px_#ef64fe]"
+                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
               >
                 <img
                   src={github}
