@@ -23,7 +23,7 @@ const Trailer = () => {
       const keyframes = {
         // zIndex: interacting ? -1 : 2,
         transform: `translate(${x}px, ${y}px) scale(${
-          interacting ? 3 : 1
+          interacting ? 2.5 : 1
         }) rotate(45deg)`,
         boxShadow: interacting ? '0 0 10px #ef64fe' : '0 0 10px white',
         // backgroundColor: interacting ? 'white' : 'transparent',

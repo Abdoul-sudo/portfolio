@@ -79,7 +79,7 @@ const Hero = () => {
       {/* Scroll component */}
       <div className="absolute max-lg:hidden sm:!bottom-24 2xl:!bottom-44 w-full flex justify-center items-center">
         <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
+          <div className="interactable  w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
               animate={{
                 y: [0, 24, 0],

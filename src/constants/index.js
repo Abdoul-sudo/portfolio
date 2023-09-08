@@ -170,18 +170,6 @@ const technologies = [
 
 const experiences = [
   {
-    date: '2021 - 2022',
-    works: [
-      {
-        title: 'Frontend Developer',
-        company_name: 'Sesame Program - Guidance and careers platform development',
-        icon: sesame,
-        iconBg: '#ffffff',
-        company_link: 'https://programme-sesame.mg/',
-      },
-    ],
-  },
-  {
     date: '2021 - 2023',
     works: [
       {

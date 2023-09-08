@@ -104,10 +104,12 @@ const Works = () => {
           These projects demonstrate my skills and experience through real-world
           examples of my work. Each project is described briefly and includes
           links to{' '}
-          <span className="orange-text-gradient">code repositories</span> and{' '}
-          <span className="orange-text-gradient">live demos</span>. They
-          showcase my ability to work with various technologies, and effectively
-          manage projects.
+          <span className="blue-text-gradient font-bold">
+            code repositories
+          </span>{' '}
+          and <span className="blue-text-gradient font-bold">live demos</span>.
+          They showcase my ability to work with various technologies, and
+          effectively manage projects.
         </motion.p>
       </div>
 
