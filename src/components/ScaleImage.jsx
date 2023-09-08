@@ -29,13 +29,13 @@ function ScaleImage({ src_data, setImage }) {
           </div>
         ) : ( */}
         <div
-          className="w-[1300px] h-[720px] border-[2px]  border-[#343434] relative group overflow-hidden  bg-black  rounded-[15px]"
+          className="2xl:w-[1300px] 2xl:h-[720px] lg:w-[1000px] lg:h-[600px]  border-[2px]  border-[#343434] relative group overflow-hidden  bg-black  rounded-[15px]"
           onClick={(e) => e.stopPropagation()}
         >
           <img
             alt=""
             src={src_data}
-            className="w-full h-auto object-cover rounded-[10px]"
+            className="w-full object-cover rounded-[10px]"
           />
         </div>
         {/* )} */}

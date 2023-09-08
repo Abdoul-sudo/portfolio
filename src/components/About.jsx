@@ -52,8 +52,8 @@ const About = () => {
         <span className="blue-text-gradient font-bold">expand</span> my
         personnal knowledge and skills. <br /> My primary focus revolves around
         building <span className="blue-text-gradient font-bold">efficient</span>{' '}
-        web applications and constantly challenge the limits of what is possible
-        in the digital world. <div className="h-4"></div>
+        web applications and constantly challenging the limits of what is
+        possible in the digital world. <div className="h-4"></div>
         <span className="orange-text-gradient text-3xl font-bold pt-11">
           Let's work together!
         </span>
