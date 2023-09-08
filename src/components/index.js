@@ -15,6 +15,7 @@ import Contact from './Contact';
 import CanvasLoader from './Loader';
 import Skills from './Skills/Skills';
 import Trailer from './cursor/Trailer';
+import ScaleImage from './ScaleImage';
 
 export {
   Hero,
@@ -32,4 +33,5 @@ export {
   StarsCanvas,
   Skills,
   Trailer,
+  ScaleImage,
 };
