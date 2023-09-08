@@ -28,10 +28,10 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        className=" bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
         <div
-          className="relative w-full sm:h-[230px] cursor-pointer"
+          className="interactable2 relative w-full sm:h-[230px] cursor-pointer"
           onClick={() => {
             setImage(image);
           }}
@@ -39,7 +39,7 @@ const ProjectCard = ({
           <img
             src={image}
             alt="project_image"
-            className="w-full h-full object-cover rounded-2xl "
+            className="interactable2 w-full h-full object-cover rounded-2xl "
           />
 
           <div

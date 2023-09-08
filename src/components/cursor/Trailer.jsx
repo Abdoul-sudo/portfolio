@@ -16,18 +16,22 @@ const Trailer = () => {
         setIcon(faStar);
       }
     };
-    const animateTrailer = (e, interacting) => {
+    const animateTrailer = (e, interacting, interacting2) => {
       const x = e.clientX - trailer.offsetWidth / 2;
       const y = e.clientY - trailer.offsetHeight / 2;
 
       const keyframes = {
         // zIndex: interacting ? -1 : 2,
         transform: `translate(${x}px, ${y}px) scale(${
-          interacting ? 2.5 : 1
-        }) rotate(45deg)`,
-        boxShadow: interacting ? '0 0 10px #ef64fe' : '0 0 10px white',
-        // backgroundColor: interacting ? 'white' : 'transparent',
-        border: interacting ? '1px solid #ef64fe' : '2px solid white',
+          interacting ? 2.5 : interacting2 ? 1.5 : 1
+        })`,
+        boxShadow:
+          interacting || interacting2 ? '0 0 10px #ef64fe' : '0 0 10px white',
+        border: interacting
+          ? '1px solid #ef64fe'
+          : interacting2
+          ? '1.5px solid #ef64fe'
+          : '2px solid white',
       };
 
       trailer.animate(keyframes, {
@@ -42,9 +46,12 @@ const Trailer = () => {
       const interactable = e.target.closest('.interactable'),
         interacting = interactable !== null;
 
-      animateTrailer(e, interacting);
+      const interactable2 = e.target.closest('.interactable2'),
+        interacting2 = interactable2 !== null;
 
-      trailer.dataset.type = interacting ? interactable.dataset.type : '';
+      animateTrailer(e, interacting, interacting2);
+
+      // trailer.dataset.type = interacting ? interactable.dataset.type : '';
 
       // if (interacting) {
       //   icon.className = getTrailerClass(interactable.dataset.type);

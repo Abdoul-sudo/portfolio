@@ -8,12 +8,15 @@ function ScaleImage({ src_data, setImage }) {
         onClick={() => setImage('')}
         className=" absolute  top-[20px] left-[20px]"
       >
-        <div className="flex flex-row items-center justify-start text-slate-200 hover:text-sky-500 cursor-pointer ">
-          <BsArrowLeft className="h-6 w-6  mr-[5px] " />
+        <div className="interactable2 flex flex-row items-center justify-start text-slate-200 hover:text-sky-500 cursor-pointer ">
+          <BsArrowLeft className="h-10 w-6  mr-[5px] " />
           <span className=" text-[17px]">Back</span>
         </div>
       </div>
-      <div className="w-full h-full flex flex-row items-center justify-center">
+      <div
+        className="w-full h-full flex flex-row items-center justify-center"
+        onClick={() => setImage('')}
+      >
         {/* {src_data.isMobile ? (
           <div className="w-[480px] h-auto border-[2px] px-[8px] py-[12px] border-[#343434] relative group overflow-hidden  bg-black rounded-[35px]  ">
             <Image
@@ -25,13 +28,14 @@ function ScaleImage({ src_data, setImage }) {
             />
           </div>
         ) : ( */}
-        <div className="w-[1300px] h-[720px] border-[2px]  border-[#343434] relative group overflow-hidden  bg-black  rounded-[15px]   ">
+        <div
+          className="w-[1300px] h-[720px] border-[2px]  border-[#343434] relative group overflow-hidden  bg-black  rounded-[15px]"
+          onClick={(e) => e.stopPropagation()}
+        >
           <img
             alt=""
             src={src_data}
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-contain object-center rounded-[10px]"
+            className="w-full h-auto object-cover rounded-[10px]"
           />
         </div>
         {/* )} */}
