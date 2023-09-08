@@ -15,17 +15,13 @@ import {
   ScaleImage,
 } from './components';
 import './App.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const App = () => {
   const [imgScale, setImgScale] = useState('');
   const setImage = (img) => {
     setImgScale(img);
   };
-
-  useEffect(() => {
-    console.log('immmmmmmmmmmmmmmmmmmmm', imgScale);
-  }, [imgScale]);
 
   return (
     <BrowserRouter>

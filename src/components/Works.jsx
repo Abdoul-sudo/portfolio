@@ -19,7 +19,6 @@ const ProjectCard = ({
   deployment_link,
   setImage,
 }) => {
-  console.log(setImage);
   return (
     <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
       <Tilt
@@ -97,7 +96,6 @@ const ProjectCard = ({
 };
 
 const Works = (props) => {
-  console.log('eeee', props);
   return (
     <>
       <motion.section
