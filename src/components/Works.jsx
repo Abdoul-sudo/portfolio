@@ -32,50 +32,40 @@ const ProjectCard = ({
         }}
         className=" bg-tertiary opacity-90  p-5 rounded-2xl sm:w-[360px] w-full"
       >
-        <div
-          className="interactable2 relative w-full sm:h-[230px] cursor-pointer"
-          onClick={() => {
-            setImage(image);
-          }}
-        >
+        <div className="interactable2 relative w-full sm:h-[230px] cursor-pointer">
           <img
             src={image}
             alt="project_image"
             className="interactable2 w-full h-full object-cover rounded-2xl "
+            onClick={() => {
+              setImage(image);
+            }}
           />
 
-          <div
-            className={`absolute inset-0  ${
-              deployment_link && source_code_link
-                ? 'flex justify-between'
-                : 'grid'
-            } m-3 card-img_hover`}
-          >
-            {deployment_link && (
-              <div
-                onClick={() => window.open(deployment_link, '_blank')}
-                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-              >
-                <img
-                  src={online}
-                  alt="source code"
-                  className="w-2/3 h-2/3 object-contain"
-                />
-              </div>
-            )}
-            {source_code_link && (
-              <div
-                onClick={() => window.open(source_code_link, '_blank')}
-                className="interactable blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-              >
-                <img
-                  src={github}
-                  alt="source code"
-                  className="w-3/4 h-3/4 object-contain"
-                />
-              </div>
-            )}
-          </div>
+          {deployment_link && (
+            <div
+              onClick={() => window.open(deployment_link, '_blank')}
+              className="interactable absolute inset-0 m-3 card-img_hover blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+            >
+              <img
+                src={online}
+                alt="source code"
+                className="w-2/3 h-2/3 object-contain"
+              />
+            </div>
+          )}
+          {source_code_link && (
+            <div
+              onClick={() => window.open(source_code_link, '_blank')}
+              className="interactable absolute top-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+            >
+              <img
+                src={github}
+                alt="source code"
+                className="w-3/4 h-3/4 object-contain"
+              />
+            </div>
+          )}
         </div>
 
         <div className="mt-5">
