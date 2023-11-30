@@ -16,6 +16,11 @@ const Trailer = () => {
         setIcon(faStar);
       }
     };
+
+    /**
+     * interacting2: card and navbarLink
+     * interacting:  button
+     */
     const animateTrailer = (e, interacting, interacting2) => {
       const x = e.clientX - trailer.offsetWidth / 2;
       const y = e.clientY - trailer.offsetHeight / 2;
