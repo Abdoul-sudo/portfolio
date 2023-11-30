@@ -13,7 +13,11 @@ const Skills = () => {
       {/* <h2 className="head-text">Skills & Experiences</h2> */}
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>What I have done so far</p>
-        <h2 className={`${styles.sectionHeadText}`}>Skills & Experiences</h2>
+        <h2
+          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.3rem_#ffffff70]`}
+        >
+          Skills & Experiences.
+        </h2>
       </motion.div>
 
       <div className="app__skills-container">

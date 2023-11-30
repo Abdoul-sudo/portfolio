@@ -73,7 +73,11 @@ const Contact = () => {
         className="flex-[0.75] bg-black-100 opacity-90 p-8 rounded-2xl sm:max-xl:w-3/4  w-full"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <h3
+          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.3rem_#ffffff70]`}
+        >
+          Contact.
+        </h3>
 
         <form
           ref={formRef}

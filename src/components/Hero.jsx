@@ -21,7 +21,9 @@ const Hero = () => {
         <div className="flex max-md:flex-col w-full justify-between">
           <div className="md:w-1/2 w-full">
             {/* Header -------------------------------------------------------------------------------------------- */}
-            <h1 className={`${styles.heroHeadText} text-white`}>
+            <h1
+              className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.3rem_#ffffff70]`}
+            >
               Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
             </h1>
             <p className={`${styles.heroSubText} mt-2 text-white-100`}>
@@ -61,7 +63,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`interactable text-[#dfd9ff] font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff] hover:shadow-none whitespace-nowrap  `}
+                  className={`interactable text-[#dfd9ff]  font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff]  hover:shadow-none whitespace-nowrap  `}
                 >
                   Download CV
                 </a>
