@@ -69,7 +69,9 @@ const ProjectCard = ({
         </div>
 
         <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
+          <h3 className="text-white font-bold text-[24px] drop-shadow-[0_0_0.1rem_#ffffff70]">
+            {name}
+          </h3>
           <p className="mt-2 text-secondary text-[14px]">{description}</p>
         </div>
 
@@ -98,7 +100,7 @@ const Works = (props) => {
         viewport={{ once: true, amount: 0.25 }}
         className={`${styles.paddingX} max-w-7xl mx-auto relative z-0`}
       >
-        <span className="block pb-20 lg:pb-10" id="work">
+        <span className="block pb-32 lg:pb-36" id="work">
           &nbsp;
         </span>
         <motion.div variants={textVariant()}>

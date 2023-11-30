@@ -47,7 +47,9 @@ const Skills = () => {
               className="app__skills-exp-item"
             >
               <div className="app__skills-exp-year">
-                <p className="text-[#915EFF] font-bold">{experience.date}</p>
+                <p className="text-[#915EFF] font-bold drop-shadow-[0_0_0.1rem_#ffffff70]">
+                  {experience.date}
+                </p>
               </div>
               <motion.div className="app__skills-exp-works">
                 {experience.works.map((work, id) => (
