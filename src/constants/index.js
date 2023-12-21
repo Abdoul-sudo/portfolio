@@ -277,7 +277,7 @@ const projects = [
     ],
     image: onirix,
     source_code_link: '',
-    deployment_link: 'https://onirix.iteam-s.mg/',
+    deployment_link: 'https://onirix.vercel.app/',
   },
 
   {
