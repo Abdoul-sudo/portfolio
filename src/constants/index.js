@@ -250,7 +250,7 @@ const projects = [
         color: 'green-text-gradient',
       },
       {
-        name: 'infinite_scroll',
+        name: 'lazy_loading',
         color: 'pink-text-gradient',
       },
       {
