@@ -32,6 +32,7 @@ import {
   carrent,
   jobit,
   onirix,
+  fb_clone,
   // threejs,
 } from '../assets';
 
@@ -232,26 +233,34 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'Car Rent',
+    name: 'Facebook Blog Clone',
     description:
-      'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
+      'A Facebook blog application clone that allows users to create and delete posts, as well as like and comment on them. ',
     tags: [
       {
         name: 'react',
         color: 'blue-text-gradient',
       },
       {
-        name: 'mongodb',
-        color: 'green-text-gradient',
+        name: 'json-server',
+        color: 'orange-text-gradient',
       },
       {
         name: 'tailwind',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'infinite_scroll',
         color: 'pink-text-gradient',
       },
+      {
+        name: 'skeleton_ui',
+        color: 'blue-text-gradient',
+      },
     ],
-    image: carrent,
-    source_code_link: '',
-    deployment_link: '',
+    image: fb_clone,
+    source_code_link: 'https://github.com/Abdoul-sudo/react-facebook-clone',
+    deployment_link: 'https://abd-fb-clone.vercel.app/',
   },
   {
     name: 'Onirix',

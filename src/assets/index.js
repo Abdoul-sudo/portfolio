@@ -42,6 +42,7 @@ import carrent from './projects/carrent.png';
 import jobit from './projects/jobit.png';
 import tripguide from './projects/tripguide.png';
 import onirix from './projects/onirix.png';
+import fb_clone from './projects/fb_clone.png';
 
 import profile from './abdoul.jpg';
 import cv from './ISMAEL_Abdoul_Wahhaab_CV.pdf';
@@ -91,6 +92,7 @@ export {
   jobit,
   tripguide,
   onirix,
+  fb_clone,
   // profile
   profile,
   cv,
