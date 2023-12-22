@@ -29,7 +29,7 @@ function ScaleImage({ src_data, setImage }) {
           </div>
         ) : ( */}
         <div
-          className="2xl:w-[1300px] 2xl:h-[720px] lg:w-[1000px] lg:h-[600px]  border-[2px]  border-[#343434] relative group overflow-hidden  bg-black  rounded-[15px]"
+          className="2xl:max-w-[1300px] 2xl:max-h-[720px] lg:max-w-[1000px] lg:max-h-[600px]  border-[2px]  border-[#343434] relative group  overflow-hidden  bg-black  rounded-[15px]"
           onClick={(e) => e.stopPropagation()}
         >
           <img
