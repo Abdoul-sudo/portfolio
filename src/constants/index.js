@@ -233,9 +233,9 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'Facebook Blog Clone',
+    name: 'Facebook Clone',
     description:
-      'A Facebook blog application clone that allows users to create and delete posts, as well as like and comment on them. ',
+      'A Facebook application clone that allows users to create and delete posts, as well as like and comment on them.',
     tags: [
       {
         name: 'react',
