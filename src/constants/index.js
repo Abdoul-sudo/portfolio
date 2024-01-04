@@ -35,6 +35,7 @@ import {
   jobit,
   onirix,
   fb_clone,
+  flappy_bird,
   // threejs,
 } from '../assets';
 
@@ -243,7 +244,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'Facebook Clone',
+    name: 'Facebook clone',
     description:
       'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs',
     tags: [
@@ -297,6 +298,32 @@ const projects = [
     image: onirix,
     source_code_link: '',
     deployment_link: 'https://onirix.vercel.app/',
+  },
+  {
+    name: 'Flappy Bird clone',
+    description:
+      'A Flappy Bird game clone that I made to learn the basics of Unity Game Engine.',
+    tags: [
+      {
+        name: 'unity',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'gamedev',
+        color: 'orange-text-gradient',
+      },
+      {
+        name: 'tailwindcss',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'chatgpt_api',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: flappy_bird,
+    source_code_link: '',
+    deployment_link: 'https://abdoul-sudo.itch.io/flappy-bird',
   },
 
   // {

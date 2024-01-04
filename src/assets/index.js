@@ -45,6 +45,7 @@ import jobit from './projects/jobit.png';
 import tripguide from './projects/tripguide.png';
 import onirix from './projects/onirix.png';
 import fb_clone from './projects/fb_clone.png';
+import flappy_bird from './projects/flappy_bird.png';
 
 import profile from './abdoul.jpg';
 import cv from './ISMAEL_Abdoul_Wahhaab_CV.pdf';
@@ -97,6 +98,7 @@ export {
   tripguide,
   onirix,
   fb_clone,
+  flappy_bird,
   // profile
   profile,
   cv,
