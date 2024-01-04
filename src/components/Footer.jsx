@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { styles } from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub, FaItchIo, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
   const [active, setActive] = useState('');
@@ -88,6 +88,14 @@ const Footer = () => {
             className="interactable2 w-11 h-11 p-1 rounded-full flex justify-center items-center cursor-pointer text-secondary hover:text-white text-3xl"
           >
             <FaGithub />
+          </div>
+          <div
+            onClick={() =>
+              window.open('https://itch.io/profile/abdoul-sudo', '_blank')
+            }
+            className="interactable2 w-11 h-11 p-1 rounded-full flex justify-center items-center cursor-pointer text-secondary hover:text-white text-3xl"
+          >
+            <FaItchIo />
           </div>
         </ul>
       </div>
