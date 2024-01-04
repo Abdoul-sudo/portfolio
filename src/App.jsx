@@ -7,6 +7,7 @@ import {
   Feedbacks,
   Hero,
   Navbar,
+  Footer,
   Tech,
   Works,
   StarsCanvas,
@@ -40,9 +41,10 @@ const App = () => {
 
         <Works setImage={setImage} />
         {/* <Feedbacks /> */}
-        <div className="relative z-0">
+        <div className="relative z-0 pb-24 lg:pb-32">
           <Contact />
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
