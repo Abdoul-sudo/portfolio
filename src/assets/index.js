@@ -8,6 +8,7 @@ import menu from './menu.svg';
 import close from './close.svg';
 import online from './online.png';
 import online_icon from './online_icon.svg';
+import gamecontroller from './gamecontroller.png';
 
 import css from './tech/css.png';
 import docker from './tech/docker.png';
@@ -59,6 +60,7 @@ export {
   github,
   online,
   online_icon,
+  gamecontroller,
   menu,
   close,
   // tech

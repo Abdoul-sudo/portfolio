@@ -302,7 +302,7 @@ const projects = [
   {
     name: 'Flappy Bird clone',
     description:
-      'A Flappy Bird game clone that I made to learn the basics of Unity Game Engine.',
+      'A Flappy Bird game clone I made to learn the basics of Unity.',
     tags: [
       {
         name: 'unity',
@@ -312,18 +312,10 @@ const projects = [
         name: 'gamedev',
         color: 'orange-text-gradient',
       },
-      {
-        name: 'tailwindcss',
-        color: 'green-text-gradient',
-      },
-      {
-        name: 'chatgpt_api',
-        color: 'pink-text-gradient',
-      },
     ],
     image: flappy_bird,
-    source_code_link: '',
-    deployment_link: 'https://abdoul-sudo.itch.io/flappy-bird',
+    source_code_link: 'https://github.com/Abdoul-sudo/unity_flappyBird',
+    game_link: 'https://abdoul-sudo.itch.io/flappy-bird',
   },
 
   // {

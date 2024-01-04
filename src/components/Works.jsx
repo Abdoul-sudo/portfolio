@@ -3,7 +3,7 @@ import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-import { github, online, online_icon } from '../assets';
+import { github, online, online_icon, gamecontroller } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
@@ -17,6 +17,7 @@ const ProjectCard = ({
   image,
   source_code_link,
   deployment_link,
+  game_link,
   setImage,
 }) => {
   return (
@@ -49,6 +50,18 @@ const ProjectCard = ({
             >
               <img
                 src={online}
+                alt="source code"
+                className="w-2/3 h-2/3 object-contain"
+              />
+            </div>
+          )}
+          {game_link && (
+            <div
+              onClick={() => window.open(game_link, '_blank')}
+              className="interactable absolute inset-0 m-3 card-img_hover blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+            >
+              <img
+                src={gamecontroller}
                 alt="source code"
                 className="w-2/3 h-2/3 object-contain"
               />
