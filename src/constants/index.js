@@ -23,6 +23,8 @@ import {
   php,
   laravel,
   symfony,
+  csharp,
+  unity,
   // nestjs,
   nextjs,
   meta,
@@ -103,14 +105,14 @@ const technologies = [
     name: 'Next JS',
     icon: nextjs,
   },
-  {
-    name: 'Redux Toolkit',
-    icon: redux,
-  },
-  {
-    name: 'React Query',
-    icon: reactQuery,
-  },
+  // {
+  //   name: 'Redux Toolkit',
+  //   icon: redux,
+  // },
+  // {
+  //   name: 'React Query',
+  //   icon: reactQuery,
+  // },
   {
     name: 'Vuejs',
     icon: vuejs,
@@ -140,9 +142,17 @@ const technologies = [
     icon: symfony,
   },
   {
-    name: 'MongoDB',
-    icon: mongodb,
+    name: 'C#',
+    icon: csharp,
   },
+  {
+    name: 'Unity',
+    icon: unity,
+  },
+  // {
+  //   name: 'MongoDB',
+  //   icon: mongodb,
+  // },
   {
     name: 'MySQL',
     icon: mysql,
@@ -180,28 +190,28 @@ const experiences = [
         iconBg: '#ffffff',
         company_link: 'https://www.experts-cpa.com/apropos',
       },
-      {
-        title: 'Frontend Developer',
-        company_name: '24h by webcup Madagascar hackathon - 3rd place',
-        icon: webcup,
-        iconBg: '#ffffff',
-        company_link: 'https://24h.webcup.fr/',
-      },
+      // {
+      //   title: 'Frontend Developer',
+      //   company_name: '24h by webcup Madagascar hackathon - 3rd place',
+      //   icon: webcup,
+      //   iconBg: '#ffffff',
+      //   company_link: 'https://24h.webcup.fr/',
+      // },
       // { title: 'Web Developer', company_name: 'Shopify', icon: shopify, iconBg: '#151030' },
     ],
   },
-  {
-    date: '2023 - Now ',
-    works: [
-      {
-        title: 'Full stack Developer',
-        company_name: 'Meta',
-        icon: meta,
-        iconBg: '#151030',
-        company_link: 'https://about.meta.com/fr/',
-      },
-    ],
-  },
+  // {
+  //   date: '2023 - Now ',
+  //   works: [
+  //     {
+  //       title: 'Full stack Developer',
+  //       company_name: 'Meta',
+  //       icon: meta,
+  //       iconBg: '#151030',
+  //       company_link: 'https://about.meta.com/fr/',
+  //     },
+  //   ],
+  // },
 ];
 
 const testimonials = [
@@ -235,7 +245,7 @@ const projects = [
   {
     name: 'Facebook Clone',
     description:
-      'A Facebook application clone that allows users to create and delete posts, as well as like and comment on them.',
+      'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs',
     tags: [
       {
         name: 'react',
@@ -265,7 +275,7 @@ const projects = [
   {
     name: 'Onirix',
     description:
-      'An immersive platform unveiling the power of Onirix AI in unlocking the hidden meanings of dreams.',
+      'An immersive platform that describes the hidden meanings of dreams using AI. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
     tags: [
       {
         name: 'reactjs',
@@ -289,28 +299,28 @@ const projects = [
     deployment_link: 'https://onirix.vercel.app/',
   },
 
-  {
-    name: 'Job IT',
-    description:
-      'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
-    tags: [
-      {
-        name: 'react',
-        color: 'blue-text-gradient',
-      },
-      {
-        name: 'restapi',
-        color: 'green-text-gradient',
-      },
-      {
-        name: 'scss',
-        color: 'pink-text-gradient',
-      },
-    ],
-    image: jobit,
-    source_code_link: '',
-    deployment_link: '',
-  },
+  // {
+  //   name: 'Job IT',
+  //   description:
+  //     'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
+  //   tags: [
+  //     {
+  //       name: 'react',
+  //       color: 'blue-text-gradient',
+  //     },
+  //     {
+  //       name: 'restapi',
+  //       color: 'green-text-gradient',
+  //     },
+  //     {
+  //       name: 'scss',
+  //       color: 'pink-text-gradient',
+  //     },
+  //   ],
+  //   image: jobit,
+  //   source_code_link: '',
+  //   deployment_link: '',
+  // },
 ];
 
 export { services, technologies, experiences, testimonials, projects };

@@ -32,6 +32,8 @@ import nextjs from './tech/nextjs.svg';
 import nestjs from './tech/nestjs.svg';
 import laravel from './tech/laravel.svg';
 import symfony from './tech/symfony.svg';
+import csharp from './tech/csharp.svg';
+import unity from './tech/unity.png';
 
 import meta from './company/meta.png';
 import cpa from './company/cpa.jfif';
@@ -82,6 +84,8 @@ export {
   nestjs,
   laravel,
   symfony,
+  csharp,
+  unity,
   // companies
   meta,
   cpa,
