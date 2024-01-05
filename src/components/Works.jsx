@@ -119,7 +119,7 @@ const Works = (props) => {
         <motion.div variants={textVariant()}>
           <p className={`${styles.sectionSubText} `}>My work</p>
           <h2
-            className={`${styles.sectionHeadText} drop-shadow-[0_0_0.3rem_#ffffff70]`}
+            className={`${styles.sectionHeadText} drop-shadow-[0_0_0.1rem_#ffffff70]`}
           >
             Projects.
           </h2>

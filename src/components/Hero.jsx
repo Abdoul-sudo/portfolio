@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="md:w-1/2 w-full">
             {/* Header -------------------------------------------------------------------------------------------- */}
             <h1
-              className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.3rem_#ffffff70]`}
+              className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.2rem_#ffffff70]`}
             >
               Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
             </h1>

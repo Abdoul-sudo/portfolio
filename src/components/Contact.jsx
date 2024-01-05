@@ -66,15 +66,15 @@ const Contact = () => {
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse max-xl:items-center overflow-hidden w-full`}
+      className={`xl:mt-12 flex xl:flex-row flex-col-reverse max-xl:items-center overflow-hidden p-1 w-full`}
     >
       <motion.div
         variants={slideIn('left', 'tween', 0.2, 1)}
-        className="flex-[0.75] bg-black-100 opacity-90 p-8 rounded-2xl sm:max-xl:w-3/4  w-full"
+        className="flex-[0.75] bg-black-100 p-8 rounded-2xl sm:max-xl:w-3/4  w-full"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3
-          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.3rem_#ffffff70]`}
+          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.1rem_#ffffff70]`}
         >
           Contact.
         </h3>
@@ -92,7 +92,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-primary border-2 border-gray-800 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
               required
             />
           </label>
@@ -104,7 +104,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-primary border-2 border-gray-800 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none  font-medium"
               required
             />
           </label>
@@ -116,7 +116,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-primary border-2 border-gray-800 focus:border-gray-600  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
               required
             />
           </label>
@@ -125,7 +125,7 @@ const Contact = () => {
             type="submit"
             className={`${
               !loading ? 'interactable' : ''
-            } bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary`}
+            } font-bold bg-primary py-3 px-8 rounded-xl outline-none w-fit text-secondary border-2 border-gray-800 hover:text-white hover:border-gray-500`}
           >
             {loading ? 'Sending...' : 'Send'}
           </button>

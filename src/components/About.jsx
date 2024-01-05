@@ -36,11 +36,11 @@ const ServiceCard = ({ index, title, icon }) => (
 
 const About = () => {
   return (
-    <div className="bg-primary  drop-shadow-[0_0_0.3rem_#ffffff70] opacity-90  p-10 rounded-2xl w-full">
+    <div className="bg-primary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full">
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2
-          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.3rem_#ffffff70]`}
+          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}
         >
           Overview.
         </h2>
