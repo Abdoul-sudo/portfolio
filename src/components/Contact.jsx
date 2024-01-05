@@ -92,7 +92,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className="bg-primary border-2 border-gray-800 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
+              className="bg-primary border-2 border-gray-900 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
               required
             />
           </label>
@@ -104,7 +104,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className="bg-primary border-2 border-gray-800 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none  font-medium"
+              className="bg-primary border-2 border-gray-900 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none  font-medium"
               required
             />
           </label>
@@ -116,7 +116,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What you want to say?"
-              className="bg-primary border-2 border-gray-800 focus:border-gray-600  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
+              className="bg-primary border-2 border-gray-900 focus:border-gray-600  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
               required
             />
           </label>
@@ -125,7 +125,7 @@ const Contact = () => {
             type="submit"
             className={`${
               !loading ? 'interactable' : ''
-            } font-bold bg-primary py-3 px-8 rounded-xl outline-none w-fit text-secondary border-2 border-gray-800 hover:text-white hover:border-gray-500`}
+            } font-bold bg-primary py-3 px-8 rounded-xl outline-none w-fit text-secondary border-2 border-gray-900 hover:text-white hover:border-gray-500`}
           >
             {loading ? 'Sending...' : 'Send'}
           </button>
