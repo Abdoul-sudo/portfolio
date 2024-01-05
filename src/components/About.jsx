@@ -48,7 +48,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn('', '', 0.1, 1)}
-        className="mt-4 text-secondary xl:text-[17px] lg:text-[14px] sm:text-[12px]  max-w-3xl leading-[35px]"
+        className=" mt-4 text-secondary xl:text-[17px] lg:text-[14px] sm:text-[12px]  max-w-3xl leading-[35px]"
       >
         I'm a quick learner with a strong{' '}
         <span className="blue-text-gradient font-bold">passion</span> for
@@ -59,12 +59,14 @@ const About = () => {
         web applications and constantly challenging the limits of what is
         possible in the digital world.
         <div className="h-11"></div>
-        <a
-          href="#contact"
-          className="interactable orange-text-gradient text-3xl  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] drop-shadow-[0_0_0.1rem_#f15811]  hover:shadow-[0_0_4px_#f15811] whitespace-nowrap"
-        >
-          Let's work together!
-        </a>
+        <div className="flex flex-col">
+          <a
+            href="#contact"
+            className="interactable self-center orange-text-gradient sm:text-[26px] text-[22px]  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] drop-shadow-[0_0_0.1rem_#f15811]  hover:shadow-[0_0_4px_#f15811] whitespace-nowrap"
+          >
+            Let's work together!
+          </a>
+        </div>
       </motion.p>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">

@@ -60,8 +60,8 @@ const Footer = () => {
     //   </div>
     // </nav>
 
-    <footer class="bg-primary  w-full shadow   py-1 drop-shadow-[0_0_0.1rem_#ffffff70]">
-      <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <footer class="bg-primary  w-full shadow   py-1 drop-shadow-[0_0_0.1rem_#ffffff70] ">
+      <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center justify-center gap-5 sm:flex-row sm:items-center sm:justify-between">
         <span class="text-lg font-bold sm:text-center text-secondary">
           © 2024{' '}
           {/* <a href="https://flowbite.com/" class="hover:underline"> */}
@@ -69,7 +69,7 @@ const Footer = () => {
           {/* </a>{' '} */}
           {/* All Rights Reserved. */}
         </span>
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        <ul className="list-none flex flex-row gap-10">
           <div
             onClick={() =>
               window.open(
