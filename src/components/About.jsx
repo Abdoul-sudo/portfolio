@@ -62,7 +62,7 @@ const About = () => {
         <div className="flex flex-col">
           <a
             href="#contact"
-            className="interactable self-center orange-text-gradient sm:text-[26px] text-[22px]  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] drop-shadow-[0_0_0.1rem_#f15811]  hover:shadow-[0_0_4px_#f15811] whitespace-nowrap"
+            className="interactable w-fit max-sm:self-center orange-text-gradient sm:text-[26px] text-[22px] font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] drop-shadow-[0_0_0.1rem_#f15811]  hover:shadow-[0_0_4px_#f15811] whitespace-nowrap"
           >
             Let's work together!
           </a>
