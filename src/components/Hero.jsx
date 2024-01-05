@@ -63,7 +63,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`interactable text-[#dfd9ff]  font-medium 2xl:text-[22px] xl:text-[20px] text-[14px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff] hover:shadow-[0_0_3px_#fff] whitespace-nowrap  `}
+                  className={`interactable text-[#dfd9ff]  font-medium 2xl:text-[22px] xl:text-[20px] sm:text-[14px] text-[18px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff] hover:shadow-[0_0_3px_#fff] whitespace-nowrap  `}
                 >
                   Download CV
                 </a>
