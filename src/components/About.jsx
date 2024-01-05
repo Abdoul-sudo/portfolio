@@ -61,7 +61,7 @@ const About = () => {
         <div className="h-11"></div>
         <a
           href="#contact"
-          className="interactable orange-text-gradient text-3xl  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] shadow-[0_0_5px_#f5af19] hover:shadow-[0_0_7px_#f15811]"
+          className="interactable orange-text-gradient text-3xl  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] drop-shadow-[0_0_0.1rem_#f15811]  hover:shadow-[0_0_4px_#f15811] whitespace-nowrap"
         >
           Let's work together!
         </a>
