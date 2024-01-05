@@ -60,7 +60,7 @@ const Footer = () => {
     //   </div>
     // </nav>
 
-    <footer class="bg-primary bg-opacity-70 w-full shadow  border-t-2 border-[#100d25] py-5">
+    <footer class="bg-primary  w-full shadow   py-1 drop-shadow-[0_0_0.1rem_#ffffff70]">
       <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span class="text-lg font-bold sm:text-center text-secondary">
           © 2024{' '}

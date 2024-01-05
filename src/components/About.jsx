@@ -57,10 +57,14 @@ const About = () => {
         personnal knowledge and skills. <br /> My primary focus revolves around
         building <span className="blue-text-gradient font-bold">efficient</span>{' '}
         web applications and constantly challenging the limits of what is
-        possible in the digital world. <div className="h-4"></div>
-        <span className="orange-text-gradient text-3xl font-bold pt-11 drop-shadow-[0_0_0.1rem_#f51919]">
+        possible in the digital world.
+        <div className="h-11"></div>
+        <a
+          href="#contact"
+          className="interactable orange-text-gradient text-3xl  font-bold px-[28px] py-[12px] rounded-lg border-2 border-[#f15811] shadow-[0_0_5px_#f5af19] hover:shadow-[0_0_7px_#f15811]"
+        >
           Let's work together!
-        </span>
+        </a>
       </motion.p>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
