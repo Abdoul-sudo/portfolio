@@ -243,10 +243,10 @@ const projects = [
   {
     name: 'Facebook clone',
     description:
-      'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs',
+      'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
     tags: [
       {
-        name: 'react',
+        name: 'reactjs',
         color: 'blue-text-gradient',
       },
       {
@@ -255,15 +255,11 @@ const projects = [
       },
       {
         name: 'tailwindcss',
-        color: 'green-text-gradient',
+        color: 'text-emerald-500',
       },
       {
         name: 'lazy_loading',
         color: 'pink-text-gradient',
-      },
-      {
-        name: 'skeleton_ui',
-        color: 'blue-text-gradient',
       },
     ],
     image: fb_clone,
@@ -285,7 +281,7 @@ const projects = [
       },
       {
         name: 'tailwindcss',
-        color: 'green-text-gradient',
+        color: 'text-emerald-500',
       },
       {
         name: 'chatgpt_api',
