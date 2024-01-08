@@ -56,7 +56,7 @@ const About = () => {
         <span className="blue-text-gradient font-bold">expand</span> my
         personnal knowledge and skills. <br /> My motivations revolve around
         building <span className="blue-text-gradient font-bold">efficient</span>{' '}
-        applications, and especially{' '}
+        applications, and{' '}
         <span className="blue-text-gradient font-bold">having fun</span>!
         <div className="h-11"></div>
         <div className="flex flex-col">
