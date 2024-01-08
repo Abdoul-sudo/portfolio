@@ -8,6 +8,7 @@ import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { staggerContainer } from '../utils/motion';
+import { FaItchIo } from 'react-icons/fa';
 
 const ProjectCard = ({
   index,
@@ -60,11 +61,12 @@ const ProjectCard = ({
               onClick={() => window.open(game_link, '_blank')}
               className="interactable absolute inset-0 m-3 card-img_hover blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
             >
-              <img
+              {/* <img
                 src={gamecontroller}
                 alt="source code"
                 className="w-2/3 h-2/3 object-contain"
-              />
+              /> */}
+              <FaItchIo className="w-2/3 h-2/3 object-contain" />
             </div>
           )}
           {source_code_link && (
