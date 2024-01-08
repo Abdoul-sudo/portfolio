@@ -27,12 +27,9 @@ import {
   unity,
   // nestjs,
   nextjs,
-  meta,
   cpa,
   sesame,
   webcup,
-  carrent,
-  jobit,
   onirix,
   fb_clone,
   flappy_bird,
@@ -317,29 +314,6 @@ const projects = [
     source_code_link: 'https://github.com/Abdoul-sudo/unity_flappyBird',
     game_link: 'https://abdoul-sudo.itch.io/flappy-bird',
   },
-
-  // {
-  //   name: 'Job IT',
-  //   description:
-  //     'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
-  //   tags: [
-  //     {
-  //       name: 'react',
-  //       color: 'blue-text-gradient',
-  //     },
-  //     {
-  //       name: 'restapi',
-  //       color: 'green-text-gradient',
-  //     },
-  //     {
-  //       name: 'scss',
-  //       color: 'pink-text-gradient',
-  //     },
-  //   ],
-  //   image: jobit,
-  //   source_code_link: '',
-  //   deployment_link: '',
-  // },
 ];
 
 export { services, technologies, experiences, testimonials, projects };

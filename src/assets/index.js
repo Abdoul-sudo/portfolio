@@ -8,7 +8,6 @@ import menu from './menu.svg';
 import close from './close.svg';
 import online from './online.png';
 import online_icon from './online_icon.svg';
-import gamecontroller from './gamecontroller.png';
 
 import css from './tech/css.png';
 import docker from './tech/docker.png';
@@ -36,14 +35,10 @@ import symfony from './tech/symfony.svg';
 import csharp from './tech/csharp.svg';
 import unity from './tech/unity.png';
 
-import meta from './company/meta.png';
 import cpa from './company/cpa.jfif';
 import webcup from './company/webcup.jfif';
 import sesame from './company/sesame.jpg';
 
-import carrent from './projects/carrent.png';
-import jobit from './projects/jobit.png';
-import tripguide from './projects/tripguide.png';
 import onirix from './projects/onirix.png';
 import fb_clone from './projects/fb_clone.png';
 import flappy_bird from './projects/flappy_bird.png';
@@ -60,7 +55,6 @@ export {
   github,
   online,
   online_icon,
-  gamecontroller,
   menu,
   close,
   // tech
@@ -90,14 +84,10 @@ export {
   csharp,
   unity,
   // companies
-  meta,
   cpa,
   webcup,
   sesame,
   // projects
-  carrent,
-  jobit,
-  tripguide,
   onirix,
   fb_clone,
   flappy_bird,

@@ -54,10 +54,10 @@ const About = () => {
         <span className="blue-text-gradient font-bold">passion</span> for
         software development. <br /> Continuously, I aim to{' '}
         <span className="blue-text-gradient font-bold">expand</span> my
-        personnal knowledge and skills. <br /> My primary focus revolves around
+        personnal knowledge and skills. <br /> My motivations revolve around
         building <span className="blue-text-gradient font-bold">efficient</span>{' '}
-        web applications and constantly challenging the limits of what is
-        possible in the digital world.
+        applications, and especially{' '}
+        <span className="blue-text-gradient font-bold">having fun</span>!
         <div className="h-11"></div>
         <div className="flex flex-col">
           <a
