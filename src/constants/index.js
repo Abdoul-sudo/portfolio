@@ -257,7 +257,7 @@ const projects = [
         color: 'orange-text-gradient',
       },
       {
-        name: 'tailwind',
+        name: 'tailwindcss',
         color: 'green-text-gradient',
       },
       {
