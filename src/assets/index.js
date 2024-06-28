@@ -42,6 +42,7 @@ import sesame from './company/sesame.jpg';
 import onirix from './projects/onirix.png';
 import fb_clone from './projects/fb_clone.png';
 import flappy_bird from './projects/flappy_bird.png';
+import slime_adventure from './projects/slime_adventure.png';
 
 import profile from './abdoul.jpg';
 import cv from './ISMAEL_Abdoul_Wahhaab_CV.pdf';
@@ -91,6 +92,7 @@ export {
   onirix,
   fb_clone,
   flappy_bird,
+  slime_adventure,
   // profile
   profile,
   cv,

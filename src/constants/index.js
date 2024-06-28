@@ -33,6 +33,7 @@ import {
   onirix,
   fb_clone,
   flappy_bird,
+  slime_adventure
   // threejs,
 } from '../assets';
 
@@ -293,22 +294,22 @@ const projects = [
     deployment_link: 'https://onirix.vercel.app/',
   },
   {
-    name: 'Flappy Bird clone',
+    name: 'Slime adventure',
     description:
-      'A Flappy Bird game clone I made to learn the basics of Unity.',
+      'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
     tags: [
       {
         name: 'unity',
         color: 'blue-text-gradient',
       },
       {
-        name: 'gamedev',
+        name: 'game',
         color: 'orange-text-gradient',
       },
     ],
-    image: flappy_bird,
-    source_code_link: 'https://github.com/Abdoul-sudo/unity_flappyBird',
-    game_link: 'https://abdoul-sudo.itch.io/flappy-bird',
+    image: slime_adventure,
+    source_code_link: '',
+    game_link: 'https://abdoul-sudo.itch.io/slime-adventure',
   },
 ];
 
