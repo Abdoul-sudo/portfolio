@@ -36,7 +36,7 @@ const ServiceCard = ({ index, title, icon }) => (
 
 const About = () => {
   return (
-    <div className="bg-primary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full">
+    <div className="bg-fortiary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full">
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2
@@ -52,11 +52,9 @@ const About = () => {
       >
         I'm a quick learner with a strong{' '}
         <span className="blue-text-gradient font-bold">passion</span> for
-        software development. <br /> Continuously, I aim to{' '}
-        <span className="blue-text-gradient font-bold">expand</span> my
-        personnal knowledge and skills. <br /> My motivations revolve around
-        building <span className="blue-text-gradient font-bold">efficient</span>{' '}
-        applications, and{' '}
+        software development. <br /> My motivations revolve around
+        to{' '} <span className="blue-text-gradient font-bold">expanding</span> my
+        skills, and{' '}
         <span className="blue-text-gradient font-bold">having fun</span>!
         <div className="h-11"></div>
         <div className="flex flex-col">

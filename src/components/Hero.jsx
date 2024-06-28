@@ -22,13 +22,13 @@ const Hero = () => {
           <div className="md:w-1/2 w-full">
             {/* Header -------------------------------------------------------------------------------------------- */}
             <h1
-              className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.2rem_#ffffff70]`}
+              className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.1rem_#ffffff70]`}
             >
               Hi, I'm <span className="text-[#915EFF]">Abdoul</span>
             </h1>
             <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-              I develop innovative user <br className="sm:block hidden" />
-              interfaces and web applications
+              I am a software developer <br className="sm:block hidden" />
+              transitioning to a game developer.
             </p>
 
             {/* Social media icons & CV ------------------------------------------------------------------------------- */}
@@ -42,7 +42,7 @@ const Hero = () => {
                       '_blank'
                     )
                   }
-                  className="interactable w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer  green-text-gradient "
+                  className="interactable w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer  green-text-gradient text-[#dfd9ff] hover:text-white"
                 >
                   <FaLinkedinIn />
                 </div>
@@ -50,7 +50,7 @@ const Hero = () => {
                   onClick={() =>
                     window.open('https://github.com/Abdoul-sudo', '_blank')
                   }
-                  className="interactable w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer green-text-gradient "
+                  className="interactable w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer green-text-gradient  text-[#dfd9ff] hover:text-white "
                 >
                   <FaGithub />
                 </div>
@@ -63,7 +63,7 @@ const Hero = () => {
                   download="ISMAEL Abdoul Wahhaab CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`interactable text-[#dfd9ff]  font-medium 2xl:text-[22px] xl:text-[20px] sm:text-[14px] text-[18px] rounded-full border-2 border-white px-[28px] py-[12px] shadow-[0_0_7px_#fff] hover:shadow-[0_0_3px_#fff] whitespace-nowrap  `}
+                  className={`interactable font-medium 2xl:text-[22px] xl:text-[20px] sm:text-[14px] text-[18px] rounded-full border-2 border-[#dfd9ff] hover:border-white text-[#dfd9ff] hover:text-white px-[28px] py-[12px] shadow-[0_0_3px_#fff] hover:shadow-[0_0_4px_#fff] whitespace-nowrap  `}
                 >
                   Download CV
                 </a>

@@ -35,7 +35,6 @@ const Skills = () => {
               >
                 <img src={skill.icon} alt={skill.name} />
               </div>
-              {/* <p className="p-text text-secondary text-base">{skill.name}</p> */}
             </motion.div>
           ))}
         </motion.div>

@@ -25,6 +25,8 @@ import {
   symfony,
   csharp,
   unity,
+  unity2,
+  chatgpt,
   // nestjs,
   nextjs,
   cpa,
@@ -76,22 +78,22 @@ const services = [
 ];
 
 const technologies = [
-  {
-    name: 'HTML 5',
-    icon: html,
-  },
-  {
-    name: 'CSS 3',
-    icon: css,
-  },
-  {
-    name: 'PHP',
-    icon: php,
-  },
-  {
-    name: 'JavaScript',
-    icon: javascript,
-  },
+  // {
+  //   name: 'HTML 5',
+  //   icon: html,
+  // },
+  // {
+  //   name: 'CSS 3',
+  //   icon: css,
+  // },
+  // {
+  //   name: 'PHP',
+  //   icon: php,
+  // },
+  // {
+  //   name: 'JavaScript',
+  //   icon: javascript,
+  // },
   // {
   //   name: 'TypeScript',
   //   icon: typescript,
@@ -124,10 +126,10 @@ const technologies = [
     name: 'Bootstrap',
     icon: bootstrap,
   },
-  {
-    name: 'Node JS',
-    icon: nodejs,
-  },
+  // {
+  //   name: 'Node JS',
+  //   icon: nodejs,
+  // },
   // {
   //   name: 'Nest JS',
   //   icon: nestjs,
@@ -140,10 +142,10 @@ const technologies = [
     name: 'Symfony',
     icon: symfony,
   },
-  {
-    name: 'C#',
-    icon: csharp,
-  },
+  // {
+  //   name: 'C#',
+  //   icon: csharp,
+  // },
   {
     name: 'Unity',
     icon: unity,
@@ -168,10 +170,10 @@ const technologies = [
     name: 'Git',
     icon: git,
   },
-  {
-    name: 'Figma',
-    icon: figma,
-  },
+  // {
+  //   name: 'Figma',
+  //   icon: figma,
+  // },
   // {
   //   name: 'docker',
   //   icon: docker,
@@ -245,48 +247,41 @@ const projects = [
     name: 'Facebook clone',
     description:
       'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
-    tags: [
+    techs: [
       {
-        name: 'reactjs',
-        color: 'blue-text-gradient',
+        name: 'React JS',
+        icon: reactjs,
       },
       {
-        name: 'json-server',
-        color: 'orange-text-gradient',
-      },
-      {
-        name: 'tailwindcss',
-        color: 'text-emerald-500',
-      },
-      {
-        name: 'lazy_loading',
-        color: 'pink-text-gradient',
+        name: 'Tailwind CSS',
+        icon: tailwind,
       },
     ],
     image: fb_clone,
-    source_code_link: 'https://github.com/Abdoul-sudo/react-facebook-clone',
+    source_code_link: '',
+    // source_code_link: 'https://github.com/Abdoul-sudo/react-facebook-clone',
     deployment_link: 'https://abd-fb-clone.vercel.app/',
   },
   {
     name: 'Onirix',
     description:
-      'An immersive platform that describes the hidden meanings of dreams using AI. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
-    tags: [
+      'An immersive platform that describes the hidden meanings of dreams. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
+    techs: [
       {
-        name: 'reactjs',
-        color: 'blue-text-gradient',
+        name: 'React JS',
+        icon: reactjs,
       },
       {
-        name: 'pocketbase',
-        color: 'orange-text-gradient',
+        name: 'Tailwind CSS',
+        icon: tailwind,
       },
       {
-        name: 'tailwindcss',
-        color: 'text-emerald-500',
+        name: 'Chatgpt API',
+        icon: chatgpt,
       },
       {
-        name: 'chatgpt_api',
-        color: 'pink-text-gradient',
+        name: 'Figma',
+        icon: figma,
       },
     ],
     image: onirix,
@@ -297,14 +292,10 @@ const projects = [
     name: 'Slime adventure',
     description:
       'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
-    tags: [
+    techs: [
       {
-        name: 'unity',
-        color: 'blue-text-gradient',
-      },
-      {
-        name: 'game',
-        color: 'orange-text-gradient',
+        name: 'Unity',
+        icon: unity2,
       },
     ],
     image: slime_adventure,

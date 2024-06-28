@@ -15,6 +15,7 @@ const ProjectCard = ({
   name,
   description,
   tags,
+  techs,
   image,
   source_code_link,
   deployment_link,
@@ -32,7 +33,7 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className=" bg-tertiary opacity-90  p-5 rounded-2xl sm:w-[360px] w-full"
+        className=" bg-fortiary border border-white/[.1] shadow-[0_0_1.5px_#ffffff70] opacity-90  p-5 rounded-2xl sm:w-[360px] w-full"
       >
         <div className="interactable2 relative w-full sm:h-[230px] cursor-pointer">
           <img
@@ -44,35 +45,10 @@ const ProjectCard = ({
             }}
           />
 
-          {deployment_link && (
-            <div
-              onClick={() => window.open(deployment_link, '_blank')}
-              className="interactable absolute inset-0 m-3 card-img_hover blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-            >
-              <img
-                src={online}
-                alt="source code"
-                className="w-2/3 h-2/3 object-contain"
-              />
-            </div>
-          )}
-          {game_link && (
-            <div
-              onClick={() => window.open(game_link, '_blank')}
-              className="interactable absolute inset-0 m-3 card-img_hover blue-pink-gradient w-10 h-10 rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-            >
-              {/* <img
-                src={gamecontroller}
-                alt="source code"
-                className="w-2/3 h-2/3 object-contain"
-              /> */}
-              <FaItchIo className="w-2/3 h-2/3 object-contain" />
-            </div>
-          )}
           {source_code_link && (
             <div
               onClick={() => window.open(source_code_link, '_blank')}
-              className="interactable absolute top-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+              className="interactable absolute bottom-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
             >
               <img
                 src={github}
@@ -81,27 +57,75 @@ const ProjectCard = ({
               />
             </div>
           )}
+          
         </div>
 
         <div className="mt-5">
           <h3 className="text-white font-bold text-[24px] drop-shadow-[0_0_0.1rem_#ffffff70]">
             {name}
           </h3>
-          <p className="mt-2 text-secondary text-[14px] h-[70px]">
+          <p className="mt-2 text-secondary text-[14px] min-h-[70px]">
             {description}
           </p>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-x-1.5 gap-y-1">
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
+        <div className="mt-2 flex items-center justify-between"> 
+          <div className='flex items-center'>
+            {techs.map((tech, index) => (
+            <div
+              key={index}
+              className="bg-primary border border-white/[.2] shadow-[0_0_0.5px_#ffffff] rounded-full lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
+              style={{
+                transform: `translateX(-${5 * index + 2}px)`,
+              }}
             >
-              {tag.name}
-            </p>
+              <img src={ `${tech.icon}`} alt="icon5" className="p-2" />
+            </div>
           ))}
+          </div>
+          {game_link && (
+            // <div
+            //   onClick={() => window.open(game_link, '_blank')}
+            //   className="interactable card-img_hover blue-pink-gradient lg:w-10 lg:h-10 w-8 h-8  rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+            // >
+            //   {/* <img
+            //     src={gamecontroller}
+            //     alt="source code"
+            //     className="w-2/3 h-2/3 object-contain"
+            //   /> */}
+            //   <FaItchIo className="w-2/3 h-2/3 object-contain" />
+            // </div>
+            <div
+              className="interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+              onClick={() => window.open(work.company_link, '_blank')}
+            >
+              <div
+                className="bg-primary rounded-full p-1.5 w-full h-full overflow-hidden"
+              >
+                <FaItchIo className="w-full h-full object-contain" />
+              </div>
+            </div>
+
+          )}
+          {deployment_link && (
+            <div
+              className="interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+              onClick={() => window.open(work.company_link, '_blank')}
+            >
+              <div
+                className="bg-primary rounded-full p-1.5 w-full h-full overflow-hidden"
+              >
+                <img
+                  src={online}
+                  alt="source code"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          )}
+          
         </div>
+
       </Tilt>
     </motion.div>
   );
@@ -134,15 +158,8 @@ const Works = (props) => {
             variants={fadeIn('', '', 0.1, 1)}
             className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
           >
-            These projects demonstrate my skills and experience through
-            real-world examples of my work. Each project is described briefly
-            and includes links to{' '}
-            <span className="blue-text-gradient font-bold">
-              code repositories
-            </span>{' '}
-            and <span className="blue-text-gradient font-bold">live demos</span>
-            . They showcase my ability to work with various technologies, and
-            effectively manage projects.
+            These projects demonstrate my ability to work with various technologies. They each includes a link to{' '}
+            a <span className="blue-text-gradient font-bold">live demo</span>.
           </motion.p>
         </div>
 

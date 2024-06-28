@@ -34,6 +34,8 @@ import laravel from './tech/laravel.svg';
 import symfony from './tech/symfony.svg';
 import csharp from './tech/csharp.svg';
 import unity from './tech/unity.png';
+import unity2 from './tech/unity-w.png';
+import chatgpt from './tech/chatgpt.png';
 
 import cpa from './company/cpa.jfif';
 import webcup from './company/webcup.jfif';
@@ -84,6 +86,8 @@ export {
   symfony,
   csharp,
   unity,
+  unity2,
+  chatgpt,
   // companies
   cpa,
   webcup,
