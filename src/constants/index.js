@@ -146,10 +146,6 @@ const technologies = [
   //   name: 'C#',
   //   icon: csharp,
   // },
-  {
-    name: 'Unity',
-    icon: unity,
-  },
   // {
   //   name: 'MongoDB',
   //   icon: mongodb,
@@ -178,6 +174,10 @@ const technologies = [
   //   name: 'docker',
   //   icon: docker,
   // },
+  {
+    name: 'Unity',
+    icon: unity,
+  },
 ];
 
 const experiences = [
