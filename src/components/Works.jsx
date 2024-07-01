@@ -97,7 +97,7 @@ const ProjectCard = ({
             // </div>
             <div
               className="interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-              onClick={() => window.open(work.company_link, '_blank')}
+              onClick={() => window.open(game_link, '_blank')}
             >
               <div
                 className="bg-primary rounded-full p-1.5 w-full h-full overflow-hidden"
@@ -110,7 +110,7 @@ const ProjectCard = ({
           {deployment_link && (
             <div
               className="interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
-              onClick={() => window.open(work.company_link, '_blank')}
+              onClick={() => window.open(deployment_link, '_blank')}
             >
               <div
                 className="bg-primary rounded-full p-1.5 w-full h-full overflow-hidden"
