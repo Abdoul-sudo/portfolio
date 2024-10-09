@@ -300,7 +300,7 @@ const projects = [
     ],
     image: slime_adventure,
     source_code_link: '',
-    game_link: 'https://abdoul-sudo.itch.io/slime-adventure',
+    game_link: 'https://wahhaab.itch.io/slime-adventure',
   },
 ];
 

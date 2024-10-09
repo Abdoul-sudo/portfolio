@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
           <div
             onClick={() =>
-              window.open('https://abdoul-sudo.itch.io/', '_blank')
+              window.open('https://wahhaab.itch.io/', '_blank')
             }
             className="interactable2 w-11 h-11 p-1 rounded-full flex justify-center items-center cursor-pointer text-secondary hover:text-white text-3xl"
           >
