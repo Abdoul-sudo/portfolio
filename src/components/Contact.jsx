@@ -79,8 +79,8 @@ const Contact = () => {
                         <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0]' />
                     </a>
                     <div className='flex gap-4'>
-                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 text-2xl' buttonClasses='!w-14 interactable2' />
-                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 text-2xl' buttonClasses='!w-14 interactable2' />
+                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 interactable2' />
+                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 interactable2' />
                     </div>
                 </div>
             </motion.p>
