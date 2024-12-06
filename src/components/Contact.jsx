@@ -5,141 +5,93 @@ import emailjs from '@emailjs/browser';
 import { styles } from '../styles';
 import { EarthCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
-import { slideIn } from '../utils/motion';
+import { fadeIn, slideIn, textVariant } from '../utils/motion';
+import MagicButton from './MagicButton';
+import { FaGithub, FaLinkedinIn, FaLocationArrow } from 'react-icons/fa';
 
 const Contact = () => {
-  const formRef = useRef();
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
+    const formRef = useRef();
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        message: '',
     });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
+    const [loading, setLoading] = useState(false);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: 'ISMAEL Abdoul Wahhaab',
-          from_email: form.email,
-          to_email: 'ismaelabdoul7@gmail.com',
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert('Thank you. I will get back to you as soon as possible.');
+    const handleChange = (e) => {
+        const { target } = e;
+        const { name, value } = target;
 
-          setForm({
-            name: '',
-            email: '',
-            message: '',
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
+        setForm({
+            ...form,
+            [name]: value,
+        });
+    };
 
-          alert('Ahh, something went wrong. Please try again.');
-        }
-      );
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
 
-  return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse max-xl:items-center overflow-hidden w-full`}
-    >
-      <motion.div
-        variants={slideIn('left', 'tween', 0.2, 1)}
-        className="flex-[0.75] bg-fortiary opacity-90 border border-white/[.2] p-8 rounded-2xl sm:max-xl:w-3/4  w-full"
-      >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3
-          className={`${styles.sectionHeadText} drop-shadow-[0_0_0.1rem_#ffffff70]`}
-        >
-          Contact.
-        </h3>
+        emailjs
+            .send(
+                import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: form.name,
+                    to_name: 'ISMAEL Abdoul Wahhaab',
+                    from_email: form.email,
+                    to_email: 'ismaelabdoul7@gmail.com',
+                    message: form.message,
+                },
+                import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+            )
+            .then(
+                () => {
+                    setLoading(false);
+                    alert('Thank you. I will get back to you as soon as possible.');
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
-        >
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className="bg-primary border-2 border-gray-900 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
-              required
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your email</span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your web address?"
-              className="bg-primary border-2 border-gray-900 focus:border-gray-600 py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none  font-medium"
-              required
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Message</span>
-            <textarea
-              rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="What you want to say?"
-              className="bg-primary border-2 border-gray-900 focus:border-gray-600  py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none font-medium"
-              required
-            />
-          </label>
+                    setForm({
+                        name: '',
+                        email: '',
+                        message: '',
+                    });
+                },
+                (error) => {
+                    setLoading(false);
+                    console.error(error);
 
-          <button
-            type="submit"
-            className={`${
-              !loading ? 'interactable' : ''
-            } font-bold bg-primary py-3 px-8 rounded-xl outline-none w-fit text-secondary border-2 border-gray-900 hover:text-white hover:border-gray-500`}
-          >
-            {loading ? 'Sending...' : 'Send'}
-          </button>
-        </form>
-      </motion.div>
+                    alert('Ahh, something went wrong. Please try again.');
+                },
+            );
+    };
 
-      <motion.div
-        variants={slideIn('right', 'tween', 0.2, 1)}
-        className="xl:flex-1 xl:h-auto w-full md:h-[550px] h-[350px]"
-      >
-        <EarthCanvas />
-      </motion.div>
-    </div>
-  );
+    return (
+        <div className='bg-fortiary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full'>
+            <motion.div variants={textVariant()}>
+                <p className={styles.sectionSubText}>Get in touch</p>
+                <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Contact</h2>
+            </motion.div>
+            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] lg:text-[14px] sm:text-[12px]  max-w-3xl leading-[35px]'>
+                Reach out to me and let's discuss how I can help bring your ideas to life!
+                <div className='flex gap-8'>
+                    <a href='mailto:ismaelabdoul7@gmail.com'>
+                        <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0]' />
+                    </a>
+                    <div className='flex gap-4'>
+                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 text-2xl' buttonClasses='!w-14 interactable2' />
+                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 text-2xl' buttonClasses='!w-14 interactable2' />
+                    </div>
+                </div>
+            </motion.p>
+
+            {/* <div className="mt-20 flex flex-wrap gap-10">
+        {services.map((service, index) => (
+          <ServiceCard key={service.title} index={index} {...service} />
+        ))}
+      </div> */}
+        </div>
+    );
 };
 
 export default SectionWrapper(Contact, 'contact');
