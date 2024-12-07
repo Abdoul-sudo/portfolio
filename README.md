@@ -3,10 +3,8 @@
 My first portfolio made with ReactJS, ThreeJS and TailwindCSS   
 
 ### 🚀 [https://abdoulportfolio.vercel.app](https://abdoulportfolio.vercel.app)
-![Hero](https://github.com/Abdoul-sudo/portfolio/assets/78481157/67705051-866c-4856-82f3-5ba573a08755)
 
-
-![Footer](https://github.com/Abdoul-sudo/portfolio/assets/78481157/d6b60175-c3a6-4cf0-9f9d-012eb52ef6ad)
+![Hero](https://github.com/user-attachments/assets/fc959d8b-3fb3-4113-aae0-d996e974dc13)
 
 
 ## What I learned
