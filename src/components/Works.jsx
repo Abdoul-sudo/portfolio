@@ -40,7 +40,7 @@ const ProjectCard = ({ index, name, description, tags, techs, image, source_code
 
                 <div className='mt-5'>
                     <h3 className='text-white font-bold text-[24px] drop-shadow-[0_0_0.1rem_#ffffff70]'>{name}</h3>
-                    <p className='mt-2 text-secondary text-[14px] min-h-[70px]'>{description}</p>
+                    <p className='mt-2 text-secondary  sm:text-[14px] text-[12px] min-h-[70px]'>{description}</p>
                 </div>
 
                 <div className='mt-2 flex items-center justify-between'>
@@ -101,7 +101,7 @@ const Works = (props) => {
                 </motion.div>
 
                 <div className='w-full flex'>
-                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary xl:text-[17px] text-[14px] max-w-3xl leading-[30px]'>
+                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary xl:text-[17px] sm:text-[14px] text-[12px] max-w-3xl leading-[30px]'>
                         These projects demonstrate my ability to work with various technologies. They each includes a link to a <span className='blue-text-gradient font-bold'>live demo</span>.
                     </motion.p>
                 </div>

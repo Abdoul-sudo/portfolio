@@ -43,8 +43,8 @@ const Skills = () => {
                                                 </div>
                                             </div>
                                             <div className='cursor-text'>
-                                                <h4 className='text-white font-bold'>{work.title}</h4>
-                                                <p className='font-medium text-sm text-secondary text-wrap'>{work.company_name}</p>
+                                                <h4 className='text-white backdrop-blur-2xl xl:text-[17px] text-[14px] !font-bold'>{work.title}</h4>
+                                                <p className='font-medium sm:text-[14px] text-[12px] text-secondary text-wrap'>{work.company_name}</p>
                                             </div>
                                         </div>
                                     </motion.div>
