@@ -33,9 +33,11 @@ const About = () => {
                 <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Overview.</h2>
             </motion.div>
 
-            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] text-[14px] max-w-5xl lg:leading-[35px]'>
+            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] sm:text-[14px] text-[12px] max-w-5xl lg:leading-[35px]'>
                 I'm a quick learner with a strong <span className='blue-text-gradient font-bold'>passion</span> for software development.
-                <br /> With expertise in <span className='blue-text-gradient font-bold'>React.js</span> and <span className='blue-text-gradient font-bold'>Next.js</span>, I will help you build dynamic, scalable web applications that deliver engaging <span className='blue-text-gradient font-bold'>user experiences</span>.
+                <br />
+                <br className='md:hidden block' />
+                With expertise in <span className='blue-text-gradient font-bold'>React.js</span> and <span className='blue-text-gradient font-bold'>Next.js</span>, I will help you build dynamic, scalable web applications that deliver engaging <span className='blue-text-gradient font-bold'>user experiences</span>.
             </motion.p>
 
             {/* <div className="mt-20 flex flex-wrap gap-10">
