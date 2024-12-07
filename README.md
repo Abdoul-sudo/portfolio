@@ -1,6 +1,6 @@
 # Portfolio
 
-My first portfolio made with ReactJS, ThreeJS and TailwindCSS   
+My first portfolio made with ReactJS and TailwindCSS   
 
 ### 🚀 [https://abdoulportfolio.vercel.app](https://abdoulportfolio.vercel.app)
 
