@@ -21,7 +21,7 @@ const Hero = () => {
                         <h1 className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.1rem_#ffffff70]`}>
                             Hi, I'm <span className='text-[#b084e9]'>Abdoul</span>
                         </h1>
-                        <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+                        <p className={`${styles.heroSubText} mt-2 text-slate-200`}>
                             I'm a web developer on <br className='sm:block hidden' />
                             journey to be a game developer.
                         </p>
@@ -48,7 +48,7 @@ const Hero = () => {
                     </div>
 
                     {/* Profile -------------------------------------------------------------------------------------------- */}
-                    <div className='home_profile max-2xl:w-[280px] max-2xl:h-[280px] max-xl:w-[230px] max-xl:h-[230px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[180px] max-md:h-[180px] max-md:mt-16'></div>
+                    <div className='home_profile max-2xl:w-[280px] max-2xl:h-[280px] max-xl:w-[230px] max-xl:h-[230px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[250px] max-md:h-[250px] max-md:mt-16'></div>
                 </div>
             </div>
 

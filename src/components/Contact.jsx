@@ -72,15 +72,15 @@ const Contact = () => {
                 <p className={styles.sectionSubText}>Get in touch</p>
                 <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Contact</h2>
             </motion.div>
-            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] lg:text-[14px] sm:text-[12px]  max-w-3xl leading-[35px]'>
+            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] text-[14px]  max-w-3xl lg:leading-[35px]'>
                 Reach out to me and let's discuss how I can help bring your ideas to life!
-                <div className='flex gap-8'>
+                <div className='flex gap-5 sm:gap-8 lg:items-center max-sm:flex-col max-sm:mt-8'>
                     <a href='mailto:ismaelabdoul7@gmail.com'>
-                        <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0]' />
+                        <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0]' buttonClasses=' max-sm:!h-12 !w-fit interactable' />
                     </a>
                     <div className='flex gap-4'>
-                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 interactable2' />
-                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 interactable2' />
+                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
+                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 !text-2xl' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
                     </div>
                 </div>
             </motion.p>

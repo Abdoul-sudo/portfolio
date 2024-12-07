@@ -101,7 +101,7 @@ const Works = (props) => {
                 </motion.div>
 
                 <div className='w-full flex'>
-                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'>
+                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary xl:text-[17px] text-[14px] max-w-3xl leading-[30px]'>
                         These projects demonstrate my ability to work with various technologies. They each includes a link to a <span className='blue-text-gradient font-bold'>live demo</span>.
                     </motion.p>
                 </div>
