@@ -10,9 +10,9 @@ import { fadeIn, textVariant } from '../utils/motion';
 import { staggerContainer } from '../utils/motion';
 import { FaItchIo } from 'react-icons/fa';
 
-const ProjectCard = ({ index, name, description, tags, techs, image, source_code_link, deployment_link, game_link, setImage }) => {
+const ProjectCard__ = ({ index, name, description, tags, techs, image, source_code_link, deployment_link, game_link, setImage }) => {
     return (
-        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='interactable2 cursor-pointer' onClick={() => window.open(game_link || deployment_link, '_blank')}>
+        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='' >
             <Tilt
                 options={{
                     max: 25,
@@ -20,8 +20,12 @@ const ProjectCard = ({ index, name, description, tags, techs, image, source_code
                     speed: 450,
                 }}
                 className=' bg-fortiary border border-white/[.1] shadow-[0_0_1.5px_#ffffff70] opacity-90  p-5 rounded-2xl sm:w-[360px] w-full'>
-                <div className=' relative w-full sm:h-[230px] cursor-pointer'>
-                    <img src={image} alt='project_image' className=' w-full h-full object-cover rounded-2xl ' />
+                <div className='interactable2 relative w-full sm:h-[230px] cursor-pointer'>
+                    <img
+                        src={image}
+                        alt='project_image'
+                        className='interactable2 w-full h-full object-cover rounded-2xl '
+                    />
 
                     {source_code_link && (
                         <div onClick={() => window.open(source_code_link, '_blank')} className='interactable absolute bottom-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]'>
@@ -48,13 +52,38 @@ const ProjectCard = ({ index, name, description, tags, techs, image, source_code
                             </div>
                         ))}
                     </div>
+                    {game_link && (
+                        // <div
+                        //   onClick={() => window.open(game_link, '_blank')}
+                        //   className="interactable card-img_hover blue-pink-gradient lg:w-10 lg:h-10 w-8 h-8  rounded-full flex justify-self-start justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]"
+                        // >
+                        //   {/* <img
+                        //     src={gamecontroller}
+                        //     alt="source code"
+                        //     className="w-2/3 h-2/3 object-contain"
+                        //   /> */}
+                        //   <FaItchIo className="w-2/3 h-2/3 object-contain" />
+                        // </div>
+                        <div className='interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]' onClick={() => window.open(game_link, '_blank')}>
+                            <div className='bg-primary rounded-full p-1.5 w-full h-full overflow-hidden'>
+                                <FaItchIo className='w-full h-full object-contain' />
+                            </div>
+                        </div>
+                    )}
+                    {deployment_link && (
+                        <div className='interactable green-pink-gradient rounded-full p-[1.5px] lg:w-11 lg:h-11 w-9 h-9 flex justify-self-start justify-center items-center cursor-pointerhover:shadow-[0_0_5px_#fef4f5] overflow-hidden cursor-pointer hover:shadow-[0_0_25px_#ef64fe]' onClick={() => window.open(deployment_link, '_blank')}>
+                            <div className='bg-primary rounded-full p-1.5 w-full h-full overflow-hidden'>
+                                <img src={online} alt='source code' className='w-full h-full object-contain' />
+                            </div>
+                        </div>
+                    )}
                 </div>
             </Tilt>
         </motion.div>
     );
 };
 
-const Works = (props) => {
+const Works__ = (props) => {
     return (
         <>
             <motion.section variants={staggerContainer()} initial='hidden' whileInView='show' viewport={{ once: true, amount: 0.25 }} className={`${styles.paddingX} max-w-7xl mx-auto relative z-0`}>
@@ -82,4 +111,4 @@ const Works = (props) => {
     );
 };
 
-export default Works;
+export default Works__;

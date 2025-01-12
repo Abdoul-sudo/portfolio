@@ -27,8 +27,10 @@ import {
     unity,
     unity2,
     chatgpt,
+    upstash,
     // nestjs,
     nextjs,
+    nextjs_white,
     cpa,
     nextaura,
     sesame,
@@ -37,6 +39,7 @@ import {
     fb_clone,
     flappy_bird,
     slime_adventure,
+    gamefeat,
     // threejs,
 } from '../assets';
 
@@ -255,22 +258,25 @@ const testimonials = [
 
 const projects = [
     {
-        name: 'Facebook clone',
-        description: 'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
+        name: 'GameFeat',
+        description: 'A platform that features a different game every time you refresh the page.',
         techs: [
             {
-                name: 'React JS',
-                icon: reactjs,
+                name: 'Next JS',
+                icon: nextjs_white,
             },
             {
                 name: 'Tailwind CSS',
                 icon: tailwind,
             },
+            {
+                name: 'Upstash',
+                icon: upstash,
+            },
         ],
-        image: fb_clone,
+        image: gamefeat,
         source_code_link: '',
-        // source_code_link: 'https://github.com/Abdoul-sudo/react-facebook-clone',
-        deployment_link: 'https://abd-fb-clone.vercel.app/',
+        deployment_link: 'https://gamefeat.vercel.app/',
     },
     {
         name: 'Onirix',
@@ -309,6 +315,24 @@ const projects = [
         image: slime_adventure,
         source_code_link: '',
         game_link: 'https://wahhaab.itch.io/slime-adventure',
+    },
+    {
+        name: 'Facebook clone',
+        description: 'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
+        techs: [
+            {
+                name: 'React JS',
+                icon: reactjs,
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind,
+            },
+        ],
+        image: fb_clone,
+        source_code_link: '',
+        // source_code_link: 'https://github.com/Abdoul-sudo/react-facebook-clone',
+        deployment_link: 'https://abd-fb-clone.vercel.app/',
     },
 ];
 

@@ -29,6 +29,7 @@ import postgresql from './tech/postgresql.svg';
 import bootstrap from './tech/bootstrap.svg';
 import php from './tech/php.svg';
 import nextjs from './tech/nextjs.svg';
+import nextjs_white from './tech/nextjs_white.svg';
 import nestjs from './tech/nestjs.svg';
 import laravel from './tech/laravel.svg';
 import symfony from './tech/symfony.svg';
@@ -36,6 +37,7 @@ import csharp from './tech/csharp.svg';
 import unity from './tech/unity.png';
 import unity2 from './tech/unity-w.png';
 import chatgpt from './tech/chatgpt.png';
+import upstash from './tech/upstash.svg';
 
 import cpa from './company/cpa.jfif';
 import nextaura from './company/nextaura.jpg';
@@ -46,6 +48,7 @@ import onirix from './projects/onirix.png';
 import fb_clone from './projects/fb_clone.png';
 import flappy_bird from './projects/flappy_bird.png';
 import slime_adventure from './projects/slime_adventure.png';
+import gamefeat from './projects/gamefeat.png';
 
 import profile from './abdoul.jpg';
 import cv from './ISMAEL_Abdoul_Wahhaab_CV.pdf';
@@ -82,6 +85,7 @@ export {
     bootstrap,
     php,
     nextjs,
+    nextjs_white,
     nestjs,
     laravel,
     symfony,
@@ -89,6 +93,7 @@ export {
     unity,
     unity2,
     chatgpt,
+    upstash,
     // companies
     cpa,
     nextaura,
@@ -99,6 +104,7 @@ export {
     fb_clone,
     flappy_bird,
     slime_adventure,
+    gamefeat,
     // profile
     profile,
     cv,
