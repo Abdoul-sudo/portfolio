@@ -38,7 +38,8 @@ import unity from './tech/unity.png';
 import unity2 from './tech/unity-w.png';
 import chatgpt from './tech/chatgpt.png';
 import upstash from './tech/upstash.svg';
-
+import godot from './tech/godot.png';
+import n8n from './tech/n8n.png';
 import cpa from './company/cpa.jfif';
 import nextaura from './company/nextaura.jpg';
 import webcup from './company/webcup.jfif';
@@ -49,6 +50,7 @@ import fb_clone from './projects/fb_clone.png';
 import flappy_bird from './projects/flappy_bird.png';
 import slime_adventure from './projects/slime_adventure.png';
 import gamefeat from './projects/gamefeat.png';
+import pixel_dunking from './projects/pixel_dunking.jpg';
 
 import profile from './abdoul.jpg';
 import cv from './ISMAEL_Abdoul_Wahhaab_CV.pdf';
@@ -94,6 +96,8 @@ export {
     unity2,
     chatgpt,
     upstash,
+    godot,
+    n8n,
     // companies
     cpa,
     nextaura,
@@ -105,6 +109,7 @@ export {
     flappy_bird,
     slime_adventure,
     gamefeat,
+    pixel_dunking,
     // profile
     profile,
     cv,

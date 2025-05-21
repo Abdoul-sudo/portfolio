@@ -28,6 +28,8 @@ import {
     unity2,
     chatgpt,
     upstash,
+    godot,
+    n8n,
     // nestjs,
     nextjs,
     nextjs_white,
@@ -39,6 +41,7 @@ import {
     fb_clone,
     flappy_bird,
     slime_adventure,
+    pixel_dunking,
     gamefeat,
     // threejs,
 } from '../assets';
@@ -179,8 +182,16 @@ const technologies = [
         icon: unity,
     },
     {
+        name: 'Godot',
+        icon: godot,
+    },
+    {
         name: 'C#',
         icon: csharp,
+    },
+    {
+        name: 'N8N',
+        icon: n8n,
     },
 ];
 
@@ -279,6 +290,32 @@ const projects = [
         deployment_link: 'https://gamefeat.vercel.app/',
     },
     {
+        name: 'Pixel Dunking',
+        description: 'A competitive 2 vs 2 basketball game in 2D. On a dynamic court, use your individual skills to showcase your team play.',
+        techs: [
+            {
+                name: 'Godot',
+                icon: godot,
+            },
+        ],
+        image: pixel_dunking,
+        source_code_link: '',
+        game_link: 'https://deadpixelmg.itch.io/pixel-dunking',
+    },
+    {
+        name: 'Slime adventure',
+        description: 'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
+        techs: [
+            {
+                name: 'Unity',
+                icon: unity2,
+            },
+        ],
+        image: slime_adventure,
+        source_code_link: '',
+        game_link: 'https://wahhaab.itch.io/slime-adventure',
+    },
+    {
         name: 'Onirix',
         description: 'An immersive platform that describes the hidden meanings of dreams. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
         techs: [
@@ -302,19 +339,6 @@ const projects = [
         image: onirix,
         source_code_link: '',
         deployment_link: 'https://onirix.vercel.app/',
-    },
-    {
-        name: 'Slime adventure',
-        description: 'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
-        techs: [
-            {
-                name: 'Unity',
-                icon: unity2,
-            },
-        ],
-        image: slime_adventure,
-        source_code_link: '',
-        game_link: 'https://wahhaab.itch.io/slime-adventure',
     },
     {
         name: 'Facebook clone',
