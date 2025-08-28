@@ -50,6 +50,7 @@ import fb_clone from './projects/fb_clone.png';
 import flappy_bird from './projects/flappy_bird.png';
 import slime_adventure from './projects/slime_adventure.png';
 import gamefeat from './projects/gamefeat.png';
+import juicy from './projects/juicy.png';
 import pixel_dunking from './projects/pixel_dunking.jpg';
 
 import profile from './abdoul.jpg';
@@ -110,6 +111,7 @@ export {
     slime_adventure,
     gamefeat,
     pixel_dunking,
+    juicy,
     // profile
     profile,
     cv,
