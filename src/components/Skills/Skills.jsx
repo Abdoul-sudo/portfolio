@@ -10,50 +10,25 @@ import { textVariant } from '../../utils/motion';
 const Skills = () => {
     return (
         <>
-            {/* <h2 className="head-text">Skills & Experiences</h2> */}
             <motion.div variants={textVariant()}>
-                <p className={`${styles.sectionSubText}`}>What I have done so far</p>
-                <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Skills & Experiences.</h2>
+                <p className={`${styles.sectionSubText}`}>Tech Stack</p>
+                <h2 className={`${styles.sectionHeadText} mt-3`}>Skills</h2>
             </motion.div>
 
-            <div className='app__skills-container'>
-                <motion.div className='app__skills-list'>
-                    {technologies.map((skill) => (
-                        <motion.div key={skill.name} whileInView={{ opacity: [0, 1] }} transition={{ duration: 0.5 }} className='app__skills-item app__flex'>
-                            <div className='app__flex' style={{ backgroundColor: skill.bgColor }}>
-                                <img src={skill.icon} alt={skill.name} />
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                <div className='app__skills-exp'>
-                    {experiences.map((experience, index) => (
-                        <motion.div key={`${experience.date}-${index}`} className='app__skills-exp-item'>
-                            <div className='app__skills-exp-year'>
-                                <p className='text-[#b084e9] font-bold '>{experience.date}</p>
-                            </div>
-                            <motion.div className='app__skills-exp-works'>
-                                {experience.works.map((work, id) => (
-                                    <motion.div whileInView={{ opacity: [0, 1] }} transition={{ duration: 0.5 }} className='app__skills-exp-work' data-tip data-for={work.title} key={`${index}-${id}`}>
-                                        <div className='flex justify-center items-center gap-3'>
-                                            <div className='interactable green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_5px_#fef4f5] overflow-hidden' onClick={() => window.open(work.company_link, '_blank')}>
-                                                <div className=' rounded-full p-1.5 w-full h-full overflow-hidden' style={{ background: work.iconBg }}>
-                                                    <img src={work.icon} alt={work.company_name} className='w-full h-full object-contain' />
-                                                </div>
-                                            </div>
-                                            <div className='cursor-text'>
-                                                <h4 className='text-white backdrop-blur-2xl xl:text-[17px] text-[14px] !font-bold'>{work.title}</h4>
-                                                <p className='font-medium sm:text-[14px] text-[12px] text-secondary text-wrap'>{work.company_name}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
+            <motion.div className='mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6'>
+                {technologies.map((skill, index) => (
+                    <motion.div
+                        key={skill.name}
+                        whileInView={{ opacity: [0, 1], y: [20, 0] }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        className='group'>
+                        <div className='backdrop-blur-md bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4 flex flex-col items-center justify-center aspect-square hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300'>
+                            <img src={skill.icon} alt={skill.name} className='w-12 h-12 object-contain mb-3 transition-transform duration-300 group-hover:scale-110' />
+                            <p className='text-white/70 text-[11px] text-center font-medium'>{skill.name}</p>
+                        </div>
+                    </motion.div>
+                ))}
+            </motion.div>
         </>
     );
 };

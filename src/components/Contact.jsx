@@ -67,29 +67,35 @@ const Contact = () => {
     };
 
     return (
-        <div className='bg-fortiary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full'>
+        <div className='backdrop-blur-md bg-white/[0.02] border border-white/[0.05] rounded-3xl p-10 md:p-12 lg:p-16 w-full'>
             <motion.div variants={textVariant()}>
-                <p className={styles.sectionSubText}>Get in touch</p>
-                <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Contact</h2>
+                <p className={styles.sectionSubText}>Get In Touch</p>
+                <h2 className={`${styles.sectionHeadText} mt-3`}>Contact</h2>
             </motion.div>
-            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] sm:text-[14px] text-[12px]  max-w-3xl lg:leading-[35px]'>
-                Reach out to me and let's discuss how I can help bring your ideas to life!
-                <div className='flex gap-5 sm:gap-8 lg:items-center max-sm:flex-col max-sm:mt-8'>
-                    <a href='mailto:ismaelabdoul7@gmail.com'>
-                        <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0] text-sm' buttonClasses=' max-sm:!h-12 !w-fit interactable' />
+
+            <motion.div variants={fadeIn('', '', 0.1, 1)} className='mt-8'>
+                <p className='text-white/70 xl:text-[20px] sm:text-[18px] text-[16px] mb-8 font-light leading-relaxed max-w-2xl'>
+                    Let's build something great together.
+                </p>
+
+                <div className='flex flex-col sm:flex-row gap-4 items-start sm:items-center'>
+                    <a href='mailto:ismaelabdoul7@gmail.com' className='group interactable'>
+                        <div className='px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center gap-2'>
+                            <span>Send Email</span>
+                            <FaLocationArrow className='text-sm transition-transform duration-300 group-hover:translate-x-1' />
+                        </div>
                     </a>
-                    <div className='flex gap-4'>
-                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 !text-lg' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
-                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 !text-lg' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
+
+                    <div className='flex gap-3'>
+                        <a href='https://www.linkedin.com/in/abdoul-wahhaab' target='_blank' rel='noopener noreferrer' className='interactable w-12 h-12 border border-white/10 rounded-full flex items-center justify-center hover:bg-white/5 hover:border-white/30 transition-all duration-300 group'>
+                            <FaLinkedinIn className='text-white/70 group-hover:text-white text-xl' />
+                        </a>
+                        <a href='https://github.com/Abdoul-sudo' target='_blank' rel='noopener noreferrer' className='interactable w-12 h-12 border border-white/10 rounded-full flex items-center justify-center hover:bg-white/5 hover:border-white/30 transition-all duration-300 group'>
+                            <FaGithub className='text-white/70 group-hover:text-white text-xl' />
+                        </a>
                     </div>
                 </div>
-            </motion.p>
-
-            {/* <div className="mt-20 flex flex-wrap gap-10">
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </div> */}
+            </motion.div>
         </div>
     );
 };

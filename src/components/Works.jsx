@@ -12,44 +12,39 @@ import { FaItchIo } from 'react-icons/fa';
 
 const ProjectCard = ({ index, name, description, tags, techs, image, source_code_link, deployment_link, game_link, setImage }) => {
     return (
-        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='interactable2 cursor-pointer' onClick={() => window.open(game_link || deployment_link, '_blank')}>
-            <Tilt
-                options={{
-                    max: 25,
-                    scale: 1,
-                    speed: 450,
-                }}
-                className=' bg-fortiary border border-white/[.1] shadow-[0_0_1.5px_#ffffff70] opacity-90  p-5 rounded-2xl sm:w-[360px] w-full'>
-                <div className=' relative w-full sm:h-[230px] cursor-pointer'>
-                    <img src={image} alt='project_image' className=' w-full h-full object-cover rounded-2xl ' />
+        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='group'>
+            <a href={game_link || deployment_link} target='_blank' rel='noopener noreferrer' className='block h-full'>
+                <div className='backdrop-blur-md bg-white/[0.02] border border-white/[0.05] rounded-2xl overflow-hidden h-full transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]'>
+                    {/* Image */}
+                    <div className='relative w-full aspect-video overflow-hidden'>
+                        <img src={image} alt={name} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105' />
+                        <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
 
-                    {source_code_link && (
-                        <div onClick={() => window.open(source_code_link, '_blank')} className='interactable absolute bottom-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]'>
-                            <img src={github} alt='source code' className='w-3/4 h-3/4 object-contain' />
-                        </div>
-                    )}
-                </div>
-
-                <div className='mt-5'>
-                    <h3 className='text-white font-bold text-[24px] drop-shadow-[0_0_0.1rem_#ffffff70]'>{name}</h3>
-                    <p className='mt-2 text-secondary  sm:text-[14px] text-[12px] min-h-[70px]'>{description}</p>
-                </div>
-
-                <div className='mt-2 flex items-center justify-between'>
-                    <div className='flex items-center'>
-                        {techs.map((tech, index) => (
-                            <div
-                                key={index}
-                                className='bg-primary border border-white/[.2] shadow-[0_0_0.5px_#ffffff] rounded-full lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center'
-                                style={{
-                                    transform: `translateX(-${5 * index + 2}px)`,
-                                }}>
-                                <img src={`${tech.icon}`} alt='icon5' className='p-2' />
+                        {/* GitHub link */}
+                        {source_code_link && (
+                            <div onClick={(e) => { e.preventDefault(); window.open(source_code_link, '_blank'); }} className='interactable absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300'>
+                                <img src={github} alt='source code' className='w-5 h-5 object-contain' />
                             </div>
-                        ))}
+                        )}
+                    </div>
+
+                    {/* Content */}
+                    <div className='p-6'>
+                        <h3 className='text-white font-bold text-[20px] mb-2'>{name}</h3>
+                        <p className='text-white/60 text-[14px] leading-relaxed mb-4'>{description}</p>
+
+                        {/* Tech stack */}
+                        <div className='flex flex-wrap gap-2'>
+                            {techs.map((tech, idx) => (
+                                <div key={idx} className='px-3 py-1.5 bg-white/5 border border-white/10 rounded-full flex items-center gap-2'>
+                                    <img src={tech.icon} alt={tech.name} className='w-4 h-4 object-contain' />
+                                    <span className='text-white/70 text-[11px] font-medium'>{tech.name}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </Tilt>
+            </a>
         </motion.div>
     );
 };
@@ -62,17 +57,11 @@ const Works = (props) => {
                     &nbsp;
                 </span>
                 <motion.div variants={textVariant()}>
-                    <p className={`${styles.sectionSubText} `}>My work</p>
-                    <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.1rem_#ffffff70]`}>Projects.</h2>
+                    <p className={`${styles.sectionSubText}`}>Selected Work</p>
+                    <h2 className={`${styles.sectionHeadText} mt-3`}>Projects</h2>
                 </motion.div>
 
-                <div className='w-full flex'>
-                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary xl:text-[17px] sm:text-[14px] text-[12px] max-w-3xl leading-[30px]'>
-                        These projects demonstrate my ability to work with various technologies. They each includes a link to a <span className='blue-text-gradient font-bold'>live demo</span>.
-                    </motion.p>
-                </div>
-
-                <div className='mt-20 flex flex-wrap gap-7'>
+                <div className='mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {projects.map((project, index) => (
                         <ProjectCard key={`project-${index}`} index={index} {...project} setImage={props.setImage} />
                     ))}
