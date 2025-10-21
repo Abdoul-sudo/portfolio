@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 import { styles } from '../styles';
 import { navLinks } from '../constants';
-import { logo, menu, close } from '../assets';
 
 const Navbar = () => {
     const [active, setActive] = useState('');
@@ -26,47 +25,89 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className={`${styles.paddingX} w-full flex items-center py-6 fixed top-0 z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-black/30 border-b border-white/5' : 'bg-transparent'}`}>
-            <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+        <nav
+            className={`
+                ${styles.paddingX} w-full flex items-center py-6 fixed top-0 z-50
+                transition-all duration-300
+                ${scrolled
+                    ? 'backdrop-blur-xl bg-dark/95 border-b border-border'
+                    : 'bg-transparent'}
+            `}
+        >
+            <div className='w-full flex justify-between items-center max-w-6xl mx-auto'>
+                {/* Logo */}
                 <Link
                     to='/'
-                    className='flex items-center gap-3 group'
+                    className='flex items-center gap-3'
                     onClick={() => {
                         setActive('');
                         window.scrollTo(0, 0);
-                    }}>
-                    <div className='w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:border-white/40 transition-all duration-300'>
-                        <span className='text-white font-bold text-lg'>A</span>
-                    </div>
-                    <p className='text-white text-[16px] font-semibold cursor-pointer hidden sm:block'>Abdoul</p>
+                    }}
+                >
+                    <span className='text-accent hover:text-white text-sm font-medium transition-colors duration-300'>
+                        Abdoul Wahhaab
+                    </span>
                 </Link>
 
+                {/* Desktop Navigation */}
                 <ul className='list-none hidden sm:flex flex-row gap-8'>
-                    {navLinks.map((nav) => (
-                        <li key={nav.id} className={`${active === nav.title ? 'text-white' : 'text-white/60'} interactable2 hover:text-white text-[14px] font-medium cursor-pointer transition-colors duration-300`} onClick={() => setActive(nav.title)}>
-                            <a href={`#${nav.id}`}>{nav.title}</a>
-                        </li>
-                    ))}
+                    {navLinks.map((nav) => {
+                        const isActive = active === nav.title;
+                        return (
+                            <li
+                                key={nav.id}
+                                className='interactable2'
+                                onClick={() => setActive(nav.title)}
+                            >
+                                <a
+                                    href={`#${nav.id}`}
+                                    className={`
+                                        text-sm transition-colors duration-300
+                                        ${isActive ? 'text-white' : 'text-muted hover:text-accent'}
+                                    `}
+                                >
+                                    {nav.title}
+                                </a>
+                            </li>
+                        );
+                    })}
                 </ul>
 
+                {/* Mobile Menu Button */}
                 <div className='sm:hidden flex flex-1 justify-end items-center'>
-                    <button onClick={() => setToggle(!toggle)} className='w-8 h-8 flex flex-col items-center justify-center gap-1.5 interactable'>
-                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${toggle ? 'rotate-45 translate-y-2' : ''}`}></span>
-                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${toggle ? 'opacity-0' : ''}`}></span>
-                        <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                    <button
+                        onClick={() => setToggle(!toggle)}
+                        className='w-8 h-8 flex flex-col items-center justify-center gap-1.5 interactable'
+                    >
+                        <span className={`w-6 h-px bg-accent transition-all duration-300 ${toggle ? 'rotate-45 translate-y-2' : ''}`} />
+                        <span className={`w-6 h-px bg-accent transition-all duration-300 ${toggle ? 'opacity-0' : ''}`} />
+                        <span className={`w-6 h-px bg-accent transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-2' : ''}`} />
                     </button>
 
-                    <div className={`${!toggle ? 'hidden' : 'flex'} p-6 backdrop-blur-xl bg-black/80 border border-white/10 absolute top-20 right-4 min-w-[160px] z-10 rounded-2xl`}>
-                        <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+                    {/* Mobile Menu */}
+                    <div
+                        className={`${
+                            !toggle ? 'hidden' : 'flex'
+                        } p-6 backdrop-blur-xl bg-dark/95 border border-border absolute top-20 right-4 min-w-[180px]`}
+                    >
+                        <ul className='list-none flex flex-col gap-4 w-full'>
                             {navLinks.map((nav) => (
                                 <li
                                     key={nav.id}
-                                    className={`font-medium cursor-pointer text-[14px] ${active === nav.title ? 'text-white' : 'text-white/60'} hover:text-white transition-colors duration-300`}
                                     onClick={() => {
                                         setToggle(!toggle);
                                         setActive(nav.title);
-                                    }}>
-                                    <a href={`#${nav.id}`}>{nav.title}</a>
+                                    }}
+                                >
+                                    <a
+                                        href={`#${nav.id}`}
+                                        className={`
+                                            text-sm transition-colors duration-300
+                                            ${active === nav.title ? 'text-white' : 'text-muted hover:text-accent'}
+                                        `}
+                                    >
+                                        {nav.title}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
