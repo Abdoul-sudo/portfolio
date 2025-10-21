@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
@@ -12,7 +12,11 @@ import { FaItchIo } from 'react-icons/fa';
 
 const ProjectCard = ({ index, name, description, tags, techs, image, source_code_link, deployment_link, game_link, setImage }) => {
     return (
-        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='group'>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className='group'>
             <a href={game_link || deployment_link} target='_blank' rel='noopener noreferrer' className='block h-full'>
                 <div className='backdrop-blur-md bg-white/[0.02] border border-white/[0.05] rounded-2xl overflow-hidden h-full transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]'>
                     {/* Image */}
@@ -50,6 +54,20 @@ const ProjectCard = ({ index, name, description, tags, techs, image, source_code
 };
 
 const Works = (props) => {
+    const [activeFilter, setActiveFilter] = useState('all');
+
+    // Get unique project types
+    const projectTypes = ['all', ...new Set(projects.map((p) => p.project_type))];
+
+    // Filter projects based on active filter
+    const filteredProjects = activeFilter === 'all' ? projects : projects.filter((project) => project.project_type === activeFilter);
+
+    // Capitalize first letter for display
+    const capitalizeFilter = (str) => {
+        if (str === 'all') return 'All';
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     return (
         <>
             <motion.section variants={staggerContainer()} initial='hidden' whileInView='show' viewport={{ once: true, amount: 0.25 }} className={`${styles.paddingX} max-w-7xl mx-auto relative z-0`}>
@@ -61,9 +79,25 @@ const Works = (props) => {
                     <h2 className={`${styles.sectionHeadText} mt-3`}>Projects</h2>
                 </motion.div>
 
-                <div className='mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {projects.map((project, index) => (
-                        <ProjectCard key={`project-${index}`} index={index} {...project} setImage={props.setImage} />
+                {/* Filter Buttons */}
+                <motion.div variants={fadeIn('', '', 0.1, 1)} className='mt-8 flex flex-wrap gap-3'>
+                    {projectTypes.map((type) => (
+                        <button
+                            key={type}
+                            onClick={() => setActiveFilter(type)}
+                            className={`px-6 py-2.5 rounded-full text-[14px] font-medium transition-all duration-300 ${
+                                activeFilter === type
+                                    ? 'bg-white text-black'
+                                    : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20'
+                            }`}>
+                            {capitalizeFilter(type)}
+                        </button>
+                    ))}
+                </motion.div>
+
+                <div key={activeFilter} className='mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                    {filteredProjects.map((project, index) => (
+                        <ProjectCard key={`project-${project.name}-${index}`} index={index} {...project} setImage={props.setImage} />
                     ))}
                 </div>
             </motion.section>
