@@ -43,6 +43,7 @@ import {
     slime_adventure,
     pixel_dunking,
     gamefeat,
+    juicy,
     // threejs,
 } from '../assets';
 
@@ -268,6 +269,23 @@ const testimonials = [
 ];
 
 const projects = [
+    {
+        name: 'Juicy',
+        description: 'A web application for sharing, and discovering a variety of recipes, allowing users to connect through culinary ideas.',
+        techs: [
+            {
+                name: 'Next JS',
+                icon: nextjs_white,
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind,
+            },
+        ],
+        image: juicy,
+        source_code_link: '',
+        deployment_link: 'https://juicy-recipe.vercel.app',
+    },
     {
         name: 'GameFeat',
         description: 'A platform that features a different game every time you refresh the page.',
