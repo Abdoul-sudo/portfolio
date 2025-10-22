@@ -1,95 +1,102 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaLinkedinIn, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 import { styles } from '../styles';
-import { EarthCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
-import { fadeIn, slideIn, textVariant } from '../utils/motion';
-import MagicButton from './MagicButton';
-import { FaGithub, FaLinkedinIn, FaLocationArrow } from 'react-icons/fa';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
-    const formRef = useRef();
-    const [form, setForm] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
+    const sectionRef = useRef();
+    const headingRef = useRef();
+    const contentRef = useRef();
 
-    const [loading, setLoading] = useState(false);
-
-    const handleChange = (e) => {
-        const { target } = e;
-        const { name, value } = target;
-
-        setForm({
-            ...form,
-            [name]: value,
+    useGSAP(() => {
+        // Heading animation
+        gsap.from(headingRef.current, {
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            ease: 'power3.out',
         });
-    };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        emailjs
-            .send(
-                import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-                {
-                    from_name: form.name,
-                    to_name: 'ISMAEL Abdoul Wahhaab',
-                    from_email: form.email,
-                    to_email: 'ismaelabdoul7@gmail.com',
-                    message: form.message,
-                },
-                import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-            )
-            .then(
-                () => {
-                    setLoading(false);
-                    alert('Thank you. I will get back to you as soon as possible.');
-
-                    setForm({
-                        name: '',
-                        email: '',
-                        message: '',
-                    });
-                },
-                (error) => {
-                    setLoading(false);
-                    console.error(error);
-
-                    alert('Ahh, something went wrong. Please try again.');
-                },
-            );
-    };
+        // Content animation
+        gsap.from(contentRef.current, {
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 75%',
+            },
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.2,
+            ease: 'power2.out',
+        });
+    }, { scope: sectionRef });
 
     return (
-        <div className='bg-fortiary  shadow-[0_0_4px_#ffffff70] opacity-90  p-10 rounded-2xl w-full'>
-            <motion.div variants={textVariant()}>
-                <p className={styles.sectionSubText}>Get in touch</p>
-                <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Contact</h2>
-            </motion.div>
-            <motion.p variants={fadeIn('', '', 0.1, 1)} className=' mt-4 text-secondary xl:text-[17px] sm:text-[14px] text-[12px]  max-w-3xl lg:leading-[35px]'>
-                Reach out to me and let's discuss how I can help bring your ideas to life!
-                <div className='flex gap-5 sm:gap-8 lg:items-center max-sm:flex-col max-sm:mt-8'>
-                    <a href='mailto:ismaelabdoul7@gmail.com'>
-                        <MagicButton title="Let's get in touch" icon={<FaLocationArrow />} position='right' textClasses='bg-[#050816f0] text-sm' buttonClasses=' max-sm:!h-12 !w-fit interactable' />
+        <div
+            ref={sectionRef}
+            className='w-full min-h-screen flex items-center justify-center py-20'
+        >
+            <div className='max-w-6xl mx-auto w-full grid lg:grid-cols-2 grid-cols-1 gap-12 lg:gap-20 items-center'>
+                {/* Left Column - Heading */}
+                <div ref={headingRef}>
+                    <h2 className='font-syne font-extrabold text-6xl md:text-7xl lg:text-8xl text-accent-navy leading-tight'>
+                        Let's
+                        <br />
+                        <span className='terracotta-text-gradient'>connect</span>
+                    </h2>
+                </div>
+
+                {/* Right Column - Contact Options */}
+                <div ref={contentRef} className='space-y-8'>
+                    <p className='font-inter text-text-secondary text-xl leading-relaxed'>
+                        Got a project in mind? Let's build something amazing together.
+                    </p>
+
+                    {/* Email CTA */}
+                    <a
+                        href='mailto:ismaelabdoul7@gmail.com'
+                        className='group inline-block'
+                    >
+                        <div className='px-8 py-5 bg-accent-terracotta text-white font-inter font-bold text-xl rounded-2xl hover:bg-accent-orange transition-all duration-300 shadow-soft hover:shadow-soft-hover flex items-center gap-4 group-hover:scale-105'>
+                            <FaEnvelope className='text-2xl' />
+                            <span>Let's get in touch</span>
+                        </div>
                     </a>
-                    <div className='flex gap-4'>
-                        <MagicButton handleClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} title='' icon={<FaLinkedinIn />} position='right' textClasses='bg-[#050816f0] !p-0 !text-lg' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
-                        <MagicButton handleClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} title='' icon={<FaGithub />} position='right' textClasses='bg-[#050816f0] !p-0 !text-lg' buttonClasses='!w-14 max-sm:!w-12 max-sm:!h-12 interactable2' />
+
+                    {/* Social Links */}
+                    <div className='flex gap-4 pt-4'>
+                        <a
+                            href='https://www.linkedin.com/in/abdoul-wahhaab'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-14 h-14 bg-accent-sage rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-all duration-300 hover:scale-110 shadow-soft'
+                            aria-label='LinkedIn Profile'
+                        >
+                            <FaLinkedinIn className='text-2xl' />
+                        </a>
+
+                        <a
+                            href='https://github.com/Abdoul-sudo'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-14 h-14 bg-accent-navy rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-all duration-300 hover:scale-110 shadow-soft'
+                            aria-label='GitHub Profile'
+                        >
+                            <FaGithub className='text-2xl' />
+                        </a>
                     </div>
                 </div>
-            </motion.p>
-
-            {/* <div className="mt-20 flex flex-wrap gap-10">
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </div> */}
+            </div>
         </div>
     );
 };

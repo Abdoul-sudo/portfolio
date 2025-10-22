@@ -1,85 +1,220 @@
-import React from 'react';
-import { Tilt } from 'react-tilt';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 import { styles } from '../styles';
-import { github, online, online_icon } from '../assets';
-import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
-import { fadeIn, textVariant } from '../utils/motion';
-import { staggerContainer } from '../utils/motion';
-import { FaItchIo } from 'react-icons/fa';
+import { SectionWrapper } from '../hoc';
 
-const ProjectCard = ({ index, name, description, tags, techs, image, source_code_link, deployment_link, game_link, setImage }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+const categories = [
+    { id: 'all', label: 'All' },
+    { id: 'game', label: 'Games' },
+    { id: 'website', label: 'Websites' },
+    { id: 'ai', label: 'AI' },
+];
+
+const ProjectCard = ({ project, index }) => {
     return (
-        <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)} className='interactable2 cursor-pointer' onClick={() => window.open(game_link || deployment_link, '_blank')}>
-            <Tilt
-                options={{
-                    max: 25,
-                    scale: 1,
-                    speed: 450,
-                }}
-                className=' bg-fortiary border border-white/[.1] shadow-[0_0_1.5px_#ffffff70] opacity-90  p-5 rounded-2xl sm:w-[360px] w-full'>
-                <div className=' relative w-full sm:h-[230px] cursor-pointer'>
-                    <img src={image} alt='project_image' className=' w-full h-full object-cover rounded-2xl ' />
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className='project-card group bg-bg-secondary rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-hover transition-all duration-300 flex flex-col h-full'
+        >
+            {/* Project Image */}
+            <div className='relative w-full h-64 overflow-hidden bg-bg-tertiary'>
+                <img
+                    src={project.image}
+                    alt={project.name}
+                    className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-500'
+                />
 
-                    {source_code_link && (
-                        <div onClick={() => window.open(source_code_link, '_blank')} className='interactable absolute bottom-0 right-0 m-3 card-img_hover  blue-pink-gradient w-10 h-10 rounded-full flex justify-self-end float-right justify-center items-center cursor-pointer hover:shadow-[0_0_25px_#ef64fe]'>
-                            <img src={github} alt='source code' className='w-3/4 h-3/4 object-contain' />
+                {/* Overlay with link on hover */}
+                <div className='absolute inset-0 bg-accent-terracotta bg-opacity-0 group-hover:bg-opacity-90 transition-all duration-300 flex items-center justify-center'>
+                    <a
+                        href={project.deployment_link || project.game_link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0'
+                    >
+                        <span className='px-6 py-3 bg-white text-accent-terracotta font-inter font-bold rounded-full flex items-center gap-2 hover:bg-bg-primary transition-colors'>
+                            View Project
+                            <FaExternalLinkAlt />
+                        </span>
+                    </a>
+                </div>
+
+                {/* GitHub Link (if available) */}
+                {project.source_code_link && (
+                    <a
+                        href={project.source_code_link}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='absolute top-4 right-4 w-10 h-10 bg-accent-navy rounded-full flex items-center justify-center text-white hover:bg-accent-terracotta transition-colors duration-300 z-10'
+                    >
+                        <FaGithub className='text-xl' />
+                    </a>
+                )}
+            </div>
+
+            {/* Project Details */}
+            <div className='p-6 flex flex-col flex-grow'>
+                {/* Project Name */}
+                <h3 className='font-syne font-bold text-2xl text-accent-navy mb-3'>
+                    {project.name}
+                </h3>
+
+                {/* Description */}
+                <p className='font-inter text-text-secondary text-base leading-relaxed mb-4 flex-grow'>
+                    {project.description}
+                </p>
+
+                {/* Tech Stack Icons */}
+                <div className='flex items-center gap-2 flex-wrap'>
+                    {project.techs.map((tech, idx) => (
+                        <div
+                            key={idx}
+                            className='w-8 h-8 bg-bg-primary rounded-full flex items-center justify-center p-1.5 border border-text-tertiary'
+                            title={tech.name}
+                        >
+                            <img
+                                src={tech.icon}
+                                alt={tech.name}
+                                className='w-full h-full object-contain'
+                            />
                         </div>
-                    )}
+                    ))}
                 </div>
-
-                <div className='mt-5'>
-                    <h3 className='text-white font-bold text-[24px] drop-shadow-[0_0_0.1rem_#ffffff70]'>{name}</h3>
-                    <p className='mt-2 text-secondary  sm:text-[14px] text-[12px] min-h-[70px]'>{description}</p>
-                </div>
-
-                <div className='mt-2 flex items-center justify-between'>
-                    <div className='flex items-center'>
-                        {techs.map((tech, index) => (
-                            <div
-                                key={index}
-                                className='bg-primary border border-white/[.2] shadow-[0_0_0.5px_#ffffff] rounded-full lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center'
-                                style={{
-                                    transform: `translateX(-${5 * index + 2}px)`,
-                                }}>
-                                <img src={`${tech.icon}`} alt='icon5' className='p-2' />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </Tilt>
+            </div>
         </motion.div>
     );
 };
 
-const Works = (props) => {
+const Works = () => {
+    const [activeFilter, setActiveFilter] = useState('all');
+    const sectionRef = useRef();
+    const titleRef = useRef();
+    const filterRef = useRef();
+    const gridRef = useRef();
+
+    // Filter projects based on active category
+    const filteredProjects =
+        activeFilter === 'all'
+            ? projects
+            : projects.filter((project) => project.category === activeFilter);
+
+    // GSAP Animations
+    useGSAP(() => {
+        // Title animation
+        gsap.from(titleRef.current, {
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 80%',
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: 'power3.out',
+        });
+
+        // Filter buttons animation
+        gsap.from('.filter-btn', {
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 75%',
+            },
+            opacity: 0,
+            y: 20,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: 'power2.out',
+        });
+    }, { scope: sectionRef });
+
+    const handleFilterChange = (filterId) => {
+        // Animate out current projects
+        gsap.to('.project-card', {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+            stagger: 0.05,
+            onComplete: () => {
+                setActiveFilter(filterId);
+                // Animate in new projects
+                gsap.fromTo(
+                    '.project-card',
+                    { opacity: 0, y: 20 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: 'power2.out',
+                    }
+                );
+            },
+        });
+    };
+
     return (
-        <>
-            <motion.section variants={staggerContainer()} initial='hidden' whileInView='show' viewport={{ once: true, amount: 0.25 }} className={`${styles.paddingX} max-w-7xl mx-auto relative z-0`}>
-                <span className='block pb-32 lg:pb-36' id='work'>
-                    &nbsp;
-                </span>
-                <motion.div variants={textVariant()}>
-                    <p className={`${styles.sectionSubText} `}>My work</p>
-                    <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.1rem_#ffffff70]`}>Projects.</h2>
-                </motion.div>
+        <div
+            ref={sectionRef}
+            className='w-full min-h-screen py-20'
+        >
+            {/* Section Title */}
+            <div ref={titleRef} className='mb-12'>
+                <h2 className='font-syne font-extrabold text-5xl md:text-6xl text-accent-navy mb-4'>
+                    Projects
+                </h2>
+                <p className='font-inter text-text-secondary text-lg md:text-xl max-w-3xl'>
+                    These projects demonstrate my ability to work with various technologies. Each includes a link to a{' '}
+                    <span className='font-semibold text-accent-terracotta'>live demo</span>.
+                </p>
+            </div>
 
-                <div className='w-full flex'>
-                    <motion.p variants={fadeIn('', '', 0.1, 1)} className='mt-3 text-secondary xl:text-[17px] sm:text-[14px] text-[12px] max-w-3xl leading-[30px]'>
-                        These projects demonstrate my ability to work with various technologies. They each includes a link to a <span className='blue-text-gradient font-bold'>live demo</span>.
-                    </motion.p>
-                </div>
+            {/* Filter Buttons */}
+            <div ref={filterRef} className='flex flex-wrap gap-4 mb-12'>
+                {categories.map((category) => (
+                    <button
+                        key={category.id}
+                        onClick={() => handleFilterChange(category.id)}
+                        className={`filter-btn px-8 py-3 font-inter font-bold text-lg rounded-full transition-all duration-300 ${
+                            activeFilter === category.id
+                                ? 'bg-accent-terracotta text-white shadow-soft'
+                                : 'bg-transparent border-2 border-accent-terracotta text-accent-terracotta hover:bg-accent-terracotta hover:text-white'
+                        }`}
+                    >
+                        {category.label}
+                    </button>
+                ))}
+            </div>
 
-                <div className='mt-20 flex flex-wrap gap-7'>
-                    {projects.map((project, index) => (
-                        <ProjectCard key={`project-${index}`} index={index} {...project} setImage={props.setImage} />
-                    ))}
+            {/* Projects Grid */}
+            <div
+                ref={gridRef}
+                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+            >
+                {filteredProjects.map((project, index) => (
+                    <ProjectCard key={`${project.name}-${index}`} project={project} index={index} />
+                ))}
+            </div>
+
+            {/* Empty State */}
+            {filteredProjects.length === 0 && (
+                <div className='text-center py-20'>
+                    <p className='font-inter text-text-secondary text-xl'>
+                        No projects found in this category.
+                    </p>
                 </div>
-            </motion.section>
-        </>
+            )}
+        </div>
     );
 };
 
-export default Works;
+export default SectionWrapper(Works, 'work');

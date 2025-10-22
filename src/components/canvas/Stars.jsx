@@ -2,6 +2,7 @@ import { useState, useRef, Suspense, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Preload } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
+import * as THREE from 'three';
 
 const Stars = (props) => {
   const ref = useRef();
@@ -14,7 +15,8 @@ const Stars = (props) => {
   });
 
   useEffect(() => {
-    setSphere(() => random.inSphere(new Float32Array(4000), { radius: 1.2 }));
+    // Reduced particle count for light mode subtlety
+    setSphere(() => random.inSphere(new Float32Array(2500), { radius: 1.2 }));
   }, []);
 
   return (
@@ -22,10 +24,12 @@ const Stars = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#f272c8"
-          size={0.0023}
+          color="#F3B664"              // Warm amber gold
+          size={0.0015}                // Smaller for subtlety
+          opacity={0.3}                // Reduced opacity for light mode
           sizeAttenuation={true}
           depthWrite={false}
+          blending={THREE.AdditiveBlending}  // Softer blending
         />
       </Points>
     </group>

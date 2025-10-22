@@ -225,6 +225,7 @@ const projects = [
     {
         name: 'Juicy',
         description: 'A web application for sharing, and discovering a variety of recipes, allowing users to connect through culinary ideas.',
+        category: 'website',
         techs: [
             {
                 name: 'Next JS',
@@ -242,6 +243,7 @@ const projects = [
     {
         name: 'GameFeat',
         description: 'A platform that features a different game every time you refresh the page.',
+        category: 'website',
         techs: [
             {
                 name: 'Next JS',
@@ -263,6 +265,7 @@ const projects = [
     {
         name: 'Pixel Dunking',
         description: 'A competitive 2 vs 2 basketball game in 2D. On a dynamic court, use your individual skills to showcase your team play.',
+        category: 'game',
         techs: [
             {
                 name: 'Godot',
@@ -276,6 +279,7 @@ const projects = [
     {
         name: 'Slime adventure',
         description: 'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
+        category: 'game',
         techs: [
             {
                 name: 'Unity',
@@ -289,6 +293,7 @@ const projects = [
     {
         name: 'Onirix',
         description: 'An immersive platform that describes the hidden meanings of dreams. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
+        category: 'ai',
         techs: [
             {
                 name: 'React JS',
@@ -314,6 +319,7 @@ const projects = [
     {
         name: 'Facebook clone',
         description: 'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
+        category: 'website',
         techs: [
             {
                 name: 'React JS',

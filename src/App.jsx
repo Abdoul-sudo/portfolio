@@ -1,6 +1,8 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Footer, Tech, Works, StarsCanvas, Skills, Trailer, ScaleImage } from './components';
+import { About, Contact, Hero, Navbar, Works, StarsCanvas, Trailer, ScaleImage } from './components';
+import Expertise from './components/Expertise';
+import Footer from './components/Footer';
 import './App.scss';
 import { useState } from 'react';
 
@@ -12,24 +14,21 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className='relative z-0 bg-primary overflow-x-hidden'>
+            <div className='relative z-0 bg-bg-primary overflow-x-hidden'>
                 {imgScale && <ScaleImage src_data={imgScale} setImage={setImage} />}
                 <Trailer />
                 <StarsCanvas />
-                {/* <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center"> */}
+
                 <Navbar />
                 <Hero />
-                {/* </div> */}
                 <About />
-                {/* <Experience /> */}
-                {/* <Tech /> */}
-                <Skills />
-
+                <Expertise />
                 <Works setImage={setImage} />
-                {/* <Feedbacks /> */}
-                <div className='relative z-0 pb-24 lg:pb-32'>
+
+                <div className='relative z-0 pb-20'>
                     <Contact />
                 </div>
+
                 <Footer />
             </div>
         </BrowserRouter>
