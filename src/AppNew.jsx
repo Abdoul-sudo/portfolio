@@ -102,7 +102,7 @@ const AppNew = () => {
       <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
       <main className="main-content">
-        <HeroSection />
+        <HeroSection onNavigate={transitionToSection} />
         <AboutSection />
         <WorkSection />
         <ContactSection />

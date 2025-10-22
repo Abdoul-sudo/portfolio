@@ -8,24 +8,21 @@ const ContactSection = () => {
   const titleRef = useRef(null);
   const linksRef = useRef([]);
 
-  const contactLinks = [
+  const mailLinks = [
     {
-      label: 'Email',
-      href: 'mailto:abdoulwahhaab@gmail.com',
-      text: 'abdoulwahhaab@gmail.com',
-      icon: FiMail
-    },
+      href: 'mailto:ismaelabdoul7@gmail.com',
+      text: 'ismaelabdoul7@gmail.com'
+    }
+  ];
+
+  const socialLinks = [
     {
-      label: 'GitHub',
-      href: 'https://github.com/Abdoul-sudo',
-      text: '@Abdoul-sudo',
-      icon: FiGithub
-    },
-    {
-      label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/abdoul-wahhaab',
-      text: 'abdoul-wahhaab',
-      icon: FiLinkedin
+      text: 'linkedin'
+    },
+    {
+      href: 'https://github.com/Abdoul-sudo',
+      text: 'github'
     }
   ];
 
@@ -55,7 +52,7 @@ const ContactSection = () => {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([titleRef.current, ...linksRef.current], {
+      gsap.set([titleRef.current], {
         opacity: 1,
         y: 0
       });
@@ -69,9 +66,9 @@ const ContactSection = () => {
       { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
     )
       .fromTo(
-        linksRef.current,
+        '.contact-grid > *',
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power2.out' },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: 'power2.out' },
         '-=0.3'
       );
   };
@@ -82,25 +79,44 @@ const ContactSection = () => {
         <h2 className="contact-title" ref={titleRef}>
           CONTACT
         </h2>
+        <div className="contact-divider"></div>
 
-        <div className="contact-list">
-          {contactLinks.map((link, index) => {
-            const Icon = link.icon;
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                className="contact-item interactive"
-                ref={(el) => (linksRef.current[index] = el)}
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              >
-                <Icon className="contact-icon" />
-                <span className="contact-label">{link.label}</span>
-                <span className="contact-text">{link.text}</span>
-              </a>
-            );
-          })}
+        <div className="contact-grid">
+          {/* Mail Section */}
+          <div className="contact-column">
+            <h3 className="contact-column-title">MAIL</h3>
+            <div className="contact-links">
+              {mailLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="contact-link interactive"
+                >
+                  <span className="contact-arrow">↗</span>
+                  <span className="contact-text">{link.text}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Social Medias Section */}
+          <div className="contact-column">
+            <h3 className="contact-column-title">SOCIAL MEDIAS</h3>
+            <div className="contact-links">
+              {socialLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="contact-link interactive"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="contact-arrow">↗</span>
+                  <span className="contact-text">{link.text}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

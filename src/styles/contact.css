@@ -1,4 +1,4 @@
-/* Contact Section Styles - Minimal List Design */
+/* Contact Section Styles - Sharlee-inspired Two-Column Layout */
 
 .contact-section {
   position: relative;
@@ -13,88 +13,95 @@
 .contact-content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  max-width: 800px;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
   width: 100%;
 }
 
 .contact-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: var(--font-weight-bold);
   color: #FFFFFF !important;
   margin: 0;
   letter-spacing: -0.02em;
-  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
 }
 
-/* Contact List */
-.contact-list {
+.contact-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: var(--spacing-sm) 0;
+}
+
+/* Two-Column Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-md);
+}
+
+.contact-column {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  width: 100%;
+  gap: var(--spacing-md);
 }
 
-.contact-item {
-  display: grid;
-  grid-template-columns: 40px 120px 1fr;
+.contact-column-title {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* Contact Links */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.contact-link {
+  display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
+  gap: var(--spacing-sm);
+  text-decoration: none;
   cursor: none;
   transition: all 0.3s ease;
-  text-decoration: none;
-  text-align: left;
+  padding: 0.5rem 0;
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .contact-item {
+  .contact-link {
     cursor: pointer;
   }
 }
 
-.contact-item:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-item:hover {
-  background: rgba(34, 211, 238, 0.03);
-  border-bottom-color: var(--color-accent);
-  transform: translateX(10px);
-}
-
-.contact-item:hover .contact-icon,
-.contact-item:hover .contact-label {
-  color: var(--color-accent);
-}
-
-/* Icon */
-.contact-icon {
-  font-size: 1.5rem;
+.contact-arrow {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   color: rgba(255, 255, 255, 0.4);
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-/* Label */
-.contact-label {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: var(--font-weight-bold);
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: color 0.3s ease;
-}
-
-/* Text */
 .contact-text {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: var(--font-weight-normal);
   color: #FFFFFF;
   letter-spacing: -0.01em;
   transition: color 0.3s ease;
-  justify-self: end;
+}
+
+.contact-link:hover .contact-arrow {
+  color: var(--color-accent);
+  transform: translate(4px, -4px);
+}
+
+.contact-link:hover .contact-text {
+  color: var(--color-accent);
 }
 
 /* Mobile Adjustments */
@@ -103,48 +110,30 @@
     padding: var(--spacing-lg) var(--spacing-sm);
   }
 
-  .contact-item {
-    grid-template-columns: 30px 1fr;
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .contact-column {
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm) 0;
-  }
-
-  .contact-label {
-    grid-column: 2;
-    font-size: 0.75rem;
   }
 
   .contact-text {
-    grid-column: 2;
     font-size: clamp(1rem, 4vw, 1.25rem);
-    justify-self: start;
-    margin-top: 0.25rem;
-  }
-
-  .contact-item:hover {
-    transform: translateX(5px);
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-icon {
-    font-size: 1.25rem;
-  }
-
-  .contact-text {
-    font-size: clamp(0.9rem, 4vw, 1rem);
-    word-break: break-all;
+    word-break: break-word;
   }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .contact-item {
+  .contact-link,
+  .contact-arrow,
+  .contact-text {
     transition: none !important;
-    transform: none !important;
   }
 
-  .contact-item:hover {
+  .contact-link:hover .contact-arrow {
     transform: none !important;
   }
 }

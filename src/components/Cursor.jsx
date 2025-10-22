@@ -33,7 +33,7 @@ const Cursor = () => {
 
     // Interactive elements hover handlers - includes all text elements
     const interactiveElements = document.querySelectorAll(
-      'a, button, .project-card, .filter-btn, .interactive, h1, h2, h3, h4, h5, h6, p, .hero-line, .about-title, .about-description, .work-item-name, .contact-title, .contact-label, .contact-text, .menu-item'
+      'a, button, .project-card, .filter-btn, .interactive, h1, h2, h3, h4, h5, h6, p, .hero-line, .hero-cta, .about-title, .about-description, .work-item-name, .contact-title, .contact-column-title, .contact-arrow, .contact-text, .menu-item'
     );
 
     const handleMouseEnter = () => {
