@@ -31,14 +31,14 @@ const Cursor = () => {
       });
     };
 
-    // Interactive elements hover handlers
+    // Interactive elements hover handlers - includes all text elements
     const interactiveElements = document.querySelectorAll(
-      'a, button, .project-card, .filter-btn, .interactive'
+      'a, button, .project-card, .filter-btn, .interactive, h1, h2, h3, h4, h5, h6, p, .hero-line, .about-title, .about-description, .work-item-name, .contact-title, .contact-label, .contact-text, .menu-item'
     );
 
     const handleMouseEnter = () => {
       gsap.to(cursor, {
-        scale: 1.2,
+        scale: 1.3,
         backgroundColor: 'rgba(34, 211, 238, 0.15)',
         borderColor: '#22D3EE',
         duration: 0.3,

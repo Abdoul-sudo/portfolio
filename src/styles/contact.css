@@ -1,4 +1,4 @@
-/* Contact Section Styles */
+/* Contact Section Styles - Minimal List Design */
 
 .contact-section {
   position: relative;
@@ -13,10 +13,9 @@
 .contact-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--spacing-lg);
-  max-width: 900px;
+  gap: var(--spacing-md);
+  max-width: 800px;
+  width: 100%;
 }
 
 .contact-title {
@@ -24,84 +23,78 @@
   font-weight: var(--font-weight-bold);
   color: #FFFFFF !important;
   margin: 0;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-sm);
 }
 
-.contact-description {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 700px;
-  margin: 0;
-}
-
-/* Contact Links */
-.contact-links {
+/* Contact List */
+.contact-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 0;
   width: 100%;
-  max-width: 600px;
-  margin-top: var(--spacing-md);
 }
 
-.contact-link-wrapper {
-  display: flex;
-  flex-direction: column;
+.contact-item {
+  display: grid;
+  grid-template-columns: 40px 120px 1fr;
   align-items: center;
-  gap: var(--spacing-xs);
-}
-
-.contact-label {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
-  font-weight: var(--font-weight-bold);
-}
-
-.contact-link {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: #FFFFFF !important;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  cursor: none;
+  transition: all 0.3s ease;
   text-decoration: none;
-  position: relative;
-  padding: var(--spacing-xs) 0;
+  text-align: left;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .contact-item {
+    cursor: pointer;
+  }
+}
+
+.contact-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-item:hover {
+  background: rgba(34, 211, 238, 0.03);
+  border-bottom-color: var(--color-accent);
+  transform: translateX(10px);
+}
+
+.contact-item:hover .contact-icon,
+.contact-item:hover .contact-label {
+  color: var(--color-accent);
+}
+
+/* Icon */
+.contact-icon {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.4);
   transition: color 0.3s ease;
 }
 
-.contact-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: var(--color-accent);
-  transition: width 0.4s ease;
-}
-
-.contact-link:hover,
-.contact-link:focus-visible {
-  color: var(--color-accent);
-}
-
-.contact-link:hover::after,
-.contact-link:focus-visible::after {
-  width: 100%;
-}
-
-/* Footer */
-.contact-footer {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-}
-
-.contact-footer p {
-  font-size: 0.9rem;
+/* Label */
+.contact-label {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
   color: rgba(255, 255, 255, 0.5);
-  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+/* Text */
+.contact-text {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-normal);
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+  justify-self: end;
 }
 
 /* Mobile Adjustments */
@@ -110,34 +103,48 @@
     padding: var(--spacing-lg) var(--spacing-sm);
   }
 
-  .contact-content {
-    gap: var(--spacing-md);
-  }
-
-  .contact-links {
+  .contact-item {
+    grid-template-columns: 30px 1fr;
     gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
   }
 
-  .contact-link {
+  .contact-label {
+    grid-column: 2;
+    font-size: 0.75rem;
+  }
+
+  .contact-text {
+    grid-column: 2;
     font-size: clamp(1rem, 4vw, 1.25rem);
-    word-break: break-word;
+    justify-self: start;
+    margin-top: 0.25rem;
   }
 
-  .contact-footer {
-    margin-top: var(--spacing-md);
+  .contact-item:hover {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-icon {
+    font-size: 1.25rem;
+  }
+
+  .contact-text {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    word-break: break-all;
   }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .contact-link,
-  .contact-link::after {
+  .contact-item {
     transition: none !important;
+    transform: none !important;
   }
 
-  .contact-title,
-  .contact-description,
-  .contact-link-wrapper {
-    opacity: 1 !important;
+  .contact-item:hover {
+    transform: none !important;
   }
 }

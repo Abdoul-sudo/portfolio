@@ -1,28 +1,31 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 import '../styles/contact.css';
 
 const ContactSection = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  const contentRef = useRef(null);
   const linksRef = useRef([]);
 
   const contactLinks = [
     {
       label: 'Email',
       href: 'mailto:abdoulwahhaab@gmail.com',
-      text: 'abdoulwahhaab@gmail.com'
+      text: 'abdoulwahhaab@gmail.com',
+      icon: FiMail
     },
     {
       label: 'GitHub',
       href: 'https://github.com/Abdoul-sudo',
-      text: 'github.com/Abdoul-sudo'
+      text: '@Abdoul-sudo',
+      icon: FiGithub
     },
     {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/abdoul-wahhaab',
-      text: 'linkedin.com/in/abdoul-wahhaab'
+      text: 'abdoul-wahhaab',
+      icon: FiLinkedin
     }
   ];
 
@@ -52,7 +55,7 @@ const ContactSection = () => {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([titleRef.current, contentRef.current, ...linksRef.current], {
+      gsap.set([titleRef.current, ...linksRef.current], {
         opacity: 1,
         y: 0
       });
@@ -66,53 +69,39 @@ const ContactSection = () => {
       { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
     )
       .fromTo(
-        contentRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
-        '-=0.4'
-      )
-      .fromTo(
         linksRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.4, ease: 'power2.out' },
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power2.out' },
         '-=0.3'
       );
   };
 
   return (
     <section className="contact-section section" id="contact" ref={sectionRef}>
-      <div className="contact-content container">
+      <div className="contact-content">
         <h2 className="contact-title" ref={titleRef}>
-          Let's Connect
+          CONTACT
         </h2>
 
-        <p className="contact-description" ref={contentRef}>
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-        </p>
-
-        <div className="contact-links">
-          {contactLinks.map((link, index) => (
-            <div
-              key={link.label}
-              className="contact-link-wrapper"
-              ref={(el) => (linksRef.current[index] = el)}
-            >
-              <span className="contact-label">{link.label}</span>
+        <div className="contact-list">
+          {contactLinks.map((link, index) => {
+            const Icon = link.icon;
+            return (
               <a
+                key={link.label}
                 href={link.href}
-                className="contact-link interactive"
+                className="contact-item interactive"
+                ref={(el) => (linksRef.current[index] = el)}
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
-                {link.text}
+                <Icon className="contact-icon" />
+                <span className="contact-label">{link.label}</span>
+                <span className="contact-text">{link.text}</span>
               </a>
-            </div>
-          ))}
+            );
+          })}
         </div>
-
-        <footer className="contact-footer">
-          <p>&copy; {new Date().getFullYear()} Abdoul Wahhaab. Built with passion and code.</p>
-        </footer>
       </div>
     </section>
   );
