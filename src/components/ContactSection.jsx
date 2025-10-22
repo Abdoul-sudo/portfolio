@@ -61,31 +61,20 @@ const ContactSection = () => {
 
     const tl = gsap.timeline();
 
-    tl.from(titleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.out'
-    })
-      .from(
+    tl.fromTo(titleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+    )
+      .fromTo(
         contentRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out'
-        },
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
         '-=0.4'
       )
-      .from(
+      .fromTo(
         linksRef.current,
-        {
-          y: 20,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.4,
-          ease: 'power2.out'
-        },
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.4, ease: 'power2.out' },
         '-=0.3'
       );
   };

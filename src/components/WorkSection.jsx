@@ -1,16 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { projectCategories, projectsData, filterProjects, shouldShowCategory } from '../data/projects';
-import ProjectCard from './ProjectCard';
+import { projectsData } from '../data/projects';
 import '../styles/work.css';
 
 const WorkSection = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [displayedProjects, setDisplayedProjects] = useState(projectsData);
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  const filtersRef = useRef(null);
-  const gridRef = useRef(null);
+  const projectsRef = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,7 +34,7 @@ const WorkSection = () => {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([titleRef.current, filtersRef.current, gridRef.current], {
+      gsap.set([titleRef.current, ...projectsRef.current], {
         opacity: 1,
         y: 0
       });
@@ -47,96 +43,48 @@ const WorkSection = () => {
 
     const tl = gsap.timeline();
 
-    tl.from(titleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.out'
-    })
-      .from(
-        filtersRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out'
-        },
-        '-=0.4'
-      )
-      .from(
-        gridRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out'
-        },
+    tl.fromTo(titleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+    )
+      .fromTo(
+        projectsRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power2.out' },
         '-=0.3'
       );
   };
 
-  const handleFilterChange = (categoryId) => {
-    if (categoryId === activeCategory) return;
-
-    const cards = gsap.utils.toArray('.project-card');
-
-    gsap.to(cards, {
-      opacity: 0,
-      y: 20,
-      duration: 0.2,
-      stagger: 0.03,
-      ease: 'power2.in',
-      onComplete: () => {
-        setActiveCategory(categoryId);
-        const filtered = filterProjects(categoryId);
-        setDisplayedProjects(filtered);
-
-        // Animate new cards in
-        setTimeout(() => {
-          const newCards = gsap.utils.toArray('.project-card');
-          gsap.fromTo(
-            newCards,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.3,
-              stagger: 0.03,
-              ease: 'power2.out'
-            }
-          );
-        }, 50);
-      }
-    });
+  const handleProjectClick = (link) => {
+    if (link) {
+      window.open(link, '_blank', 'noopener,noreferrer');
+    }
   };
-
-  const visibleCategories = projectCategories.filter(cat => shouldShowCategory(cat.id));
 
   return (
     <section className="work-section section" id="work" ref={sectionRef}>
       <div className="work-content container">
-        <h2 className="work-title" ref={titleRef}>
-          Work
-        </h2>
-
-        <div className="work-filters" ref={filtersRef}>
-          {visibleCategories.map(category => (
-            <button
-              key={category.id}
-              className={`filter-btn interactive ${
-                activeCategory === category.id ? 'active' : ''
-              }`}
-              onClick={() => handleFilterChange(category.id)}
-              aria-pressed={activeCategory === category.id}
-            >
-              {category.name}
-            </button>
-          ))}
+        <div className="work-header">
+          <h2 className="work-title" ref={titleRef}>
+            WORK
+          </h2>
+          <span className="work-count">{projectsData.length}</span>
         </div>
 
-        <div className="projects-grid" ref={gridRef}>
-          {displayedProjects.map(project => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="work-list">
+          {projectsData.map((project, index) => (
+            <button
+              key={project.id}
+              className="work-item interactive"
+              ref={(el) => (projectsRef.current[index] = el)}
+              onClick={() => handleProjectClick(project.demo_link)}
+            >
+              <span className="work-item-arrow">→</span>
+              <span className="work-item-name">{project.name}</span>
+              <span className="work-item-type">
+                {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
+              </span>
+            </button>
           ))}
         </div>
       </div>

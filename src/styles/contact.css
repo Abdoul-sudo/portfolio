@@ -20,11 +20,10 @@
 }
 
 .contact-title {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
   color: #FFFFFF !important;
   margin: 0;
-  opacity: 0;
 }
 
 .contact-description {
@@ -33,7 +32,6 @@
   color: rgba(255, 255, 255, 0.8);
   max-width: 700px;
   margin: 0;
-  opacity: 0;
 }
 
 /* Contact Links */
@@ -51,7 +49,6 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-xs);
-  opacity: 0;
 }
 
 .contact-label {

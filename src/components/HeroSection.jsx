@@ -24,15 +24,28 @@ const HeroSection = () => {
       return;
     }
 
-    // Create overlapping timeline animation
-    const tl = gsap.timeline({
-      defaults: { duration: 0.8, ease: 'power2.out' }
-    });
+    // Create overlapping timeline animation - text comes from TOP down (Sharlee-style)
+    const tl = gsap.timeline();
 
-    tl.from(line1Ref.current, { y: 100, opacity: 0 })
-      .from(line2Ref.current, { y: 100, opacity: 0 }, '-=0.6')
-      .from(line3Ref.current, { y: 100, opacity: 0 }, '-=0.6')
-      .from(line4Ref.current, { y: 100, opacity: 0 }, '-=0.6');
+    tl.fromTo(line1Ref.current,
+      { y: -80, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }
+    )
+      .fromTo(line2Ref.current,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
+        '-=0.5'
+      )
+      .fromTo(line3Ref.current,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
+        '-=0.5'
+      )
+      .fromTo(line4Ref.current,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
+        '-=0.5'
+      );
   }, []);
 
   return (

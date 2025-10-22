@@ -20,19 +20,20 @@ const Menu = ({ onNavigate, currentSection }) => {
 
     gsap.timeline()
       .set(overlay, { display: 'flex' })
+      .set(menuItemsRef.current, { y: 60, opacity: 0 })
       .fromTo(
         overlay,
         { opacity: 0 },
         { opacity: 1, duration: 0.4, ease: 'power2.out' }
       )
-      .from(
+      .to(
         menuItemsRef.current,
         {
-          y: 40,
-          opacity: 0,
-          stagger: 0.06,
-          duration: 0.4,
-          ease: 'power2.out'
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 0.5,
+          ease: 'power3.out'
         },
         '-=0.2'
       );
@@ -43,10 +44,10 @@ const Menu = ({ onNavigate, currentSection }) => {
 
     gsap.timeline()
       .to(menuItemsRef.current, {
-        y: -20,
+        y: -40,
         opacity: 0,
-        stagger: 0.03,
-        duration: 0.2,
+        stagger: 0.05,
+        duration: 0.3,
         ease: 'power2.in'
       })
       .to(

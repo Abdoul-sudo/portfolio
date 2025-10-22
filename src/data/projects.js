@@ -1,4 +1,10 @@
-import { getProjectImage } from './placeholderImages';
+// Import actual project images
+import pixel_dunking from '../assets/projects/pixel_dunking.jpg';
+import onirix from '../assets/projects/onirix.png';
+import slime_adventure from '../assets/projects/slime_adventure.png';
+import gamefeat from '../assets/projects/gamefeat.png';
+import juicy from '../assets/projects/juicy.png';
+import fb_clone from '../assets/projects/fb_clone.png';
 
 export const projectCategories = [
   { id: "all", name: "All Projects" },
@@ -16,7 +22,7 @@ export const projectsData = [
     techs: ["Godot"],
     demo_link: "https://deadpixelmg.itch.io/pixel-dunking",
     featured: true,
-    cover: getProjectImage("pixel-dunking"),
+    cover: pixel_dunking,
     role: "Game Developer",
     year: "2024",
     problem: "Creating an engaging multiplayer basketball experience in 2D while maintaining competitive balance.",
@@ -31,7 +37,7 @@ export const projectsData = [
     techs: ["React", "Tailwind", "ChatGPT API", "Figma"],
     demo_link: "https://onirix.vercel.app/",
     featured: true,
-    cover: getProjectImage("onirix"),
+    cover: onirix,
     role: "Full-Stack Developer",
     year: "2024",
     problem: "Building an intuitive AI-powered dream interpretation platform within a 24-hour hackathon timeframe.",
@@ -45,7 +51,7 @@ export const projectsData = [
     description: "A short platformer following a young slime's rite of passage.",
     techs: ["Unity"],
     demo_link: "https://wahhaab.itch.io/slime-adventure",
-    cover: getProjectImage("slime-adventure"),
+    cover: slime_adventure,
     role: "Game Developer",
     year: "2023",
     problem: "Creating a charming platformer with tight controls and engaging level design.",
@@ -59,7 +65,7 @@ export const projectsData = [
     description: "Features a different game on every refresh.",
     techs: ["Next.js", "Tailwind", "Upstash"],
     demo_link: "https://gamefeat.vercel.app/",
-    cover: getProjectImage("gamefeat"),
+    cover: gamefeat,
     role: "Full-Stack Developer",
     year: "2024",
     problem: "Discovering new indie games is challenging; gamers need fresh recommendations.",
@@ -73,7 +79,7 @@ export const projectsData = [
     description: "Recipe sharing app connecting people through culinary ideas.",
     techs: ["Next.js", "Tailwind"],
     demo_link: "https://juicy-recipe.vercel.app",
-    cover: getProjectImage("juicy"),
+    cover: juicy,
     role: "Full-Stack Developer",
     year: "2024",
     problem: "Home cooks need an easy way to share and discover recipes in a social format.",
@@ -87,7 +93,7 @@ export const projectsData = [
     description: "Posts, likes, comments. Built to master React fundamentals.",
     techs: ["React", "Tailwind"],
     demo_link: "https://abd-fb-clone.vercel.app/",
-    cover: getProjectImage("facebook-clone"),
+    cover: fb_clone,
     role: "Frontend Developer",
     year: "2023",
     problem: "Understanding complex state management and component architecture in React.",

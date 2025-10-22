@@ -12,26 +12,29 @@
 
 .hero-content {
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-lines {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spacing-xs);
 }
 
 .hero-line {
-  font-size: clamp(2rem, 6vw, 5rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: #FFFFFF !important;
   margin: 0;
-  opacity: 0;
   overflow: hidden;
   position: relative;
   z-index: 10;

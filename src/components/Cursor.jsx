@@ -19,14 +19,14 @@ const Cursor = () => {
       gsap.to(cursor, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.5,
+        duration: 0.3,
         ease: 'power3.out'
       });
 
       gsap.to(cursorDot, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.12,
+        duration: 0.15,
         ease: 'power3.out'
       });
     };
@@ -38,10 +38,18 @@ const Cursor = () => {
 
     const handleMouseEnter = () => {
       gsap.to(cursor, {
-        scale: 1.8,
+        scale: 1.2,
         backgroundColor: 'rgba(34, 211, 238, 0.15)',
         borderColor: '#22D3EE',
         duration: 0.3,
+        ease: 'power2.out'
+      });
+
+      // Hide the dot on hover
+      gsap.to(cursorDot, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.2,
         ease: 'power2.out'
       });
     };
@@ -52,6 +60,14 @@ const Cursor = () => {
         backgroundColor: 'transparent',
         borderColor: '#FFFFFF',
         duration: 0.3,
+        ease: 'power2.out'
+      });
+
+      // Show the dot again
+      gsap.to(cursorDot, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.2,
         ease: 'power2.out'
       });
     };

@@ -1,4 +1,4 @@
-/* Work Section Styles */
+/* Work Section Styles - Sharlee-inspired List Layout */
 
 .work-section {
   position: relative;
@@ -11,62 +11,103 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+  max-width: 1000px;
+}
+
+/* Header with title and count */
+.work-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .work-title {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
   color: #FFFFFF !important;
-  margin-bottom: var(--spacing-sm);
-  opacity: 0;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-/* Filters */
-.work-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  opacity: 0;
-}
-
-.filter-btn {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: 1rem;
+.work-count {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: var(--font-weight-normal);
-  color: #FFFFFF !important;
+}
+
+/* List Layout */
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
   cursor: none;
   transition: all 0.3s ease;
-  white-space: nowrap;
+  text-align: left;
+  width: 100%;
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .filter-btn {
+  .work-item {
     cursor: pointer;
   }
 }
 
-.filter-btn:hover {
-  border-color: var(--color-accent);
-  background: rgba(34, 211, 238, 0.1);
-  transform: translateY(-2px);
+.work-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.filter-btn.active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-bg);
+.work-item:hover {
+  background: rgba(34, 211, 238, 0.03);
+  border-bottom-color: var(--color-accent);
+  transform: translateX(10px);
+}
+
+.work-item:hover .work-item-arrow {
+  transform: translateX(10px);
+  color: var(--color-accent);
+}
+
+.work-item:hover .work-item-name {
+  color: var(--color-accent);
+}
+
+/* Arrow */
+.work-item-arrow {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Project Name */
+.work-item-name {
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: var(--font-weight-bold);
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
 }
 
-/* Projects Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--spacing-md);
-  opacity: 0;
+/* Project Type */
+.work-item-type {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* Mobile Adjustments */
@@ -79,43 +120,47 @@
     gap: var(--spacing-md);
   }
 
-  .work-filters {
-    gap: var(--spacing-xs);
-  }
-
-  .filter-btn {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 0.9rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .work-item {
+    grid-template-columns: 30px 1fr;
     gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .work-item-type {
+    grid-column: 2;
+    text-align: left;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .work-item:hover {
+    transform: translateX(5px);
   }
 }
 
 @media (max-width: 480px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .work-item-arrow {
+    font-size: 1.25rem;
   }
-}
 
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .work-item-name {
+    font-size: clamp(1rem, 4vw, 1.5rem);
   }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .filter-btn {
+  .work-item,
+  .work-item-arrow {
     transition: none !important;
+    transform: none !important;
   }
 
-  .work-title,
-  .work-filters,
-  .projects-grid {
-    opacity: 1 !important;
+  .work-item:hover {
+    transform: none !important;
+  }
+
+  .work-item:hover .work-item-arrow {
+    transform: none !important;
   }
 }

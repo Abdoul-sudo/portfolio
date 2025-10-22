@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import Cursor from './components/Cursor';
+import Logo from './components/Logo';
 import Menu from './components/Menu';
 import AnimatedBackground from './components/AnimatedBackground';
 import HeroSection from './components/HeroSection';
@@ -13,93 +14,98 @@ import './styles/base.css';
 import './styles/app.css';
 
 const AppNew = () => {
-  const [currentSection, setCurrentSection] = useState('home');
+  const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const sectionsRef = useRef({});
 
   const sections = ['home', 'about', 'work', 'contact'];
 
+  // Show home section on mount
   useEffect(() => {
-    // Smooth scroll to section on load or hash change
-    const hash = window.location.hash.slice(1);
-    if (hash && sections.includes(hash)) {
-      setTimeout(() => {
-        navigateToSection(hash);
-      }, 100);
+    const homeSection = document.querySelector('#home');
+    if (homeSection) {
+      homeSection.classList.add('active');
+      gsap.set(homeSection, { display: 'flex', opacity: 1 });
     }
   }, []);
 
-  const navigateToSection = (sectionId) => {
-    if (isTransitioning || sectionId === currentSection) return;
+  const transitionToSection = (targetSectionId) => {
+    const targetIndex = sections.indexOf(targetSectionId);
+
+    if (targetIndex === -1 || targetIndex === currentSection || isTransitioning) {
+      return;
+    }
 
     setIsTransitioning(true);
-    const targetSection = sectionsRef.current[sectionId];
 
-    if (targetSection) {
-      // Smooth scroll to section
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    // Select sections directly by ID
+    const currentEl = document.querySelector(`#${sections[currentSection]}`);
+    const targetEl = document.querySelector(`#${targetSectionId}`);
 
-      // Update current section after transition
-      setTimeout(() => {
-        setCurrentSection(sectionId);
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setCurrentSection(targetIndex);
         setIsTransitioning(false);
-        window.history.pushState(null, '', `#${sectionId}`);
-      }, 600);
-    }
-  };
-
-  // Track which section is currently in view
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !isTransitioning) {
-          const sectionId = entry.target.id;
-          setCurrentSection(sectionId);
-          window.history.replaceState(null, '', `#${sectionId}`);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    Object.values(sectionsRef.current).forEach(section => {
-      if (section) observer.observe(section);
+      }
     });
 
-    return () => observer.disconnect();
-  }, [isTransitioning]);
+    // Animate all children out (bottom to top)
+    const currentChildren = currentEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+
+    tl.to(currentChildren, {
+      y: -60,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.03,
+      ease: 'power2.in'
+    });
+
+    // Fade out section
+    tl.to(currentEl, {
+      opacity: 0,
+      duration: 0.2,
+      ease: 'power2.in'
+    }, '-=0.2');
+
+    // Switch visibility
+    tl.set(currentEl, { display: 'none' });
+    tl.set(targetEl, { display: 'flex', opacity: 0 });
+
+    // Fade in new section
+    tl.to(targetEl, {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+
+    // Animate all children in (top to bottom)
+    const targetChildren = targetEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+
+    tl.fromTo(
+      targetChildren,
+      { y: -60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: 'power2.out'
+      },
+      '-=0.1'
+    );
+  };
 
   return (
     <div className="app">
       <Cursor />
+      <Logo onNavigate={transitionToSection} />
       <AnimatedBackground />
-      <Menu onNavigate={navigateToSection} currentSection={currentSection} />
+      <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
       <main className="main-content">
-        <div ref={(el) => (sectionsRef.current.home = el)}>
-          <HeroSection />
-        </div>
-
-        <div ref={(el) => (sectionsRef.current.about = el)}>
-          <AboutSection />
-        </div>
-
-        <div ref={(el) => (sectionsRef.current.work = el)}>
-          <WorkSection />
-        </div>
-
-        <div ref={(el) => (sectionsRef.current.contact = el)}>
-          <ContactSection />
-        </div>
+        <HeroSection />
+        <AboutSection />
+        <WorkSection />
+        <ContactSection />
       </main>
     </div>
   );

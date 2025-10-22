@@ -51,21 +51,10 @@ const AnimatedBackground = () => {
         this.opacity = Math.random() * 0.3 + 0.1;
       }
 
-      update(mouseX, mouseY) {
+      update() {
         // Move particle
         this.x += this.vx;
         this.y += this.vy;
-
-        // Mouse interaction
-        const dx = mouseX - this.x;
-        const dy = mouseY - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-          const force = (150 - distance) / 150;
-          this.x -= dx * force * 0.01;
-          this.y -= dy * force * 0.01;
-        }
 
         // Wrap around edges
         if (this.x < 0) this.x = width;
@@ -91,10 +80,8 @@ const AnimatedBackground = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, width, height);
 
-      const { x: mouseX, y: mouseY } = mouseRef.current;
-
       particlesRef.current.forEach(particle => {
-        particle.update(mouseX, mouseY);
+        particle.update();
         particle.draw(ctx);
       });
 
@@ -122,11 +109,6 @@ const AnimatedBackground = () => {
 
     animate();
 
-    // Mouse move handler
-    const handleMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-
     // Resize handler
     const handleResize = () => {
       setCanvasSize();
@@ -136,7 +118,6 @@ const AnimatedBackground = () => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
 
     // Cleanup
@@ -144,7 +125,6 @@ const AnimatedBackground = () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
