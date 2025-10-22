@@ -1,0 +1,121 @@
+/* Work Section Styles */
+
+.work-section {
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
+  min-height: 100vh;
+}
+
+.work-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.work-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: var(--font-weight-bold);
+  color: #FFFFFF !important;
+  margin-bottom: var(--spacing-sm);
+  opacity: 0;
+}
+
+/* Filters */
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  opacity: 0;
+}
+
+.filter-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-normal);
+  color: #FFFFFF !important;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  cursor: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .filter-btn {
+    cursor: pointer;
+  }
+}
+
+.filter-btn:hover {
+  border-color: var(--color-accent);
+  background: rgba(34, 211, 238, 0.1);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-md);
+  opacity: 0;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .work-section {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .work-content {
+    gap: var(--spacing-md);
+  }
+
+  .work-filters {
+    gap: var(--spacing-xs);
+  }
+
+  .filter-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .filter-btn {
+    transition: none !important;
+  }
+
+  .work-title,
+  .work-filters,
+  .projects-grid {
+    opacity: 1 !important;
+  }
+}

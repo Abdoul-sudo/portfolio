@@ -1,0 +1,64 @@
+/* Main App Styles */
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Smooth scrolling container */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Loading state */
+.app.loading {
+  opacity: 0;
+}
+
+/* Transition state */
+.app.transitioning {
+  pointer-events: none;
+}
+
+/* Section wrappers */
+.main-content > div {
+  width: 100%;
+}
+
+/* Performance optimizations */
+.main-content section {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prevent horizontal scroll on all elements */
+* {
+  max-width: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Hide overflow during transitions */
+.transitioning {
+  overflow: hidden;
+}

@@ -1,0 +1,130 @@
+/* About Section Styles */
+
+.about-section {
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+}
+
+.about-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: var(--font-weight-bold);
+  color: #FFFFFF !important;
+  margin-bottom: var(--spacing-sm);
+  opacity: 0;
+}
+
+.about-description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 800px;
+  opacity: 0;
+}
+
+.about-description p {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Expertise Grid */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.expertise-block {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.expertise-block:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-accent);
+  transform: translateY(-5px);
+}
+
+.expertise-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+}
+
+.expertise-skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding: 0;
+  margin: 0;
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #FFFFFF !important;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .about-content {
+    gap: var(--spacing-md);
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .expertise-block {
+    padding: var(--spacing-sm);
+  }
+
+  .about-description p {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .expertise-block,
+  .skill-badge {
+    transition: none !important;
+  }
+
+  .about-title,
+  .about-description,
+  .expertise-block {
+    opacity: 1 !important;
+  }
+}
