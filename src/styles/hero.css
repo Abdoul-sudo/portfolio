@@ -35,7 +35,7 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #FFFFFF !important;
+  color: var(--color-text);
   margin: 0;
   overflow: hidden;
   position: relative;
@@ -44,20 +44,20 @@
 
 .hero-line-1 {
   font-weight: var(--font-weight-normal);
-  color: #FFFFFF !important;
+  color: var(--color-text);
 }
 
 .hero-line-2 {
-  background: linear-gradient(135deg, #FFFFFF 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, var(--color-text) 0%, #22D3EE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: #FFFFFF !important;
+  color: var(--color-text);
 }
 
 .hero-line-3 {
   font-weight: var(--font-weight-normal);
-  color: #FFFFFF !important;
+  color: var(--color-text);
 }
 
 /* Hero CTAs */
@@ -75,7 +75,7 @@
   gap: var(--spacing-xs);
   text-decoration: none;
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #FFFFFF;
+  color: var(--color-text);
   transition: all 0.3s ease;
   cursor: none;
   padding: 0.5rem 0;
@@ -92,7 +92,7 @@
 
 .hero-cta-arrow {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(96, 104, 135, 0.6);
   transition: all 0.3s ease;
   display: inline-block;
 }

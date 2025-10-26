@@ -2,8 +2,8 @@
 
 .project-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(96, 104, 135, 0.03);
+  border: 1px solid rgba(96, 104, 135, 0.1);
   border-radius: 12px;
   overflow: hidden;
   cursor: none;
@@ -90,7 +90,7 @@
 .project-name {
   font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
-  color: #FFFFFF !important;
+  color: var(--color-text);
   margin: 0;
   transition: color 0.3s ease;
 }
@@ -102,7 +102,7 @@
 .project-description {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(96, 104, 135, 0.7);
   margin: 0;
 }
 

@@ -77,7 +77,7 @@ const AnimatedBackground = () => {
 
     // Animation loop
     const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillStyle = 'rgba(243, 242, 249, 0.05)';
       ctx.fillRect(0, 0, width, height);
 
       particlesRef.current.forEach(particle => {
@@ -134,7 +134,7 @@ const AnimatedBackground = () => {
 
 // Static pattern for reduced motion
 const drawStaticPattern = (ctx, width, height) => {
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = '#f3f2f9';
   ctx.fillRect(0, 0, width, height);
 
   // Draw subtle grid

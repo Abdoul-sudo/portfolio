@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import Cursor from './components/Cursor';
 import Logo from './components/Logo';
 import Menu from './components/Menu';
-import AnimatedBackground from './components/AnimatedBackground';
+import NoiseBackground from './components/NoiseBackground';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
@@ -96,9 +96,9 @@ const AppNew = () => {
 
   return (
     <div className="app">
+      <NoiseBackground />
       <Cursor />
       <Logo onNavigate={transitionToSection} />
-      <AnimatedBackground />
       <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
       <main className="main-content">

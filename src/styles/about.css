@@ -16,7 +16,7 @@
 .about-title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
-  color: #FFFFFF !important;
+  color: var(--color-text);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -30,7 +30,7 @@
 .about-description p {
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--color-text);
 }
 
 /* Expertise Grid */
@@ -42,15 +42,15 @@
 }
 
 .expertise-block {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(96, 104, 135, 0.03);
+  border: 1px solid rgba(96, 104, 135, 0.1);
   border-radius: 8px;
   padding: var(--spacing-md);
   transition: all 0.3s ease;
 }
 
 .expertise-block:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(96, 104, 135, 0.06);
   border-color: var(--color-accent);
   transform: translateY(-5px);
 }
@@ -78,7 +78,7 @@
   border: 1px solid rgba(34, 211, 238, 0.3);
   border-radius: 20px;
   font-size: 0.9rem;
-  color: #FFFFFF !important;
+  color: var(--color-text);
   transition: all 0.3s ease;
 }
 
