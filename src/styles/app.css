@@ -6,7 +6,7 @@
   min-height: 100vh;
   background-color: var(--color-bg);
   color: var(--color-text);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .main-content {
@@ -50,12 +50,12 @@ html {
 
 /* Prevent horizontal scroll on all elements */
 * {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 body {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* Hide overflow during transitions */

@@ -95,19 +95,21 @@ const AppNew = () => {
   };
 
   return (
-    <div className="app">
+    <>
       <NoiseBackground />
-      <Cursor />
-      <Logo onNavigate={transitionToSection} />
-      <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
+      <div className="app">
+        <Cursor />
+        <Logo onNavigate={transitionToSection} />
+        <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
-      <main className="main-content">
-        <HeroSection onNavigate={transitionToSection} />
-        <AboutSection />
-        <WorkSection />
-        <ContactSection />
-      </main>
-    </div>
+        <main className="main-content">
+          <HeroSection onNavigate={transitionToSection} />
+          <AboutSection />
+          <WorkSection />
+          <ContactSection />
+        </main>
+      </div>
+    </>
   );
 };
 

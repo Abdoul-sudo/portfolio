@@ -40,6 +40,7 @@
 html {
   font-size: 16px;
   overflow: hidden; /* Disable scroll for view-based architecture */
+  position: relative;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -63,7 +64,8 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   letter-spacing: -0.02em;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none;
@@ -138,8 +140,10 @@ button:focus-visible {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
+  /* background-color: var(--color-accent);
+  color: var(--color-bg); */
+  background-color: #78ffd1;
+  color: #606887;
 }
 
 /* Hide scrollbar but keep functionality */
