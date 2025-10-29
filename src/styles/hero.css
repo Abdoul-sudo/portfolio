@@ -31,7 +31,6 @@
 }
 
 .hero-line {
-  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -42,22 +41,31 @@
   z-index: 10;
 }
 
+/* Line 1: "Hey, I'm Abdoul Wahhaab" - LARGE like Sharlee's name */
 .hero-line-1 {
-  font-weight: var(--font-weight-normal);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text);
 }
 
+/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle */
 .hero-line-2 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: var(--font-weight-normal);
   background: linear-gradient(135deg, var(--color-text) 0%, #22D3EE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: var(--color-text);
+  margin-top: var(--spacing-xs);
 }
 
+/* Line 3: "I build Web, Games & AI-powered experiences" - SMALLER subtitle */
 .hero-line-3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: var(--font-weight-normal);
   color: var(--color-text);
+  opacity: 0.9;
 }
 
 /* Hero CTAs */
@@ -116,8 +124,13 @@
     gap: var(--spacing-xs);
   }
 
-  .hero-line {
-    font-size: clamp(1.5rem, 8vw, 3rem);
+  .hero-line-1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .hero-line-2,
+  .hero-line-3 {
+    font-size: clamp(1rem, 4vw, 1.5rem);
   }
 
   .hero-ctas {
@@ -131,8 +144,13 @@
 }
 
 @media (max-width: 480px) {
-  .hero-line {
-    font-size: clamp(1.25rem, 9vw, 2rem);
+  .hero-line-1 {
+    font-size: clamp(1.75rem, 11vw, 2.5rem);
+  }
+
+  .hero-line-2,
+  .hero-line-3 {
+    font-size: clamp(0.9rem, 5vw, 1.25rem);
   }
 }
 
