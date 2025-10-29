@@ -49,11 +49,11 @@
   color: var(--color-text);
 }
 
-/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle */
+/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */
 .hero-line-2 {
   font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: var(--font-weight-normal);
-  background: linear-gradient(135deg, var(--color-text) 0%, #22D3EE 100%);
+  font-weight: var(--font-weight-medium);
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 50%, var(--color-accent-tertiary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -101,18 +101,18 @@
 
 .hero-cta-arrow {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  color: rgba(96, 104, 135, 0.6);
+  color: var(--color-text-tertiary);
   transition: all 0.3s ease;
   display: inline-block;
 }
 
 .hero-cta:hover .hero-cta-arrow {
-  color: var(--color-accent);
+  color: var(--color-accent-primary);
   transform: translateX(4px);
 }
 
 .hero-cta:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-primary);
 }
 
 /* Mobile Adjustments */

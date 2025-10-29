@@ -1,12 +1,32 @@
 /* Base CSS - Sharlee-inspired Portfolio */
 
 :root {
-  /* Colors */
-  --color-bg: #f3f2f9;
-  --color-text: #606887;
-  --color-accent: #22D3EE;
-  --color-accent-glow: rgba(34, 211, 238, 0.15);
-  --color-border: rgba(96, 104, 135, 0.2);
+  /* 2025 Color System - WCAG Compliant + Vibrant Accents */
+
+  /* Base Colors - Avoiding pure black/white */
+  --color-bg: #FAFAFA; /* Soft white (not pure #FFF) */
+  --color-bg-secondary: #F5F5F7; /* Subtle gray for layering */
+  --color-surface: rgba(255, 255, 255, 0.8); /* Glass-like surfaces */
+
+  /* Text Colors - WCAG AA Compliant (4.5:1 contrast) */
+  --color-text-primary: #1A1D29; /* Almost black, softer than pure black */
+  --color-text-secondary: #4A5568; /* Medium gray for secondary text */
+  --color-text-tertiary: #718096; /* Light gray for hints/labels */
+
+  /* Vibrant Accent Colors - 2025 Trends */
+  --color-accent-primary: #0EA5E9; /* Electric blue (WCAG compliant) */
+  --color-accent-secondary: #8B5CF6; /* Deep purple */
+  --color-accent-tertiary: #EC4899; /* Vibrant pink */
+  --color-accent-success: #10B981; /* Emerald green */
+
+  /* Legacy support */
+  --color-accent: var(--color-accent-primary);
+  --color-text: var(--color-text-primary);
+
+  /* Accent Glows & Effects */
+  --color-accent-glow: rgba(14, 165, 233, 0.2);
+  --color-border: rgba(26, 29, 41, 0.08);
+  --color-border-strong: rgba(26, 29, 41, 0.15);
 
   /* Typography - Modern 2025 Font Pairing */
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

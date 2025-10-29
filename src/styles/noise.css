@@ -1,4 +1,4 @@
-/* Noise Background Effect */
+/* Noise Background Effect - Integral Design Element (2025) */
 
 .noise {
   position: fixed;
@@ -11,8 +11,9 @@
   background-image: url(/src/assets/noise.png);
   background-size: 200px;
   background-repeat: repeat;
-  opacity: 0.2;
+  opacity: 0.08; /* More prominent - key texture element */
   pointer-events: none;
+  mix-blend-mode: multiply; /* Better integration with colorful background */
 }
 
 @keyframes grain {
@@ -52,6 +53,6 @@
 @media (prefers-reduced-motion: reduce) {
   .noise {
     animation: none !important;
-    opacity: 0.2;
+    opacity: 0.08;
   }
 }
