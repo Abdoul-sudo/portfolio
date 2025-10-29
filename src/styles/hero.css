@@ -31,6 +31,7 @@
 }
 
 .hero-line {
+  font-family: var(--font-display); /* Space Grotesk for hero impact */
   font-weight: var(--font-weight-bold);
   line-height: 1.1;
   letter-spacing: -0.03em;
