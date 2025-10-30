@@ -95,7 +95,7 @@ const WorkSection = () => {
               </div>
             ))}
           </div>
-          {hoveredProject && (
+          {/* {hoveredProject && (
             <div className="work-project-info">
               <h3 className="work-project-name">{hoveredProject.name}</h3>
               <p className="work-project-description">{hoveredProject.description}</p>
@@ -105,7 +105,7 @@ const WorkSection = () => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Right side - Project List */}
@@ -118,6 +118,26 @@ const WorkSection = () => {
           </div>
 
           <div className="work-list">
+            {projectsData.map((project, index) => (
+              <button
+                key={project.id}
+                className="work-item interactive"
+                ref={(el) => (projectsRef.current[index] = el)}
+                onClick={() => handleProjectClick(project.demo_link)}
+                onMouseEnter={() => handleProjectHover(project)}
+                onMouseLeave={handleProjectLeave}
+              >
+                <div className="work-item-content">
+                  <div className="work-item-left">
+                    <span className="work-item-arrow">→</span>
+                    <span className="work-item-name">{project.name}</span>
+                  </div>
+                  <span className="work-item-type">
+                    {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
+                  </span>
+                </div>
+              </button>
+            ))}
             {projectsData.map((project, index) => (
               <button
                 key={project.id}
