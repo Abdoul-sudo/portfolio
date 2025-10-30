@@ -65,46 +65,41 @@ const WorkSection = () => {
 
   const handleProjectHover = (project) => {
     setHoveredProject(project);
-    if (imageRef.current) {
-      gsap.to(imageRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: 'power2.out'
-      });
-    }
   };
 
   const handleProjectLeave = () => {
-    if (imageRef.current) {
-      gsap.to(imageRef.current, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.3,
-        ease: 'power2.in'
-      });
-    }
-    setTimeout(() => setHoveredProject(null), 300);
+    // Don't clear immediately to prevent flicker
   };
 
   return (
     <section className="work-section section" id="work" ref={sectionRef}>
       <div className="work-content-wrapper">
-        {/* Left side - Image Preview */}
+        {/* Left side - Image Preview with Description */}
         <div className="work-image-preview">
-          <div
-            ref={imageRef}
-            className="work-image-container"
-            style={{ opacity: 0 }}
-          >
-            {hoveredProject && (
-              <img
-                src={hoveredProject.cover}
-                alt={hoveredProject.name}
-                className="work-preview-image"
-              />
-            )}
-          </div>
+          {hoveredProject ? (
+            <>
+              <div className="work-image-container">
+                <img
+                  src={hoveredProject.cover}
+                  alt={hoveredProject.name}
+                  className="work-preview-image"
+                />
+              </div>
+              <div className="work-project-info">
+                <h3 className="work-project-name">{hoveredProject.name}</h3>
+                <p className="work-project-description">{hoveredProject.description}</p>
+                <div className="work-project-techs">
+                  {hoveredProject.techs.map((tech, i) => (
+                    <span key={i} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="work-placeholder">
+              <p>Hover over a project to see details</p>
+            </div>
+          )}
         </div>
 
         {/* Right side - Project List */}
@@ -127,10 +122,12 @@ const WorkSection = () => {
                 onMouseLeave={handleProjectLeave}
               >
                 <span className="work-item-arrow">→</span>
-                <span className="work-item-name">{project.name}</span>
-                <span className="work-item-type">
-                  {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
-                </span>
+                <div className="work-item-content">
+                  <span className="work-item-name">{project.name}</span>
+                  <span className="work-item-type">
+                    {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
