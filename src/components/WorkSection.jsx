@@ -64,43 +64,78 @@ const WorkSection = () => {
   };
 
   const handleProjectHover = (project) => {
-    setHoveredProject(project);
+    if (hoveredProject?.id !== project.id) {
+      // Fade out current image
+      if (imageRef.current && hoveredProject) {
+        gsap.to(imageRef.current, {
+          opacity: 0,
+          duration: 0.25,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            setHoveredProject(project);
+            // Fade in new image with slight delay
+            gsap.fromTo(
+              imageRef.current,
+              { opacity: 0, scale: 0.98 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 0.4,
+                delay: 0.1,
+                ease: 'power2.inOut'
+              }
+            );
+          }
+        });
+      } else {
+        setHoveredProject(project);
+        // First hover - animate in with delay
+        if (imageRef.current) {
+          gsap.fromTo(
+            imageRef.current,
+            { opacity: 0, scale: 0.98 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 0.4,
+              delay: 0.15,
+              ease: 'power2.inOut'
+            }
+          );
+        }
+      }
+    }
   };
 
   const handleProjectLeave = () => {
-    // Don't clear immediately to prevent flicker
+    // Keep last hovered project visible
   };
 
   return (
     <section className="work-section section" id="work" ref={sectionRef}>
       <div className="work-content-wrapper">
-        {/* Left side - Image Preview with Description */}
-        <div className="work-image-preview">
-          {hoveredProject ? (
-            <>
-              <div className="work-image-container">
-                <img
-                  src={hoveredProject.cover}
-                  alt={hoveredProject.name}
-                  className="work-preview-image"
-                />
-              </div>
-              <div className="work-project-info">
-                <h3 className="work-project-name">{hoveredProject.name}</h3>
-                <p className="work-project-description">{hoveredProject.description}</p>
-                <div className="work-project-techs">
-                  {hoveredProject.techs.map((tech, i) => (
-                    <span key={i} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="work-placeholder">
-              <p>Hover over a project to see details</p>
+        {/* Left side - Image Preview - Only visible on hover */}
+        {hoveredProject && (
+          <div className="work-image-preview">
+            <div className="work-image-container">
+              <img
+                src={hoveredProject.cover}
+                alt={hoveredProject.name}
+                className="work-preview-image"
+                ref={imageRef}
+              />
             </div>
-          )}
-        </div>
+            <div className="work-project-info">
+              <h3 className="work-project-name">{hoveredProject.name}</h3>
+              <p className="work-project-description">{hoveredProject.description}</p>
+              <div className="work-project-techs">
+                {hoveredProject.techs.map((tech, i) => (
+                  <span key={i} className="tech-badge">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Right side - Project List */}
         <div className="work-content">
@@ -121,9 +156,11 @@ const WorkSection = () => {
                 onMouseEnter={() => handleProjectHover(project)}
                 onMouseLeave={handleProjectLeave}
               >
-                <span className="work-item-arrow">→</span>
                 <div className="work-item-content">
-                  <span className="work-item-name">{project.name}</span>
+                  <div className="work-item-left">
+                    <span className="work-item-arrow">→</span>
+                    <span className="work-item-name">{project.name}</span>
+                  </div>
                   <span className="work-item-type">
                     {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
                   </span>
