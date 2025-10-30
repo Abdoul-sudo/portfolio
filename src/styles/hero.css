@@ -37,9 +37,25 @@
   letter-spacing: -0.03em;
   color: var(--color-text);
   margin: 0;
-  overflow: hidden;
+  overflow: visible; /* Changed to allow 3D transforms */
   position: relative;
   z-index: 10;
+  perspective: 1000px; /* Enable 3D space for character animations */
+}
+
+/* Split text character styling */
+.hero-line .char-wrapper {
+  display: inline-block;
+  overflow: visible;
+}
+
+.hero-line .char {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Line 1: "Hey, I'm Abdoul Wahhaab" - LARGE like Sharlee's name */

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { splitTextIntoChars } from '../utils/splitText';
 import '../styles/hero.css';
 
 const HeroSection = ({ onNavigate }) => {
@@ -24,27 +25,89 @@ const HeroSection = ({ onNavigate }) => {
       return;
     }
 
-    // Create overlapping timeline animation - text comes from TOP down (Sharlee-style)
-    const tl = gsap.timeline();
+    // Split main heading into characters for sophisticated animation
+    const chars = splitTextIntoChars(line1Ref.current);
 
-    tl.fromTo(line1Ref.current,
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }
-    )
+    // Create master timeline with smooth overlapping animations
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    // Animate each character with stagger and variations
+    tl.to(chars, {
+      y: 0,
+      opacity: 1,
+      rotateX: 0,
+      duration: 0.8,
+      stagger: {
+        each: 0.03,
+        from: 'start',
+        ease: 'power2.inOut'
+      },
+      ease: 'back.out(1.5)', // Adds slight bounce for organic feel
+    })
+      // Add subtle rotation variation to some characters
+      .to(chars.filter((_, i) => i % 3 === 0), {
+        rotateZ: '2deg',
+        duration: 0.3,
+        ease: 'power2.out'
+      }, '-=0.6')
+      .to(chars.filter((_, i) => i % 3 === 1), {
+        rotateZ: '-2deg',
+        duration: 0.3,
+        ease: 'power2.out'
+      }, '-=0.6')
+      // Reset rotation for clean state
+      .to(chars, {
+        rotateZ: 0,
+        duration: 0.4,
+        ease: 'elastic.out(1, 0.5)'
+      }, '-=0.3')
+      // Tagline with sophisticated reveal
       .fromTo(line2Ref.current,
-        { y: -80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
-        '-=0.5'
-      )
-      .fromTo(line3Ref.current,
-        { y: -80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
-        '-=0.5'
-      )
-      .fromTo(ctasRef.current,
-        { y: -60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+        {
+          y: -60,
+          opacity: 0,
+          scale: 0.9,
+          filter: 'blur(10px)'
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          filter: 'blur(0px)',
+          duration: 1,
+          ease: 'power3.out'
+        },
         '-=0.4'
+      )
+      // Description with complementary motion
+      .fromTo(line3Ref.current,
+        {
+          y: -40,
+          opacity: 0,
+          scale: 0.95
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out'
+        },
+        '-=0.6'
+      )
+      // CTAs with magnetic entrance
+      .fromTo(ctasRef.current,
+        {
+          y: -30,
+          opacity: 0
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power2.out'
+        },
+        '-=0.5'
       );
   }, []);
 
