@@ -62,12 +62,12 @@ const ContactSection = () => {
     const tl = gsap.timeline();
 
     tl.fromTo(titleRef.current,
-      { y: 50, opacity: 0 },
+      { y: -50, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
     )
       .fromTo(
         '.contact-grid > *',
-        { y: 30, opacity: 0 },
+        { y: -30, opacity: 0 },
         { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: 'power2.out' },
         '-=0.3'
       );
