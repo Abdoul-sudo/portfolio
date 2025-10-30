@@ -8,7 +8,6 @@ const WorkSection = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const projectsRef = useRef([]);
-  const imageRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,67 +63,39 @@ const WorkSection = () => {
   };
 
   const handleProjectHover = (project) => {
-    if (hoveredProject?.id !== project.id) {
-      // Fade out current image
-      if (imageRef.current && hoveredProject) {
-        gsap.to(imageRef.current, {
-          opacity: 0,
-          duration: 0.25,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            setHoveredProject(project);
-            // Fade in new image with slight delay
-            gsap.fromTo(
-              imageRef.current,
-              { opacity: 0, scale: 0.98 },
-              {
-                opacity: 1,
-                scale: 1,
-                duration: 0.4,
-                delay: 0.1,
-                ease: 'power2.inOut'
-              }
-            );
-          }
-        });
-      } else {
-        setHoveredProject(project);
-        // First hover - animate in with delay
-        if (imageRef.current) {
-          gsap.fromTo(
-            imageRef.current,
-            { opacity: 0, scale: 0.98 },
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 0.4,
-              delay: 0.15,
-              ease: 'power2.inOut'
-            }
-          );
-        }
-      }
-    }
+    setHoveredProject(project);
   };
 
   const handleProjectLeave = () => {
-    // Keep last hovered project visible
+    setHoveredProject(null);
   };
 
   return (
     <section className="work-section section" id="work" ref={sectionRef}>
       <div className="work-content-wrapper">
-        {/* Left side - Image Preview - Only visible on hover */}
-        {hoveredProject && (
-          <div className="work-image-preview">
-            <div className="work-image-container">
-              <img
-                src={hoveredProject.cover}
-                alt={hoveredProject.name}
-                className="work-preview-image"
-                ref={imageRef}
-              />
-            </div>
+        {/* Left side - Image Preview - Container always present but content hidden */}
+        <div className="work-image-preview">
+          <div className="work-image-container">
+            {projectsData.map((project) => (
+              <div
+                key={project.id}
+                className="work-image-wrapper"
+                style={{
+                  opacity: hoveredProject?.id === project.id ? 1 : 0,
+                  pointerEvents: hoveredProject?.id === project.id ? 'auto' : 'none'
+                }}
+              >
+                <div className="work-image-inner">
+                  <img
+                    src={project.cover}
+                    alt={project.name}
+                    className="work-preview-image"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          {hoveredProject && (
             <div className="work-project-info">
               <h3 className="work-project-name">{hoveredProject.name}</h3>
               <p className="work-project-description">{hoveredProject.description}</p>
@@ -134,8 +105,8 @@ const WorkSection = () => {
                 ))}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Right side - Project List */}
         <div className="work-content">
