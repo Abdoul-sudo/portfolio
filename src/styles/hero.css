@@ -102,7 +102,7 @@
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--color-text);
   transition: all 0.3s ease;
-  cursor: none;
+  /* cursor: none; */
   padding: 0.5rem 0;
   background: none;
   border: none;

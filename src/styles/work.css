@@ -262,7 +262,7 @@
   padding: var(--spacing-sm) 0;
   border-bottom: 1px solid rgba(96, 104, 135, 0.15);
   background: transparent;
-  cursor: none;
+  /* cursor: none; */
   transition: none;
   text-align: left;
   width: 100%;

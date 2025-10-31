@@ -7,7 +7,7 @@
   z-index: 10000;
   width: 48px;
   height: 48px;
-  cursor: none;
+  /* cursor: none; */
   transition: transform 0.3s ease, color 0.3s ease;
   background: transparent;
   border: 2px solid var(--color-border);

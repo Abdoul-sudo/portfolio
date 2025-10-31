@@ -96,7 +96,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  cursor: none;
+  /* cursor: none; */
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -160,7 +160,7 @@ button {
   background: none;
   border: none;
   color: inherit;
-  cursor: none;
+  /* cursor: none; */
   padding: 0;
 }
 
