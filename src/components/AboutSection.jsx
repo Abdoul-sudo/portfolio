@@ -1,21 +1,25 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import '../styles/about.css';
+import profilePhoto from '../assets/abdoul.jpg';
+import cvPDF from '../assets/ISMAEL_Abdoul_Wahhaab_CV.pdf';
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
+  const photoRef = useRef(null);
   const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
+  const bioRef = useRef(null);
   const expertiseRef = useRef([]);
+  const ctaRef = useRef(null);
 
   const expertiseData = [
     {
       title: 'Game Development',
-      skills: ['Unity', 'Godot', '2D gameplay systems', 'Multiplayer', 'Shipping to Itch.io']
+      skills: ['Unity', 'Godot', '2D Gameplay', 'Multiplayer', 'Itch.io']
     },
     {
       title: 'Web & AI Tools',
-      skills: ['React', 'Next.js', 'Full-stack', 'AI automation & integrations']
+      skills: ['React', 'Next.js', 'Full-stack', 'AI Automation']
     }
   ];
 
@@ -45,69 +49,108 @@ const AboutSection = () => {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([titleRef.current, descriptionRef.current, ...expertiseRef.current], {
+      gsap.set([photoRef.current, titleRef.current, bioRef.current, ctaRef.current, ...expertiseRef.current], {
         opacity: 1,
-        y: 0
+        y: 0,
+        scale: 1
       });
       return;
     }
 
     const tl = gsap.timeline();
 
-    tl.fromTo(titleRef.current,
-      { y: -50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+    // Photo fade + scale
+    tl.fromTo(photoRef.current,
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }
     )
-      .fromTo(
-        descriptionRef.current,
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
-        '-=0.4'
-      )
-      .fromTo(
-        expertiseRef.current,
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.15, duration: 0.5, ease: 'power2.out' },
-        '-=0.3'
-      );
+    // Title slide up with overlap
+    .fromTo(titleRef.current,
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+      '-=0.4'
+    )
+    // Bio fade in
+    .fromTo(bioRef.current,
+      { y: -30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+      '-=0.3'
+    )
+    // Expertise blocks stagger
+    .fromTo(expertiseRef.current,
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'power2.out' },
+      '-=0.3'
+    )
+    // CTA button
+    .fromTo(ctaRef.current,
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
+      '-=0.2'
+    );
   };
 
   return (
     <section className="about-section section" id="about" ref={sectionRef}>
       <div className="about-content container">
-        <h2 className="about-title" ref={titleRef}>
-          About
-        </h2>
 
-        <div className="about-description" ref={descriptionRef}>
-          <p>
-            I'm a passionate Full-Stack developer with 4 years of experience building games,
-            AI automation, and web experiences.
-          </p>
-          <p>
-            From competitive multiplayer games to hackathon-winning AI platforms,
-            I create digital solutions that engage and inspire.
-          </p>
+        {/* Left Column - Photo + CTA */}
+        <div className="about-left">
+          <div className="about-photo-wrapper" ref={photoRef}>
+            <img
+              src={profilePhoto}
+              alt="Abdoul Wahhaab ISMAEL"
+              className="about-photo"
+            />
+          </div>
+
+          <a
+            href={cvPDF}
+            download="ISMAEL_Abdoul_Wahhaab_CV.pdf"
+            className="about-cta interactive"
+            ref={ctaRef}
+          >
+            <span className="about-cta-icon">↓</span>
+            <span className="about-cta-text">Download CV</span>
+            <span className="about-cta-arrow">→</span>
+          </a>
         </div>
 
-        <div className="expertise-grid">
-          {expertiseData.map((expertise, index) => (
-            <div
-              key={expertise.title}
-              className="expertise-block interactive"
-              ref={(el) => (expertiseRef.current[index] = el)}
-            >
-              <h3 className="expertise-title">{expertise.title}</h3>
-              <ul className="expertise-skills">
-                {expertise.skills.map(skill => (
-                  <li key={skill} className="skill-badge">
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* Right Column - Content */}
+        <div className="about-right">
+          <h2 className="about-title" ref={titleRef}>
+            About
+          </h2>
+
+          <div className="about-bio" ref={bioRef}>
+            <p>
+              I'm Abdoul Wahhaab ISMAEL, a polyvalent fullstack developer with 4 years of experience
+              in web development, game development, and AI automations. I create digital solutions
+              that engage, inspire, and solve real-world problems.
+            </p>
+          </div>
+
+          {/* Expertise - Compact Inline Style */}
+          <div className="expertise-section">
+            {expertiseData.map((expertise, index) => (
+              <div
+                key={expertise.title}
+                className="expertise-item"
+                ref={(el) => (expertiseRef.current[index] = el)}
+              >
+                <h3 className="expertise-title">{expertise.title}</h3>
+                <div className="expertise-skills">
+                  {expertise.skills.map(skill => (
+                    <span key={skill} className="skill-badge interactive">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );
