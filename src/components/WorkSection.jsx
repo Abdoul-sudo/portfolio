@@ -91,6 +91,18 @@ const WorkSection = () => {
                     alt={project.name}
                     className="work-preview-image"
                   />
+                  {/* Overlay gradient for text readability */}
+                  <div className="work-image-overlay"></div>
+                  {/* Project info overlay */}
+                  <div className="work-project-info-overlay">
+                    <h3 className="work-project-name">{project.name}</h3>
+                    <p className="work-project-description">{project.description}</p>
+                    <div className="work-project-techs">
+                      {project.techs.map((tech, i) => (
+                        <span key={i} className="tech-badge">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
