@@ -2,7 +2,7 @@
 
 .noise {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   top: -300%;
   left: -150%;
   height: 600%;
@@ -11,7 +11,7 @@
   background-image: url(/src/assets/noise.png);
   background-size: 200px;
   background-repeat: repeat;
-  opacity: 0.2; /* More prominent - key texture element */
+  opacity: 0.25; /* More prominent - key texture element */
   pointer-events: none;
   mix-blend-mode: multiply; /* Better integration with colorful background */
 }
