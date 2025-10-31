@@ -2,8 +2,8 @@
 
 .logo {
   position: fixed;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
+  top: calc(var(--spacing-lg) + var(--spacing-md)); /* Exactly like Sharlee - much lower */
+  left: calc(var(--spacing-lg) + var(--spacing-sm)); /* Exactly like Sharlee - more x-padding */
   z-index: 10000;
   width: 48px;
   height: 48px;
