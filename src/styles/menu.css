@@ -16,6 +16,7 @@
   /* cursor: none; */
   padding: 0;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -68,9 +69,16 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
 }
+
+/* Individual rectangle initial states - collapsed to center */
+.rect-top { transform: scaleY(0); transform-origin: center bottom; }
+.rect-right { transform: scaleX(0); transform-origin: left center; }
+.rect-bottom { transform: scaleY(0); transform-origin: center top; }
+.rect-left { transform: scaleX(0); transform-origin: right center; }
+.rect-center { transform: scale(0); transform-origin: center; }
 
 /* ============================================
    HOVER STATE - Transform Circles to Plus
@@ -91,11 +99,16 @@
 .hamburger:hover .circle-6 { transform: translate(0, 6px); }       /* Bottom moves down */
 .hamburger:hover .circle-8 { transform: translate(-6px, 0); }      /* Left moves left */
 
-/* Hover: Show rectangles forming cross */
+/* Hover: Show rectangles forming cross - grow from center */
 .hamburger:hover .rect {
   opacity: 1;
-  transform: scale(1);
 }
+
+.hamburger:hover .rect-top { transform: scaleY(1); }
+.hamburger:hover .rect-right { transform: scaleX(1); }
+.hamburger:hover .rect-bottom { transform: scaleY(1); }
+.hamburger:hover .rect-left { transform: scaleX(1); }
+.hamburger:hover .rect-center { transform: scale(1); }
 
 /* ============================================
    OPEN STATE - Show Plus/Cross
