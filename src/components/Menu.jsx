@@ -81,16 +81,47 @@ const Menu = ({ onNavigate, currentSection }) => {
 
   return (
     <>
-      {/* Hamburger Button */}
+      {/* Hamburger Button with SVG - Sharlee Style */}
       <button
         className={`hamburger ${isOpen ? 'open' : ''}`}
         onClick={isOpen ? closeMenu : openMenu}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={isOpen}
       >
-        <span className="hamburger-line"></span>
-        <span className="hamburger-line"></span>
-        <span className="hamburger-line"></span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+          width="48"
+          height="48"
+          className="hamburger-svg"
+        >
+          <title>Menu</title>
+
+          {/* 8 circles around perimeter */}
+          <circle className="circle circle-1" cx="12" cy="12" r="3" />
+          <circle className="circle circle-2" cx="24" cy="12" r="3" />
+          <circle className="circle circle-3" cx="36" cy="12" r="3" />
+          <circle className="circle circle-4" cx="36" cy="24" r="3" />
+          <circle className="circle circle-5" cx="36" cy="36" r="3" />
+          <circle className="circle circle-6" cx="24" cy="36" r="3" />
+          <circle className="circle circle-7" cx="12" cy="36" r="3" />
+          <circle className="circle circle-8" cx="12" cy="24" r="3" />
+
+          {/* Center circle */}
+          <circle className="circle circle-center" cx="24" cy="24" r="3" />
+
+          {/* Rectangles for hover state (cross/plus shape) */}
+          {/* Top vertical bar */}
+          <rect className="rect rect-top" x="21" y="9" width="6" height="12" rx="3" ry="3" />
+          {/* Right horizontal bar */}
+          <rect className="rect rect-right" x="27" y="21" width="12" height="6" rx="3" ry="3" />
+          {/* Bottom vertical bar */}
+          <rect className="rect rect-bottom" x="21" y="27" width="6" height="12" rx="3" ry="3" />
+          {/* Left horizontal bar */}
+          <rect className="rect rect-left" x="9" y="21" width="12" height="6" rx="3" ry="3" />
+          {/* Center square */}
+          <rect className="rect rect-center" x="21" y="21" width="6" height="6" rx="3" ry="3" />
+        </svg>
       </button>
 
       {/* Fullscreen Overlay */}
