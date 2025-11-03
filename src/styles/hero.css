@@ -118,25 +118,22 @@
   display: inline-block;
 }
 
-.hero-cta span:last-child {
-  position: relative;
-}
-
-/* Underline Animation on Hover - Same as contact links */
-.hero-cta span:last-child::after {
+/* Underline Animation on Hover - Transform based, spans entire button width */
+.hero-cta::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px;
-  width: 0;
+  bottom: 4px;
+  width: 100%;
   height: 2px;
   background: var(--color-accent-primary);
-  /* Custom ease-out: fast at start (0.8), slow at end (0.2) */
-  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
 }
 
-.hero-cta:hover span:last-child::after {
-  width: 100%;
+.hero-cta:hover::after {
+  transform: scaleX(1);
 }
 
 .hero-cta:hover .hero-cta-arrow {
