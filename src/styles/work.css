@@ -220,7 +220,8 @@
 
 .work-count {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: rgba(96, 104, 135, 0.5);
+  color: #606887;
+  opacity: 0.5;
   font-weight: var(--font-weight-normal);
 }
 
@@ -325,7 +326,8 @@
 /* Project Type - Right aligned */
 .work-item-type {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
-  color: rgba(96, 104, 135, 0.5);
+  color: #606887;
+  opacity: 0.5;
   display: block;
   text-align: right;
   white-space: nowrap;

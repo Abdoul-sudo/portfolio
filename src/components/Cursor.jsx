@@ -38,9 +38,8 @@ const Cursor = () => {
 
     const handleMouseEnter = () => {
       gsap.to(cursor, {
-        scale: 1.3,
-        backgroundColor: 'rgba(34, 211, 238, 0.15)',
-        borderColor: '#22D3EE',
+        width: 40,
+        height: 40,
         duration: 0.3,
         ease: 'power2.out'
       });
@@ -56,9 +55,8 @@ const Cursor = () => {
 
     const handleMouseLeave = () => {
       gsap.to(cursor, {
-        scale: 1,
-        backgroundColor: 'transparent',
-        borderColor: '#FFFFFF',
+        width: 24,
+        height: 24,
         duration: 0.3,
         ease: 'power2.out'
       });

@@ -4,14 +4,14 @@
   /* 2025 Color System - WCAG Compliant + Vibrant Accents */
 
   /* Base Colors - Avoiding pure black/white */
-  --color-bg: #FAFAFA; /* Soft white (not pure #FFF) */
+  --color-bg: #f3f2f9; /* Soft lavender background */
   --color-bg-secondary: #F5F5F7; /* Subtle gray for layering */
   --color-surface: rgba(255, 255, 255, 0.8); /* Glass-like surfaces */
 
   /* Text Colors - WCAG AA Compliant (4.5:1 contrast) */
-  --color-text-primary: #1A1D29; /* Almost black, softer than pure black */
-  --color-text-secondary: #4A5568; /* Medium gray for secondary text */
-  --color-text-tertiary: #718096; /* Light gray for hints/labels */
+  --color-text-primary: #606887; /* Primary text color */
+  --color-text-secondary: #606887; /* Secondary text same as primary */
+  --color-text-tertiary: #606887; /* Tertiary text same as primary */
 
   /* Vibrant Accent Colors - 2025 Trends */
   --color-accent-primary: #0EA5E9; /* Electric blue (WCAG compliant) */

@@ -35,7 +35,7 @@
 
 .circle {
   fill: none;
-  stroke: var(--color-text-secondary);
+  stroke: #606887;
   stroke-width: 2px;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -57,7 +57,7 @@
 
 .rect {
   fill: none;
-  stroke: var(--color-text-secondary);
+  stroke: #606887;
   stroke-width: 2px;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -116,7 +116,7 @@
 .hamburger.open .rect {
   opacity: 1;
   transform: scale(1);
-  stroke: var(--color-text-secondary);
+  stroke: #606887;
 }
 
 /* Menu Overlay - Glass morphism effect */
