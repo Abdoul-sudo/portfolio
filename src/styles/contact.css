@@ -88,14 +88,8 @@
   letter-spacing: -0.015em;
   position: relative;
   width: fit-content;
-  /* cursor: none; */
+  cursor: pointer;
   padding-bottom: 0.25rem;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .contact-link {
-    cursor: pointer;
-  }
 }
 
 /* Icon */

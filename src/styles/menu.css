@@ -13,16 +13,9 @@
   align-items: center;
   background: transparent;
   border: none;
-  /* cursor: none; */
+  cursor: pointer;
   padding: 0;
   transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .hamburger {
-    cursor: pointer;
-  }
 }
 
 .hamburger:hover {
@@ -173,17 +166,11 @@
   padding: var(--spacing-sm) 0;
   background: none;
   border: none;
-  /* cursor: none; */
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   letter-spacing: -0.02em;
   transition: color 0.3s ease, transform 0.3s ease;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .menu-item {
-    cursor: pointer;
-  }
 }
 
 .menu-item::before {

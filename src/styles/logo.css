@@ -4,10 +4,10 @@
   position: fixed;
   top: calc(var(--spacing-lg) + var(--spacing-md)); /* Exactly like Sharlee - much lower */
   left: calc(var(--spacing-lg) + var(--spacing-sm)); /* Exactly like Sharlee - more x-padding */
-  z-index: 10000;
+  z-index: 10001; /* Higher than menu overlay to remain clickable */
   width: 48px;
   height: 48px;
-  /* cursor: none; */
+  cursor: pointer;
   transition: transform 0.3s ease, color 0.3s ease;
   background: transparent;
   border: 2px solid var(--color-border);
@@ -16,12 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .logo {
-    cursor: pointer;
-  }
 }
 
 .logo:hover {

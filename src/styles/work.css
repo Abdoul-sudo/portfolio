@@ -262,17 +262,11 @@
   padding: var(--spacing-sm) 0;
   border-bottom: 1px solid rgba(96, 104, 135, 0.15);
   background: transparent;
-  /* cursor: none; */
+  cursor: pointer;
   transition: none;
   text-align: left;
   width: 100%;
   position: relative;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .work-item {
-    cursor: pointer;
-  }
 }
 
 .work-item:first-child {
