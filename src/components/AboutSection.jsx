@@ -15,11 +15,11 @@ const AboutSection = () => {
   const expertiseData = [
     {
       title: 'Game Development',
-      skills: ['Unity', 'Godot', '2D Gameplay', 'Multiplayer', 'Itch.io']
+      skills: ['Unity', 'Godot', 'Game Design', 'Gameplay Programming']
     },
     {
-      title: 'Web & AI Tools',
-      skills: ['React', 'Next.js', 'Full-stack', 'AI Automation']
+      title: 'Web Development & AI Tools',
+      skills: ['React', 'Next.js', 'N8N', 'AI Automation', 'Full-stack Development']
     }
   ];
 
