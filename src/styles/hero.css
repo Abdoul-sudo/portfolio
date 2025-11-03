@@ -112,10 +112,12 @@
 }
 
 .hero-cta-arrow {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  width: 24px;
+  height: 24px;
   color: var(--color-text-tertiary);
   transition: all 0.3s ease;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 /* Underline Animation on Hover - Transform based, spans entire button width */
@@ -138,7 +140,7 @@
 
 .hero-cta:hover .hero-cta-arrow {
   color: var(--color-accent-primary);
-  transform: translateX(4px);
+  transform: translateX(1.5px);
 }
 
 .hero-cta:hover {
