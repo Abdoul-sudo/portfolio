@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import gsap from 'gsap';
 import '../styles/menu.css';
 
-const Menu = ({ onNavigate, currentSection }) => {
+const Menu = forwardRef(({ onNavigate, currentSection }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const overlayRef = useRef(null);
   const menuItemsRef = useRef([]);
@@ -78,6 +78,11 @@ const Menu = ({ onNavigate, currentSection }) => {
       handleNavigate(sectionId);
     }
   };
+
+  // Expose closeMenu function to parent via ref
+  useImperativeHandle(ref, () => ({
+    closeMenu
+  }));
 
   return (
     <>
@@ -155,6 +160,8 @@ const Menu = ({ onNavigate, currentSection }) => {
       </div>
     </>
   );
-};
+});
+
+Menu.displayName = 'Menu';
 
 export default Menu;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Cursor from './components/Cursor';
 import Logo from './components/Logo';
@@ -16,6 +16,7 @@ import './styles/app.css';
 const AppNew = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const menuRef = useRef(null);
 
   const sections = ['home', 'about', 'work', 'contact'];
 
@@ -99,8 +100,8 @@ const AppNew = () => {
       <NoiseBackground />
       <div className="app">
         <Cursor />
-        <Logo onNavigate={transitionToSection} />
-        <Menu onNavigate={transitionToSection} currentSection={sections[currentSection]} />
+        <Logo onNavigate={transitionToSection} menuRef={menuRef} />
+        <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
         <main className="main-content">
           <HeroSection onNavigate={transitionToSection} />
