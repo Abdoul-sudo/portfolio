@@ -1,0 +1,194 @@
+/* Animated Polymorph Background */
+
+.polymorph-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.polymorph-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  opacity: 0.6;
+}
+
+/* Blob animations - each blob moves independently */
+.blob {
+  transform-origin: center;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.blob-1 {
+  animation: morph1 12s infinite, float1 8s infinite ease-in-out;
+}
+
+.blob-2 {
+  animation: morph2 15s infinite, float2 10s infinite ease-in-out;
+}
+
+.blob-3 {
+  animation: morph3 18s infinite, float3 12s infinite ease-in-out;
+}
+
+.blob-4 {
+  animation: morph4 14s infinite, float4 9s infinite ease-in-out;
+}
+
+/* Morph animations - change shape/size */
+@keyframes morph1 {
+  0%, 100% {
+    r: 150;
+  }
+  33% {
+    r: 180;
+  }
+  66% {
+    r: 130;
+  }
+}
+
+@keyframes morph2 {
+  0%, 100% {
+    r: 180;
+  }
+  33% {
+    r: 200;
+  }
+  66% {
+    r: 160;
+  }
+}
+
+@keyframes morph3 {
+  0%, 100% {
+    r: 160;
+  }
+  33% {
+    r: 190;
+  }
+  66% {
+    r: 140;
+  }
+}
+
+@keyframes morph4 {
+  0%, 100% {
+    r: 140;
+  }
+  33% {
+    r: 170;
+  }
+  66% {
+    r: 120;
+  }
+}
+
+/* Float animations - movement */
+@keyframes float1 {
+  0%, 100% {
+    cx: 200;
+    cy: 200;
+  }
+  25% {
+    cx: 300;
+    cy: 150;
+  }
+  50% {
+    cx: 250;
+    cy: 300;
+  }
+  75% {
+    cx: 150;
+    cy: 250;
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    cx: 800;
+    cy: 300;
+  }
+  25% {
+    cx: 750;
+    cy: 200;
+  }
+  50% {
+    cx: 850;
+    cy: 250;
+  }
+  75% {
+    cx: 780;
+    cy: 350;
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    cx: 400;
+    cy: 700;
+  }
+  25% {
+    cx: 350;
+    cy: 750;
+  }
+  50% {
+    cx: 450;
+    cy: 800;
+  }
+  75% {
+    cx: 380;
+    cy: 650;
+  }
+}
+
+@keyframes float4 {
+  0%, 100% {
+    cx: 700;
+    cy: 800;
+  }
+  25% {
+    cx: 750;
+    cy: 850;
+  }
+  50% {
+    cx: 650;
+    cy: 780;
+  }
+  75% {
+    cx: 720;
+    cy: 820;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none !important;
+  }
+
+  .polymorph-svg {
+    opacity: 0.3;
+  }
+}
+
+/* Mobile optimization - reduce complexity */
+@media (max-width: 768px) {
+  .polymorph-svg {
+    opacity: 0.4;
+  }
+
+  .blob {
+    animation-duration: 20s !important;
+  }
+}

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import Cursor from './components/Cursor';
 import Logo from './components/Logo';
 import Menu from './components/Menu';
+import PolymorphBackground from './components/PolymorphBackground';
 import NoiseBackground from './components/NoiseBackground';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -97,6 +98,7 @@ const AppNew = () => {
 
   return (
     <>
+      <PolymorphBackground />
       <NoiseBackground />
       <div className="app">
         <Cursor />

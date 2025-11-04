@@ -4,9 +4,10 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg);
+  background-color: transparent;
   color: var(--color-text);
   overflow: hidden;
+  z-index: 1;
 }
 
 .main-content {
@@ -56,6 +57,7 @@ html {
 body {
   position: relative;
   overflow: hidden;
+  background-color: var(--color-bg);
 }
 
 /* Hide overflow during transitions */
