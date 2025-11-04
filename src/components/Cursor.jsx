@@ -38,10 +38,12 @@ const Cursor = () => {
 
     const handleMouseEnter = () => {
       gsap.to(cursor, {
-        width: 40,
-        height: 40,
+        scale: 2,
+        backgroundColor: 'rgb(92, 104, 135)',
+        opacity: 0.5,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        borderWidth: 0
       });
 
       // Hide the dot on hover
@@ -49,16 +51,18 @@ const Cursor = () => {
         scale: 0,
         opacity: 0,
         duration: 0.2,
-        ease: 'power2.out'
+        ease: 'power2.out',
       });
     };
 
     const handleMouseLeave = () => {
       gsap.to(cursor, {
-        width: 24,
-        height: 24,
-        duration: 0.3,
-        ease: 'power2.out'
+          scale: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          duration: 0.3,
+          opacity: 1,
+          ease: 'power2.out',
+          borderWidth: '2px',
       });
 
       // Show the dot again
