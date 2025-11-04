@@ -19,21 +19,21 @@ const MetaballBackground = () => {
   // Optimized settings - reduced spheres, simpler shading
   const settings = {
     sphereCount: 5,
-    ambientIntensity: 0.3,
-    diffuseIntensity: 0.7,
+    ambientIntensity: 0.9,
+    diffuseIntensity: 0.4,
     backgroundColor: new THREE.Color(0xf3f2f9),
-    // Subtle but visible colors for each sphere
+    // Vibrant waterball-like colors
     sphereColors: [
-      new THREE.Color(0xc4b5fd), // Light purple
-      new THREE.Color(0x93c5fd), // Light blue
-      new THREE.Color(0xfda4af), // Light pink
-      new THREE.Color(0xfde047), // Light yellow
-      new THREE.Color(0xd8b4fe)  // Light lavender
+      new THREE.Color(0x0EA5E9), // Cyan blue
+      new THREE.Color(0x8B5CF6), // Purple
+      new THREE.Color(0xF59E0B), // Orange
+      new THREE.Color(0xEC4899), // Pink
+      new THREE.Color(0x10B981)  // Green
     ],
     lightColor: new THREE.Color(0xffffff),
-    smoothness: 0.6,
+    smoothness: 0.3,
     animationSpeed: 0.4,
-    translateSpeed: 0.25
+    translateSpeed: 0.3
   };
 
   useEffect(() => {
@@ -276,7 +276,7 @@ const MetaballBackground = () => {
           vec3 color = lighting(p, rd, result.t, result.sphereIndex);
 
           if (result.t > 0.0) {
-            gl_FragColor = vec4(color, 0.3);
+            gl_FragColor = vec4(color, 0.2);
           } else {
             gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
           }
