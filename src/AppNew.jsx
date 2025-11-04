@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import Cursor from './components/Cursor';
 import Logo from './components/Logo';
 import Menu from './components/Menu';
+import NoiseBackground from './components/NoiseBackground';
 import MetaballBackground from './components/MetaballBackground';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -97,6 +98,7 @@ const AppNew = () => {
 
   return (
     <>
+      <NoiseBackground />
       <MetaballBackground />
       <div className="app">
         <Cursor />
