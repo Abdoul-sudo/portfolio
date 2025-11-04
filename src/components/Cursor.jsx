@@ -13,6 +13,7 @@ const Cursor = () => {
 
     const cursor = cursorRef.current;
     const cursorDot = cursorDotRef.current;
+    let isHoveringElement = false;
 
     // Mouse move handler
     const handleMouseMove = (e) => {
@@ -37,6 +38,7 @@ const Cursor = () => {
     );
 
     const handleMouseEnter = () => {
+      isHoveringElement = true;
       gsap.to(cursor, {
         scale: 2,
         backgroundColor: 'rgb(92, 104, 135)',
@@ -56,6 +58,7 @@ const Cursor = () => {
     };
 
     const handleMouseLeave = () => {
+      isHoveringElement = false;
       gsap.to(cursor, {
           scale: 1,
           backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -74,8 +77,34 @@ const Cursor = () => {
       });
     };
 
+    // Mouse down handler - scale cursor up on click
+    const handleMouseDown = () => {
+      // Scale to 3 if hovering, otherwise scale to 2
+      const targetScale = isHoveringElement ? 4 : 2;
+
+      gsap.to(cursor, {
+          scale: targetScale,
+          duration: 0.2,
+          ease: 'power2.out',
+      });
+    };
+
+    // Mouse up handler - return to normal/hover size
+    const handleMouseUp = () => {
+      // Return to hover scale (2) if hovering, otherwise normal (1)
+      const targetScale = isHoveringElement ? 2 : 1;
+
+      gsap.to(cursor, {
+          scale: targetScale,
+          duration: 0.2,
+          ease: 'power2.out',
+      });
+    };
+
     // Add event listeners
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
 
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter);
@@ -85,6 +114,8 @@ const Cursor = () => {
     // Cleanup
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
