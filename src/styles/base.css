@@ -3,10 +3,10 @@
 :root {
   /* 2025 Color System - WCAG Compliant + Vibrant Accents */
 
-  /* Base Colors - Avoiding pure black/white */
-  --color-bg: #f3f2f9; /* Soft lavender background */
-  --color-bg-secondary: #F5F5F7; /* Subtle gray for layering */
-  --color-surface: rgba(255, 255, 255, 0.8); /* Glass-like surfaces */
+  /* Base Colors - Professional light theme */
+  --color-bg: #FAFBFC; /* Clean, professional background */
+  --color-bg-secondary: #F5F7FA; /* Subtle gray-blue for layering */
+  --color-surface: rgba(255, 255, 255, 0.85); /* Glass-like surfaces */
 
   /* Text Colors - WCAG AA Compliant (4.5:1 contrast) */
   --color-text-primary: #606887; /* Primary text color */

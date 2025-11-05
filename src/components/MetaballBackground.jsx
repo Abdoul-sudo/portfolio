@@ -19,26 +19,26 @@ const MetaballBackground = () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const isLowPowerDevice = isMobile || navigator.hardwareConcurrency <= 4;
 
-  // Optimized settings - reduced spheres, simpler shading
+  // Optimized settings - professional aesthetic
   const settings = {
     sphereCount: 5,
-    ambientIntensity: 0.9,
-    diffuseIntensity: 0.4,
-    glowIntensity: 1.2,
-    rimPower: 2.5,
-    backgroundColor: new THREE.Color(0xf3f2f9),
-    // Uniform color for seamless blending
+    ambientIntensity: 0.65,
+    diffuseIntensity: 0.25,
+    glowIntensity: 0.6,
+    rimPower: 3.5,
+    backgroundColor: new THREE.Color(0xFAFBFC),
+    // Sophisticated desaturated palette
     sphereColors: [
-      new THREE.Color(0x8B5CF6), // Purple
-      new THREE.Color(0x8B5CF6), // Purple
-      new THREE.Color(0x8B5CF6), // Purple
-      new THREE.Color(0x8B5CF6), // Purple
-      new THREE.Color(0x8B5CF6)  // Purple
+      new THREE.Color(0xE0E7FF), // Very light indigo
+      new THREE.Color(0xE0F2FE), // Very light cyan
+      new THREE.Color(0xEEF2FF), // Pale blue
+      new THREE.Color(0xE8EAF6), // Light indigo-gray
+      new THREE.Color(0xE0F2FE)  // Very light cyan
     ],
     lightColor: new THREE.Color(0xffffff),
-    smoothness: 0.3,
-    animationSpeed: 0.4,
-    translateSpeed: 0.3
+    smoothness: 0.4,
+    animationSpeed: 0.25,
+    translateSpeed: 0.18
   };
 
   useEffect(() => {
@@ -326,11 +326,11 @@ const MetaballBackground = () => {
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
-            color += glowContribution * 0.3;
-            gl_FragColor = vec4(color, 0.2);
+            color += glowContribution * 0.15;
+            gl_FragColor = vec4(color, 0.08);
           } else {
             if (cursorGlow > 0.01) {
-              gl_FragColor = vec4(glowContribution, cursorGlow * 0.5);
+              gl_FragColor = vec4(glowContribution, cursorGlow * 0.25);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
             }
