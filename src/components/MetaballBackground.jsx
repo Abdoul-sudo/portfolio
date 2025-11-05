@@ -24,13 +24,13 @@ const MetaballBackground = () => {
     glowIntensity: 1.2,
     rimPower: 2.5,
     backgroundColor: new THREE.Color(0xf3f2f9),
-    // Vibrant waterball-like colors
+    // Uniform color for seamless blending
     sphereColors: [
-      new THREE.Color(0x0EA5E9), // Cyan blue
       new THREE.Color(0x8B5CF6), // Purple
-      new THREE.Color(0xF59E0B), // Orange
-      new THREE.Color(0xEC4899), // Pink
-      new THREE.Color(0x10B981)  // Green
+      new THREE.Color(0x8B5CF6), // Purple
+      new THREE.Color(0x8B5CF6), // Purple
+      new THREE.Color(0x8B5CF6), // Purple
+      new THREE.Color(0x8B5CF6)  // Purple
     ],
     lightColor: new THREE.Color(0xffffff),
     smoothness: 0.3,
