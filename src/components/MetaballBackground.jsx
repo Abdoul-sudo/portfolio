@@ -175,8 +175,12 @@ const MetaballBackground = () => {
           return position;
         }
 
-        float getSphereRadius(int index) {
-          return 0.5 + mod(float(index), 2.0) * 0.15; // Bigger base size
+        float getSphereRadius(int index, float time) {
+          float baseRadius = 0.5 + mod(float(index), 2.0) * 0.15;
+          // Wave params: sin(time * speed + index * offset) * amplitude
+          float wave = sin(time * 2.0 + float(index) * 1.2) * 0.2;
+          // No wave: float wave = 0.0;
+          return baseRadius + wave;
         }
 
         struct SceneResult {
@@ -195,7 +199,7 @@ const MetaballBackground = () => {
 
           for (int i = 0; i < 5; i++) {
             spherePos[i] = getSpherePosition(i, time);
-            sphereRad[i] = getSphereRadius(i);
+            sphereRad[i] = getSphereRadius(i, time);
           }
 
           // Create spheres with interaction and track closest
