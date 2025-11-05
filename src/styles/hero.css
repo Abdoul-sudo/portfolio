@@ -1,0 +1,204 @@
+/* Hero Section Styles */
+
+.hero-section {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.hero-content {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.hero-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.hero-line {
+  font-family: var(--font-display); /* Space Grotesk for hero impact */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin: 0;
+  overflow: visible; /* Changed to allow 3D transforms */
+  position: relative;
+  z-index: 10;
+  perspective: 1000px; /* Enable 3D space for character animations */
+}
+
+/* Split text character styling */
+.hero-line .char-wrapper {
+  display: inline-block;
+  overflow: visible;
+}
+
+.hero-line .char {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Line 1: "Hey, I'm Abdoul Wahhaab" - LARGE like Sharlee's name */
+.hero-line-1 {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */
+.hero-line-2 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: var(--font-weight-medium);
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 50%, var(--color-accent-tertiary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--color-text);
+  margin-top: var(--spacing-xs);
+}
+
+/* Line 3: "I build Web, Games & AI-powered experiences" - SMALLER subtitle */
+.hero-line-3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.hero-cta-arrow {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-tertiary);
+  transition: all 0.3s ease;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Underline Animation on Hover - Transform based, spans entire button width */
+.hero-cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+}
+
+.hero-cta:hover::after {
+  transform: scaleX(1);
+}
+
+.hero-cta:hover .hero-cta-arrow {
+  color: var(--color-accent-primary);
+  transform: translateX(1.5px);
+}
+
+.hero-cta:hover {
+  color: var(--color-accent-primary);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .hero-lines {
+    gap: var(--spacing-xs);
+  }
+
+  .hero-line-1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .hero-line-2,
+  .hero-line-3 {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .hero-cta {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-line-1 {
+    font-size: clamp(1.75rem, 11vw, 2.5rem);
+  }
+
+  .hero-line-2,
+  .hero-line-3 {
+    font-size: clamp(0.9rem, 5vw, 1.25rem);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-ctas {
+    opacity: 1 !important;
+  }
+
+  .hero-cta-arrow {
+    transition: none !important;
+  }
+
+  .hero-cta:hover .hero-cta-arrow {
+    transform: none !important;
+  }
+}

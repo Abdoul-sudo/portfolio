@@ -1,62 +1,44 @@
 import { motion } from 'framer-motion';
-
 import './Skills.scss';
-import { experiences } from '../../constants';
 import { technologies } from '../../constants';
 import { SectionWrapper } from '../../hoc';
 import { styles } from '../../styles';
-import { textVariant } from '../../utils/motion';
+import { textVariant, fadeIn } from '../../utils/motion';
 
 const Skills = () => {
     return (
-        <>
-            {/* <h2 className="head-text">Skills & Experiences</h2> */}
-            <motion.div variants={textVariant()}>
-                <p className={`${styles.sectionSubText}`}>What I have done so far</p>
-                <h2 className={`${styles.sectionHeadText} drop-shadow-[0_0_0.2rem_#ffffff70]`}>Skills & Experiences.</h2>
+        <div className='w-full max-w-4xl mx-auto'>
+            {/* Section header */}
+            <motion.div variants={textVariant()} className='mb-12'>
+                <p className={styles.sectionSubText}>Tech Stack</p>
+                <h2 className={styles.sectionHeadText}>
+                    Tools & Technologies
+                </h2>
             </motion.div>
 
-            <div className='app__skills-container'>
-                <motion.div className='app__skills-list'>
-                    {technologies.map((skill) => (
-                        <motion.div key={skill.name} whileInView={{ opacity: [0, 1] }} transition={{ duration: 0.5 }} className='app__skills-item app__flex'>
-                            <div className='app__flex' style={{ backgroundColor: skill.bgColor }}>
-                                <img src={skill.icon} alt={skill.name} />
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                <div className='app__skills-exp'>
-                    {experiences.map((experience, index) => (
-                        <motion.div key={`${experience.date}-${index}`} className='app__skills-exp-item'>
-                            <div className='app__skills-exp-year'>
-                                <p className='text-[#b084e9] font-bold '>{experience.date}</p>
-                            </div>
-                            <motion.div className='app__skills-exp-works'>
-                                {experience.works.map((work, id) => (
-                                    <motion.div whileInView={{ opacity: [0, 1] }} transition={{ duration: 0.5 }} className='app__skills-exp-work' data-tip data-for={work.title} key={`${index}-${id}`}>
-                                        <div className='flex justify-center items-center gap-3'>
-                                            <div className='interactable green-pink-gradient rounded-full p-[2.5px] w-[55px] h-[55px] flex justify-center items-center flex-none hover:shadow-[0_0_5px_#fef4f5] overflow-hidden' onClick={() => window.open(work.company_link, '_blank')}>
-                                                <div className=' rounded-full p-1.5 w-full h-full overflow-hidden' style={{ background: work.iconBg }}>
-                                                    <img src={work.icon} alt={work.company_name} className='w-full h-full object-contain' />
-                                                </div>
-                                            </div>
-                                            <div className='cursor-text'>
-                                                <h4 className='text-white backdrop-blur-2xl xl:text-[17px] text-[14px] !font-bold'>{work.title}</h4>
-                                                <p className='font-medium sm:text-[14px] text-[12px] text-secondary text-wrap'>{work.company_name}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </>
+            {/* Compact skills grid */}
+            <motion.div
+                variants={fadeIn('', '', 0.1, 1)}
+                className='flex flex-wrap gap-3'
+            >
+                {technologies.map((skill, index) => (
+                    <div
+                        key={skill.name}
+                        className='group flex items-center gap-2 px-4 py-2 border border-border hover:border-accent transition-colors duration-300'
+                    >
+                        <img
+                            src={skill.icon}
+                            alt={skill.name}
+                            className='w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300'
+                        />
+                        <span className='text-muted group-hover:text-accent text-sm transition-colors duration-300'>
+                            {skill.name}
+                        </span>
+                    </div>
+                ))}
+            </motion.div>
+        </div>
     );
 };
 
-// export default AppWrap(MotionWrap(Skills, 'app__skills'), 'skills', 'app__whitebg');
 export default SectionWrapper(Skills, 'skills');

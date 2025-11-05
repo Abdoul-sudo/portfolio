@@ -1,0 +1,57 @@
+/* Logo Styles */
+
+.logo {
+  position: fixed;
+  top: calc(var(--spacing-lg) + var(--spacing-md)); /* Exactly like Sharlee - much lower */
+  left: calc(var(--spacing-lg) + var(--spacing-sm)); /* Exactly like Sharlee - more x-padding */
+  z-index: 10001; /* Higher than menu overlay to remain clickable */
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  background: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
+}
+
+.logo-letter {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+}
+
+.logo:hover .logo-letter {
+  color: var(--color-accent);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .logo {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .logo:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}

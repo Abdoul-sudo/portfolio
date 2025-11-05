@@ -1,0 +1,43 @@
+/* Custom Cursor Styles */
+
+.cursor,
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor {
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-width: 2px;
+  border-color: #606887;
+  mix-blend-mode: multiply;
+  opacity: 1;
+  transition: none;
+}
+
+.cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #606887;
+  transition: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .cursor,
+  .cursor-dot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor,
+  .cursor-dot {
+    transition: none !important;
+  }
+}

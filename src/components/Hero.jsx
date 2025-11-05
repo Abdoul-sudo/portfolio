@@ -1,77 +1,115 @@
 import { motion } from 'framer-motion';
-
 import { styles } from '../styles';
-// import { ComputersCanvas } from './canvas';
-import { FaDownload, FaFileDownload, FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaDownload, FaArrowDown } from 'react-icons/fa';
 import { cv } from '../assets';
-import MagicButton from './MagicButton';
 
 const Hero = () => {
     return (
-        <section className={`relative w-full sm:max-md:h-[calc(100vh-100px)] lg:h-[calc(100vh-100px)]  max-sm:mb-20 mx-auto mt-10 xl:mt-24 `}>
-            <div className={`  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
-                <div className='flex flex-col justify-center items-center mt-5'>
-                    <div className='w-5 h-5 rounded-full bg-[#cbacf9]' />
-                    <div className='w-1 lg:h-80 h-60 violet-gradient' />
-                </div>
-
-                <div className='flex max-md:flex-col w-full justify-between'>
-                    <div className='md:w-1/2 w-full'>
-                        {/* Header -------------------------------------------------------------------------------------------- */}
-                        <h1 className={`${styles.heroHeadText} text-white drop-shadow-[0_0_0.1rem_#ffffff70]`}>
-                            Hi, I'm <span className='text-[#b084e9]'>Abdoul</span>
-                        </h1>
-                        <p className={`${styles.heroSubText} mt-2 text-slate-200`}>
-                            I'm a web developer on <br className='sm:block hidden' />
-                            journey to be a game developer.
+        <section className='relative w-full min-h-screen flex items-center justify-center'>
+            <div className={`max-w-6xl mx-auto ${styles.paddingX} w-full`}>
+                <div className='flex flex-col justify-center min-h-screen py-32'>
+                    {/* Small intro */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className='mb-8'
+                    >
+                        <p className='text-muted text-sm md:text-base tracking-wide'>
+                            Hey, I code stuff
                         </p>
+                    </motion.div>
 
-                        {/* Social media icons & CV ------------------------------------------------------------------------------- */}
-                        <div className='flex max-md:flex-col justify-between md:items-center'>
-                            {/* Social media icons */}
-                            {/* <div className={`${styles.heroSocialIcon} mt-7 flex gap-5 `}>
-                                <div onClick={() => window.open('https://www.linkedin.com/in/abdoul-wahhaab', '_blank')} className='interactable w-16 h-16 border-1 p-3 rounded-full flex justify-center items-center cursor-pointer  green-text-gradient text-[#f2f2f2] hover:text-white'>
-                                    <FaLinkedinIn />
-                                </div>
-                                <div onClick={() => window.open('https://github.com/Abdoul-sudo', '_blank')} className='interactable w-16 h-16 p-3 rounded-full flex justify-center items-center cursor-pointer green-text-gradient  text-[#f2f2f2] hover:text-white '>
-                                    <FaGithub />
-                                </div>
-                            </div> */}
+                    {/* Large headline */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className={`${styles.heroHeadText} mb-10`}
+                    >
+                        Full-stack developer
+                        <br />
+                        crafting web apps
+                        <br />
+                        & games
+                    </motion.h1>
 
-                            {/* CV download */}
-                            <div className='mt-7 md:mt-0 flex flex-nowrap'>
-                                <a href={cv} download='ISMAEL Abdoul Wahhaab CV.pdf' target='_blank' rel='noopener noreferrer' className={`interactable  2xl:text-[18px] font-semibold xl:text-[16px] sm:text-[14px] text-[#f2f2f2] hover:text-white  whitespace-nowrap  `}>
-                                    <MagicButton title='Download CV' icon={<FaDownload />} position='left' textClasses='bg-[#050816f0]' />
-                                </a>
+                    {/* Description */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className={`${styles.heroSubText} max-w-2xl mb-16`}
+                    >
+                        Specializing in React, Next.js, and modern web technologies.
+                        <br />
+                        Building scalable applications with clean code and thoughtful design.
+                    </motion.p>
+
+                    {/* CTA Buttons */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.8 }}
+                        className='flex flex-wrap gap-6 items-center mb-16'
+                    >
+                        <a href='#work' className='interactable group'>
+                            <div className='relative px-8 py-4 bg-white text-dark font-medium hover:bg-accent transition-all duration-300'>
+                                <span className='relative z-10'>View Work</span>
                             </div>
-                        </div>
-                    </div>
+                        </a>
+                        <a href={cv} download='ISMAEL Abdoul Wahhaab CV.pdf' target='_blank' rel='noopener noreferrer' className='interactable group'>
+                            <div className='relative px-8 py-4 border border-border text-white font-medium hover:border-white transition-all duration-300 flex items-center gap-3'>
+                                <span>Download CV</span>
+                                <FaDownload className='text-sm' />
+                            </div>
+                        </a>
+                    </motion.div>
 
-                    {/* Profile -------------------------------------------------------------------------------------------- */}
-                    <div className='home_profile max-2xl:w-[280px] max-2xl:h-[280px] max-xl:w-[230px] max-xl:h-[230px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[250px] max-md:h-[250px] max-md:mt-16'></div>
+                    {/* Social Links */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1 }}
+                        className='flex gap-6'
+                    >
+                        <a
+                            href='https://github.com/Abdoul-sudo'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='interactable text-muted hover:text-white transition-colors duration-300 text-sm'
+                        >
+                            GitHub
+                        </a>
+                        <a
+                            href='https://www.linkedin.com/in/abdoul-wahhaab'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='interactable text-muted hover:text-white transition-colors duration-300 text-sm'
+                        >
+                            LinkedIn
+                        </a>
+                    </motion.div>
                 </div>
             </div>
 
-            {/* <ComputersCanvas /> */}
-
-            {/* Scroll component */}
-            <div className='absolute max-lg:hidden sm:!bottom-24 2xl:!bottom-44 w-full flex justify-center items-center'>
-                <a href='#about'>
-                    <div className='interactable  w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-                        <motion.div
-                            animate={{
-                                y: [0, 24, 0],
-                            }}
-                            transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                repeatType: 'loop',
-                            }}
-                            className='w-3 h-3 rounded-full bg-secondary mb-1'
-                        />
-                    </div>
+            {/* Scroll indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className='absolute bottom-12 left-1/2 -translate-x-1/2'
+            >
+                <a href='#about' className='interactable flex flex-col items-center gap-2 text-muted hover:text-white transition-colors duration-300'>
+                    <span className='text-xs tracking-wider uppercase'>Scroll</span>
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                        <FaArrowDown className='text-sm' />
+                    </motion.div>
                 </a>
-            </div>
+            </motion.div>
         </section>
     );
 };

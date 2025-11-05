@@ -1,0 +1,268 @@
+/* Base CSS - Sharlee-inspired Portfolio */
+
+:root {
+  /* 2025 Color System - WCAG Compliant + Vibrant Accents */
+
+  /* Base Colors - Avoiding pure black/white */
+  --color-bg: #f3f2f9; /* Soft lavender background */
+  --color-bg-secondary: #F5F5F7; /* Subtle gray for layering */
+  --color-surface: rgba(255, 255, 255, 0.8); /* Glass-like surfaces */
+
+  /* Text Colors - WCAG AA Compliant (4.5:1 contrast) */
+  --color-text-primary: #606887; /* Primary text color */
+  --color-text-secondary: #606887; /* Secondary text same as primary */
+  --color-text-tertiary: #606887; /* Tertiary text same as primary */
+
+  /* Vibrant Accent Colors - 2025 Trends */
+  --color-accent-primary: #0EA5E9; /* Electric blue (WCAG compliant) */
+  --color-accent-secondary: #8B5CF6; /* Deep purple */
+  --color-accent-tertiary: #EC4899; /* Vibrant pink */
+  --color-accent-success: #10B981; /* Emerald green */
+
+  /* Legacy support */
+  --color-accent: var(--color-accent-primary);
+  --color-text: var(--color-text-primary);
+
+  /* Accent Glows & Effects */
+  --color-accent-glow: rgba(14, 165, 233, 0.2);
+  --color-border: rgba(26, 29, 41, 0.08);
+  --color-border-strong: rgba(26, 29, 41, 0.15);
+
+  /* Typography - Modern 2025 Font Pairing */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-primary: var(--font-body); /* Fallback for compatibility */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-medium: 0.4s;
+  --transition-slow: 0.6s;
+
+  /* Cursor */
+  --cursor-size: 12px;
+  --cursor-size-hover: 40px;
+}
+
+/* Reset and Base Styles */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  overflow: hidden; /* Disable scroll for view-based architecture */
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body); /* Inter for body/UI */
+  font-weight: var(--font-weight-normal);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  letter-spacing: -0.015em; /* Optimized for Inter */
+  overflow: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* cursor: none; */
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* Typography - Modern Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display); /* Space Grotesk for headings */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-family: var(--font-body); /* Inter for body text */
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Selection */
+::selection {
+  /* background-color: var(--color-accent);
+  color: var(--color-bg); */
+  background-color: #78ffd1;
+  color: #606887;
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Utility Classes */
+.section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) var(--spacing-md);
+  opacity: 0;
+}
+
+.section.active {
+  display: flex;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+/* Visibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Loading State */
+.loading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Disable interactions during transitions */
+.transitioning {
+  pointer-events: none;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

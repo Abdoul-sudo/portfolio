@@ -224,6 +224,7 @@ const experiences = [
 const projects = [
     {
         name: 'Juicy',
+        project_type: 'websites',
         description: 'A web application for sharing, and discovering a variety of recipes, allowing users to connect through culinary ideas.',
         techs: [
             {
@@ -241,6 +242,7 @@ const projects = [
     },
     {
         name: 'GameFeat',
+        project_type: 'websites',
         description: 'A platform that features a different game every time you refresh the page.',
         techs: [
             {
@@ -262,6 +264,7 @@ const projects = [
     },
     {
         name: 'Pixel Dunking',
+        project_type: 'games',
         description: 'A competitive 2 vs 2 basketball game in 2D. On a dynamic court, use your individual skills to showcase your team play.',
         techs: [
             {
@@ -275,6 +278,7 @@ const projects = [
     },
     {
         name: 'Slime adventure',
+        project_type: 'games',
         description: 'A short platfomer game where you play as a young slime undergoing its rite of passage to adulthood',
         techs: [
             {
@@ -288,6 +292,7 @@ const projects = [
     },
     {
         name: 'Onirix',
+        project_type: 'websites',
         description: 'An immersive platform that describes the hidden meanings of dreams. Earned us 3rd place in 24h by webcup Madagascar hackathon.',
         techs: [
             {
@@ -313,6 +318,7 @@ const projects = [
     },
     {
         name: 'Facebook clone',
+        project_type: 'websites',
         description: 'A Facebook clone that allows to write posts, as well as like and comment on them. My first project to learn the basics of Reactjs.',
         techs: [
             {
