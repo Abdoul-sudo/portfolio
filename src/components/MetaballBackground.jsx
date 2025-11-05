@@ -8,6 +8,9 @@ const MetaballBackground = () => {
   const materialRef = useRef(null);
   const animationFrameRef = useRef(null);
   const clockRef = useRef(null);
+  const cursorSphere3D = useRef(new THREE.Vector3(0, 0, 0));
+  const targetMousePosition = useRef(new THREE.Vector2(0.5, 0.5));
+  const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
 
   // Enhanced device detection
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -74,6 +77,9 @@ const MetaballBackground = () => {
         uActualResolution: {
           value: new THREE.Vector2(viewportWidth * pixelRatio, viewportHeight * pixelRatio)
         },
+        uMousePosition: { value: new THREE.Vector2(0.5, 0.5) },
+        uCursorSphere: { value: new THREE.Vector3(0, 0, 0) },
+        uCursorRadius: { value: 0.08 },
         uSphereCount: { value: settings.sphereCount },
         uSmoothness: { value: settings.smoothness },
         uAmbientIntensity: { value: settings.ambientIntensity },
@@ -85,6 +91,9 @@ const MetaballBackground = () => {
         uLightColor: { value: settings.lightColor },
         uAnimationSpeed: { value: settings.animationSpeed },
         uTranslateSpeed: { value: settings.translateSpeed },
+        uCursorGlowIntensity: { value: 0.8 },
+        uCursorGlowRadius: { value: 1.5 },
+        uCursorGlowColor: { value: new THREE.Color(0x8B5CF6) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 }
       },
       vertexShader: `
@@ -100,6 +109,9 @@ const MetaballBackground = () => {
         uniform float uTime;
         uniform vec2 uResolution;
         uniform vec2 uActualResolution;
+        uniform vec2 uMousePosition;
+        uniform vec3 uCursorSphere;
+        uniform float uCursorRadius;
         uniform int uSphereCount;
         uniform float uSmoothness;
         uniform float uAmbientIntensity;
@@ -111,6 +123,9 @@ const MetaballBackground = () => {
         uniform vec3 uLightColor;
         uniform float uAnimationSpeed;
         uniform float uTranslateSpeed;
+        uniform float uCursorGlowIntensity;
+        uniform float uCursorGlowRadius;
+        uniform vec3 uCursorGlowColor;
         uniform float uIsMobile;
 
         const float PI = 3.14159265359;
@@ -211,6 +226,10 @@ const MetaballBackground = () => {
             result = smin(result, sphere, dynamicSmoothness);
           }
 
+          // Add cursor ball that merges with other spheres
+          float cursorBall = sdSphere(pos - uCursorSphere, uCursorRadius);
+          result = smin(result, cursorBall, uSmoothness);
+
           return SceneResult(result, closestSphere);
         }
 
@@ -280,6 +299,13 @@ const MetaballBackground = () => {
           return color;
         }
 
+        float calculateCursorGlow(vec3 worldPos) {
+          float dist = length(worldPos.xy - uCursorSphere.xy);
+          float glow = 1.0 - smoothstep(0.0, uCursorGlowRadius, dist);
+          glow = pow(glow, 2.0);
+          return glow * uCursorGlowIntensity;
+        }
+
         void main() {
           vec2 uv = (gl_FragCoord.xy * 2.0 - uActualResolution.xy) / uActualResolution.xy;
           uv.x *= uResolution.x / uResolution.y;
@@ -291,10 +317,19 @@ const MetaballBackground = () => {
           vec3 p = ro + rd * result.t;
           vec3 color = lighting(p, rd, result.t, result.sphereIndex);
 
+          // Add cursor glow
+          float cursorGlow = calculateCursorGlow(ro);
+          vec3 glowContribution = uCursorGlowColor * cursorGlow;
+
           if (result.t > 0.0) {
+            color += glowContribution * 0.3;
             gl_FragColor = vec4(color, 0.2);
           } else {
-            gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+            if (cursorGlow > 0.01) {
+              gl_FragColor = vec4(glowContribution, cursorGlow * 0.5);
+            } else {
+              gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+            }
           }
         }
       `,
@@ -306,6 +341,48 @@ const MetaballBackground = () => {
     const geometry = new THREE.PlaneGeometry(2, 2);
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
+
+    // Helper function to convert screen coordinates to world coordinates
+    const screenToWorld = (normalizedX, normalizedY) => {
+      const uv_x = normalizedX * 2.0 - 1.0;
+      const uv_y = normalizedY * 2.0 - 1.0;
+      const aspect = window.innerWidth / window.innerHeight;
+      return new THREE.Vector3(uv_x * aspect * 2.0, uv_y * 2.0, 0.0);
+    };
+
+    // Mouse/touch move handler
+    const handlePointerMove = (clientX, clientY) => {
+      targetMousePosition.current.x = clientX / window.innerWidth;
+      targetMousePosition.current.y = 1.0 - clientY / window.innerHeight;
+
+      const worldPos = screenToWorld(
+        targetMousePosition.current.x,
+        targetMousePosition.current.y
+      );
+      cursorSphere3D.current.copy(worldPos);
+
+      // Update cursor radius based on proximity to spheres (simple static radius for now)
+      material.uniforms.uCursorSphere.value.copy(cursorSphere3D.current);
+      material.uniforms.uCursorRadius.value = 0.08;
+    };
+
+    const onMouseMove = (event) => {
+      handlePointerMove(event.clientX, event.clientY);
+    };
+
+    const onTouchStart = (event) => {
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        handlePointerMove(touch.clientX, touch.clientY);
+      }
+    };
+
+    const onTouchMove = (event) => {
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        handlePointerMove(touch.clientX, touch.clientY);
+      }
+    };
 
     // Window resize handler
     const handleResize = () => {
@@ -328,6 +405,7 @@ const MetaballBackground = () => {
     let lastTime = 0;
     const targetFPS = 30; // Cap at 30fps for performance
     const frameInterval = 1000 / targetFPS;
+    const mouseSmoothness = 0.1;
 
     const animate = (currentTime) => {
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -337,16 +415,34 @@ const MetaballBackground = () => {
 
       lastTime = currentTime - (deltaTime % frameInterval);
 
+      // Smooth mouse movement
+      mousePosition.current.x +=
+        (targetMousePosition.current.x - mousePosition.current.x) * mouseSmoothness;
+      mousePosition.current.y +=
+        (targetMousePosition.current.y - mousePosition.current.y) * mouseSmoothness;
+
       material.uniforms.uTime.value = clock.getElapsedTime();
+      material.uniforms.uMousePosition.value = mousePosition.current;
       renderer.render(scene, camera);
     };
 
+    // Add event listeners
     window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+
+    // Initialize cursor position at center
+    handlePointerMove(window.innerWidth / 2, window.innerHeight / 2);
+
     animate(0);
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
 
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);

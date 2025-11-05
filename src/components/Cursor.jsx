@@ -3,6 +3,11 @@ import gsap from 'gsap';
 import '../styles/cursor.css';
 
 const Cursor = () => {
+  // Cursor effect is now handled by MetaballBackground component
+  // Return null to hide the custom cursor
+  return null;
+
+  /* Original cursor code - disabled
   const cursorRef = useRef(null);
   const cursorDotRef = useRef(null);
 
@@ -134,6 +139,7 @@ const Cursor = () => {
       <div ref={cursorDotRef} className="cursor-dot" aria-hidden="true" />
     </>
   );
+  */
 };
 
 export default Cursor;
