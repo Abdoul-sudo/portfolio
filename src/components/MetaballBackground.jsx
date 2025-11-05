@@ -21,6 +21,8 @@ const MetaballBackground = () => {
     sphereCount: 5,
     ambientIntensity: 0.9,
     diffuseIntensity: 0.4,
+    glowIntensity: 1.2,
+    rimPower: 2.5,
     backgroundColor: new THREE.Color(0xf3f2f9),
     // Vibrant waterball-like colors
     sphereColors: [
@@ -76,6 +78,8 @@ const MetaballBackground = () => {
         uSmoothness: { value: settings.smoothness },
         uAmbientIntensity: { value: settings.ambientIntensity },
         uDiffuseIntensity: { value: settings.diffuseIntensity },
+        uGlowIntensity: { value: settings.glowIntensity },
+        uRimPower: { value: settings.rimPower },
         uBackgroundColor: { value: settings.backgroundColor },
         uSphereColors: { value: settings.sphereColors },
         uLightColor: { value: settings.lightColor },
@@ -100,6 +104,8 @@ const MetaballBackground = () => {
         uniform float uSmoothness;
         uniform float uAmbientIntensity;
         uniform float uDiffuseIntensity;
+        uniform float uGlowIntensity;
+        uniform float uRimPower;
         uniform vec3 uBackgroundColor;
         uniform vec3 uSphereColors[5];
         uniform vec3 uLightColor;
@@ -260,7 +266,17 @@ const MetaballBackground = () => {
           float diff = max(dot(normal, lightDir), 0.0);
           vec3 diffuse = baseColor * diff * uDiffuseIntensity;
 
-          vec3 color = ambient + diffuse;
+          // Smoother rim lighting for glow effect
+          float viewDot = dot(normal, -rd);
+          float rimFactor = 1.0 - max(viewDot, 0.0);
+          rimFactor = smoothstep(0.0, 1.0, rimFactor);
+          rimFactor = pow(rimFactor, uRimPower);
+          vec3 rimGlow = baseColor * rimFactor * uGlowIntensity * 0.8;
+
+          // Emissive glow - stronger and more uniform
+          vec3 emissive = baseColor * 0.5 * uGlowIntensity;
+
+          vec3 color = ambient + diffuse + rimGlow + emissive;
           return color;
         }
 
