@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import '../styles/metaball.css';
-import { getMetaballConfig, TRANSITION_CONFIG } from '../config/metaballPositions';
+import { getMetaballConfig, getDeviceType, TRANSITION_CONFIG } from '../config/metaballPositions';
 
 const MetaballBackground = ({ currentSection = 'home' }) => {
   const containerRef = useRef(null);
@@ -20,6 +20,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
   const targetPositions = useRef([]);
   const currentRadii = useRef([]);
   const targetRadii = useRef([]);
+  const previousDeviceType = useRef(null);
 
   // Enhanced device detection
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -355,6 +356,9 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
     currentRadii.current = initConfig.map(cfg => cfg.radius);
     targetRadii.current = initConfig.map(cfg => cfg.radius);
 
+    // Initialize device type tracking
+    previousDeviceType.current = getDeviceType();
+
     // Set initial uniform values
     material.uniforms.uSpherePositions.value = currentPositions.current.map(
       pos => new THREE.Vector3(pos.x, pos.y, pos.z)
@@ -445,7 +449,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
       }
     };
 
-    // Window resize handler
+    // Window resize handler with device type detection
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -460,6 +464,16 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         width * currentPixelRatio,
         height * currentPixelRatio
       );
+
+      // Check if device type changed (e.g., rotation, window resize crossing breakpoints)
+      const newDeviceType = getDeviceType();
+      if (previousDeviceType.current !== null && previousDeviceType.current !== newDeviceType) {
+        // Device type changed - update metaball positions
+        const newConfig = getMetaballConfig(currentSection);
+        targetPositions.current = newConfig.map(cfg => ({ x: cfg.x, y: cfg.y, z: cfg.z }));
+        targetRadii.current = newConfig.map(cfg => cfg.radius);
+      }
+      previousDeviceType.current = newDeviceType;
     };
 
     // Optimized animation loop
