@@ -11,6 +11,8 @@ const MetaballBackground = () => {
   const cursorSphere3D = useRef(new THREE.Vector3(0, 0, 0));
   const targetMousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
+  const sphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
+  const targetSphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
 
   // Enhanced device detection
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -92,10 +94,11 @@ const MetaballBackground = () => {
         uLightColor: { value: settings.lightColor },
         uAnimationSpeed: { value: settings.animationSpeed },
         uTranslateSpeed: { value: settings.translateSpeed },
-        uCursorGlowIntensity: { value: 0.8 },
-        uCursorGlowRadius: { value: 1.5 },
+        uCursorGlowIntensity: { value: 0.3 },
+        uCursorGlowRadius: { value: 2.5 },
         uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
-        uIsMobile: { value: isMobile ? 1.0 : 0.0 }
+        uIsMobile: { value: isMobile ? 1.0 : 0.0 },
+        uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] }
       },
       vertexShader: `
         varying vec2 vUv;
@@ -128,6 +131,7 @@ const MetaballBackground = () => {
         uniform float uCursorGlowRadius;
         uniform vec3 uCursorGlowColor;
         uniform float uIsMobile;
+        uniform float uSphereScales[6];
 
         const float PI = 3.14159265359;
         const float EPSILON = 0.002;
@@ -178,20 +182,24 @@ const MetaballBackground = () => {
         }
 
         float getSphereRadius(int index, float time) {
-          // Fixed radius - varied sizes
+          // Base radius - varied sizes
+          float baseRadius;
           if (index == 0) {
-            return 0.85; // Large
+            baseRadius = 0.85; // Large
           } else if (index == 1) {
-            return 0.7;  // Medium-large
+            baseRadius = 0.7;  // Medium-large
           } else if (index == 2) {
-            return 0.7;  // Large
+            baseRadius = 0.65;  // Large
           } else if (index == 3) {
-            return 0.75; // Medium-large
+            baseRadius = 0.75; // Medium-large
           } else if (index == 4) {
-            return 0.95;  // Large
+            baseRadius = 0.85;  // Large
           } else {
-            return 0.4;  // Small (new ball)
+            baseRadius = 0.4;  // Small (new ball)
           }
+
+          // Apply reactive scaling based on cursor proximity
+          return baseRadius * uSphereScales[index];
         }
 
         struct SceneResult {
@@ -337,11 +345,24 @@ const MetaballBackground = () => {
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
-            color += glowContribution * 0.15;
-            gl_FragColor = vec4(color, 0.08);
+            // Dramatic reveal: increase opacity based on cursor proximity
+            float distToCursor = length(ro.xy - uCursorSphere.xy);
+            float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
+            revealFactor = pow(revealFactor, 1.5); // Steeper curve for dramatic effect
+
+            // Base opacity increased, with dramatic reveal near cursor
+            float baseOpacity = 0.08;
+            float maxOpacity = 1.0; // Full opacity at cursor
+            float finalOpacity = mix(baseOpacity, maxOpacity, revealFactor);
+
+            // Enhanced glow contribution near cursor
+            color += glowContribution * (0.15 + revealFactor * 0.4);
+
+            gl_FragColor = vec4(color, finalOpacity);
           } else {
             if (cursorGlow > 0.01) {
-              gl_FragColor = vec4(glowContribution, cursorGlow * 0.25);
+              // Stronger glow in empty space
+              gl_FragColor = vec4(glowContribution, cursorGlow * 0.5);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
             }
@@ -379,6 +400,29 @@ const MetaballBackground = () => {
       // Update cursor radius based on proximity to spheres (simple static radius for now)
       material.uniforms.uCursorSphere.value.copy(cursorSphere3D.current);
       material.uniforms.uCursorRadius.value = 0.08;
+
+      // Calculate reactive pulsing for each sphere based on cursor proximity
+      const spherePositions = [
+        new THREE.Vector3(-2.5, 2.0, 0.0),    // Sphere 0
+        new THREE.Vector3(2.2, 1.8, 0.0),     // Sphere 1
+        new THREE.Vector3(-1.0, 0.2, 0.0),    // Sphere 2
+        new THREE.Vector3(2.0, -2.2, 0.0),    // Sphere 3
+        new THREE.Vector3(-2.5, -2.1, 0.0),   // Sphere 4
+        new THREE.Vector3(1.3, -0.5, 0.0)     // Sphere 5
+      ];
+
+      for (let i = 0; i < 6; i++) {
+        const dist = worldPos.distanceTo(spherePositions[i]);
+        const pulseRadius = 1.5; // Distance at which pulsing begins
+
+        if (dist < pulseRadius) {
+          // Scale from 1.0 to 1.4 (40% growth) as cursor gets closer
+          const proximity =  (dist / pulseRadius);
+          targetSphereScales.current[i] = 1.1
+        } else {
+          targetSphereScales.current[i] = 1.0;
+        }
+      }
     };
 
     const onMouseMove = (event) => {
@@ -421,6 +465,7 @@ const MetaballBackground = () => {
     const targetFPS = 30; // Cap at 30fps for performance
     const frameInterval = 1000 / targetFPS;
     const mouseSmoothness = 0.1;
+    const scaleSmoothness = 0.15; // Smooth pulsing animation
 
     const animate = (currentTime) => {
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -436,8 +481,15 @@ const MetaballBackground = () => {
       mousePosition.current.y +=
         (targetMousePosition.current.y - mousePosition.current.y) * mouseSmoothness;
 
+      // Smooth sphere scaling for reactive pulsing
+      for (let i = 0; i < 6; i++) {
+        sphereScales.current[i] +=
+          (targetSphereScales.current[i] - sphereScales.current[i]) * scaleSmoothness;
+      }
+
       material.uniforms.uTime.value = clock.getElapsedTime();
       material.uniforms.uMousePosition.value = mousePosition.current;
+      material.uniforms.uSphereScales.value = sphereScales.current;
       renderer.render(scene, camera);
     };
 
