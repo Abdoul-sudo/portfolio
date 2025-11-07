@@ -94,7 +94,7 @@ const MetaballBackground = () => {
         uTranslateSpeed: { value: settings.translateSpeed },
         uCursorGlowIntensity: { value: 0.8 },
         uCursorGlowRadius: { value: 1.5 },
-        uCursorGlowColor: { value: new THREE.Color(0x8B5CF6) },
+        uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 }
       },
       vertexShader: `
