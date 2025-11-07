@@ -99,7 +99,7 @@ const AppNew = () => {
   return (
     <>
       <NoiseBackground />
-      <MetaballBackground />
+      <MetaballBackground currentSection={sections[currentSection]} />
       <div className="app">
         <Cursor />
         <Logo onNavigate={transitionToSection} menuRef={menuRef} />

@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import '../styles/metaball.css';
+import { getMetaballConfig, TRANSITION_CONFIG } from '../config/metaballPositions';
 
-const MetaballBackground = () => {
+const MetaballBackground = ({ currentSection = 'home' }) => {
   const containerRef = useRef(null);
   const rendererRef = useRef(null);
   const materialRef = useRef(null);
@@ -13,6 +14,12 @@ const MetaballBackground = () => {
   const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const sphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
   const targetSphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
+
+  // Position animation system for smooth transitions
+  const currentPositions = useRef([]);
+  const targetPositions = useRef([]);
+  const currentRadii = useRef([]);
+  const targetRadii = useRef([]);
 
   // Enhanced device detection
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -99,7 +106,9 @@ const MetaballBackground = () => {
         uCursorGlowColor: { value: new THREE.Color(0xCCF5FF) },
         // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
-        uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] }
+        uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
+        uSpherePositions: { value: [] },
+        uSphereRadii: { value: [] }
       },
       vertexShader: `
         varying vec2 vUv;
@@ -133,6 +142,8 @@ const MetaballBackground = () => {
         uniform vec3 uCursorGlowColor;
         uniform float uIsMobile;
         uniform float uSphereScales[6];
+        uniform vec3 uSpherePositions[6];
+        uniform float uSphereRadii[6];
 
         const float PI = 3.14159265359;
         const float EPSILON = 0.002;
@@ -147,57 +158,15 @@ const MetaballBackground = () => {
           return length(p) - r;
         }
 
-        // Linear translation movement - contained within screen
+        // Dynamic position system - positions come from uniforms
         vec3 getSpherePosition(int index, float time) {
-          // Fixed positions for static metaballs
-          vec3 position;
-
-          if (index == 0) {
-            // Top left
-            position.x = -2.5;
-            position.y = 2.0;
-          } else if (index == 1) {
-            // Top right
-            position.x = 2.2;
-            position.y = 1.8;
-          } else if (index == 2) {
-            // Center - moved closer to center
-            position.x = -1.0;
-            position.y = 0.2;
-          } else if (index == 3) {
-            // Bottom right
-            position.x = 2.0;
-            position.y = -2.2;
-          } else if (index == 4) {
-            // Bottom left
-            position.x = -2.5;
-            position.y = -2.1;
-          } else {
-            // Center right, towards bottom (new ball)
-            position.x = 1.3;
-            position.y = -0.5;
-          }
-
-          position.z = 0.0;
-          return position;
+          // Return position from uniform array (updated by section transitions)
+          return uSpherePositions[index];
         }
 
         float getSphereRadius(int index, float time) {
-          // Base radius - varied sizes
-          float baseRadius;
-          if (index == 0) {
-            baseRadius = 0.85; // Large
-          } else if (index == 1) {
-            baseRadius = 0.7;  // Medium-large
-          } else if (index == 2) {
-            baseRadius = 0.65;  // Large
-          } else if (index == 3) {
-            baseRadius = 0.75; // Medium-large
-          } else if (index == 4) {
-            baseRadius = 0.85;  // Large
-          } else {
-            baseRadius = 0.4;  // Small (new ball)
-          }
+          // Get base radius from uniform array (updated by section transitions)
+          float baseRadius = uSphereRadii[index];
 
           // Apply reactive scaling based on cursor proximity
           return baseRadius * uSphereScales[index];
@@ -379,6 +348,19 @@ const MetaballBackground = () => {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
+    // Initialize positions from config
+    const initConfig = getMetaballConfig('home');
+    currentPositions.current = initConfig.map(cfg => ({ x: cfg.x, y: cfg.y, z: cfg.z }));
+    targetPositions.current = initConfig.map(cfg => ({ x: cfg.x, y: cfg.y, z: cfg.z }));
+    currentRadii.current = initConfig.map(cfg => cfg.radius);
+    targetRadii.current = initConfig.map(cfg => cfg.radius);
+
+    // Set initial uniform values
+    material.uniforms.uSpherePositions.value = currentPositions.current.map(
+      pos => new THREE.Vector3(pos.x, pos.y, pos.z)
+    );
+    material.uniforms.uSphereRadii.value = [...currentRadii.current];
+
     // Helper function to convert screen coordinates to world coordinates
     const screenToWorld = (normalizedX, normalizedY) => {
       const uv_x = normalizedX * 2.0 - 1.0;
@@ -403,14 +385,10 @@ const MetaballBackground = () => {
       material.uniforms.uCursorRadius.value = 0.08;
 
       // Calculate reactive pulsing for each sphere based on cursor proximity
-      const spherePositions = [
-        new THREE.Vector3(-2.5, 2.0, 0.0),    // Sphere 0
-        new THREE.Vector3(2.2, 1.8, 0.0),     // Sphere 1
-        new THREE.Vector3(-1.0, 0.2, 0.0),    // Sphere 2
-        new THREE.Vector3(2.0, -2.2, 0.0),    // Sphere 3
-        new THREE.Vector3(-2.5, -2.1, 0.0),   // Sphere 4
-        new THREE.Vector3(1.3, -0.5, 0.0)     // Sphere 5
-      ];
+      // Use current animated positions from refs
+      const spherePositions = currentPositions.current.map(
+        pos => new THREE.Vector3(pos.x, pos.y, pos.z)
+      );
 
       let closestDist = Infinity;
       let closestIndex = -1;
@@ -490,6 +468,7 @@ const MetaballBackground = () => {
     const frameInterval = 1000 / targetFPS;
     const mouseSmoothness = 0.1;
     const scaleSmoothness = 0.15; // Smooth pulsing animation
+    const positionSmoothness = TRANSITION_CONFIG.smoothness; // Position transition smoothness
 
     const animate = (currentTime) => {
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -510,6 +489,25 @@ const MetaballBackground = () => {
         sphereScales.current[i] +=
           (targetSphereScales.current[i] - sphereScales.current[i]) * scaleSmoothness;
       }
+
+      // Smooth position transitions between sections
+      for (let i = 0; i < 6; i++) {
+        currentPositions.current[i].x +=
+          (targetPositions.current[i].x - currentPositions.current[i].x) * positionSmoothness;
+        currentPositions.current[i].y +=
+          (targetPositions.current[i].y - currentPositions.current[i].y) * positionSmoothness;
+        currentPositions.current[i].z +=
+          (targetPositions.current[i].z - currentPositions.current[i].z) * positionSmoothness;
+
+        currentRadii.current[i] +=
+          (targetRadii.current[i] - currentRadii.current[i]) * positionSmoothness;
+      }
+
+      // Update shader uniforms with current animated positions
+      material.uniforms.uSpherePositions.value = currentPositions.current.map(
+        pos => new THREE.Vector3(pos.x, pos.y, pos.z)
+      );
+      material.uniforms.uSphereRadii.value = [...currentRadii.current];
 
       material.uniforms.uTime.value = clock.getElapsedTime();
       material.uniforms.uMousePosition.value = mousePosition.current;
@@ -554,6 +552,19 @@ const MetaballBackground = () => {
       }
     };
   }, []);
+
+  // Handle section changes - update target positions for smooth transitions
+  useEffect(() => {
+    if (!materialRef.current) return;
+
+    const newConfig = getMetaballConfig(currentSection);
+
+    // Update target positions and radii
+    targetPositions.current = newConfig.map(cfg => ({ x: cfg.x, y: cfg.y, z: cfg.z }));
+    targetRadii.current = newConfig.map(cfg => cfg.radius);
+
+    // The animation loop will smoothly interpolate from current to target
+  }, [currentSection]);
 
   return <div ref={containerRef} className="metaball-background" aria-hidden="true" />;
 };
