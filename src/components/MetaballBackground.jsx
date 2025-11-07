@@ -412,9 +412,18 @@ const MetaballBackground = () => {
         new THREE.Vector3(1.3, -0.5, 0.0)     // Sphere 5
       ];
 
+      let closestDist = Infinity;
+      let closestIndex = -1;
+
       for (let i = 0; i < 6; i++) {
         const dist = worldPos.distanceTo(spherePositions[i]);
         const pulseRadius = 1.5; // Distance at which pulsing begins
+
+        // Track closest sphere
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
 
         if (dist < pulseRadius) {
           // Scale from 1.0 to 1.4 (40% growth) as cursor gets closer
@@ -423,6 +432,20 @@ const MetaballBackground = () => {
         } else {
           targetSphereScales.current[i] = 1.0;
         }
+      }
+
+      // Update cursor glow color based on nearest sphere
+      const glowRadius = 2.5;
+      if (closestDist < glowRadius && closestIndex >= 0) {
+        // Blend between default cyan and nearest sphere color
+        const blendFactor = 1.0 - (closestDist / glowRadius);
+        const defaultColor = new THREE.Color(0xCCF5FF);
+        const sphereColor = settings.sphereColors[closestIndex];
+        const blendedColor = defaultColor.clone().lerp(sphereColor, blendFactor * 0.7);
+        material.uniforms.uCursorGlowColor.value.copy(blendedColor);
+      } else {
+        // Reset to default cyan when far from all spheres
+        material.uniforms.uCursorGlowColor.value.set(0xCCF5FF);
       }
     };
 
