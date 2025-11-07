@@ -29,14 +29,14 @@ const MetaballBackground = () => {
     glowIntensity: 0.6,
     rimPower: 3.5,
     backgroundColor: new THREE.Color(0xFAFBFC),
-    // Sophisticated desaturated palette
+    // Sophisticated desaturated palette - varied colors
     sphereColors: [
-      new THREE.Color(0xE0E7FF), // Very light indigo
-      new THREE.Color(0xE0F2FE), // Very light cyan
-      new THREE.Color(0xEEF2FF), // Pale blue
-      new THREE.Color(0xE8EAF6), // Light indigo-gray
-      new THREE.Color(0xE0F2FE), // Very light cyan
-      new THREE.Color(0xE0E7FF)  // Very light indigo
+      new THREE.Color(0xDCF2FF), // Very light blue
+      new THREE.Color(0xFFE5EE), // Very light coral/pink
+      new THREE.Color(0xF0E6FF), // Very light purple/lavender
+      new THREE.Color(0xE0FFED), // Very light mint green
+      new THREE.Color(0xE0F3FF), // Very light sky blue
+      new THREE.Color(0xFFEBF4)  // Very light rose
     ],
     lightColor: new THREE.Color(0xffffff),
     smoothness: 0.4,
@@ -94,9 +94,10 @@ const MetaballBackground = () => {
         uLightColor: { value: settings.lightColor },
         uAnimationSpeed: { value: settings.animationSpeed },
         uTranslateSpeed: { value: settings.translateSpeed },
-        uCursorGlowIntensity: { value: 0.3 },
+        uCursorGlowIntensity: { value: 0.25 },
         uCursorGlowRadius: { value: 2.5 },
-        uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
+        uCursorGlowColor: { value: new THREE.Color(0xCCF5FF) },
+        // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] }
       },
