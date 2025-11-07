@@ -21,7 +21,7 @@ const MetaballBackground = () => {
 
   // Optimized settings - professional aesthetic
   const settings = {
-    sphereCount: 5,
+    sphereCount: 6,
     ambientIntensity: 0.65,
     diffuseIntensity: 0.25,
     glowIntensity: 0.6,
@@ -33,7 +33,8 @@ const MetaballBackground = () => {
       new THREE.Color(0xE0F2FE), // Very light cyan
       new THREE.Color(0xEEF2FF), // Pale blue
       new THREE.Color(0xE8EAF6), // Light indigo-gray
-      new THREE.Color(0xE0F2FE)  // Very light cyan
+      new THREE.Color(0xE0F2FE), // Very light cyan
+      new THREE.Color(0xE0E7FF)  // Very light indigo
     ],
     lightColor: new THREE.Color(0xffffff),
     smoothness: 0.4,
@@ -119,7 +120,7 @@ const MetaballBackground = () => {
         uniform float uGlowIntensity;
         uniform float uRimPower;
         uniform vec3 uBackgroundColor;
-        uniform vec3 uSphereColors[5];
+        uniform vec3 uSphereColors[6];
         uniform vec3 uLightColor;
         uniform float uAnimationSpeed;
         uniform float uTranslateSpeed;
@@ -143,32 +144,33 @@ const MetaballBackground = () => {
 
         // Linear translation movement - contained within screen
         vec3 getSpherePosition(int index, float time) {
-          float fi = float(index);
-          float t = time * uTranslateSpeed;
-
-          // Different translation patterns for each sphere - staying visible
+          // Fixed positions for static metaballs
           vec3 position;
 
           if (index == 0) {
-            // Move diagonally from top-left to bottom-right
-            position.x = mod(t + fi * 1.5, 6.0) - 3.0;
-            position.y = -mod(t + fi * 1.5, 6.0) + 3.0;
+            // Top left
+            position.x = -2.5;
+            position.y = 2.0;
           } else if (index == 1) {
-            // Move diagonally from bottom-left to top-right
-            position.x = mod(t + fi * 2.0, 6.0) - 3.0;
-            position.y = mod(t + fi * 2.0, 6.0) - 3.0;
+            // Top right
+            position.x = 2.2;
+            position.y = 1.8;
           } else if (index == 2) {
-            // Move horizontally right to left with vertical wave
-            position.x = -mod(t + fi * 1.8, 6.0) + 3.0;
-            position.y = sin(t * 0.3 + fi) * 1.5;
+            // Center - moved closer to center
+            position.x = -1.0;
+            position.y = 0.2;
           } else if (index == 3) {
-            // Move horizontally left to right with vertical wave
-            position.x = mod(t + fi * 2.2, 6.0) - 3.0;
-            position.y = cos(t * 0.3 + fi) * 1.5;
+            // Bottom right
+            position.x = 2.0;
+            position.y = -2.2;
+          } else if (index == 4) {
+            // Bottom left
+            position.x = -2.5;
+            position.y = -2.1;
           } else {
-            // Move in circular pattern
-            position.x = cos(t + fi * 1.3) * 2.0;
-            position.y = sin(t + fi * 1.3) * 1.8;
+            // Center right, towards bottom (new ball)
+            position.x = 1.3;
+            position.y = -0.5;
           }
 
           position.z = 0.0;
@@ -176,11 +178,20 @@ const MetaballBackground = () => {
         }
 
         float getSphereRadius(int index, float time) {
-          float baseRadius = 0.5 + mod(float(index), 2.0) * 0.15;
-          // Wave params: sin(time * speed + index * offset) * amplitude
-          float wave = sin(time * 2.0 + float(index) * 1.2) * 0.2;
-          // No wave: float wave = 0.0;
-          return baseRadius + wave;
+          // Fixed radius - varied sizes
+          if (index == 0) {
+            return 0.85; // Large
+          } else if (index == 1) {
+            return 0.7;  // Medium-large
+          } else if (index == 2) {
+            return 0.7;  // Large
+          } else if (index == 3) {
+            return 0.75; // Medium-large
+          } else if (index == 4) {
+            return 0.95;  // Large
+          } else {
+            return 0.4;  // Small (new ball)
+          }
         }
 
         struct SceneResult {
@@ -194,22 +205,22 @@ const MetaballBackground = () => {
           float time = uTime * uAnimationSpeed;
 
           // Store positions and radii
-          vec3 spherePos[5];
-          float sphereRad[5];
+          vec3 spherePos[6];
+          float sphereRad[6];
 
-          for (int i = 0; i < 5; i++) {
+          for (int i = 0; i < 6; i++) {
             spherePos[i] = getSpherePosition(i, time);
             sphereRad[i] = getSphereRadius(i, time);
           }
 
           // Create spheres with interaction and track closest
-          for (int i = 0; i < 5; i++) {
+          for (int i = 0; i < 6; i++) {
             vec3 pos_i = spherePos[i];
             float rad_i = sphereRad[i];
 
             // Check for nearby spheres to adjust smoothness
             float minDist = 10.0;
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 6; j++) {
               if (i == j) continue;
               float dist = length(spherePos[j] - pos_i);
               minDist = min(minDist, dist);
@@ -277,7 +288,7 @@ const MetaballBackground = () => {
 
           // Get color based on sphere index
           vec3 baseColor = uSphereColors[0]; // Default
-          if (sphereIndex >= 0 && sphereIndex < 5) {
+          if (sphereIndex >= 0 && sphereIndex < 6) {
             baseColor = uSphereColors[sphereIndex];
           }
 
