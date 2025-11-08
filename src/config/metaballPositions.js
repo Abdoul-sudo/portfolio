@@ -58,243 +58,232 @@ export function getDeviceType() {
 }
 
 /**
- * DESKTOP CONFIGURATIONS (Default)
- * Optimized for wide screens, landscape orientation
+ * DESKTOP HD CONFIGURATIONS (1024px - 1920px)
+ * Optimized for standard HD/1080p laptops and desktop monitors
  */
 export const METABALL_CONFIGS_DESKTOP = {
   /**
    * HOME/HERO SECTION
-   * Current positions work well - frames centered headline beautifully
+   * Frames centered headline beautifully
    */
   home: [
-    { x: -2.5, y: 2.0, z: 0.0, radius: 0.85 },   // Top left corner - Large
-    { x: 2.2, y: 1.8, z: 0.0, radius: 0.7 },     // Top right near corner - Medium-large
-    { x: -1.0, y: 0.2, z: 0.0, radius: 0.65 },   // Center left - Medium
-    { x: 2.0, y: -2.2, z: 0.0, radius: 0.75 },   // Bottom right - Medium-large
-    { x: -2.5, y: -2.1, z: 0.0, radius: 0.85 },  // Bottom left corner - Large
-    { x: 1.3, y: -0.5, z: 0.0, radius: 0.4 }     // Center right small - Small accent
+    { x: -2.5, y: 2.0, z: 0.0, radius: 0.85 },   // [0] 🔵 Light Blue - Top left
+    { x: 2.2, y: 1.8, z: 0.0, radius: 0.7 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -1.0, y: 0.2, z: 0.0, radius: 0.65 },   // [2] 💜 Purple/Lavender - Center left
+    { x: 2.0, y: -2.2, z: 0.0, radius: 0.75 },   // [3] 🌿 Mint Green - Bottom right
+    { x: -2.5, y: -2.1, z: 0.0, radius: 0.85 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 1.3, y: -0.5, z: 0.0, radius: 0.4 }     // [5] 🌹 Rose - Center right accent
   ],
 
   /**
    * WORK SECTION
-   * Positioned around project cards in grid-aware pattern
+   * Distributed around project showcase area
    */
   work: [
-    { x: -2.8, y: 2.0, z: 0.0, radius: 0.8 },    // Top left - flanking header
-    { x: 2.8, y: 2.3, z: 0.0, radius: 0.7 },     // Top right - flanking header
-    { x: -0.3, y: -0.5, z: 0.0, radius: 0.85 },   // Mid left - near Pixel Dunking
-    { x: 2.4, y: 0.3, z: 0.0, radius: 0.75 },    // Mid right - near Pixel Dunking
-    { x: -3.1, y: -1.2, z: 0.0, radius: 0.65 },  // Bottom left - near GameFeat
-    { x: 2.2, y: -2.0, z: 0.0, radius: 0.75 }     // Bottom right - near Juicy
+    { x: -2.8, y: 2.0, z: 0.0, radius: 0.8 },    // [0] 🔵 Light Blue - Top left
+    { x: 2.8, y: 2.3, z: 0.0, radius: 0.7 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.3, y: -0.5, z: 0.0, radius: 0.85 },  // [2] 💜 Purple/Lavender - Center
+    { x: 2.4, y: 0.3, z: 0.0, radius: 0.75 },    // [3] 🌿 Mint Green - Mid right
+    { x: -3.1, y: -1.2, z: 0.0, radius: 0.65 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 2.2, y: -2.0, z: 0.0, radius: 0.75 }    // [5] 🌹 Rose - Bottom right
   ],
 
   /**
    * ABOUT SECTION
-   * Concentrated near profile photo and skill clusters
+   * Clustered around profile photo and bio content
    */
   about: [
-    { x: -2.8, y: 1.7, z: 0.0, radius: 0.75 },    // Upper left - near photo
-    { x: -3.5, y: -2.0, z: 0.0, radius: 0.85 },    // Mid left - emphasizing photo
-    { x: -1.3, y: -0.6, z: 0.0, radius: 0.5 },  // Lower left - near photo bottom
-    { x: 0.5, y: 0.3, z: 0.0, radius: 0.65 },    // Upper mid - near skill tags
-    { x: 3.0, y: -1.3, z: 0.0, radius: 0.4 },    // Lower mid - near expertise blocks
-    { x: 3.0, y: 1.2, z: 0.0, radius: 0.5 }      // Upper right - balance composition
+    { x: -2.8, y: 1.7, z: 0.0, radius: 0.75 },   // [0] 🔵 Light Blue - Upper left
+    { x: -3.5, y: -2.0, z: 0.0, radius: 0.85 },  // [1] 🌸 Coral/Pink - Lower left (large)
+    { x: -1.3, y: -0.6, z: 0.0, radius: 0.5 },   // [2] 💜 Purple/Lavender - Mid left
+    { x: 0.5, y: 0.3, z: 0.0, radius: 0.65 },    // [3] 🌿 Mint Green - Center
+    { x: 3.0, y: -1.3, z: 0.0, radius: 0.4 },    // [4] 🔷 Sky Blue - Lower right
+    { x: 3.0, y: 1.2, z: 0.0, radius: 0.5 }      // [5] 🌹 Rose - Upper right
   ],
 
   /**
    * CONTACT SECTION
-   * Filling minimalist layout without overwhelming
+   * Balanced across social links and email areas
    */
   contact: [
-    { x: -2.5, y: 1.9, z: 0.0, radius: 0.7 },   // Upper left - near social media header
-    { x: -0.7, y: -0.1, z: 0.0, radius: 0.5 },    // Mid left - near social links
-    { x: 1.8, y: 1.5, z: 0.0, radius: 0.65 },     // Upper right - near mail header
-    { x: 2.5, y: -0.5, z: 0.0, radius: 0.8 },    // Mid right - near email
-    { x: -2.5, y: -1.5, z: 0.0, radius: 0.6 },   // Lower center - negative space
-    { x: 1.0, y: -2.3, z: 0.0, radius: 0.8 }    // Lower right - negative space balance
+    { x: -2.5, y: 1.9, z: 0.0, radius: 0.7 },    // [0] 🔵 Light Blue - Upper left
+    { x: -0.7, y: -0.1, z: 0.0, radius: 0.5 },   // [1] 🌸 Coral/Pink - Center left
+    { x: 1.8, y: 1.5, z: 0.0, radius: 0.65 },    // [2] 💜 Purple/Lavender - Upper right
+    { x: 2.5, y: -0.5, z: 0.0, radius: 0.8 },    // [3] 🌿 Mint Green - Mid right (large)
+    { x: -2.5, y: -1.5, z: 0.0, radius: 0.6 },   // [4] 🔷 Sky Blue - Lower left
+    { x: 1.0, y: -2.3, z: 0.0, radius: 0.8 }     // [5] 🌹 Rose - Bottom center (large)
   ]
 };
 
 /**
- * TABLET CONFIGURATIONS
- * Optimized for medium screens (768px - 1024px)
- * - Reduced horizontal spread (x coordinates scaled ~0.7x)
- * - Slightly adjusted vertical positions
- * - Smaller radii for better proportion
+ * TABLET CONFIGURATIONS (768px - 1024px)
+ * Optimized for medium screens (iPad, small laptops)
+ * Scale factor: ~0.72x horizontal, radii -0.1
  */
 export const METABALL_CONFIGS_TABLET = {
   home: [
-    { x: -1.8, y: 2.0, z: 0.0, radius: 0.75 },   // Top left
-    { x: 1.6, y: 1.8, z: 0.0, radius: 0.6 },     // Top right
-    { x: -0.7, y: 0.2, z: 0.0, radius: 0.55 },   // Center left
-    { x: 1.5, y: -2.0, z: 0.0, radius: 0.65 },   // Bottom right
-    { x: -1.8, y: -2.0, z: 0.0, radius: 0.75 },  // Bottom left
-    { x: 1.0, y: -0.5, z: 0.0, radius: 0.35 }    // Center right accent
+    { x: -1.8, y: 2.0, z: 0.0, radius: 0.75 },   // [0] 🔵 Light Blue - Top left
+    { x: 1.6, y: 1.8, z: 0.0, radius: 0.6 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.7, y: 0.2, z: 0.0, radius: 0.55 },   // [2] 💜 Purple/Lavender - Center left
+    { x: 1.4, y: -2.2, z: 0.0, radius: 0.65 },   // [3] 🌿 Mint Green - Bottom right
+    { x: -1.8, y: -2.1, z: 0.0, radius: 0.75 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 0.9, y: -0.5, z: 0.0, radius: 0.3 }     // [5] 🌹 Rose - Center right accent
   ],
 
   work: [
-    { x: -2.0, y: 2.3, z: 0.0, radius: 0.6 },    // Top left
-    { x: 2.0, y: 2.3, z: 0.0, radius: 0.6 },     // Top right
-    { x: -1.6, y: 0.5, z: 0.0, radius: 0.75 },   // Mid left
-    { x: 1.7, y: 0.3, z: 0.0, radius: 0.65 },    // Mid right
-    { x: -1.5, y: -1.8, z: 0.0, radius: 0.55 },  // Bottom left
-    { x: 1.6, y: -1.6, z: 0.0, radius: 0.5 }     // Bottom right
+    { x: -2.0, y: 2.0, z: 0.0, radius: 0.7 },    // [0] 🔵 Light Blue - Top left
+    { x: 2.0, y: 2.3, z: 0.0, radius: 0.6 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.2, y: -0.5, z: 0.0, radius: 0.75 },  // [2] 💜 Purple/Lavender - Center
+    { x: 1.7, y: 0.3, z: 0.0, radius: 0.65 },    // [3] 🌿 Mint Green - Mid right
+    { x: -2.2, y: -1.2, z: 0.0, radius: 0.55 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 1.6, y: -2.0, z: 0.0, radius: 0.65 }    // [5] 🌹 Rose - Bottom right
   ],
 
   about: [
-    { x: -2.0, y: 1.5, z: 0.0, radius: 0.7 },    // Upper left
-    { x: -1.8, y: 0.0, z: 0.0, radius: 0.8 },    // Mid left
-    { x: -1.6, y: -1.5, z: 0.0, radius: 0.65 },  // Lower left
-    { x: 1.2, y: 1.0, z: 0.0, radius: 0.55 },    // Upper mid
-    { x: 1.5, y: -0.8, z: 0.0, radius: 0.6 },    // Lower mid
-    { x: 2.2, y: 2.2, z: 0.0, radius: 0.45 }     // Upper right
+    { x: -2.0, y: 1.7, z: 0.0, radius: 0.65 },   // [0] 🔵 Light Blue - Upper left
+    { x: -2.5, y: -2.0, z: 0.0, radius: 0.75 },  // [1] 🌸 Coral/Pink - Lower left (large)
+    { x: -0.9, y: -0.6, z: 0.0, radius: 0.4 },   // [2] 💜 Purple/Lavender - Mid left
+    { x: 0.4, y: 0.3, z: 0.0, radius: 0.55 },    // [3] 🌿 Mint Green - Center
+    { x: 2.2, y: -1.3, z: 0.0, radius: 0.3 },    // [4] 🔷 Sky Blue - Lower right
+    { x: 2.2, y: 1.2, z: 0.0, radius: 0.4 }      // [5] 🌹 Rose - Upper right
   ],
 
   contact: [
-    { x: -1.8, y: 1.8, z: 0.0, radius: 0.65 },   // Upper left
-    { x: -1.3, y: 0.5, z: 0.0, radius: 0.6 },    // Mid left
-    { x: 1.6, y: 1.5, z: 0.0, radius: 0.7 },     // Upper right
-    { x: 1.8, y: 0.0, z: 0.0, radius: 0.55 },    // Mid right
-    { x: -0.4, y: -1.5, z: 0.0, radius: 0.5 },   // Lower center
-    { x: 0.8, y: -1.8, z: 0.0, radius: 0.45 }    // Lower right
+    { x: -1.8, y: 1.9, z: 0.0, radius: 0.6 },    // [0] 🔵 Light Blue - Upper left
+    { x: -0.5, y: -0.1, z: 0.0, radius: 0.4 },   // [1] 🌸 Coral/Pink - Center left
+    { x: 1.3, y: 1.5, z: 0.0, radius: 0.55 },    // [2] 💜 Purple/Lavender - Upper right
+    { x: 1.8, y: -0.5, z: 0.0, radius: 0.7 },    // [3] 🌿 Mint Green - Mid right (large)
+    { x: -1.8, y: -1.5, z: 0.0, radius: 0.5 },   // [4] 🔷 Sky Blue - Lower left
+    { x: 0.7, y: -2.3, z: 0.0, radius: 0.7 }     // [5] 🌹 Rose - Bottom center (large)
   ]
 };
 
 /**
- * MOBILE CONFIGURATIONS
- * Optimized for narrow screens, portrait orientation
- * - Tight horizontal spread (x coordinates scaled ~0.5x)
- * - Extended vertical range for portrait layout
- * - Smaller radii to avoid overwhelming small screens
- * - Positioned to not obscure text content
+ * MOBILE CONFIGURATIONS (<768px)
+ * Optimized for phones and narrow portrait screens
+ * Scale factor: ~0.48x horizontal, radii -0.2, extended vertical
  */
 export const METABALL_CONFIGS_MOBILE = {
   home: [
-    { x: -1.2, y: 2.5, z: 0.0, radius: 0.6 },    // Top left
-    { x: 1.1, y: 2.3, z: 0.0, radius: 0.5 },     // Top right
-    { x: -0.5, y: 0.8, z: 0.0, radius: 0.45 },   // Upper center left
-    { x: 0.9, y: -1.5, z: 0.0, radius: 0.55 },   // Lower right
-    { x: -1.1, y: -2.3, z: 0.0, radius: 0.65 },  // Bottom left
-    { x: 0.6, y: -0.2, z: 0.0, radius: 0.3 }     // Center accent
+    { x: -1.2, y: 2.5, z: 0.0, radius: 0.65 },   // [0] 🔵 Light Blue - Top left
+    { x: 1.1, y: 2.3, z: 0.0, radius: 0.5 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.5, y: 0.5, z: 0.0, radius: 0.45 },   // [2] 💜 Purple/Lavender - Center left
+    { x: 1.0, y: -1.8, z: 0.0, radius: 0.55 },   // [3] 🌿 Mint Green - Lower right
+    { x: -1.2, y: -2.5, z: 0.0, radius: 0.65 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 0.6, y: -0.3, z: 0.0, radius: 0.2 }     // [5] 🌹 Rose - Center accent
   ],
 
   work: [
-    { x: -1.3, y: 2.8, z: 0.0, radius: 0.5 },    // Top left (above header)
-    { x: 1.3, y: 2.8, z: 0.0, radius: 0.5 },     // Top right (above header)
-    { x: -1.0, y: 1.0, z: 0.0, radius: 0.6 },    // Upper left
-    { x: 1.1, y: 0.5, z: 0.0, radius: 0.55 },    // Upper right
-    { x: -0.9, y: -1.5, z: 0.0, radius: 0.5 },   // Lower left
-    { x: 1.0, y: -2.0, z: 0.0, radius: 0.45 }    // Lower right
+    { x: -1.3, y: 2.5, z: 0.0, radius: 0.6 },    // [0] 🔵 Light Blue - Top left
+    { x: 1.3, y: 2.8, z: 0.0, radius: 0.5 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.1, y: -0.3, z: 0.0, radius: 0.65 },  // [2] 💜 Purple/Lavender - Center
+    { x: 1.2, y: 0.5, z: 0.0, radius: 0.55 },    // [3] 🌿 Mint Green - Mid right
+    { x: -1.5, y: -0.9, z: 0.0, radius: 0.45 },  // [4] 🔷 Sky Blue - Lower left
+    { x: 1.1, y: -2.2, z: 0.0, radius: 0.55 }    // [5] 🌹 Rose - Bottom right
   ],
 
   about: [
-    { x: -1.1, y: 2.2, z: 0.0, radius: 0.6 },    // Top left
-    { x: -0.9, y: 0.8, z: 0.0, radius: 0.7 },    // Upper left (near content)
-    { x: -0.8, y: -0.8, z: 0.0, radius: 0.6 },   // Lower left
-    { x: 0.8, y: 1.5, z: 0.0, radius: 0.5 },     // Upper right
-    { x: 0.9, y: -0.3, z: 0.0, radius: 0.55 },   // Mid right
-    { x: 1.2, y: -2.0, z: 0.0, radius: 0.4 }     // Lower right
+    { x: -1.3, y: 2.2, z: 0.0, radius: 0.55 },   // [0] 🔵 Light Blue - Upper left
+    { x: -1.7, y: -1.5, z: 0.0, radius: 0.65 },  // [1] 🌸 Coral/Pink - Lower left (large)
+    { x: -0.6, y: -0.4, z: 0.0, radius: 0.3 },   // [2] 💜 Purple/Lavender - Mid left
+    { x: 0.2, y: 0.4, z: 0.0, radius: 0.45 },    // [3] 🌿 Mint Green - Center
+    { x: 1.4, y: -1.0, z: 0.0, radius: 0.2 },    // [4] 🔷 Sky Blue - Lower right
+    { x: 1.4, y: 1.4, z: 0.0, radius: 0.3 }      // [5] 🌹 Rose - Upper right
   ],
 
   contact: [
-    { x: -1.0, y: 2.5, z: 0.0, radius: 0.55 },   // Top left
-    { x: -0.8, y: 1.0, z: 0.0, radius: 0.5 },    // Upper left
-    { x: 0.9, y: 2.0, z: 0.0, radius: 0.6 },     // Top right
-    { x: 1.0, y: 0.5, z: 0.0, radius: 0.5 },     // Upper right
-    { x: -0.3, y: -1.2, z: 0.0, radius: 0.45 },  // Lower center
-    { x: 0.6, y: -2.2, z: 0.0, radius: 0.4 }     // Bottom right
+    { x: -1.2, y: 2.5, z: 0.0, radius: 0.5 },    // [0] 🔵 Light Blue - Upper left
+    { x: -0.3, y: 0.0, z: 0.0, radius: 0.3 },    // [1] 🌸 Coral/Pink - Center left
+    { x: 0.9, y: 2.0, z: 0.0, radius: 0.45 },    // [2] 💜 Purple/Lavender - Top right
+    { x: 1.2, y: -0.3, z: 0.0, radius: 0.6 },    // [3] 🌿 Mint Green - Mid right (large)
+    { x: -1.2, y: -1.2, z: 0.0, radius: 0.4 },   // [4] 🔷 Sky Blue - Lower left
+    { x: 0.5, y: -2.5, z: 0.0, radius: 0.6 }     // [5] 🌹 Rose - Bottom center (large)
   ]
 };
 
 /**
- * 2K DESKTOP CONFIGURATIONS (1440p / QHD)
- * Optimized for 2560x1440 displays and high-res laptops
- * - Extended horizontal spread (x coordinates scaled ~1.15x)
- * - Larger radii for better visibility on high-DPI screens
- * - More dramatic positioning for immersive experience
- * - Takes advantage of extra screen real estate
+ * 2K DESKTOP CONFIGURATIONS (1920px - 2560px)
+ * Optimized for QHD displays and high-res laptops (1440p)
+ * Scale factor: ~1.18x horizontal, radii +0.1
  */
 export const METABALL_CONFIGS_2K = {
-    home: [
-        { x: -4.0, y: 2.2, z: 0.0, radius: 0.95 }, // Top left - Extra large
-        { x: 2.7, y: 2.0, z: 0.0, radius: 0.85 }, // Top right - Large
-        { x: -1.3, y: 0.3, z: 0.0, radius: 0.75 }, // Center left - Medium-large
-        { x: 2.5, y: -2.4, z: 0.0, radius: 0.9 }, // Bottom right - Large
-        { x: -3.7, y: -2.3, z: 0.0, radius: 0.9 }, // Bottom left - Extra large
-        { x: 1.6, y: -0.6, z: 0.0, radius: 0.5 }, // Center accent
-    ],
-
-    work: [
-        { x: -3.3, y: 2.5, z: 0.0, radius: 0.85 }, // Top left - Wide placement
-        { x: 3.3, y: 2.5, z: 0.0, radius: 0.85 }, // Top right - Wide placement
-        { x: -2.7, y: 0.6, z: 0.0, radius: 1.0 }, // Mid left - Large feature
-        { x: 2.9, y: 0.4, z: 0.0, radius: 0.9 }, // Mid right - Large
-        { x: -2.5, y: -2.2, z: 0.0, radius: 0.8 }, // Bottom left
-        { x: 2.7, y: -2.0, z: 0.0, radius: 0.75 }, // Bottom right
-    ],
-
-    about: [
-        { x: -3.3, y: 1.7, z: 0.0, radius: 0.95 }, // Upper left - Prominent
-        { x: -3.0, y: 0.0, z: 0.0, radius: 1.05 }, // Mid left - Hero blob
-        { x: -2.7, y: -1.7, z: 0.0, radius: 0.9 }, // Lower left
-        { x: 1.9, y: 1.2, z: 0.0, radius: 0.8 }, // Upper mid
-        { x: 2.5, y: -1.0, z: 0.0, radius: 0.85 }, // Lower mid
-        { x: 3.5, y: 2.4, z: 0.0, radius: 0.65 }, // Upper right accent
-    ],
-
-    contact: [
-        { x: -3.0, y: 2.0, z: 0.0, radius: 0.9 }, // Upper left
-        { x: -2.2, y: 0.6, z: 0.0, radius: 0.85 }, // Mid left
-        { x: 2.7, y: 1.7, z: 0.0, radius: 0.95 }, // Upper right
-        { x: 3.0, y: 0.0, z: 0.0, radius: 0.8 }, // Mid right
-        { x: -0.6, y: -1.7, z: 0.0, radius: 0.75 }, // Lower center
-        { x: 1.3, y: -2.2, z: 0.0, radius: 0.7 }, // Lower right
-    ],
-};
-
-/**
- * 4K DESKTOP CONFIGURATIONS (2160p / UHD)
- * Optimized for 3840x2160+ displays and ultra high-res screens
- * - Maximum horizontal spread (x coordinates scaled ~1.3x)
- * - Large, bold radii for stunning visual impact
- * - Cinematic positioning that fills the viewport
- * - Premium experience for high-end displays
- */
-export const METABALL_CONFIGS_4K = {
   home: [
-    { x: -3.5, y: 2.4, z: 0.0, radius: 1.15 },   // Top left - Massive
-    { x: 3.2, y: 2.2, z: 0.0, radius: 1.0 },     // Top right - Very large
-    { x: -1.5, y: 0.4, z: 0.0, radius: 0.9 },    // Center left - Large
-    { x: 3.0, y: -2.6, z: 0.0, radius: 1.05 },   // Bottom right - Very large
-    { x: -3.5, y: -2.5, z: 0.0, radius: 1.15 },  // Bottom left - Massive
-    { x: 2.0, y: -0.7, z: 0.0, radius: 0.6 }     // Center accent
+    { x: -3.0, y: 2.2, z: 0.0, radius: 0.95 },   // [0] 🔵 Light Blue - Top left
+    { x: 2.6, y: 2.0, z: 0.0, radius: 0.8 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -1.2, y: 0.3, z: 0.0, radius: 0.75 },   // [2] 💜 Purple/Lavender - Center left
+    { x: 2.4, y: -2.4, z: 0.0, radius: 0.85 },   // [3] 🌿 Mint Green - Bottom right
+    { x: -3.0, y: -2.3, z: 0.0, radius: 0.95 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 1.5, y: -0.6, z: 0.0, radius: 0.5 }     // [5] 🌹 Rose - Center accent
   ],
 
   work: [
-    { x: -3.8, y: 2.7, z: 0.0, radius: 1.0 },    // Top left - Ultra wide
-    { x: 3.8, y: 2.7, z: 0.0, radius: 1.0 },     // Top right - Ultra wide
-    { x: -3.2, y: 0.7, z: 0.0, radius: 1.15 },   // Mid left - Hero blob
-    { x: 3.4, y: 0.5, z: 0.0, radius: 1.05 },    // Mid right - Very large
-    { x: -3.0, y: -2.4, z: 0.0, radius: 0.95 },  // Bottom left
-    { x: 3.2, y: -2.2, z: 0.0, radius: 0.9 }     // Bottom right
+    { x: -3.3, y: 2.2, z: 0.0, radius: 0.9 },    // [0] 🔵 Light Blue - Top left
+    { x: 3.3, y: 2.5, z: 0.0, radius: 0.8 },     // [1] 🌸 Coral/Pink - Top right
+    { x: -0.4, y: -0.6, z: 0.0, radius: 0.95 },  // [2] 💜 Purple/Lavender - Center
+    { x: 2.8, y: 0.4, z: 0.0, radius: 0.85 },    // [3] 🌿 Mint Green - Mid right
+    { x: -3.7, y: -1.4, z: 0.0, radius: 0.75 },  // [4] 🔷 Sky Blue - Bottom left
+    { x: 2.6, y: -2.2, z: 0.0, radius: 0.85 }    // [5] 🌹 Rose - Bottom right
   ],
 
   about: [
-    { x: -3.8, y: 1.9, z: 0.0, radius: 1.1 },    // Upper left - Dominant
-    { x: -3.5, y: 0.0, z: 0.0, radius: 1.2 },    // Mid left - Statement piece
-    { x: -3.2, y: -1.9, z: 0.0, radius: 1.05 },  // Lower left - Large
-    { x: 2.3, y: 1.4, z: 0.0, radius: 0.95 },    // Upper mid
-    { x: 3.0, y: -1.2, z: 0.0, radius: 1.0 },    // Lower mid
-    { x: 4.0, y: 2.6, z: 0.0, radius: 0.75 }     // Upper right balance
+    { x: -3.3, y: 1.9, z: 0.0, radius: 0.85 },   // [0] 🔵 Light Blue - Upper left
+    { x: -4.1, y: -2.2, z: 0.0, radius: 0.95 },  // [1] 🌸 Coral/Pink - Lower left (large)
+    { x: -1.5, y: -0.7, z: 0.0, radius: 0.6 },   // [2] 💜 Purple/Lavender - Mid left
+    { x: 0.6, y: 0.4, z: 0.0, radius: 0.75 },    // [3] 🌿 Mint Green - Center
+    { x: 3.5, y: -1.5, z: 0.0, radius: 0.5 },    // [4] 🔷 Sky Blue - Lower right
+    { x: 3.5, y: 1.4, z: 0.0, radius: 0.6 }      // [5] 🌹 Rose - Upper right
   ],
 
   contact: [
-    { x: -3.5, y: 2.2, z: 0.0, radius: 1.05 },   // Upper left - Large
-    { x: -2.6, y: 0.7, z: 0.0, radius: 1.0 },    // Mid left
-    { x: 3.2, y: 1.9, z: 0.0, radius: 1.1 },     // Upper right - Large
-    { x: 3.5, y: 0.0, z: 0.0, radius: 0.95 },    // Mid right
-    { x: -0.8, y: -1.9, z: 0.0, radius: 0.9 },   // Lower center
-    { x: 1.6, y: -2.4, z: 0.0, radius: 0.85 }    // Lower right
+    { x: -3.0, y: 2.1, z: 0.0, radius: 0.8 },    // [0] 🔵 Light Blue - Upper left
+    { x: -0.8, y: -0.1, z: 0.0, radius: 0.6 },   // [1] 🌸 Coral/Pink - Center left
+    { x: 2.1, y: 1.7, z: 0.0, radius: 0.75 },    // [2] 💜 Purple/Lavender - Upper right
+    { x: 3.0, y: -0.6, z: 0.0, radius: 0.9 },    // [3] 🌿 Mint Green - Mid right (large)
+    { x: -3.0, y: -1.7, z: 0.0, radius: 0.7 },   // [4] 🔷 Sky Blue - Lower left
+    { x: 1.2, y: -2.5, z: 0.0, radius: 0.9 }     // [5] 🌹 Rose - Bottom center (large)
+  ]
+};
+
+/**
+ * 4K DESKTOP CONFIGURATIONS (2560px+)
+ * Optimized for UHD displays (2160p) and ultra high-res screens
+ * Scale factor: ~1.36x horizontal, radii +0.25
+ */
+export const METABALL_CONFIGS_4K = {
+  home: [
+    { x: -3.4, y: 2.4, z: 0.0, radius: 1.1 },    // [0] 🔵 Light Blue - Top left (massive)
+    { x: 3.0, y: 2.2, z: 0.0, radius: 0.95 },    // [1] 🌸 Coral/Pink - Top right
+    { x: -1.4, y: 0.4, z: 0.0, radius: 0.9 },    // [2] 💜 Purple/Lavender - Center left
+    { x: 2.7, y: -2.6, z: 0.0, radius: 1.0 },    // [3] 🌿 Mint Green - Bottom right
+    { x: -3.4, y: -2.5, z: 0.0, radius: 1.1 },   // [4] 🔷 Sky Blue - Bottom left (massive)
+    { x: 1.8, y: -0.7, z: 0.0, radius: 0.65 }    // [5] 🌹 Rose - Center accent
+  ],
+
+  work: [
+    { x: -3.8, y: 2.4, z: 0.0, radius: 1.05 },   // [0] 🔵 Light Blue - Top left
+    { x: 3.8, y: 2.7, z: 0.0, radius: 0.95 },    // [1] 🌸 Coral/Pink - Top right
+    { x: -0.4, y: -0.7, z: 0.0, radius: 1.1 },   // [2] 💜 Purple/Lavender - Center (hero)
+    { x: 3.3, y: 0.5, z: 0.0, radius: 1.0 },     // [3] 🌿 Mint Green - Mid right
+    { x: -4.2, y: -1.6, z: 0.0, radius: 0.9 },   // [4] 🔷 Sky Blue - Bottom left
+    { x: 3.0, y: -2.4, z: 0.0, radius: 1.0 }     // [5] 🌹 Rose - Bottom right
+  ],
+
+  about: [
+    { x: -3.8, y: 2.1, z: 0.0, radius: 1.0 },    // [0] 🔵 Light Blue - Upper left
+    { x: -4.8, y: -2.4, z: 0.0, radius: 1.1 },   // [1] 🌸 Coral/Pink - Lower left (statement)
+    { x: -1.8, y: -0.8, z: 0.0, radius: 0.75 },  // [2] 💜 Purple/Lavender - Mid left
+    { x: 0.7, y: 0.5, z: 0.0, radius: 0.9 },     // [3] 🌿 Mint Green - Center
+    { x: 4.1, y: -1.8, z: 0.0, radius: 0.65 },   // [4] 🔷 Sky Blue - Lower right
+    { x: 4.1, y: 1.6, z: 0.0, radius: 0.75 }     // [5] 🌹 Rose - Upper right
+  ],
+
+  contact: [
+    { x: -3.4, y: 2.3, z: 0.0, radius: 0.95 },   // [0] 🔵 Light Blue - Upper left
+    { x: -1.0, y: -0.1, z: 0.0, radius: 0.75 },  // [1] 🌸 Coral/Pink - Center left
+    { x: 2.4, y: 1.9, z: 0.0, radius: 0.9 },     // [2] 💜 Purple/Lavender - Upper right
+    { x: 3.4, y: -0.7, z: 0.0, radius: 1.05 },   // [3] 🌿 Mint Green - Mid right (large)
+    { x: -3.4, y: -1.9, z: 0.0, radius: 0.85 },  // [4] 🔷 Sky Blue - Lower left
+    { x: 1.4, y: -2.7, z: 0.0, radius: 1.05 }    // [5] 🌹 Rose - Bottom center (large)
   ]
 };
 

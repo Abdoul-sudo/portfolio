@@ -6,6 +6,7 @@ import '../styles/hero.css';
 const HeroSection = ({ onNavigate }) => {
   const heroRef = useRef(null);
   const line1Ref = useRef(null);
+  const line1bRef = useRef(null);
   const line2Ref = useRef(null);
   const line3Ref = useRef(null);
   const ctasRef = useRef(null);
@@ -18,7 +19,7 @@ const HeroSection = ({ onNavigate }) => {
 
     if (prefersReducedMotion) {
       // Just show everything immediately
-      gsap.set([line1Ref.current, line2Ref.current, line3Ref.current, ctasRef.current], {
+      gsap.set([line1Ref.current, line1bRef.current, line2Ref.current, line3Ref.current, ctasRef.current], {
         y: 0,
         opacity: 1
       });
@@ -26,7 +27,9 @@ const HeroSection = ({ onNavigate }) => {
     }
 
     // Split main heading into characters for sophisticated animation
-    const chars = splitTextIntoChars(line1Ref.current);
+    const chars1 = splitTextIntoChars(line1Ref.current);
+    const chars1b = splitTextIntoChars(line1bRef.current);
+    const chars = [...chars1, ...chars1b];
 
     // Create master timeline with smooth overlapping animations
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -112,36 +115,39 @@ const HeroSection = ({ onNavigate }) => {
   }, []);
 
   return (
-    <section className="hero-section section" id="home" ref={heroRef}>
-      <div className="hero-content">
-        <div className="hero-lines">
-          <h1 className="hero-line hero-line-1" ref={line1Ref}>
-            Hey, I'm Abdoul Wahhaab
-          </h1>
-          <h1 className="hero-line hero-line-2" ref={line2Ref}>
-            I'm a Full-Stack Developer
-          </h1>
-          <h1 className="hero-line hero-line-3" ref={line3Ref}>
-            I build Web, Games & AI-powered experiences
-          </h1>
-        </div>
+      <section className='hero-section section' id='home' ref={heroRef}>
+          <div className='hero-content'>
+              <div className='hero-lines'>
+                  <h1 className='hero-line hero-line-1' ref={line1Ref}>
+                      Hey, I'm
+                  </h1>
+                  <h1 className='hero-line hero-line-1b' ref={line1bRef}>
+                      Abdoul Wahhaab
+                  </h1>
+                  <h1 className='hero-line hero-line-2' ref={line2Ref}>
+                      I'm a Full-Stack Developer
+                  </h1>
+                  <h1 className='hero-line hero-line-3' ref={line3Ref}>
+                      I build Web, Games & AI-powered experiences
+                  </h1>
+              </div>
 
-        <div className="hero-ctas" ref={ctasRef}>
-          <button onClick={() => onNavigate?.('work')} className="hero-cta interactive">
-            <svg className="hero-cta-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span>see my projects</span>
-          </button>
-          <button onClick={() => onNavigate?.('about')} className="hero-cta interactive">
-            <svg className="hero-cta-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span>more about me</span>
-          </button>
-        </div>
-      </div>
-    </section>
+              <div className='hero-ctas' ref={ctasRef}>
+                  <button onClick={() => onNavigate?.('work')} className='hero-cta interactive'>
+                      <svg className='hero-cta-arrow' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                          <path d='M5 12H19M19 12L12 5M19 12L12 19' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+                      </svg>
+                      <span>see my projects</span>
+                  </button>
+                  <button onClick={() => onNavigate?.('about')} className='hero-cta interactive'>
+                      <svg className='hero-cta-arrow' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                          <path d='M5 12H19M19 12L12 5M19 12L12 19' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+                      </svg>
+                      <span>more about me</span>
+                  </button>
+              </div>
+          </div>
+      </section>
   );
 };
 

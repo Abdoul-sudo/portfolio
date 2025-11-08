@@ -58,11 +58,22 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* Line 1: "Hey, I'm Abdoul Wahhaab" - LARGE like Sharlee's name */
+/* Line 1: "Hey," - LARGE like Sharlee's name */
 .hero-line-1 {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
+  max-width: 90%;
+  line-height: 1.15;
+}
+
+/* Line 1b: "I'm Abdoul Wahhaab" - Same size, second line */
+.hero-line-1b {
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  line-height: 1.15;
+  margin-top: 0;
 }
 
 /* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */
