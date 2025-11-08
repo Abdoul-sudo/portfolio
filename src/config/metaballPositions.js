@@ -58,7 +58,7 @@ export function getDeviceType() {
 }
 
 /**
- * HD DESKTOP CONFIGURATIONS (Default)
+ * DESKTOP CONFIGURATIONS (Default)
  * Optimized for wide screens, landscape orientation
  */
 export const METABALL_CONFIGS_DESKTOP = {
@@ -80,12 +80,12 @@ export const METABALL_CONFIGS_DESKTOP = {
    * Positioned around project cards in grid-aware pattern
    */
   work: [
-    { x: -2.8, y: 2.3, z: 0.0, radius: 0.7 },    // Top left - flanking header
+    { x: -2.8, y: 2.0, z: 0.0, radius: 0.8 },    // Top left - flanking header
     { x: 2.8, y: 2.3, z: 0.0, radius: 0.7 },     // Top right - flanking header
-    { x: -2.2, y: 0.5, z: 0.0, radius: 0.85 },   // Mid left - near Pixel Dunking
+    { x: -0.3, y: -0.5, z: 0.0, radius: 0.85 },   // Mid left - near Pixel Dunking
     { x: 2.4, y: 0.3, z: 0.0, radius: 0.75 },    // Mid right - near Pixel Dunking
-    { x: -2.0, y: -2.0, z: 0.0, radius: 0.65 },  // Bottom left - near GameFeat
-    { x: 2.2, y: -1.8, z: 0.0, radius: 0.6 }     // Bottom right - near Juicy
+    { x: -3.1, y: -1.2, z: 0.0, radius: 0.65 },  // Bottom left - near GameFeat
+    { x: 2.2, y: -2.0, z: 0.0, radius: 0.75 }     // Bottom right - near Juicy
   ],
 
   /**
@@ -93,12 +93,12 @@ export const METABALL_CONFIGS_DESKTOP = {
    * Concentrated near profile photo and skill clusters
    */
   about: [
-    { x: -2.8, y: 1.5, z: 0.0, radius: 0.8 },    // Upper left - near photo
-    { x: -2.5, y: 0.0, z: 0.0, radius: 0.9 },    // Mid left - emphasizing photo
-    { x: -2.2, y: -1.5, z: 0.0, radius: 0.75 },  // Lower left - near photo bottom
-    { x: 1.5, y: 1.0, z: 0.0, radius: 0.65 },    // Upper mid - near skill tags
-    { x: 2.0, y: -0.8, z: 0.0, radius: 0.7 },    // Lower mid - near expertise blocks
-    { x: 3.0, y: 2.2, z: 0.0, radius: 0.5 }      // Upper right - balance composition
+    { x: -2.8, y: 1.7, z: 0.0, radius: 0.75 },    // Upper left - near photo
+    { x: -3.5, y: -2.0, z: 0.0, radius: 0.85 },    // Mid left - emphasizing photo
+    { x: -1.3, y: -0.6, z: 0.0, radius: 0.5 },  // Lower left - near photo bottom
+    { x: 0.5, y: 0.3, z: 0.0, radius: 0.65 },    // Upper mid - near skill tags
+    { x: 3.0, y: -1.3, z: 0.0, radius: 0.4 },    // Lower mid - near expertise blocks
+    { x: 3.0, y: 1.2, z: 0.0, radius: 0.5 }      // Upper right - balance composition
   ],
 
   /**
@@ -106,12 +106,12 @@ export const METABALL_CONFIGS_DESKTOP = {
    * Filling minimalist layout without overwhelming
    */
   contact: [
-    { x: -2.5, y: 1.8, z: 0.0, radius: 0.75 },   // Upper left - near social media header
-    { x: -1.8, y: 0.5, z: 0.0, radius: 0.7 },    // Mid left - near social links
-    { x: 2.2, y: 1.5, z: 0.0, radius: 0.8 },     // Upper right - near mail header
-    { x: 2.5, y: 0.0, z: 0.0, radius: 0.65 },    // Mid right - near email
-    { x: -0.5, y: -1.5, z: 0.0, radius: 0.6 },   // Lower center - negative space
-    { x: 1.0, y: -2.0, z: 0.0, radius: 0.55 }    // Lower right - negative space balance
+    { x: -2.5, y: 1.9, z: 0.0, radius: 0.7 },   // Upper left - near social media header
+    { x: -0.7, y: -0.1, z: 0.0, radius: 0.5 },    // Mid left - near social links
+    { x: 1.8, y: 1.5, z: 0.0, radius: 0.65 },     // Upper right - near mail header
+    { x: 2.5, y: -0.5, z: 0.0, radius: 0.8 },    // Mid right - near email
+    { x: -2.5, y: -1.5, z: 0.0, radius: 0.6 },   // Lower center - negative space
+    { x: 1.0, y: -2.3, z: 0.0, radius: 0.8 }    // Lower right - negative space balance
   ]
 };
 

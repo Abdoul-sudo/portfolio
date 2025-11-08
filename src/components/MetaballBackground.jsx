@@ -147,7 +147,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uniform float uSphereRadii[6];
 
         const float PI = 3.14159265359;
-        const float EPSILON = 0.002;
+        const float EPSILON = 0.001;  // Tighter for better surface detection
         const float MAX_DIST = 100.0;
 
         float smin(float a, float b, float k) {
@@ -228,7 +228,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         }
 
         vec3 calcNormal(vec3 p) {
-          float eps = 0.003;
+          float eps = 0.002;  // Reduced for better accuracy on large surfaces
           return normalize(vec3(
             sceneSDF(p + vec3(eps, 0, 0)).dist - sceneSDF(p - vec3(eps, 0, 0)).dist,
             sceneSDF(p + vec3(0, eps, 0)).dist - sceneSDF(p - vec3(0, eps, 0)).dist,
@@ -245,14 +245,15 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
           float t = 0.0;
           int sphereIndex = -1;
 
-          for (int i = 0; i < 24; i++) {
+          // Increased iterations and distance for large metaballs (up to radius 1.2)
+          for (int i = 0; i < 48; i++) {
             vec3 p = ro + rd * t;
             SceneResult scene = sceneSDF(p);
 
             if (scene.dist < EPSILON) {
               return RayResult(t, scene.closestSphere);
             }
-            if (t > 5.0) break;
+            if (t > 10.0) break;  // Extended max distance for large blobs
 
             t += scene.dist;
           }
