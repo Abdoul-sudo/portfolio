@@ -30,6 +30,15 @@
   gap: var(--spacing-xs);
 }
 
+.hero-name-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .hero-line {
   font-family: var(--font-display); /* Space Grotesk for hero impact */
   font-weight: var(--font-weight-bold);
@@ -58,22 +67,24 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* Line 1: "Hey," - LARGE like Sharlee's name */
+/* Line 1: "Hey, I'm" - LARGE like Sharlee's name */
 .hero-line-1 {
   font-size: clamp(2.5rem, 6.5vw, 5.5rem);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
   max-width: 90%;
   line-height: 1.15;
+  display: inline;
 }
 
-/* Line 1b: "I'm Abdoul Wahhaab" - Same size, second line */
+/* Line 1b: "Abdoul Wahhaab" - Same size, inline on desktop, block on mobile */
 .hero-line-1b {
   font-size: clamp(2.5rem, 6.5vw, 5.5rem);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
   line-height: 1.15;
   margin-top: 0;
+  display: inline;
 }
 
 /* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */
@@ -164,12 +175,16 @@
     padding: var(--spacing-md) var(--spacing-sm);
   }
 
-  .hero-lines {
+  .hero-name-wrapper {
+    flex-direction: column;
     gap: var(--spacing-xs);
   }
 
-  .hero-line-1 {
+  .hero-line-1,
+  .hero-line-1b {
     font-size: clamp(2rem, 10vw, 3.5rem);
+    display: block;
+    max-width: 100%;
   }
 
   .hero-line-2,
@@ -188,7 +203,8 @@
 }
 
 @media (max-width: 480px) {
-  .hero-line-1 {
+  .hero-line-1,
+  .hero-line-1b {
     font-size: clamp(1.75rem, 11vw, 2.5rem);
   }
 

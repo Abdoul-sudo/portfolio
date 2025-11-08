@@ -118,12 +118,14 @@ const HeroSection = ({ onNavigate }) => {
       <section className='hero-section section' id='home' ref={heroRef}>
           <div className='hero-content'>
               <div className='hero-lines'>
-                  <h1 className='hero-line hero-line-1' ref={line1Ref}>
-                      Hey, I'm
-                  </h1>
-                  <h1 className='hero-line hero-line-1b' ref={line1bRef}>
-                      Abdoul Wahhaab
-                  </h1>
+                  <div className='hero-name-wrapper'>
+                      <h1 className='hero-line hero-line-1' ref={line1Ref}>
+                          Hey, I'm
+                      </h1>
+                      <h1 className='hero-line hero-line-1b' ref={line1bRef}>
+                          Abdoul Wahhaab
+                      </h1>
+                  </div>
                   <h1 className='hero-line hero-line-2' ref={line2Ref}>
                       I'm a Full-Stack Developer
                   </h1>
