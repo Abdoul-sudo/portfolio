@@ -85,20 +85,6 @@ export const projectsData = [
     problem: "Home cooks need an easy way to share and discover recipes in a social format.",
     approach: "Developed a recipe sharing platform with Next.js, focusing on visual presentation and community features.",
     result: "Launched intuitive recipe platform enabling users to share culinary creations and discover new dishes."
-  },
-  {
-    id: "facebook-clone",
-    name: "Facebook Clone",
-    categories: ["web"],
-    description: "Posts, likes, comments. Built to master React fundamentals.",
-    techs: ["React", "Tailwind"],
-    demo_link: "https://abd-fb-clone.vercel.app/",
-    cover: fb_clone,
-    role: "Frontend Developer",
-    year: "2023",
-    problem: "Understanding complex state management and component architecture in React.",
-    approach: "Replicated Facebook's core features to practice React fundamentals and component composition.",
-    result: "Built fully functional social media clone, strengthening React skills and state management expertise."
   }
 ];
 
