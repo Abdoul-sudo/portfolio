@@ -119,7 +119,7 @@ const AboutSection = () => {
         {/* Right Column - Content */}
         <div className="about-right">
           <h2 className="about-title" ref={titleRef}>
-            About
+            ABOUT
           </h2>
 
           <div className="about-bio" ref={bioRef}>
