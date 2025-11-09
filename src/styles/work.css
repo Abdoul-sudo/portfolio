@@ -372,6 +372,7 @@
 /* Mobile Adjustments */
 @media (max-width: 1024px) {
   .work-section {
+    min-height: unset; /* Remove desktop min-height */
     height: 100dvh; /* Fixed height for no scroll */
     max-height: -webkit-fill-available; /* Safari iOS fix */
     display: flex;
@@ -382,72 +383,76 @@
 
   .work-content-wrapper {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0;
     width: 100%;
-    height: 100%; /* Match parent */
+    height: 100%;
     overflow: hidden;
+    padding-top: calc(var(--safe-area-top, 0px) + var(--spacing-lg)); /* Space for menu/logo */
   }
 
   .work-image-preview {
-    position: sticky;
-    top: var(--safe-area-top, 0); /* Account for device notch */
+    min-height: unset;
+    position: relative;
     width: 100%;
     flex-shrink: 0;
     z-index: 5;
-    padding-bottom: clamp(1rem, 3vh, 1.5rem); /* Responsive spacing */
-    pointer-events: none; /* Allow clicks through to content */
-        min-height: unset; /* Remove desktop min-height */
-
-  }
-
-  .work-image-preview > * {
-    pointer-events: auto; /* Re-enable for image itself */
+    padding: 0;
+    margin: 0;
+    order: 2;
   }
 
   .work-image-container {
-    width: calc(100% - var(--spacing-fluid-md) * 2); /* Horizontal margins */
-    margin-left: var(--spacing-fluid-md);
-    margin-right: var(--spacing-fluid-md);
-    height: clamp(280px, 35vh, 320px); /* Responsive height, leaves room for list */
-    border-radius: 0 0 clamp(24px, 5vw, 32px) clamp(24px, 5vw, 32px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: clamp(280px, 35vh, 350px); /* Increased height */
+    border-radius: 0;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Add depth */
+    box-shadow: none;
+    overflow: hidden;
   }
 
   .work-image-container:active {
     transform: scale(0.98);
   }
 
+  .work-image-wrapper {
+    border-radius: 0 !important;
+  }
+
   .work-image-inner {
-    border-radius: 0 0 clamp(24px, 5vw, 32px) clamp(24px, 5vw, 32px);
+    border-radius: 0 !important;
+  }
+
+  .work-preview-image {
+    border-radius: 0 !important;
   }
 
   .work-content {
+    min-height: unset;
     width: 100%;
-    flex: 1; /* Take remaining space after sticky header */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: calc(var(--mobile-header-safe) + var(--spacing-sm));
-    padding-bottom: calc(var(--safe-area-bottom, 0px) + var(--spacing-lg));
-    padding-left: var(--spacing-fluid-md);
-    padding-right: var(--spacing-fluid-md);
-    overflow-y: auto; /* Enable scrolling within section */
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch; /* Smooth iOS scroll */
-        min-height: unset; /* Remove desktop min-height */
+    display: contents; /* Children render as flex items of parent */
+    order: 1;
+  }
 
+  .work-header {
+    order: 1;
+    width: 100%;
+    flex-shrink: 0;
+    background: var(--color-bg);
+    padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-md);
   }
 
   .work-list {
+    order: 3;
+    width: 100%;
     flex: 1;
-    max-height: none;
-    overflow-y: visible; /* Handled by parent */
-    margin-right: 0;
-    padding-right: 0;
-    padding-bottom: var(--spacing-md); /* Extra space at bottom */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
   }
 
   .work-item {
