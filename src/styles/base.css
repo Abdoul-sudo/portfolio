@@ -47,6 +47,22 @@
   --spacing-lg: 4rem;
   --spacing-xl: 6rem;
 
+  /* Safe Area Insets - For device notches, dynamic island, home indicator */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+
+  /* Fluid Spacing - Responsive using clamp() */
+  --spacing-fluid-xs: clamp(0.5rem, 2vw, 0.75rem);
+  --spacing-fluid-sm: clamp(1rem, 3vw, 1.5rem);
+  --spacing-fluid-md: clamp(1.5rem, 4vw, 2.5rem);
+  --spacing-fluid-lg: clamp(2rem, 6vw, 4rem);
+
+  /* Mobile-Specific Variables */
+  --mobile-header-safe: calc(var(--safe-area-top) + 56px);
+  --mobile-content-safe: calc(var(--safe-area-left) + var(--spacing-sm));
+
   /* Transitions */
   --transition-fast: 0.2s;
   --transition-medium: 0.4s;
