@@ -451,7 +451,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    padding: var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-sm);
   }
 
   .work-item {
@@ -466,17 +466,15 @@
 
 
   .work-item-arrow {
-    font-size: 1.5rem;
-  }
-
-  /* Don't auto-show arrow on mobile, only for selected */
-  .work-item:hover .work-item-arrow {
-    width: 0;
-    opacity: 0;
+    display: none; /* Hide arrow on mobile */
   }
 
   .work-item-content {
     gap: var(--spacing-sm);
+  }
+
+  .work-item-left {
+    padding-left: var(--spacing-xs);
   }
 
   .work-item-right {
@@ -516,8 +514,6 @@
     align-items: center;
     gap: 0.5rem;
   }
-
-
 
   .work-item-type {
     text-align: left;
