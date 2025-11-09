@@ -40,8 +40,8 @@
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .logo {
-    top: var(--spacing-sm);
-    left: var(--spacing-sm);
+    top: calc(var(--spacing-md) * 2);
+    left: calc(var(--spacing-sm) * 2);
     width: 40px;
     height: 40px;
   }
