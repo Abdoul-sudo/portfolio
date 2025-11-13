@@ -545,6 +545,10 @@
     gap: 0.5rem;
   }
 
+  .work-header {
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  }
+
   .work-item-type {
     text-align: left;
     font-size: 0.75rem;
