@@ -237,18 +237,19 @@
 /* Mobile - Stack Vertical */
 @media (max-width: 768px) {
   .about-section {
-    padding: calc(var(--spacing-lg) + var(--spacing-md)) var(--spacing-sm) var(--spacing-lg);
+    padding: 150px var(--spacing-sm) var(--spacing-lg);
   }
 
   .about-content {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0 !important;
   }
 
   .about-left {
     position: relative;
     top: 0;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
   }
 
   .about-photo-wrapper {
@@ -258,41 +259,46 @@
 
   .about-cta {
     width: 100%;
+    max-width: 280px;
     justify-content: center;
     padding: 0.875rem 1.5rem;
   }
 
   .about-right {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
   }
 
   .about-title {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    font-size: clamp(1.5rem, 7vw, 2rem);
   }
 
   .about-bio p {
-    font-size: clamp(1rem, 4vw, 1.125rem);
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
   }
 
   .expertise-title {
-    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem);
   }
 
   .skill-badge {
-    font-size: clamp(0.75rem, 3vw, 0.85rem);
-    padding: 0.35rem 0.75rem;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+    padding: 0.3rem 0.65rem;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+  .about-section {
+    padding: 160px var(--spacing-sm) var(--spacing-lg);
+  }
+
   .about-photo-wrapper {
     width: 150px;
     height: 150px;
   }
 
   .about-title {
-    font-size: clamp(1.5rem, 10vw, 2rem);
+    font-size: clamp(1.4rem, 8vw, 1.75rem);
   }
 
   .expertise-section {
