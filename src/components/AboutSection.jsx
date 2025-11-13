@@ -124,9 +124,7 @@ const AboutSection = () => {
 
           <div className="about-bio" ref={bioRef}>
             <p>
-              I'm Abdoul Wahhaab ISMAEL, a polyvalent fullstack developer with 4 years of experience
-              in web development, game development, and AI automations. I create digital solutions
-              that engage, inspire, and solve real-world problems.
+              I'm <span className="bio-highlight">Abdoul Wahhaab ISMAEL</span>, a polyvalent fullstack developer with <span className="bio-highlight">4 years of experience</span> across <span className="bio-highlight">web development</span>, <span className="bio-highlight">game development</span>, and <span className="bio-highlight">AI automations</span>. I create digital solutions that engage, inspire, and solve real-world problems.
             </p>
           </div>
 
