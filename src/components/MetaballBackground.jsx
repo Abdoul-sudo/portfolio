@@ -104,7 +104,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uLightColor: { value: settings.lightColor },
         uAnimationSpeed: { value: settings.animationSpeed },
         uTranslateSpeed: { value: settings.translateSpeed },
-        uCursorGlowIntensity: { value: 0.25 },
+        uCursorGlowIntensity: { value: 0.15 },
         uCursorGlowRadius: { value: 2.5 },
         uCursorGlowColor: { value: new THREE.Color(0xFFFFFF) },
         // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
@@ -421,6 +421,20 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         } else {
           targetSphereScales.current[i] = 1.0;
         }
+      }
+
+      // Update cursor glow color based on nearest sphere
+      const glowRadius = 2.5;
+      if (closestDist < glowRadius && closestIndex >= 0) {
+        // Blend between default white and nearest sphere color
+        const blendFactor = 1.0 - (closestDist / glowRadius);
+        const defaultColor = new THREE.Color(0xFFFFFF);
+        const sphereColor = settings.sphereColors[closestIndex];
+        const blendedColor = defaultColor.clone().lerp(sphereColor, blendFactor * 0.7);
+        material.uniforms.uCursorGlowColor.value.copy(blendedColor);
+      } else {
+        // Reset to default white when far from all spheres
+        material.uniforms.uCursorGlowColor.value.set(0xFFFFFF);
       }
     };
 
