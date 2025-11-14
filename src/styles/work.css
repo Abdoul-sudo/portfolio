@@ -295,7 +295,6 @@
 .work-item:hover .work-item-arrow {
   opacity: 1;
   width: 1.5em;
-  margin-right: 1.33rem;
   transform: translateX(0);
 }
 

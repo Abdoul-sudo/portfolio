@@ -28,6 +28,8 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
   );
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const isLowPowerDevice = isMobile || navigator.hardwareConcurrency <= 4;
+  // Detect if NOT desktop (tablet or mobile)
+  const isDesktop = window.innerWidth > 1024;
 
   // Optimized settings - professional aesthetic
   const settings = {
@@ -107,6 +109,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uCursorGlowColor: { value: new THREE.Color(0xCCF5FF) },
         // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
+        uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
         uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
         uSpherePositions: { value: [] },
         uSphereRadii: { value: [] }
@@ -142,6 +145,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uniform float uCursorGlowRadius;
         uniform vec3 uCursorGlowColor;
         uniform float uIsMobile;
+        uniform float uIsDesktop;
         uniform float uSphereScales[6];
         uniform vec3 uSpherePositions[6];
         uniform float uSphereRadii[6];
@@ -220,9 +224,11 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
             result = smin(result, sphere, dynamicSmoothness);
           }
 
-          // Add cursor ball that merges with other spheres
-          float cursorBall = sdSphere(pos - uCursorSphere, uCursorRadius);
-          result = smin(result, cursorBall, uSmoothness);
+          // Add cursor ball that merges with other spheres (only on desktop)
+          if (uIsDesktop > 0.5) {
+            float cursorBall = sdSphere(pos - uCursorSphere, uCursorRadius);
+            result = smin(result, cursorBall, uSmoothness);
+          }
 
           return SceneResult(result, closestSphere);
         }
@@ -322,10 +328,10 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
             float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
             revealFactor = pow(revealFactor, 1.5); // Steeper curve for dramatic effect
 
-            // Base opacity increased, with dramatic reveal near cursor
-            float baseOpacity = 0.08;
+            // Base opacity: high on mobile/tablet (always visible), low on desktop (reveal on cursor)
+            float baseOpacity = uIsDesktop > 0.5 ? 0.08 : 0.65;
             float maxOpacity = 1.0; // Full opacity at cursor
-            float finalOpacity = mix(baseOpacity, maxOpacity, revealFactor);
+            float finalOpacity = uIsDesktop > 0.5 ? mix(baseOpacity, maxOpacity, revealFactor) : baseOpacity;
 
             // Enhanced glow contribution near cursor
             color += glowContribution * (0.15 + revealFactor * 0.4);
@@ -475,6 +481,10 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         targetRadii.current = newConfig.map(cfg => cfg.radius);
       }
       previousDeviceType.current = newDeviceType;
+
+      // Update desktop detection on resize
+      const newIsDesktop = width > 1024;
+      material.uniforms.uIsDesktop.value = newIsDesktop ? 1.0 : 0.0;
     };
 
     // Optimized animation loop
@@ -532,7 +542,13 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
 
     // Add event listeners
     window.addEventListener('resize', handleResize, { passive: true });
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
+
+    // Only add cursor tracking on desktop
+    if (isDesktop) {
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+    }
+
+    // Keep touch events for interaction (sphere scaling) but not cursor ball
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
 
@@ -544,7 +560,9 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', onMouseMove);
+      if (isDesktop) {
+        window.removeEventListener('mousemove', onMouseMove);
+      }
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
 
