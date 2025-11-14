@@ -180,7 +180,7 @@
   bottom: 0;
   width: 0;
   height: 3px;
-  background-color: var(--color-accent);
+  background-color: var(--color-text-primary);
   transition: width 0.4s ease;
 }
 
@@ -191,12 +191,12 @@
 
 .menu-item:hover,
 .menu-item:focus-visible {
-  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
   transform: translateX(10px);
 }
 
 .menu-item.active {
-  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
 }
 
 .menu-item.active::before {

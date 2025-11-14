@@ -20,8 +20,7 @@
 
 .logo:hover {
   transform: scale(1.1);
-  border-color: var(--color-accent);
-  box-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .logo-letter {
@@ -33,9 +32,6 @@
   transition: color 0.3s ease;
 }
 
-.logo:hover .logo-letter {
-  color: var(--color-accent);
-}
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {

@@ -119,7 +119,7 @@
   bottom: -4px;
   width: 100%;
   height: 2px;
-  background: var(--color-accent-primary);
+  background: var(--color-text-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s ease-out;
@@ -129,17 +129,11 @@
   transform: scaleX(1);
 }
 
-.contact-link:hover .contact-link-text {
-  color: var(--color-accent-primary);
-}
-
 .contact-link:hover .contact-icon {
-  color: var(--color-accent-primary);
   transform: scale(1.1);
 }
 
 .contact-link:hover .contact-arrow {
-  color: var(--color-accent-primary);
   transform: translate(3px, -3px);
 }
 
@@ -242,7 +236,7 @@
 
 /* Focus States - WCAG Compliant */
 .contact-link:focus-visible {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid var(--color-text-primary);
   outline-offset: 4px;
   border-radius: 4px;
 }

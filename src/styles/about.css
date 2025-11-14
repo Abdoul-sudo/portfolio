@@ -46,8 +46,7 @@
 }
 
 .about-photo-wrapper:hover {
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   transform: scale(1.03);
 }
 
@@ -105,26 +104,18 @@
 }
 
 .about-cta:hover {
-  border-color: var(--color-accent-primary);
-  background: rgba(14, 165, 233, 0.05);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .about-cta:hover .about-cta-icon {
   transform: translateY(3px);
-  color: var(--color-accent-primary);
-}
-
-.about-cta:hover .about-cta-text {
-  color: var(--color-accent-primary);
 }
 
 .about-cta:hover .about-cta-arrow {
   opacity: 1;
   width: 1.25em;
   transform: translateX(0);
-  color: var(--color-accent-primary);
 }
 
 /* ============================================
@@ -185,7 +176,7 @@
 .expertise-title {
   font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-primary);
+  color: var(--color-text-primary);
   margin: 0;
   font-family: var(--font-display);
   letter-spacing: -0.015em;
@@ -212,11 +203,8 @@
 }
 
 .skill-badge:hover {
-  background: rgba(14, 165, 233, 0.15);
-  border-color: var(--color-accent-primary);
   transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
-  color: var(--color-accent-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ============================================
@@ -376,6 +364,6 @@
 /* Focus States */
 .about-cta:focus-visible,
 .skill-badge:focus-visible {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid var(--color-text-primary);
   outline-offset: 4px;
 }

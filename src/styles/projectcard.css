@@ -18,12 +18,11 @@
 }
 
 .project-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 30px rgba(34, 211, 238, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .project-card:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-text-primary);
   outline-offset: 4px;
 }
 
@@ -73,7 +72,7 @@
 .project-view-text {
   font-size: 1.25rem;
   font-weight: var(--font-weight-bold);
-  color: var(--color-accent);
+  color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -95,9 +94,6 @@
   transition: color 0.3s ease;
 }
 
-.project-card:hover .project-name {
-  color: var(--color-accent);
-}
 
 .project-description {
   font-size: 0.95rem;
@@ -119,10 +115,10 @@
   display: inline-block;
   padding: 0.25rem 0.75rem;
   font-size: 0.8rem;
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid rgba(34, 211, 238, 0.3);
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  color: var(--color-accent);
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
