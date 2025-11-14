@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import '../styles/cursor.css';
 
 const Cursor = () => {
   // Cursor effect is now handled by MetaballBackground component

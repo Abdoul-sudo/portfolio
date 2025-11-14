@@ -49,7 +49,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
       new THREE.Color(0xFFEBF4)  // Very light rose
     ],
     lightColor: new THREE.Color(0xffffff),
-    smoothness: 0.4,
+    smoothness: 0.55,
     animationSpeed: 0.25,
     translateSpeed: 0.18
   };
@@ -106,7 +106,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uTranslateSpeed: { value: settings.translateSpeed },
         uCursorGlowIntensity: { value: 0.25 },
         uCursorGlowRadius: { value: 2.5 },
-        uCursorGlowColor: { value: new THREE.Color(0xCCF5FF) },
+        uCursorGlowColor: { value: new THREE.Color(0xFFFFFF) },
         // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
@@ -421,20 +421,6 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         } else {
           targetSphereScales.current[i] = 1.0;
         }
-      }
-
-      // Update cursor glow color based on nearest sphere
-      const glowRadius = 2.5;
-      if (closestDist < glowRadius && closestIndex >= 0) {
-        // Blend between default cyan and nearest sphere color
-        const blendFactor = 1.0 - (closestDist / glowRadius);
-        const defaultColor = new THREE.Color(0xCCF5FF);
-        const sphereColor = settings.sphereColors[closestIndex];
-        const blendedColor = defaultColor.clone().lerp(sphereColor, blendFactor * 0.7);
-        material.uniforms.uCursorGlowColor.value.copy(blendedColor);
-      } else {
-        // Reset to default cyan when far from all spheres
-        material.uniforms.uCursorGlowColor.value.set(0xCCF5FF);
       }
     };
 
