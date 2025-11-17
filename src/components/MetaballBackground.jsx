@@ -275,32 +275,33 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           if (t < 0.0) return vec3(0.0);
 
           vec3 normal = calcNormal(p);
+          vec3 viewDir = -rd;
 
-          // Get color based on sphere index
+          // Get color based on sphere index (used as tint, not emission)
           vec3 baseColor = uSphereColors[0]; // Default
           if (sphereIndex >= 0 && sphereIndex < 6) {
             baseColor = uSphereColors[sphereIndex];
           }
 
-          // Simple ambient
-          vec3 ambient = baseColor * uAmbientIntensity;
+          // Ambient with color tint
+          vec3 ambient = uLightColor * uAmbientIntensity;
 
-          // Simple diffuse
+          // Diffuse lighting
           vec3 lightDir = normalize(vec3(1, 1, 1));
           float diff = max(dot(normal, lightDir), 0.0);
-          vec3 diffuse = baseColor * diff * uDiffuseIntensity;
+          vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
 
-          // Smoother rim lighting for glow effect
-          float viewDot = dot(normal, -rd);
-          float rimFactor = 1.0 - max(viewDot, 0.0);
-          rimFactor = smoothstep(0.0, 1.0, rimFactor);
-          rimFactor = pow(rimFactor, uRimPower);
-          vec3 rimGlow = baseColor * rimFactor * uGlowIntensity * 0.8;
+          // Fresnel rim (edge glow)
+          float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uRimPower);
+          vec3 fresnelRim = uLightColor * fresnel * uGlowIntensity;
 
-          // Emissive glow - stronger and more uniform
-          vec3 emissive = baseColor * 0.5 * uGlowIntensity;
+          // Combine: baseColor is a TINT/MULTIPLIER, not additive light
+          vec3 color = (baseColor * 0.3 + ambient + diffuse + fresnelRim);
 
-          vec3 color = ambient + diffuse + rimGlow + emissive;
+          // Tone mapping to prevent overbright (like original)
+          color = pow(color, vec3(1.1));
+          color = color / (color + vec3(0.8));
+
           return color;
         }
 

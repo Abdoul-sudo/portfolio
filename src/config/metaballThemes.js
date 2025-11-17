@@ -25,11 +25,11 @@ export const METABALL_THEMES = {
     lightColor: new THREE.Color(0xffffff),
     cursorGlowColor: new THREE.Color(0xCCF5FF), // Light cyan
 
-    // Lighting settings
-    ambientIntensity: 0.65,
-    diffuseIntensity: 0.25,
-    glowIntensity: 0.6,
-    rimPower: 3.5,
+    // Lighting settings - reduced for subtlety like original
+    ambientIntensity: 0.03,  // Much lower ambient
+    diffuseIntensity: 0.5,   // Moderate diffuse
+    glowIntensity: 0.4,      // Subtle rim glow
+    rimPower: 2.0,           // Softer rim
 
     // Animation
     smoothness: 0.55,
@@ -63,22 +63,22 @@ export const METABALL_THEMES = {
     lightColor: new THREE.Color(0xffffff),
     cursorGlowColor: new THREE.Color(0xaa77ff), // Purple glow
 
-    // Lighting settings - more dramatic for dark mode
-    ambientIntensity: 0.12,
-    diffuseIntensity: 1.2,
-    glowIntensity: 2.5,
-    rimPower: 9.8,
+    // Lighting settings - subtle like original dark themes
+    ambientIntensity: 0.04,  // Very low ambient
+    diffuseIntensity: 0.8,   // Moderate diffuse
+    glowIntensity: 1.6,      // Strong rim for edge definition
+    rimPower: 1.4,           // Softer, wider rim
 
     // Animation
     smoothness: 0.8,
     animationSpeed: 0.25,
 
     // Cursor glow settings - more prominent in dark mode
-    cursorGlowIntensity: 1.2,
-    cursorGlowRadius: 2.2,
+    cursorGlowIntensity: 0.8,
+    cursorGlowRadius: 1.5,
 
     // Noise overlay - less visible on dark
-    noiseOpacity: 0.05
+    noiseOpacity: 0.45
   }
 };
 
