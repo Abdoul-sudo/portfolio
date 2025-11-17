@@ -11,7 +11,7 @@
   background-image: url(/src/assets/noise.png);
   background-size: 200px;
   background-repeat: repeat;
-  opacity: 0.25; /* More prominent - key texture element */
+  opacity: 0.15; /* More prominent - key texture element */
   pointer-events: none;
   mix-blend-mode: multiply; /* Better integration with colorful background */
 }
