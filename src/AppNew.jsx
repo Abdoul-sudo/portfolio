@@ -3,12 +3,14 @@ import gsap from 'gsap';
 import Cursor from './components/Cursor';
 import Logo from './components/Logo';
 import Menu from './components/Menu';
+import ThemeToggle from './components/ThemeToggle';
 import NoiseBackground from './components/NoiseBackground';
 import MetaballBackground from './components/MetaballBackground';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
 import ContactSection from './components/ContactSection';
+import { getInitialTheme, saveTheme, getTheme } from './config/metaballThemes';
 
 // Import all styles
 import './styles/base.css';
@@ -17,6 +19,7 @@ import './styles/app.css';
 const AppNew = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme());
   const menuRef = useRef(null);
 
   const sections = ['home', 'about', 'work', 'contact'];
@@ -29,6 +32,27 @@ const AppNew = () => {
       gsap.set(homeSection, { display: 'flex', opacity: 1 });
     }
   }, []);
+
+  // Handle theme changes - update CSS variables and body background
+  useEffect(() => {
+    const themeConfig = getTheme(theme);
+
+    // Update CSS custom properties for theme
+    document.documentElement.style.setProperty('--text-color', themeConfig.textColor);
+    document.documentElement.style.setProperty('--text-secondary-color', themeConfig.textSecondaryColor);
+    document.documentElement.style.setProperty('--background-color', themeConfig.bodyBackgroundColor);
+
+    // Update body background color
+    document.body.style.backgroundColor = themeConfig.bodyBackgroundColor;
+    document.body.style.color = themeConfig.textColor;
+
+    // Save theme preference
+    saveTheme(theme);
+  }, [theme]);
+
+  const handleThemeChange = (newTheme) => {
+    setTheme(newTheme);
+  };
 
   const transitionToSection = (targetSectionId) => {
     const targetIndex = sections.indexOf(targetSectionId);
@@ -98,11 +122,12 @@ const AppNew = () => {
 
   return (
     <>
-      <NoiseBackground />
-      <MetaballBackground currentSection={sections[currentSection]} />
+      <NoiseBackground theme={theme} />
+      <MetaballBackground currentSection={sections[currentSection]} theme={theme} />
       <div className="app">
         <Cursor />
         <Logo onNavigate={transitionToSection} menuRef={menuRef} />
+        <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
         <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
         <main className="main-content">

@@ -1,0 +1,122 @@
+.theme-toggle {
+  position: fixed;
+  top: 32px;
+  right: 80px; /* Left of the menu icon */
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle.animating {
+  pointer-events: none;
+}
+
+.theme-toggle-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-color, #1a1a1a);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  stroke-width: 2;
+}
+
+/* Sun icon animation */
+.sun-icon {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Moon icon subtle pulse */
+.moon-icon {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Icon fade transition when switching */
+.theme-toggle.animating .theme-icon {
+  animation: iconSwitch 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconSwitch {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 24px;
+    right: 64px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    top: 20px;
+    right: 56px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

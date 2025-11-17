@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import '../styles/metaball.css';
 import { getMetaballConfig, getDeviceType, TRANSITION_CONFIG } from '../config/metaballPositions';
+import { getTheme } from '../config/metaballThemes';
 
-const MetaballBackground = ({ currentSection = 'home' }) => {
+const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
   const containerRef = useRef(null);
   const rendererRef = useRef(null);
   const materialRef = useRef(null);
@@ -31,27 +32,31 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
   // Detect if NOT desktop (tablet or mobile)
   const isDesktop = window.innerWidth > 1024;
 
-  // Optimized settings - professional aesthetic
+  // Get theme settings
+  const themeConfig = getTheme(theme);
+
+  // Settings from theme configuration
   const settings = {
     sphereCount: 6,
-    ambientIntensity: 0.65,
-    diffuseIntensity: 0.25,
-    glowIntensity: 0.6,
-    rimPower: 3.5,
-    backgroundColor: new THREE.Color(0xFAFBFC),
-    // Sophisticated desaturated palette - varied colors
-    sphereColors: [
-      new THREE.Color(0xDCF2FF), // Very light blue
-      new THREE.Color(0xFFE5EE), // Very light coral/pink
-      new THREE.Color(0xF0E6FF), // Very light purple/lavender
-      new THREE.Color(0xE0FFED), // Very light mint green
-      new THREE.Color(0xE0F3FF), // Very light sky blue
-      new THREE.Color(0xFFEBF4)  // Very light rose
-    ],
-    lightColor: new THREE.Color(0xffffff),
-    smoothness: 0.55,
-    animationSpeed: 0.25,
-    translateSpeed: 0.18
+    ambientIntensity: themeConfig.ambientIntensity,
+    diffuseIntensity: themeConfig.diffuseIntensity,
+    glowIntensity: themeConfig.glowIntensity,
+    rimPower: themeConfig.rimPower,
+    backgroundColor: themeConfig.backgroundColor,
+    sphereColors: themeConfig.sphereColors,
+    lightColor: themeConfig.lightColor,
+    smoothness: themeConfig.smoothness,
+    animationSpeed: themeConfig.animationSpeed,
+    translateSpeed: 0.18,
+    // Cursor settings from theme
+    cursorGlowIntensity: themeConfig.cursorGlowIntensity,
+    cursorGlowRadius: themeConfig.cursorGlowRadius,
+    cursorGlowColor: themeConfig.cursorGlowColor,
+    // Cursor size settings (from original)
+    cursorRadiusMin: 0.08,
+    cursorRadiusMax: 0.15,
+    mouseSmoothness: 0.1, // Smooth mouse movement
+    mergeDistance: 1.5 // Distance for cursor growth
   };
 
   useEffect(() => {
@@ -104,10 +109,9 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
         uLightColor: { value: settings.lightColor },
         uAnimationSpeed: { value: settings.animationSpeed },
         uTranslateSpeed: { value: settings.translateSpeed },
-        uCursorGlowIntensity: { value: 0.15 },
-        uCursorGlowRadius: { value: 2.5 },
-        uCursorGlowColor: { value: new THREE.Color(0xFFFFFF) },
-        // uCursorGlowColor: { value: new THREE.Color(0xE0E7FF) },
+        uCursorGlowIntensity: { value: settings.cursorGlowIntensity },
+        uCursorGlowRadius: { value: settings.cursorGlowRadius },
+        uCursorGlowColor: { value: settings.cursorGlowColor },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
         uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
@@ -380,61 +384,71 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
       return new THREE.Vector3(uv_x * aspect * 2.0, uv_y * 2.0, 0.0);
     };
 
-    // Mouse/touch move handler
+    // Mouse/touch move handler (exact logic from original)
     const handlePointerMove = (clientX, clientY) => {
+      // Update target mouse position (0 to 1 range)
       targetMousePosition.current.x = clientX / window.innerWidth;
       targetMousePosition.current.y = 1.0 - clientY / window.innerHeight;
 
+      // Convert to world coordinates
       const worldPos = screenToWorld(
         targetMousePosition.current.x,
         targetMousePosition.current.y
       );
       cursorSphere3D.current.copy(worldPos);
 
-      // Update cursor radius based on proximity to spheres (simple static radius for now)
-      material.uniforms.uCursorSphere.value.copy(cursorSphere3D.current);
-      material.uniforms.uCursorRadius.value = 0.08;
-
-      // Calculate reactive pulsing for each sphere based on cursor proximity
-      // Use current animated positions from refs
+      // Get current sphere positions
       const spherePositions = currentPositions.current.map(
         pos => new THREE.Vector3(pos.x, pos.y, pos.z)
       );
 
-      let closestDist = Infinity;
+      // Calculate cursor radius based on proximity to metaballs (from original)
+      let closestDistance = 1000.0;
       let closestIndex = -1;
+      let activeMerges = 0;
 
       for (let i = 0; i < 6; i++) {
         const dist = worldPos.distanceTo(spherePositions[i]);
-        const pulseRadius = 1.5; // Distance at which pulsing begins
 
         // Track closest sphere
-        if (dist < closestDist) {
-          closestDist = dist;
+        if (dist < closestDistance) {
+          closestDistance = dist;
           closestIndex = i;
         }
 
+        // Count merges (spheres within merge distance)
+        if (dist < settings.mergeDistance) {
+          activeMerges++;
+        }
+
+        // Reactive pulsing for spheres
+        const pulseRadius = 1.5;
         if (dist < pulseRadius) {
-          // Scale from 1.0 to 1.4 (40% growth) as cursor gets closer
-          const proximity =  (dist / pulseRadius);
-          targetSphereScales.current[i] = 1.1
+          targetSphereScales.current[i] = 1.1;
         } else {
           targetSphereScales.current[i] = 1.0;
         }
       }
 
-      // Update cursor glow color based on nearest sphere
-      const glowRadius = 2.5;
-      if (closestDist < glowRadius && closestIndex >= 0) {
-        // Blend between default white and nearest sphere color
-        const blendFactor = 1.0 - (closestDist / glowRadius);
-        const defaultColor = new THREE.Color(0xFFFFFF);
+      // Dynamic cursor radius (exact formula from original)
+      const proximityFactor = Math.max(0, 1.0 - closestDistance / settings.mergeDistance);
+      const smoothFactor = proximityFactor * proximityFactor * (3.0 - 2.0 * proximityFactor); // Smoothstep
+      const dynamicRadius = settings.cursorRadiusMin +
+        (settings.cursorRadiusMax - settings.cursorRadiusMin) * smoothFactor;
+
+      // Update uniforms immediately for responsive cursor
+      material.uniforms.uCursorSphere.value.copy(cursorSphere3D.current);
+      material.uniforms.uCursorRadius.value = dynamicRadius;
+
+      // Update cursor glow color based on nearest sphere (blend with sphere color)
+      if (closestDistance < settings.cursorGlowRadius && closestIndex >= 0) {
+        const blendFactor = 1.0 - (closestDistance / settings.cursorGlowRadius);
         const sphereColor = settings.sphereColors[closestIndex];
-        const blendedColor = defaultColor.clone().lerp(sphereColor, blendFactor * 0.7);
+        const blendedColor = settings.cursorGlowColor.clone().lerp(sphereColor, blendFactor * 0.7);
         material.uniforms.uCursorGlowColor.value.copy(blendedColor);
       } else {
-        // Reset to default white when far from all spheres
-        material.uniforms.uCursorGlowColor.value.set(0xFFFFFF);
+        // Reset to theme's default cursor glow color
+        material.uniforms.uCursorGlowColor.value.copy(settings.cursorGlowColor);
       }
     };
 
@@ -491,7 +505,7 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
     let lastTime = 0;
     const targetFPS = 30; // Cap at 30fps for performance
     const frameInterval = 1000 / targetFPS;
-    const mouseSmoothness = 0.1;
+    const mouseSmoothness = settings.mouseSmoothness; // From theme settings (0.1 = smooth like original)
     const scaleSmoothness = 0.15; // Smooth pulsing animation
     const positionSmoothness = TRANSITION_CONFIG.smoothness; // Position transition smoothness
 
@@ -598,6 +612,31 @@ const MetaballBackground = ({ currentSection = 'home' }) => {
 
     // The animation loop will smoothly interpolate from current to target
   }, [currentSection]);
+
+  // Handle theme changes - update shader uniforms
+  useEffect(() => {
+    if (!materialRef.current) return;
+
+    const themeConfig = getTheme(theme);
+
+    // Update all theme-related uniforms with smooth transitions
+    materialRef.current.uniforms.uBackgroundColor.value.copy(themeConfig.backgroundColor);
+    materialRef.current.uniforms.uAmbientIntensity.value = themeConfig.ambientIntensity;
+    materialRef.current.uniforms.uDiffuseIntensity.value = themeConfig.diffuseIntensity;
+    materialRef.current.uniforms.uGlowIntensity.value = themeConfig.glowIntensity;
+    materialRef.current.uniforms.uRimPower.value = themeConfig.rimPower;
+    materialRef.current.uniforms.uSmoothness.value = themeConfig.smoothness;
+    materialRef.current.uniforms.uCursorGlowIntensity.value = themeConfig.cursorGlowIntensity;
+    materialRef.current.uniforms.uCursorGlowRadius.value = themeConfig.cursorGlowRadius;
+
+    // Update sphere colors
+    for (let i = 0; i < 6; i++) {
+      materialRef.current.uniforms.uSphereColors.value[i].copy(themeConfig.sphereColors[i]);
+    }
+
+    // Update cursor glow color
+    materialRef.current.uniforms.uCursorGlowColor.value.copy(themeConfig.cursorGlowColor);
+  }, [theme]);
 
   return <div ref={containerRef} className="metaball-background" aria-hidden="true" />;
 };

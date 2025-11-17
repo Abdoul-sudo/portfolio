@@ -11,9 +11,10 @@
   background-image: url(/src/assets/noise.png);
   background-size: 200px;
   background-repeat: repeat;
-  opacity: 0.15; /* More prominent - key texture element */
+  opacity: 0.015; /* Will be overridden by theme - default light mode */
   pointer-events: none;
   mix-blend-mode: multiply; /* Better integration with colorful background */
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth theme transition */
 }
 
 @keyframes grain {

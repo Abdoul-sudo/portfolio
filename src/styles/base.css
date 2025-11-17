@@ -3,15 +3,21 @@
 :root {
   /* 2025 Color System - WCAG Compliant + Vibrant Accents */
 
-  /* Base Colors - Professional light theme */
+  /* Base Colors - Professional light theme (defaults, overridden by theme system) */
   --color-bg: #FAFBFC; /* Clean, professional background */
   --color-bg-secondary: #F5F7FA; /* Subtle gray-blue for layering */
   --color-surface: rgba(255, 255, 255, 0.85); /* Glass-like surfaces */
 
   /* Text Colors - WCAG AA Compliant (4.5:1 contrast) */
-  --color-text-primary: #606887; /* Primary text color */
-  --color-text-secondary: #606887; /* Secondary text same as primary */
-  --color-text-tertiary: #606887; /* Tertiary text same as primary */
+  /* These will be dynamically updated by theme system */
+  --text-color: #1a1a1a; /* Primary text - updated by theme */
+  --text-secondary-color: #666666; /* Secondary text - updated by theme */
+  --background-color: #FAFBFC; /* Body background - updated by theme */
+
+  /* Legacy text color variables for compatibility */
+  --color-text-primary: var(--text-color);
+  --color-text-secondary: var(--text-secondary-color);
+  --color-text-tertiary: var(--text-secondary-color);
 
   /* Vibrant Accent Colors - 2025 Trends */
   --color-accent-primary: #0EA5E9; /* Electric blue (WCAG compliant) */
@@ -103,14 +109,17 @@ body {
   padding: 0;
   font-family: var(--font-body); /* Inter for body/UI */
   font-weight: var(--font-weight-normal);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.6;
   letter-spacing: -0.015em; /* Optimized for Inter */
   overflow: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Smooth theme transitions */
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   text-rendering: optimizeLegibility;
   /* cursor: none; */
 }
