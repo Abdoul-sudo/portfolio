@@ -33,21 +33,56 @@
   top: calc(var(--spacing-xl) + var(--spacing-lg));
 }
 
-/* Photo Styling */
+/* Photo Styling - Enhanced with animated gradient border */
 .about-photo-wrapper {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--color-border);
-  transition: all 0.4s ease;
-  background: var(--color-bg-secondary);
+  overflow: visible;
+  border: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+}
+
+/* Animated gradient border */
+.about-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-blue),
+    var(--color-accent-purple),
+    var(--color-accent-pink),
+    var(--color-accent-amber)
+  );
+  border-radius: 50%;
+  z-index: -1;
+  background-size: 300% 300%;
+  animation: gradientRotate 6s ease infinite;
+}
+
+@keyframes gradientRotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Inner white ring for photo */
+.about-photo-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--color-bg);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .about-photo-wrapper:hover {
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
-  transform: scale(1.03);
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow:
+    0 20px 40px rgba(14, 165, 233, 0.2),
+    0 8px 16px rgba(139, 92, 246, 0.15);
 }
 
 .about-photo {
@@ -55,6 +90,14 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-photo-wrapper:hover .about-photo {
+  transform: scale(1.02);
 }
 
 /* CTA Download Button */
@@ -132,7 +175,7 @@
 .about-title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: var(--color-text-hero);
   margin: 0;
   font-family: var(--font-display);
   letter-spacing: -0.02em;
@@ -190,21 +233,58 @@
 
 .skill-badge {
   display: inline-block;
-  padding: 0.4rem 0.9rem;
-  background: rgba(14, 165, 233, 0.08);
-  border: 1px solid rgba(14, 165, 233, 0.25);
-  border-radius: 20px;
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.05),
+    rgba(139, 92, 246, 0.05)
+  );
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  border-radius: 24px;
+  font-size: var(--text-sm);
   color: var(--color-text-primary);
-  font-weight: var(--font-weight-medium);
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--font-body);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Gradient border on pseudo-element */
+.skill-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.3),
+    rgba(139, 92, 246, 0.3)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skill-badge:hover::before {
+  opacity: 1;
 }
 
 .skill-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.12),
+    rgba(139, 92, 246, 0.12)
+  );
+  box-shadow:
+    0 8px 20px rgba(14, 165, 233, 0.15),
+    0 2px 8px rgba(139, 92, 246, 0.1);
+  color: var(--color-accent-blue);
 }
 
 /* ============================================

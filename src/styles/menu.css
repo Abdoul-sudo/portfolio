@@ -157,49 +157,73 @@
 }
 
 .menu-item {
-  font-family: var(--font-display); /* Space Grotesk for impact */
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--color-text-hero);
   text-align: left;
   width: 100%;
-  padding: var(--spacing-sm) 0;
+  padding: var(--space-4) 0;
   background: none;
   border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  letter-spacing: -0.02em;
-  transition: color 0.3s ease, transform 0.3s ease;
+  letter-spacing: var(--tracking-tight);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.menu-item::before {
+/* Gradient underline */
+.menu-item::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
   width: 0;
-  height: 3px;
-  background-color: var(--color-text-primary);
-  transition: width 0.4s ease;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-blue),
+    var(--color-accent-purple),
+    var(--color-accent-pink)
+  );
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.menu-item:hover::before,
-.menu-item:focus-visible::before {
+.menu-item:hover::after,
+.menu-item:focus-visible::after {
   width: 100%;
 }
 
+/* Gradient text on hover */
 .menu-item:hover,
 .menu-item:focus-visible {
-  font-weight: var(--font-weight-semibold);
-  transform: translateX(10px);
+  transform: translateX(20px);
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-blue),
+    var(--color-accent-purple),
+    var(--color-accent-pink)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .menu-item.active {
-  font-weight: var(--font-weight-semibold);
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-blue),
+    var(--color-accent-purple),
+    var(--color-accent-pink)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.menu-item.active::before {
+.menu-item.active::after {
   width: 100%;
 }
 

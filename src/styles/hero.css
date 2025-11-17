@@ -12,6 +12,7 @@
 
 .hero-content {
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
@@ -20,14 +21,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: var(--space-10);
 }
 
 .hero-lines {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: var(--space-5);
 }
 
 .hero-name-wrapper {
@@ -36,7 +37,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-3);
 }
 
 .hero-line {
@@ -67,50 +68,65 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* Line 1: "Hey, I'm" - LARGE like Sharlee's name */
+/* Line 1: "Hey, I'm" - LARGE hero text */
 .hero-line-1 {
-  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--color-text-hero);
   max-width: 90%;
-  line-height: 1.15;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
   display: inline;
 }
 
-/* Line 1b: "Abdoul Wahhaab" - Same size, inline on desktop, block on mobile */
+/* Line 1b: "Abdoul Wahhaab" - Name emphasis */
 .hero-line-1b {
-  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text);
-  line-height: 1.15;
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--color-text-hero);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
   margin-top: 0;
   display: inline;
 }
 
-/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */
+/* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with enhanced gradient */
 .hero-line-2 {
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: var(--font-weight-medium);
-  background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 50%, var(--color-accent-tertiary) 100%);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    #0EA5E9 0%,
+    #8B5CF6 35%,
+    #EC4899 70%,
+    #F59E0B 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-top: var(--spacing-xs);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-1);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-snug);
 }
 
 /* Line 3: "I build Web, Games & AI-powered experiences" - SMALLER subtitle */
 .hero-line-3 {
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: var(--font-weight-normal);
-  color: var(--color-text);
-  opacity: 0.9;
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  opacity: 0.85;
+  margin-top: var(--space-3);
+  max-width: 800px;
+  letter-spacing: var(--tracking-normal);
+  line-height: var(--leading-relaxed);
 }
 
 /* Hero CTAs */
 .hero-ctas {
   display: flex;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-sm);
+  gap: var(--space-8);
+  margin-top: var(--space-8);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -118,49 +134,73 @@
 .hero-cta {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: var(--space-3);
   text-decoration: none;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--color-text);
-  transition: all 0.3s ease;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.5rem 0;
-  background: none;
-  border: none;
+  padding: var(--space-4) var(--space-6);
+  background: transparent;
+  border: 2px solid var(--color-border-default);
+  border-radius: 100px;
   font-family: inherit;
   position: relative;
-  padding-bottom: 0.5rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gradient background reveal on hover */
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.08),
+    rgba(139, 92, 246, 0.08)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-cta:hover::before {
+  opacity: 1;
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent-blue);
+  color: var(--color-accent-blue);
+  box-shadow:
+    0 8px 24px rgba(14, 165, 233, 0.15),
+    0 2px 8px rgba(14, 165, 233, 0.1);
+}
+
+.hero-cta:active {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 12px rgba(14, 165, 233, 0.12),
+    0 1px 4px rgba(14, 165, 233, 0.08);
+}
+
+/* Remove old underline */
+.hero-cta::after {
+  display: none;
 }
 
 .hero-cta-arrow {
   width: 24px;
   height: 24px;
   color: var(--color-text-tertiary);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: inline-block;
   flex-shrink: 0;
 }
 
-/* Underline Animation on Hover - Transform based, spans entire button width */
-.hero-cta::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--color-text-primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease-out;
-}
-
-.hero-cta:hover::after {
-  transform: scaleX(1);
-}
-
 .hero-cta:hover .hero-cta-arrow {
-  transform: translateX(1.5px);
+  transform: translateX(6px);
+  color: var(--color-accent-blue);
 }
 
 /* Mobile Adjustments */
