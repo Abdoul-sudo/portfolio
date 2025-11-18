@@ -394,9 +394,23 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
             float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
             revealFactor = pow(revealFactor, 1.5); // Steeper curve for dramatic effect
 
-            // Base opacity: high on mobile/tablet (always visible), low on desktop (reveal on cursor)
-            float baseOpacity = uIsDesktop > 0.5 ? 0.08 : 0.65;
-            float maxOpacity = 1.0; // Full opacity at cursor
+            // Base opacity - both themes use dramatic reveal on desktop
+            float baseOpacity, maxOpacity;
+            if (uIsDesktop > 0.5) {
+              // Desktop: Dramatic reveal for both themes
+              if (uIsLightMode > 0.5) {
+                baseOpacity = 0.15;  // Slightly visible at rest in light mode
+                maxOpacity = 0.95;   // Almost full opacity near cursor
+              } else {
+                baseOpacity = 0.08;  // Barely visible at rest in dark mode
+                maxOpacity = 1.0;    // Full opacity near cursor
+              }
+            } else {
+              // Mobile/tablet: Always visible
+              baseOpacity = 0.65;
+              maxOpacity = 0.65;
+            }
+
             float finalOpacity = uIsDesktop > 0.5 ? mix(baseOpacity, maxOpacity, revealFactor) : baseOpacity;
 
             gl_FragColor = vec4(color, finalOpacity);
