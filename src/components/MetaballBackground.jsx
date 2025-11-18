@@ -102,8 +102,13 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uSmoothness: { value: settings.smoothness },
         uAmbientIntensity: { value: settings.ambientIntensity },
         uDiffuseIntensity: { value: settings.diffuseIntensity },
+        uSpecularIntensity: { value: themeConfig.specularIntensity || 2.5 },
+        uSpecularPower: { value: themeConfig.specularPower || 3 },
+        uFresnelPower: { value: themeConfig.fresnelPower || 0.8 },
         uGlowIntensity: { value: settings.glowIntensity },
         uRimPower: { value: settings.rimPower },
+        uContrast: { value: themeConfig.contrast || 1.6 },
+        uFogDensity: { value: themeConfig.fogDensity || 0.06 },
         uBackgroundColor: { value: settings.backgroundColor },
         uSphereColors: { value: settings.sphereColors },
         uLightColor: { value: settings.lightColor },
@@ -138,8 +143,13 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uniform float uSmoothness;
         uniform float uAmbientIntensity;
         uniform float uDiffuseIntensity;
+        uniform float uSpecularIntensity;
+        uniform float uSpecularPower;
+        uniform float uFresnelPower;
         uniform float uGlowIntensity;
         uniform float uRimPower;
+        uniform float uContrast;
+        uniform float uFogDensity;
         uniform vec3 uBackgroundColor;
         uniform vec3 uSphereColors[6];
         uniform vec3 uLightColor;
@@ -277,29 +287,44 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 normal = calcNormal(p);
           vec3 viewDir = -rd;
 
-          // Get color based on sphere index (used as tint, not emission)
-          vec3 baseColor = uSphereColors[0]; // Default
+          // Base sphere color (dark, not emissive)
+          vec3 baseColor = uSphereColors[0];
           if (sphereIndex >= 0 && sphereIndex < 6) {
             baseColor = uSphereColors[sphereIndex];
           }
 
-          // Ambient with color tint
+          // Ambient lighting (colored light)
           vec3 ambient = uLightColor * uAmbientIntensity;
 
           // Diffuse lighting
-          vec3 lightDir = normalize(vec3(1, 1, 1));
+          vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2)); // Light position from holographic preset
           float diff = max(dot(normal, lightDir), 0.0);
           vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
 
-          // Fresnel rim (edge glow)
-          float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uRimPower);
-          vec3 fresnelRim = uLightColor * fresnel * uGlowIntensity;
+          // Specular highlights (shiny reflections)
+          vec3 reflectDir = reflect(-lightDir, normal);
+          float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
+          float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
+          vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
 
-          // Combine: baseColor is a TINT/MULTIPLIER, not additive light
-          vec3 color = (baseColor * 0.3 + ambient + diffuse + fresnelRim);
+          // Fresnel rim glow
+          vec3 fresnelRim = uLightColor * fresnel * 0.4;
 
-          // Tone mapping to prevent overbright (like original)
-          color = pow(color, vec3(1.1));
+          // Cursor highlight (when close to cursor)
+          float distToCursor = length(p - uCursorSphere);
+          if (distToCursor < uCursorRadius + 0.4) {
+            float highlight = 1.0 - smoothstep(0.0, uCursorRadius + 0.4, distToCursor);
+            specular += uLightColor * highlight * 0.2;
+
+            float glow = exp(-distToCursor * 3.0) * 0.15;
+            ambient += uLightColor * glow * 0.5;
+          }
+
+          // Combine all lighting (baseColor + lights, exact formula from original)
+          vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
+
+          // Tone mapping (exact from holographic preset)
+          color = pow(color, vec3(uContrast * 0.9));
           color = color / (color + vec3(0.8));
 
           return color;
@@ -328,6 +353,13 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
+            // Add fog (depth-based fade to background, like original)
+            float fogAmount = 1.0 - exp(-result.t * uFogDensity);
+            color = mix(color, uBackgroundColor.rgb, fogAmount * 0.3);
+
+            // Add cursor glow contribution
+            color += glowContribution * 0.3;
+
             // Dramatic reveal: increase opacity based on cursor proximity
             float distToCursor = length(ro.xy - uCursorSphere.xy);
             float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
@@ -338,14 +370,11 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
             float maxOpacity = 1.0; // Full opacity at cursor
             float finalOpacity = uIsDesktop > 0.5 ? mix(baseOpacity, maxOpacity, revealFactor) : baseOpacity;
 
-            // Enhanced glow contribution near cursor
-            color += glowContribution * (0.15 + revealFactor * 0.4);
-
             gl_FragColor = vec4(color, finalOpacity);
           } else {
             if (cursorGlow > 0.01) {
-              // Stronger glow in empty space
-              gl_FragColor = vec4(glowContribution, cursorGlow * 0.5);
+              // Glow in empty space (like original)
+              gl_FragColor = vec4(glowContribution, cursorGlow * 0.8);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
             }
@@ -624,11 +653,19 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
     materialRef.current.uniforms.uBackgroundColor.value.copy(themeConfig.backgroundColor);
     materialRef.current.uniforms.uAmbientIntensity.value = themeConfig.ambientIntensity;
     materialRef.current.uniforms.uDiffuseIntensity.value = themeConfig.diffuseIntensity;
+    materialRef.current.uniforms.uSpecularIntensity.value = themeConfig.specularIntensity || 2.5;
+    materialRef.current.uniforms.uSpecularPower.value = themeConfig.specularPower || 3;
+    materialRef.current.uniforms.uFresnelPower.value = themeConfig.fresnelPower || 0.8;
     materialRef.current.uniforms.uGlowIntensity.value = themeConfig.glowIntensity;
     materialRef.current.uniforms.uRimPower.value = themeConfig.rimPower;
+    materialRef.current.uniforms.uContrast.value = themeConfig.contrast || 1.6;
+    materialRef.current.uniforms.uFogDensity.value = themeConfig.fogDensity || 0.06;
     materialRef.current.uniforms.uSmoothness.value = themeConfig.smoothness;
     materialRef.current.uniforms.uCursorGlowIntensity.value = themeConfig.cursorGlowIntensity;
     materialRef.current.uniforms.uCursorGlowRadius.value = themeConfig.cursorGlowRadius;
+
+    // Update light color
+    materialRef.current.uniforms.uLightColor.value.copy(themeConfig.lightColor);
 
     // Update sphere colors
     for (let i = 0; i < 6; i++) {

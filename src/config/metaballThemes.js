@@ -26,10 +26,15 @@ export const METABALL_THEMES = {
     cursorGlowColor: new THREE.Color(0xCCF5FF), // Light cyan
 
     // Lighting settings - reduced for subtlety like original
-    ambientIntensity: 0.03,  // Much lower ambient
-    diffuseIntensity: 0.5,   // Moderate diffuse
-    glowIntensity: 0.4,      // Subtle rim glow
-    rimPower: 2.0,           // Softer rim
+    ambientIntensity: 0.03,
+    diffuseIntensity: 0.5,
+    specularIntensity: 1.5,  // Moderate specular
+    specularPower: 8,        // Tighter highlights
+    fresnelPower: 1.5,       // Moderate edge glow
+    glowIntensity: 0.4,
+    rimPower: 2.0,
+    contrast: 1.4,
+    fogDensity: 0.04,
 
     // Animation
     smoothness: 0.55,
@@ -40,45 +45,51 @@ export const METABALL_THEMES = {
     cursorGlowRadius: 1.1,
 
     // Noise overlay
-    noiseOpacity: 0.015
+    noiseOpacity: 0.25
   },
 
   dark: {
     name: 'Dark Mode',
-    backgroundColor: new THREE.Color(0x0a0a15), // Very dark blue-black
+    // EXACT holographic preset from original
+    backgroundColor: new THREE.Color(0x0a0a15),
     bodyBackgroundColor: '#0a0a15',
     textColor: '#ffffff',
     textSecondaryColor: '#cccccc',
 
-    // Holographic/vibrant colors for dark mode
+    // Single sphere color (original uses one base color, not per-sphere)
     sphereColors: [
-      new THREE.Color(0xccaaff), // Bright purple
-      new THREE.Color(0xaa77ff), // Electric purple
-      new THREE.Color(0x8899ff), // Bright blue
-      new THREE.Color(0x00ffcc), // Cyan
-      new THREE.Color(0xff6699), // Pink
-      new THREE.Color(0x66ffaa)  // Mint
+      new THREE.Color(0x050510), // Dark base color
+      new THREE.Color(0x050510),
+      new THREE.Color(0x050510),
+      new THREE.Color(0x050510),
+      new THREE.Color(0x050510),
+      new THREE.Color(0x050510)
     ],
 
-    lightColor: new THREE.Color(0xffffff),
+    lightColor: new THREE.Color(0xccaaff),  // Purple-pink light
     cursorGlowColor: new THREE.Color(0xaa77ff), // Purple glow
 
-    // Lighting settings - subtle like original dark themes
-    ambientIntensity: 0.04,  // Very low ambient
-    diffuseIntensity: 0.8,   // Moderate diffuse
-    glowIntensity: 1.6,      // Strong rim for edge definition
-    rimPower: 1.4,           // Softer, wider rim
+    // Exact holographic preset lighting
+    ambientIntensity: 0.12,
+    diffuseIntensity: 1.2,
+    specularIntensity: 2.5,  // High specular for shine
+    specularPower: 3,        // Low power = wide highlights
+    fresnelPower: 0.8,       // Strong edge glow
+    glowIntensity: 1.2,      // Moderate overall glow
+    rimPower: 0.8,
 
-    // Animation
+    // Original settings
     smoothness: 0.8,
     animationSpeed: 0.25,
+    contrast: 1.6,
+    fogDensity: 0.06,
 
-    // Cursor glow settings - more prominent in dark mode
-    cursorGlowIntensity: 0.8,
-    cursorGlowRadius: 1.5,
+    // Cursor glow - exact from holographic preset
+    cursorGlowIntensity: 1.2,
+    cursorGlowRadius: 2.2,
 
-    // Noise overlay - less visible on dark
-    noiseOpacity: 0.45
+    // Noise overlay
+    noiseOpacity: 0.25
   }
 };
 
