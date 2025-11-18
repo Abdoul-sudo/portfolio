@@ -380,11 +380,10 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
-            // Add fog only in dark mode
-            if (uIsLightMode < 0.5) {
-              float fogAmount = 1.0 - exp(-result.t * uFogDensity);
-              color = mix(color, uBackgroundColor.rgb, fogAmount * 0.3);
-            }
+            // Add fog (both modes)
+            float fogAmount = 1.0 - exp(-result.t * uFogDensity);
+            float fogStrength = uIsLightMode > 0.5 ? 0.2 : 0.3; // Lighter fog for light mode
+            color = mix(color, uBackgroundColor.rgb, fogAmount * fogStrength);
 
             // Add cursor glow contribution
             float glowMultiplier = uIsLightMode > 0.5 ? 0.15 : 0.3;

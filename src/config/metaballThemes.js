@@ -12,37 +12,37 @@ export const METABALL_THEMES = {
     textColor: '#1a1a1a',
     textSecondaryColor: '#666666',
 
-    // Soft pastel colors (visible like the image)
+    // Soft pastel colors (visible and elegant)
     sphereColors: [
-      new THREE.Color(0xDCF2FF), // Light blue
-      new THREE.Color(0xFFE5EE), // Light coral/pink
-      new THREE.Color(0xF0E6FF), // Light purple/lavender
-      new THREE.Color(0xE0FFED), // Light mint green
-      new THREE.Color(0xE0F3FF), // Light sky blue
-      new THREE.Color(0xFFEBF4)  // Light rose
+      new THREE.Color(0xD4EEFF), // Soft blue - more saturated
+      new THREE.Color(0xFFE0EC), // Soft coral/pink - more saturated
+      new THREE.Color(0xEDE0FF), // Soft purple/lavender - more saturated
+      new THREE.Color(0xDCFFE8), // Soft mint green - more saturated
+      new THREE.Color(0xD8EDFF), // Soft sky blue - more saturated
+      new THREE.Color(0xFFE5F0)  // Soft rose - more saturated
     ],
 
     lightColor: new THREE.Color(0xffffff),
-    cursorGlowColor: new THREE.Color(0xffffff), // White glow
+    cursorGlowColor: new THREE.Color(0xE8F0FF), // Very subtle blue tint
 
-    // Light mode uses OLD shader style (simple emissive glow)
-    ambientIntensity: 0.65,   // Higher for visibility
-    diffuseIntensity: 0.25,   // Moderate
-    specularIntensity: 0.3,   // Minimal (not used in old shader)
-    specularPower: 15,        // Not used in old shader
-    fresnelPower: 2.5,        // Not used in old shader
-    glowIntensity: 0.6,       // Important for pastel visibility
-    rimPower: 3.5,            // Soft rim
-    contrast: 1.0,            // No tone mapping for light mode
-    fogDensity: 0.0,          // No fog for light mode
+    // Light mode - improved elegance while keeping visibility
+    ambientIntensity: 0.55,   // Slightly reduced for more elegance
+    diffuseIntensity: 0.35,   // Increased for better definition
+    specularIntensity: 0.3,   // Not used in simple shader
+    specularPower: 15,        // Not used in simple shader
+    fresnelPower: 2.5,        // Not used in simple shader
+    glowIntensity: 0.5,       // Balanced glow
+    rimPower: 4.0,            // Softer, wider rim
+    contrast: 1.0,            // No tone mapping
+    fogDensity: 0.03,         // Lighter fog for airiness
 
     // Animation
-    smoothness: 0.55,
+    smoothness: 0.6,          // Slightly smoother blending
     animationSpeed: 0.25,
 
-    // OLD shader cursor settings (simpler)
-    cursorGlowIntensity: 0.15,  // From old shader
-    cursorGlowRadius: 2.5,      // From old shader
+    // Cursor settings - more subtle
+    cursorGlowIntensity: 0.12,  // Reduced for elegance
+    cursorGlowRadius: 2.0,      // Slightly smaller radius
 
     // Noise overlay
     noiseOpacity: 0.015
