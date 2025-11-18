@@ -12,40 +12,40 @@ export const METABALL_THEMES = {
     textColor: '#1a1a1a',
     textSecondaryColor: '#666666',
 
-    // Sophisticated desaturated pastels
+    // Soft pastel colors (visible like the image)
     sphereColors: [
-      new THREE.Color(0xDCF2FF), // Very light blue
-      new THREE.Color(0xFFE5EE), // Very light coral/pink
-      new THREE.Color(0xF0E6FF), // Very light purple/lavender
-      new THREE.Color(0xE0FFED), // Very light mint green
-      new THREE.Color(0xE0F3FF), // Very light sky blue
-      new THREE.Color(0xFFEBF4)  // Very light rose
+      new THREE.Color(0xDCF2FF), // Light blue
+      new THREE.Color(0xFFE5EE), // Light coral/pink
+      new THREE.Color(0xF0E6FF), // Light purple/lavender
+      new THREE.Color(0xE0FFED), // Light mint green
+      new THREE.Color(0xE0F3FF), // Light sky blue
+      new THREE.Color(0xFFEBF4)  // Light rose
     ],
 
     lightColor: new THREE.Color(0xffffff),
-    cursorGlowColor: new THREE.Color(0xCCF5FF), // Light cyan
+    cursorGlowColor: new THREE.Color(0xffffff), // White glow
 
-    // Lighting settings - reduced for subtlety like original
-    ambientIntensity: 0.03,
-    diffuseIntensity: 0.5,
-    specularIntensity: 1.5,  // Moderate specular
-    specularPower: 8,        // Tighter highlights
-    fresnelPower: 1.5,       // Moderate edge glow
-    glowIntensity: 0.4,
-    rimPower: 2.0,
-    contrast: 1.4,
-    fogDensity: 0.04,
+    // Light mode uses OLD shader style (simple emissive glow)
+    ambientIntensity: 0.65,   // Higher for visibility
+    diffuseIntensity: 0.25,   // Moderate
+    specularIntensity: 0.3,   // Minimal (not used in old shader)
+    specularPower: 15,        // Not used in old shader
+    fresnelPower: 2.5,        // Not used in old shader
+    glowIntensity: 0.6,       // Important for pastel visibility
+    rimPower: 3.5,            // Soft rim
+    contrast: 1.0,            // No tone mapping for light mode
+    fogDensity: 0.0,          // No fog for light mode
 
     // Animation
     smoothness: 0.55,
     animationSpeed: 0.25,
 
-    // Cursor glow settings
-    cursorGlowIntensity: 0.35,
-    cursorGlowRadius: 1.1,
+    // OLD shader cursor settings (simpler)
+    cursorGlowIntensity: 0.15,  // From old shader
+    cursorGlowRadius: 2.5,      // From old shader
 
     // Noise overlay
-    noiseOpacity: 0.25
+    noiseOpacity: 0.015
   },
 
   dark: {

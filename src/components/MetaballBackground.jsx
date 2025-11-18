@@ -119,6 +119,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uCursorGlowColor: { value: settings.cursorGlowColor },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
+        uIsLightMode: { value: theme === 'light' ? 1.0 : 0.0 },
         uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
         uSpherePositions: { value: [] },
         uSphereRadii: { value: [] }
@@ -160,6 +161,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uniform vec3 uCursorGlowColor;
         uniform float uIsMobile;
         uniform float uIsDesktop;
+        uniform float uIsLightMode;
         uniform float uSphereScales[6];
         uniform vec3 uSpherePositions[6];
         uniform float uSphereRadii[6];
@@ -287,47 +289,72 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 normal = calcNormal(p);
           vec3 viewDir = -rd;
 
-          // Base sphere color (dark, not emissive)
+          // Get base sphere color
           vec3 baseColor = uSphereColors[0];
           if (sphereIndex >= 0 && sphereIndex < 6) {
             baseColor = uSphereColors[sphereIndex];
           }
 
-          // Ambient lighting (colored light)
-          vec3 ambient = uLightColor * uAmbientIntensity;
+          // LIGHT MODE: Simple shader with emissive glow (like old version)
+          if (uIsLightMode > 0.5) {
+            // Simple ambient
+            vec3 ambient = baseColor * uAmbientIntensity;
 
-          // Diffuse lighting
-          vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2)); // Light position from holographic preset
-          float diff = max(dot(normal, lightDir), 0.0);
-          vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
+            // Simple diffuse
+            vec3 lightDir = normalize(vec3(1, 1, 1));
+            float diff = max(dot(normal, lightDir), 0.0);
+            vec3 diffuse = baseColor * diff * uDiffuseIntensity;
 
-          // Specular highlights (shiny reflections)
-          vec3 reflectDir = reflect(-lightDir, normal);
-          float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
-          float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
-          vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
+            // Smoother rim lighting for glow effect
+            float rimFactor = 1.0 - max(dot(normal, -rd), 0.0);
+            rimFactor = smoothstep(0.0, 1.0, rimFactor);
+            rimFactor = pow(rimFactor, uRimPower);
+            vec3 rimGlow = baseColor * rimFactor * uGlowIntensity * 0.8;
 
-          // Fresnel rim glow
-          vec3 fresnelRim = uLightColor * fresnel * 0.4;
+            // Emissive glow - makes pastels visible
+            vec3 emissive = baseColor * 0.5 * uGlowIntensity;
 
-          // Cursor highlight (when close to cursor)
-          float distToCursor = length(p - uCursorSphere);
-          if (distToCursor < uCursorRadius + 0.4) {
-            float highlight = 1.0 - smoothstep(0.0, uCursorRadius + 0.4, distToCursor);
-            specular += uLightColor * highlight * 0.2;
-
-            float glow = exp(-distToCursor * 3.0) * 0.15;
-            ambient += uLightColor * glow * 0.5;
+            vec3 color = ambient + diffuse + rimGlow + emissive;
+            return color;
           }
+          // DARK MODE: Advanced holographic shader
+          else {
+            // Ambient lighting (colored light)
+            vec3 ambient = uLightColor * uAmbientIntensity;
 
-          // Combine all lighting (baseColor + lights, exact formula from original)
-          vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
+            // Diffuse lighting
+            vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2));
+            float diff = max(dot(normal, lightDir), 0.0);
+            vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
 
-          // Tone mapping (exact from holographic preset)
-          color = pow(color, vec3(uContrast * 0.9));
-          color = color / (color + vec3(0.8));
+            // Specular highlights
+            vec3 reflectDir = reflect(-lightDir, normal);
+            float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
+            float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
+            vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
 
-          return color;
+            // Fresnel rim glow
+            vec3 fresnelRim = uLightColor * fresnel * 0.4;
+
+            // Cursor highlight
+            float distToCursor = length(p - uCursorSphere);
+            if (distToCursor < uCursorRadius + 0.4) {
+              float highlight = 1.0 - smoothstep(0.0, uCursorRadius + 0.4, distToCursor);
+              specular += uLightColor * highlight * 0.2;
+
+              float glow = exp(-distToCursor * 3.0) * 0.15;
+              ambient += uLightColor * glow * 0.5;
+            }
+
+            // Combine lighting
+            vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
+
+            // Tone mapping
+            color = pow(color, vec3(uContrast * 0.9));
+            color = color / (color + vec3(0.8));
+
+            return color;
+          }
         }
 
         float calculateCursorGlow(vec3 worldPos) {
@@ -353,12 +380,15 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
-            // Add fog (depth-based fade to background, like original)
-            float fogAmount = 1.0 - exp(-result.t * uFogDensity);
-            color = mix(color, uBackgroundColor.rgb, fogAmount * 0.3);
+            // Add fog only in dark mode
+            if (uIsLightMode < 0.5) {
+              float fogAmount = 1.0 - exp(-result.t * uFogDensity);
+              color = mix(color, uBackgroundColor.rgb, fogAmount * 0.3);
+            }
 
             // Add cursor glow contribution
-            color += glowContribution * 0.3;
+            float glowMultiplier = uIsLightMode > 0.5 ? 0.15 : 0.3;
+            color += glowContribution * glowMultiplier;
 
             // Dramatic reveal: increase opacity based on cursor proximity
             float distToCursor = length(ro.xy - uCursorSphere.xy);
