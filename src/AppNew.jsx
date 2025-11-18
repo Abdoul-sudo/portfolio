@@ -10,7 +10,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
 import ContactSection from './components/ContactSection';
-import { getInitialTheme, saveTheme, getTheme } from './config/metaballThemes';
+import { getTheme } from './config/metaballThemes';
 
 // Import all styles
 import './styles/base.css';
@@ -19,7 +19,14 @@ import './styles/app.css';
 const AppNew = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [theme, setTheme] = useState(getInitialTheme());
+
+  // Get theme from URL: / = dark, /light = light
+  const getThemeFromURL = () => {
+    const path = window.location.pathname;
+    return path === '/light' ? 'light' : 'dark';
+  };
+
+  const [theme, setTheme] = useState(getThemeFromURL());
   const menuRef = useRef(null);
 
   const sections = ['home', 'about', 'work', 'contact'];
@@ -31,6 +38,16 @@ const AppNew = () => {
       homeSection.classList.add('active');
       gsap.set(homeSection, { display: 'flex', opacity: 1 });
     }
+  }, []);
+
+  // Listen for URL changes (browser back/forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      setTheme(getThemeFromURL());
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   // Handle theme changes - update CSS variables and body background
@@ -45,12 +62,12 @@ const AppNew = () => {
     // Update body background color
     document.body.style.backgroundColor = themeConfig.bodyBackgroundColor;
     document.body.style.color = themeConfig.textColor;
-
-    // Save theme preference
-    saveTheme(theme);
   }, [theme]);
 
   const handleThemeChange = (newTheme) => {
+    // Update URL without reload
+    const newPath = newTheme === 'light' ? '/light' : '/';
+    window.history.pushState({}, '', newPath);
     setTheme(newTheme);
   };
 
@@ -123,7 +140,12 @@ const AppNew = () => {
   return (
     <>
       <NoiseBackground theme={theme} />
-      <MetaballBackground currentSection={sections[currentSection]} theme={theme} />
+      {/* Key prop forces remount when theme changes for proper shader initialization */}
+      <MetaballBackground
+        key={theme}
+        currentSection={sections[currentSection]}
+        theme={theme}
+      />
       <div className="app">
         <Cursor />
         <Logo onNavigate={transitionToSection} menuRef={menuRef} />
