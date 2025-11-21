@@ -117,6 +117,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uCursorGlowIntensity: { value: settings.cursorGlowIntensity },
         uCursorGlowRadius: { value: settings.cursorGlowRadius },
         uCursorGlowColor: { value: settings.cursorGlowColor },
+        uBaseOpacity: { value: settings.baseOpacity || 0.25 },
+        uMaxOpacity: { value: settings.maxOpacity || 0.95 },
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
         uIsLightMode: { value: theme === 'light' ? 1.0 : 0.0 },
@@ -159,6 +161,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uniform float uCursorGlowIntensity;
         uniform float uCursorGlowRadius;
         uniform vec3 uCursorGlowColor;
+        uniform float uBaseOpacity;
+        uniform float uMaxOpacity;
         uniform float uIsMobile;
         uniform float uIsDesktop;
         uniform float uIsLightMode;
@@ -394,22 +398,9 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
             float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
             revealFactor = pow(revealFactor, 1.5); // Steeper curve for dramatic effect
 
-            // Base opacity - both themes use dramatic reveal on desktop
-            float baseOpacity, maxOpacity;
-            if (uIsDesktop > 0.5) {
-              // Desktop: Dramatic reveal for both themes
-              if (uIsLightMode > 0.5) {
-                baseOpacity = 0.15;  // Slightly visible at rest in light mode
-                maxOpacity = 0.95;   // Almost full opacity near cursor
-              } else {
-                baseOpacity = 0.08;  // Barely visible at rest in dark mode
-                maxOpacity = 1.0;    // Full opacity near cursor
-              }
-            } else {
-              // Mobile/tablet: Always visible
-              baseOpacity = 0.65;
-              maxOpacity = 0.65;
-            }
+            // Base opacity - theme-aware dramatic reveal on desktop
+            float baseOpacity = uIsDesktop > 0.5 ? uBaseOpacity : 0.65;  // Mobile always 0.65
+            float maxOpacity = uIsDesktop > 0.5 ? uMaxOpacity : 0.65;    // Mobile always 0.65
 
             float finalOpacity = uIsDesktop > 0.5 ? mix(baseOpacity, maxOpacity, revealFactor) : baseOpacity;
 
@@ -706,6 +697,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
     materialRef.current.uniforms.uSmoothness.value = themeConfig.smoothness;
     materialRef.current.uniforms.uCursorGlowIntensity.value = themeConfig.cursorGlowIntensity;
     materialRef.current.uniforms.uCursorGlowRadius.value = themeConfig.cursorGlowRadius;
+    materialRef.current.uniforms.uBaseOpacity.value = themeConfig.baseOpacity || 0.25;
+    materialRef.current.uniforms.uMaxOpacity.value = themeConfig.maxOpacity || 0.95;
 
     // Update light color
     materialRef.current.uniforms.uLightColor.value.copy(themeConfig.lightColor);
