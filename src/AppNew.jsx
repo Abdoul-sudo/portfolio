@@ -59,9 +59,10 @@ const AppNew = () => {
     document.documentElement.style.setProperty('--text-secondary-color', themeConfig.textSecondaryColor);
     document.documentElement.style.setProperty('--background-color', themeConfig.bodyBackgroundColor);
 
-    // Update body background color
+    // Update body background color and theme attribute
     document.body.style.backgroundColor = themeConfig.bodyBackgroundColor;
     document.body.style.color = themeConfig.textColor;
+    document.body.setAttribute('data-theme', theme);
   }, [theme]);
 
   const handleThemeChange = (newTheme) => {

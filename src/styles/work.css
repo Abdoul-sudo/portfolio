@@ -226,6 +226,12 @@
   font-weight: var(--font-weight-normal);
 }
 
+/* Dark mode */
+[data-theme="dark"] .work-count {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 1; /* Override base opacity */
+}
+
 /* List Layout with Proper Spacing */
 .work-list {
   display: flex;
@@ -257,6 +263,19 @@
   background: rgba(34, 211, 238, 0.8);
 }
 
+/* Dark mode scrollbar */
+[data-theme="dark"] .work-list::-webkit-scrollbar-track {
+  background: rgba(204, 170, 255, 0.15);
+}
+
+[data-theme="dark"] .work-list::-webkit-scrollbar-thumb {
+  background: rgba(170, 119, 255, 0.6);
+}
+
+[data-theme="dark"] .work-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(170, 119, 255, 0.8);
+}
+
 .work-item {
   display: flex;
   align-items: center;
@@ -273,6 +292,15 @@
 
 .work-item:first-child {
   border-top: 1px solid rgba(96, 104, 135, 0.15);
+}
+
+/* Dark mode borders */
+[data-theme="dark"] .work-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .work-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Arrow - Inline, hidden by default, shown on hover with push effect */
@@ -339,6 +367,12 @@
   display: block;
   text-align: right;
   white-space: nowrap;
+}
+
+/* Dark mode */
+[data-theme="dark"] .work-item-type {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 1; /* Override base opacity */
 }
 
 /* Selected state for mobile */
