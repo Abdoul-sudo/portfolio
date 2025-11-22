@@ -24,7 +24,7 @@ class SpatialAudioSystem {
 
     // Audio settings
     this.settings = {
-      maxVolume: 0.15,        // Maximum volume per note
+      maxVolume: 0.25,        // Maximum volume per note
       attackTime: 0.08,       // Fade in time
       releaseTime: 0.3,       // Fade out time
       proximityThreshold: 1.8, // Distance to start hearing
