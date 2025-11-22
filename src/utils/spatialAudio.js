@@ -299,6 +299,17 @@ class SpatialAudioSystem {
   }
 
   /**
+   * Fade out all active sounds gracefully (for section changes, focus loss)
+   */
+  fadeAllSounds() {
+    this.activeOscillators.forEach((active, index) => {
+      this.fadeOutNote(index);
+    });
+    // Reset proximities
+    this.lastProximities = [0, 0, 0, 0];
+  }
+
+  /**
    * Set master volume (0-1)
    */
   setMasterVolume(volume) {

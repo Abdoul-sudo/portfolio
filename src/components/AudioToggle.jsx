@@ -30,9 +30,25 @@ const AudioToggle = ({ onAudioChange }) => {
     }
   };
 
-  // Cleanup on unmount
+  // Handle visibility change (tab hidden, window blur)
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        spatialAudio.fadeAllSounds();
+      }
+    };
+
+    const handleWindowBlur = () => {
+      spatialAudio.fadeAllSounds();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleWindowBlur);
+
+    // Cleanup on unmount
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleWindowBlur);
       spatialAudio.setEnabled(false);
     };
   }, []);

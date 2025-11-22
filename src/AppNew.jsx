@@ -5,6 +5,7 @@ import Logo from './components/Logo';
 import Menu from './components/Menu';
 import ThemeToggle from './components/ThemeToggle';
 import AudioToggle from './components/AudioToggle';
+import { spatialAudio } from './utils/spatialAudio';
 import NoiseBackground from './components/NoiseBackground';
 import MetaballBackground from './components/MetaballBackground';
 import HeroSection from './components/HeroSection';
@@ -79,6 +80,9 @@ const AppNew = () => {
     if (targetIndex === -1 || targetIndex === currentSection || isTransitioning) {
       return;
     }
+
+    // Fade out any playing audio when changing sections
+    spatialAudio.fadeAllSounds();
 
     setIsTransitioning(true);
 
