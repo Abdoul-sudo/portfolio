@@ -1,8 +1,9 @@
 .theme-toggle {
   position: fixed;
-  top: 32px;
-  right: 80px; /* Left of the menu icon */
-  z-index: 1000;
+  /* Align with hamburger menu - same top, positioned to its left */
+  top: calc(var(--spacing-lg) + var(--spacing-md));
+  right: calc(var(--spacing-lg) + var(--spacing-sm) + 48px + var(--spacing-sm)); /* hamburger position + hamburger width + gap */
+  z-index: 10000;
   width: 44px;
   height: 44px;
   background: transparent;
@@ -95,8 +96,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .theme-toggle {
-    top: 24px;
-    right: 64px;
+    top: calc(var(--spacing-md) * 2);
+    right: calc(var(--spacing-sm) * 2 + 40px + var(--spacing-xs)); /* hamburger position + hamburger width + gap */
     width: 40px;
     height: 40px;
   }
@@ -109,8 +110,6 @@
 
 @media (max-width: 480px) {
   .theme-toggle {
-    top: 20px;
-    right: 56px;
     width: 36px;
     height: 36px;
   }
