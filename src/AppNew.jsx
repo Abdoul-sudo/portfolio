@@ -4,6 +4,7 @@ import Cursor from './components/Cursor';
 import Logo from './components/Logo';
 import Menu from './components/Menu';
 import ThemeToggle from './components/ThemeToggle';
+import AudioToggle from './components/AudioToggle';
 import NoiseBackground from './components/NoiseBackground';
 import MetaballBackground from './components/MetaballBackground';
 import HeroSection from './components/HeroSection';
@@ -151,6 +152,7 @@ const AppNew = () => {
         <Cursor />
         <Logo onNavigate={transitionToSection} menuRef={menuRef} />
         <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
+        <AudioToggle />
         <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} />
 
         <main className="main-content">

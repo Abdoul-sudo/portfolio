@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import '../styles/metaball.css';
 import { getMetaballConfig, getDeviceType, TRANSITION_CONFIG } from '../config/metaballPositions';
 import { getTheme } from '../config/metaballThemes';
+import { spatialAudio } from '../utils/spatialAudio';
 
 const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
   const containerRef = useRef(null);
@@ -13,8 +14,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
   const cursorSphere3D = useRef(new THREE.Vector3(0, 0, 0));
   const targetMousePosition = useRef(new THREE.Vector2(0.5, 0.5));
   const mousePosition = useRef(new THREE.Vector2(0.5, 0.5));
-  const sphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
-  const targetSphereScales = useRef([1.0, 1.0, 1.0, 1.0, 1.0, 1.0]);
+  const sphereScales = useRef([1.0, 1.0, 1.0, 1.0]);
+  const targetSphereScales = useRef([1.0, 1.0, 1.0, 1.0]);
 
   // Position animation system for smooth transitions
   const currentPositions = useRef([]);
@@ -122,7 +123,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uIsMobile: { value: isMobile ? 1.0 : 0.0 },
         uIsDesktop: { value: isDesktop ? 1.0 : 0.0 },
         uIsLightMode: { value: theme === 'light' ? 1.0 : 0.0 },
-        uSphereScales: { value: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
+        uSphereScales: { value: [1.0, 1.0, 1.0, 1.0] },
         uSpherePositions: { value: [] },
         uSphereRadii: { value: [] }
       },
@@ -154,7 +155,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uniform float uContrast;
         uniform float uFogDensity;
         uniform vec3 uBackgroundColor;
-        uniform vec3 uSphereColors[6];
+        uniform vec3 uSphereColors[4];
         uniform vec3 uLightColor;
         uniform float uAnimationSpeed;
         uniform float uTranslateSpeed;
@@ -166,9 +167,9 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         uniform float uIsMobile;
         uniform float uIsDesktop;
         uniform float uIsLightMode;
-        uniform float uSphereScales[6];
-        uniform vec3 uSpherePositions[6];
-        uniform float uSphereRadii[6];
+        uniform float uSphereScales[4];
+        uniform vec3 uSpherePositions[4];
+        uniform float uSphereRadii[4];
 
         const float PI = 3.14159265359;
         const float EPSILON = 0.001;  // Tighter for better surface detection
@@ -211,13 +212,13 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 spherePos[6];
           float sphereRad[6];
 
-          for (int i = 0; i < 6; i++) {
+          for (int i = 0; i < 4; i++) {
             spherePos[i] = getSpherePosition(i, time);
             sphereRad[i] = getSphereRadius(i, time);
           }
 
           // Create spheres with interaction and track closest
-          for (int i = 0; i < 6; i++) {
+          for (int i = 0; i < 4; i++) {
             vec3 pos_i = spherePos[i];
             float rad_i = sphereRad[i];
 
@@ -471,7 +472,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       let closestIndex = -1;
       let activeMerges = 0;
 
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 4; i++) {
         const dist = worldPos.distanceTo(spherePositions[i]);
 
         // Track closest sphere
@@ -493,6 +494,17 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           targetSphereScales.current[i] = 1.0;
         }
       }
+
+      // Update spatial audio based on cursor proximity to metaballs
+      const audioProximityThreshold = 1.8;
+      const audioProximities = [];
+      for (let i = 0; i < 4; i++) {
+        const dist = worldPos.distanceTo(spherePositions[i]);
+        // Normalize proximity: 1.0 = touching, 0.0 = outside threshold
+        const proximity = Math.max(0, 1.0 - dist / audioProximityThreshold);
+        audioProximities.push(proximity);
+      }
+      spatialAudio.updateProximities(audioProximities);
 
       // Dynamic cursor radius (exact formula from original)
       const proximityFactor = Math.max(0, 1.0 - closestDistance / settings.mergeDistance);
@@ -588,13 +600,13 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         (targetMousePosition.current.y - mousePosition.current.y) * mouseSmoothness;
 
       // Smooth sphere scaling for reactive pulsing
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 4; i++) {
         sphereScales.current[i] +=
           (targetSphereScales.current[i] - sphereScales.current[i]) * scaleSmoothness;
       }
 
       // Smooth position transitions between sections
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 4; i++) {
         currentPositions.current[i].x +=
           (targetPositions.current[i].x - currentPositions.current[i].x) * positionSmoothness;
         currentPositions.current[i].y +=
@@ -704,7 +716,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
     materialRef.current.uniforms.uLightColor.value.copy(themeConfig.lightColor);
 
     // Update sphere colors
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       materialRef.current.uniforms.uSphereColors.value[i].copy(themeConfig.sphereColors[i]);
     }
 
