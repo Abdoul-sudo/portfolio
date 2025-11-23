@@ -239,6 +239,13 @@
   }
 }
 
+/* Hide theme and audio toggles when menu is open */
+body.menu-open .theme-toggle,
+body.menu-open .audio-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hamburger,

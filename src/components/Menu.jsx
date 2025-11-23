@@ -16,6 +16,7 @@ const Menu = forwardRef(({ onNavigate, currentSection }, ref) => {
 
   const openMenu = () => {
     setIsOpen(true);
+    document.body.classList.add('menu-open');
     const overlay = overlayRef.current;
 
     gsap.timeline()
@@ -58,6 +59,7 @@ const Menu = forwardRef(({ onNavigate, currentSection }, ref) => {
           ease: 'power2.in',
           onComplete: () => {
             setIsOpen(false);
+            document.body.classList.remove('menu-open');
             gsap.set(overlay, { display: 'none' });
           }
         },
