@@ -98,24 +98,24 @@
   .theme-toggle {
     top: calc(var(--spacing-md) * 2);
     right: calc(var(--spacing-sm) * 2 + 40px + var(--spacing-xs)); /* hamburger position + hamburger width + gap */
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
 
   .theme-icon {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
   }
 }
 
 @media (max-width: 480px) {
   .theme-toggle {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .theme-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 }

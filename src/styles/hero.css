@@ -227,6 +227,13 @@
   animation: fadeSlideUp 0.5s ease-out 0.8s backwards;
 }
 
+/* Dark mode - More visible notice */
+[data-theme="dark"] .hero-desktop-notice {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .hero-desktop-notice svg {
   flex-shrink: 0;
   opacity: 0.8;

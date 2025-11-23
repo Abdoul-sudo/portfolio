@@ -235,7 +235,7 @@
   }
 
   .menu-nav {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 }
 
