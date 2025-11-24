@@ -45,7 +45,7 @@ export const METABALL_THEMES = {
     cursorGlowRadius: 2.0,      // Slightly smaller radius
 
     // Opacity reveal settings (desktop only)
-    baseOpacity: 0.20,          // More visible at rest
+    baseOpacity: 0.40,          // More visible at rest
     maxOpacity: 0.95,           // Almost full opacity near cursor
 
     // Noise overlay

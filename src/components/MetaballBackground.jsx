@@ -77,7 +77,10 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       preserveDrawingBuffer: false
     });
 
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5); // Max 1.5 for performance
+    // Lower pixel ratio on mobile for performance
+    const pixelRatio = isMobile
+      ? Math.min(window.devicePixelRatio || 1, 0.75)
+      : Math.min(window.devicePixelRatio || 1, 1.5);
     renderer.setPixelRatio(pixelRatio);
 
     const viewportWidth = window.innerWidth;
@@ -209,22 +212,34 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           float time = uTime * uAnimationSpeed;
 
           // Store positions and radii
-          vec3 spherePos[6];
-          float sphereRad[6];
+          vec3 spherePos[4];
+          float sphereRad[4];
 
           for (int i = 0; i < 4; i++) {
             spherePos[i] = getSpherePosition(i, time);
             sphereRad[i] = getSphereRadius(i, time);
           }
 
-          // Create spheres with interaction and track closest
+          // MOBILE: Simple sphere rendering without dynamic smoothness
+          if (uIsMobile > 0.5) {
+            for (int i = 0; i < 4; i++) {
+              float sphere = sdSphere(pos - spherePos[i], sphereRad[i]);
+              if (sphere < result) {
+                closestSphere = i;
+              }
+              result = smin(result, sphere, uSmoothness);
+            }
+            return SceneResult(result, closestSphere);
+          }
+
+          // DESKTOP: Full quality with dynamic smoothness
           for (int i = 0; i < 4; i++) {
             vec3 pos_i = spherePos[i];
             float rad_i = sphereRad[i];
 
             // Check for nearby spheres to adjust smoothness
             float minDist = 10.0;
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 4; j++) {
               if (i == j) continue;
               float dist = length(spherePos[j] - pos_i);
               minDist = min(minDist, dist);
@@ -255,7 +270,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         }
 
         vec3 calcNormal(vec3 p) {
-          float eps = 0.002;  // Reduced for better accuracy on large surfaces
+          // Larger epsilon on mobile for fewer samples / better perf
+          float eps = uIsMobile > 0.5 ? 0.01 : 0.002;
           return normalize(vec3(
             sceneSDF(p + vec3(eps, 0, 0)).dist - sceneSDF(p - vec3(eps, 0, 0)).dist,
             sceneSDF(p + vec3(0, eps, 0)).dist - sceneSDF(p - vec3(0, eps, 0)).dist,
@@ -272,17 +288,23 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           float t = 0.0;
           int sphereIndex = -1;
 
-          // Increased iterations and distance for large metaballs (up to radius 1.2)
+          // Mobile: 24 steps, Desktop: 48 steps
+          int maxSteps = uIsMobile > 0.5 ? 24 : 48;
+          float maxDist = uIsMobile > 0.5 ? 6.0 : 10.0;
+          float stepMultiplier = uIsMobile > 0.5 ? 1.5 : 1.0;
+
           for (int i = 0; i < 48; i++) {
+            if (i >= maxSteps) break;
+
             vec3 p = ro + rd * t;
             SceneResult scene = sceneSDF(p);
 
             if (scene.dist < EPSILON) {
               return RayResult(t, scene.closestSphere);
             }
-            if (t > 10.0) break;  // Extended max distance for large blobs
+            if (t > maxDist) break;
 
-            t += scene.dist;
+            t += scene.dist * stepMultiplier;
           }
 
           return RayResult(-1.0, -1);
@@ -292,7 +314,6 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           if (t < 0.0) return vec3(0.0);
 
           vec3 normal = calcNormal(p);
-          vec3 viewDir = -rd;
 
           // Get base sphere color
           vec3 baseColor = uSphereColors[0];
@@ -300,66 +321,53 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
             baseColor = uSphereColors[sphereIndex];
           }
 
-          // LIGHT MODE: Simple shader with emissive glow (like old version)
-          if (uIsLightMode > 0.5) {
-            // Simple ambient
-            vec3 ambient = baseColor * uAmbientIntensity;
+          // MOBILE: Simplified lighting for performance
+          if (uIsMobile > 0.5) {
+            vec3 lightDir = normalize(vec3(1, 1, 1));
+            float diff = max(dot(normal, lightDir), 0.0);
+            float rim = 1.0 - max(dot(normal, -rd), 0.0);
+            vec3 color = baseColor * (0.6 + diff * 0.3 + rim * 0.3);
+            return color;
+          }
 
-            // Simple diffuse
+          // LIGHT MODE: Simple shader with emissive glow
+          if (uIsLightMode > 0.5) {
+            vec3 ambient = baseColor * uAmbientIntensity;
             vec3 lightDir = normalize(vec3(1, 1, 1));
             float diff = max(dot(normal, lightDir), 0.0);
             vec3 diffuse = baseColor * diff * uDiffuseIntensity;
-
-            // Smoother rim lighting for glow effect
             float rimFactor = 1.0 - max(dot(normal, -rd), 0.0);
             rimFactor = smoothstep(0.0, 1.0, rimFactor);
             rimFactor = pow(rimFactor, uRimPower);
             vec3 rimGlow = baseColor * rimFactor * uGlowIntensity * 0.8;
-
-            // Emissive glow - makes pastels visible
             vec3 emissive = baseColor * 0.5 * uGlowIntensity;
-
-            vec3 color = ambient + diffuse + rimGlow + emissive;
-            return color;
+            return ambient + diffuse + rimGlow + emissive;
           }
-          // DARK MODE: Advanced holographic shader
-          else {
-            // Ambient lighting (colored light)
-            vec3 ambient = uLightColor * uAmbientIntensity;
 
-            // Diffuse lighting
-            vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2));
-            float diff = max(dot(normal, lightDir), 0.0);
-            vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
+          // DARK MODE: Advanced holographic shader (desktop only)
+          vec3 viewDir = -rd;
+          vec3 ambient = uLightColor * uAmbientIntensity;
+          vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2));
+          float diff = max(dot(normal, lightDir), 0.0);
+          vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
+          vec3 reflectDir = reflect(-lightDir, normal);
+          float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
+          float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
+          vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
+          vec3 fresnelRim = uLightColor * fresnel * 0.4;
 
-            // Specular highlights
-            vec3 reflectDir = reflect(-lightDir, normal);
-            float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
-            float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
-            vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
-
-            // Fresnel rim glow
-            vec3 fresnelRim = uLightColor * fresnel * 0.4;
-
-            // Cursor highlight
-            float distToCursor = length(p - uCursorSphere);
-            if (distToCursor < uCursorRadius + 0.4) {
-              float highlight = 1.0 - smoothstep(0.0, uCursorRadius + 0.4, distToCursor);
-              specular += uLightColor * highlight * 0.2;
-
-              float glow = exp(-distToCursor * 3.0) * 0.15;
-              ambient += uLightColor * glow * 0.5;
-            }
-
-            // Combine lighting
-            vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
-
-            // Tone mapping
-            color = pow(color, vec3(uContrast * 0.9));
-            color = color / (color + vec3(0.8));
-
-            return color;
+          float distToCursor = length(p - uCursorSphere);
+          if (distToCursor < uCursorRadius + 0.4) {
+            float highlight = 1.0 - smoothstep(0.0, uCursorRadius + 0.4, distToCursor);
+            specular += uLightColor * highlight * 0.2;
+            float glow = exp(-distToCursor * 3.0) * 0.15;
+            ambient += uLightColor * glow * 0.5;
           }
+
+          vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
+          color = pow(color, vec3(uContrast * 0.9));
+          color = color / (color + vec3(0.8));
+          return color;
         }
 
         float calculateCursorGlow(vec3 worldPos) {
@@ -380,35 +388,39 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 p = ro + rd * result.t;
           vec3 color = lighting(p, rd, result.t, result.sphereIndex);
 
-          // Add cursor glow
+          // MOBILE: Simplified rendering path
+          if (uIsMobile > 0.5) {
+            if (result.t > 0.0) {
+              gl_FragColor = vec4(color, 0.7);
+            } else {
+              gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+            }
+            return;
+          }
+
+          // DESKTOP: Full effects
           float cursorGlow = calculateCursorGlow(ro);
           vec3 glowContribution = uCursorGlowColor * cursorGlow;
 
           if (result.t > 0.0) {
-            // Add fog (both modes)
             float fogAmount = 1.0 - exp(-result.t * uFogDensity);
-            float fogStrength = uIsLightMode > 0.5 ? 0.2 : 0.3; // Lighter fog for light mode
+            float fogStrength = uIsLightMode > 0.5 ? 0.2 : 0.3;
             color = mix(color, uBackgroundColor.rgb, fogAmount * fogStrength);
 
-            // Add cursor glow contribution
             float glowMultiplier = uIsLightMode > 0.5 ? 0.15 : 0.3;
             color += glowContribution * glowMultiplier;
 
-            // Dramatic reveal: increase opacity based on cursor proximity
             float distToCursor = length(ro.xy - uCursorSphere.xy);
             float revealFactor = 1.0 - smoothstep(0.0, uCursorGlowRadius, distToCursor);
-            revealFactor = pow(revealFactor, 1.5); // Steeper curve for dramatic effect
+            revealFactor = pow(revealFactor, 1.5);
 
-            // Base opacity - theme-aware dramatic reveal on desktop
-            float baseOpacity = uIsDesktop > 0.5 ? uBaseOpacity : 0.65;  // Mobile always 0.65
-            float maxOpacity = uIsDesktop > 0.5 ? uMaxOpacity : 0.65;    // Mobile always 0.65
-
+            float baseOpacity = uIsDesktop > 0.5 ? uBaseOpacity : 0.65;
+            float maxOpacity = uIsDesktop > 0.5 ? uMaxOpacity : 0.65;
             float finalOpacity = uIsDesktop > 0.5 ? mix(baseOpacity, maxOpacity, revealFactor) : baseOpacity;
 
             gl_FragColor = vec4(color, finalOpacity);
           } else {
             if (cursorGlow > 0.01) {
-              // Glow in empty space (like original)
               gl_FragColor = vec4(glowContribution, cursorGlow * 0.8);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
@@ -577,9 +589,9 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       material.uniforms.uIsDesktop.value = newIsDesktop ? 1.0 : 0.0;
     };
 
-    // Optimized animation loop
+    // Optimized animation loop - lower FPS on mobile
     let lastTime = 0;
-    const targetFPS = 30; // Cap at 30fps for performance
+    const targetFPS = isMobile ? 20 : 30;
     const frameInterval = 1000 / targetFPS;
     const mouseSmoothness = settings.mouseSmoothness; // From theme settings (0.1 = smooth like original)
     const scaleSmoothness = 0.15; // Smooth pulsing animation
