@@ -49,7 +49,7 @@ export const METABALL_THEMES = {
     maxOpacity: 0.95,           // Almost full opacity near cursor
 
     // Noise overlay
-    noiseOpacity: 0.015
+    noiseOpacity: 0.25
   },
 
   dark: {
@@ -97,7 +97,7 @@ export const METABALL_THEMES = {
     maxOpacity: 1.0,            // Full opacity near cursor
 
     // Noise overlay
-    noiseOpacity: 0.25
+    noiseOpacity: 0.5
   }
 };
 
