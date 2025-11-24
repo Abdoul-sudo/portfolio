@@ -112,7 +112,7 @@ body {
   padding: 0;
   font-family: var(--font-body); /* Inter for body/UI */
   font-weight: var(--font-weight-normal);
-  background-color: var(--background-color);
+  background-color: transparent; /* Transparent to show metaball background */
   color: var(--text-color);
   line-height: 1.6;
   letter-spacing: -0.015em; /* Optimized for Inter */
@@ -121,8 +121,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Smooth theme transitions */
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   text-rendering: optimizeLegibility;
   /* cursor: none; */
 }
