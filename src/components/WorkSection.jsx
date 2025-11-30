@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { projectsData } from '../data/projects';
+import { getTechIcon } from '../utils/techIcons';
 import '../styles/work.css';
 
 const WorkSection = () => {
@@ -158,9 +159,21 @@ const WorkSection = () => {
                       <h3 className="work-project-name">{project.name}</h3>
                       <p className="work-project-description">{project.description}</p>
                       <div className="work-project-techs">
-                        {project.techs.map((tech, i) => (
-                          <span key={i} className="tech-badge">{tech}</span>
-                        ))}
+                        {project.techs.map((tech, i) => {
+                          const icon = getTechIcon(tech);
+                          return (
+                            <span key={i} className="tech-badge">
+                              {icon && (
+                                icon.type === 'image' ? (
+                                  <img src={icon.value} alt={tech} className="tech-icon" />
+                                ) : (
+                                  <icon.value className="tech-icon" />
+                                )
+                              )}
+                              {tech}
+                            </span>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

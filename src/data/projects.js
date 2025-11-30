@@ -34,14 +34,14 @@ export const projectsData = [
     name: "Onirix",
     categories: ["web"],
     description: "AI-powered dream interpretation. 3rd place at Webcup Madagascar (24h).",
-    techs: ["React", "Tailwind", "ChatGPT API", "Figma"],
+    techs: ["React", "Tailwind", "GPT API", "Figma"],
     demo_link: "https://onirix.vercel.app/",
     featured: true,
     cover: onirix,
     role: "Full-Stack Developer",
     year: "2024",
     problem: "Building an intuitive AI-powered dream interpretation platform within a 24-hour hackathon timeframe.",
-    approach: "Integrated ChatGPT API with a React frontend, focusing on user experience and rapid prototyping.",
+    approach: "Integrated GPT API with a React frontend, focusing on user experience and rapid prototyping.",
     result: "Secured 3rd place at Webcup Madagascar, delivering a functional and engaging dream analysis tool."
   },
   {

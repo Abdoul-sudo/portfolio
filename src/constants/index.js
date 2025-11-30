@@ -304,7 +304,7 @@ const projects = [
                 icon: tailwind,
             },
             {
-                name: 'Chatgpt API',
+                name: 'Gpt API',
                 icon: chatgpt,
             },
             {

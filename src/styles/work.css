@@ -181,7 +181,9 @@
 }
 
 .tech-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.35rem 0.9rem;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
@@ -191,6 +193,12 @@
   color: #ffffff;
   font-weight: 500;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.tech-icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
 }
 
 /* Right side - Project List */
@@ -516,6 +524,12 @@
   .tech-badge {
     font-size: 0.625rem; /* 10px */
     padding: 0.3rem 0.65rem; /* Reduce padding */
+    gap: 0.3rem;
+  }
+
+  .tech-icon {
+    width: 0.9em;
+    height: 0.9em;
   }
 
   .work-project-techs {
@@ -604,6 +618,12 @@
   .tech-badge {
     font-size: 0.5625rem; /* 9px */
     padding: 0.25rem 0.5rem; /* More compact */
+    gap: 0.25rem;
+  }
+
+  .tech-icon {
+    width: 0.85em;
+    height: 0.85em;
   }
 
   .work-project-techs {
