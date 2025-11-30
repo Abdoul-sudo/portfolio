@@ -77,9 +77,9 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       preserveDrawingBuffer: false
     });
 
-    // Lower pixel ratio on mobile for performance
+    // Increase pixel ratio on mobile for better quality
     const pixelRatio = isMobile
-      ? Math.min(window.devicePixelRatio || 1, 0.75)
+      ? Math.min(window.devicePixelRatio || 1, 1.5)
       : Math.min(window.devicePixelRatio || 1, 1.5);
     renderer.setPixelRatio(pixelRatio);
 
@@ -270,8 +270,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
         }
 
         vec3 calcNormal(vec3 p) {
-          // Larger epsilon on mobile for fewer samples / better perf
-          float eps = uIsMobile > 0.5 ? 0.01 : 0.002;
+          // Use same precision on mobile as desktop for better quality
+          float eps = 0.002;
           return normalize(vec3(
             sceneSDF(p + vec3(eps, 0, 0)).dist - sceneSDF(p - vec3(eps, 0, 0)).dist,
             sceneSDF(p + vec3(0, eps, 0)).dist - sceneSDF(p - vec3(0, eps, 0)).dist,
@@ -288,10 +288,10 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           float t = 0.0;
           int sphereIndex = -1;
 
-          // Mobile: 24 steps, Desktop: 48 steps
-          int maxSteps = uIsMobile > 0.5 ? 24 : 48;
-          float maxDist = uIsMobile > 0.5 ? 6.0 : 10.0;
-          float stepMultiplier = uIsMobile > 0.5 ? 1.5 : 1.0;
+          // Mobile: 40 steps (increased), Desktop: 48 steps
+          int maxSteps = uIsMobile > 0.5 ? 40 : 48;
+          float maxDist = 10.0;
+          float stepMultiplier = 1.0;
 
           for (int i = 0; i < 48; i++) {
             if (i >= maxSteps) break;
@@ -321,12 +321,37 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
             baseColor = uSphereColors[sphereIndex];
           }
 
-          // MOBILE: Simplified lighting for performance
+          // MOBILE: Use same lighting as desktop for consistency
           if (uIsMobile > 0.5) {
-            vec3 lightDir = normalize(vec3(1, 1, 1));
+            // Light mode: Simple shader with emissive glow
+            if (uIsLightMode > 0.5) {
+              vec3 ambient = baseColor * uAmbientIntensity;
+              vec3 lightDir = normalize(vec3(1, 1, 1));
+              float diff = max(dot(normal, lightDir), 0.0);
+              vec3 diffuse = baseColor * diff * uDiffuseIntensity;
+              float rimFactor = 1.0 - max(dot(normal, -rd), 0.0);
+              rimFactor = smoothstep(0.0, 1.0, rimFactor);
+              rimFactor = pow(rimFactor, uRimPower);
+              vec3 rimGlow = baseColor * rimFactor * uGlowIntensity * 0.8;
+              vec3 emissive = baseColor * 0.5 * uGlowIntensity;
+              return ambient + diffuse + rimGlow + emissive;
+            }
+
+            // Dark mode: EXACT desktop holographic shader
+            vec3 viewDir = -rd;
+            vec3 ambient = uLightColor * uAmbientIntensity;
+            vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2));
             float diff = max(dot(normal, lightDir), 0.0);
-            float rim = 1.0 - max(dot(normal, -rd), 0.0);
-            vec3 color = baseColor * (0.6 + diff * 0.3 + rim * 0.3);
+            vec3 diffuse = uLightColor * diff * uDiffuseIntensity;
+            vec3 reflectDir = reflect(-lightDir, normal);
+            float spec = pow(max(dot(viewDir, reflectDir), 0.0), uSpecularPower);
+            float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), uFresnelPower);
+            vec3 specular = uLightColor * spec * uSpecularIntensity * fresnel;
+            vec3 fresnelRim = uLightColor * fresnel * 0.4;
+
+            vec3 color = baseColor + ambient + diffuse + specular + fresnelRim;
+            color = pow(color, vec3(uContrast * 0.9));
+            color = color / (color + vec3(0.8));
             return color;
           }
 
@@ -388,10 +413,17 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
           vec3 p = ro + rd * result.t;
           vec3 color = lighting(p, rd, result.t, result.sphereIndex);
 
-          // MOBILE: Simplified rendering path
+          // MOBILE: Use same rendering as desktop but always at max opacity
           if (uIsMobile > 0.5) {
             if (result.t > 0.0) {
-              gl_FragColor = vec4(color, 0.7);
+              // Use same fog and opacity logic as desktop
+              float fogAmount = 1.0 - exp(-result.t * uFogDensity);
+              float fogStrength = uIsLightMode > 0.5 ? 0.2 : 0.3;
+              color = mix(color, uBackgroundColor.rgb, fogAmount * fogStrength);
+
+              // Mobile: Always show at max opacity (like cursor is always near)
+              float mobileOpacity = uIsDesktop > 0.5 ? uBaseOpacity : uMaxOpacity;
+              gl_FragColor = vec4(color, mobileOpacity);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
             }
@@ -589,9 +621,9 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       material.uniforms.uIsDesktop.value = newIsDesktop ? 1.0 : 0.0;
     };
 
-    // Optimized animation loop - lower FPS on mobile
+    // Optimized animation loop - better FPS on mobile for smooth appearance
     let lastTime = 0;
-    const targetFPS = isMobile ? 20 : 30;
+    const targetFPS = isMobile ? 30 : 30;
     const frameInterval = 1000 / targetFPS;
     const mouseSmoothness = settings.mouseSmoothness; // From theme settings (0.1 = smooth like original)
     const scaleSmoothness = 0.15; // Smooth pulsing animation
