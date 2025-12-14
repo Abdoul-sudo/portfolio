@@ -1,53 +1,54 @@
 /* Logo Styles */
 
 .logo {
-  position: fixed;
-  top: calc(var(--spacing-lg) + var(--spacing-md)); /* Exactly like Sharlee - much lower */
-  left: calc(var(--spacing-lg) + var(--spacing-sm)); /* Exactly like Sharlee - more x-padding */
-  z-index: 10001; /* Higher than menu overlay to remain clickable */
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  border: 2px solid var(--color-border);
-  border-radius: 50%;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: fixed;
+    top: calc(
+        var(--spacing-lg) + var(--spacing-md)
+    ); /* Exactly like Sharlee - much lower */
+    left: calc(
+        var(--spacing-lg) + var(--spacing-sm)
+    ); /* Exactly like Sharlee - more x-padding */
+    z-index: 10001; /* Higher than menu overlay to remain clickable */
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
 }
 
 .logo-letter {
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--text-color);
-  font-family: var(--font-primary);
-  letter-spacing: -0.02em;
-  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    letter-spacing: -0.02em;
+    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-  .logo {
-    top: calc(var(--spacing-md) * 2);
-    left: calc(var(--spacing-sm) * 2);
-    width: 40px;
-    height: 40px;
-  }
+    .logo {
+        top: calc(var(--spacing-md) * 2);
+        left: calc(var(--spacing-sm) * 2);
+        width: 46px;
+        height: 46px;
+    }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .logo,
-  .logo:hover {
-    transition: none !important;
-    transform: none !important;
-  }
+    .logo,
+    .logo:hover {
+        transition: none !important;
+        transform: none !important;
+    }
 }

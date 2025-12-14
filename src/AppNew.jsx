@@ -156,7 +156,7 @@ const AppNew = () => {
       />
       <div className="app">
         <Cursor />
-        <Logo onNavigate={transitionToSection} menuRef={menuRef} />
+        <Logo onNavigate={transitionToSection} menuRef={menuRef} theme={theme} />
         <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
         <AudioToggle />
         <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} />
