@@ -39,8 +39,8 @@
     .logo {
         top: calc(var(--spacing-md) * 2);
         left: calc(var(--spacing-sm) * 2);
-        width: 46px;
-        height: 46px;
+        width: 44px;
+        height: 44px;
     }
 }
 
