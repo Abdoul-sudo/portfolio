@@ -144,10 +144,15 @@
 .about-title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: #0D0745;
   margin: 0;
   font-family: var(--font-display);
   letter-spacing: -0.02em;
+}
+
+/* Dark mode - White text */
+[data-theme="dark"] .about-title {
+  color: #ffffff;
 }
 
 .about-bio {

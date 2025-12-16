@@ -71,20 +71,30 @@
 .hero-line-1 {
   font-size: clamp(2.5rem, 6.5vw, 5.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  color: #0D0745;
   max-width: 90%;
   line-height: 1.15;
   display: inline;
+}
+
+/* Dark mode - White text */
+[data-theme="dark"] .hero-line-1 {
+  color: #ffffff;
 }
 
 /* Line 1b: "Abdoul Wahhaab" - Same size, inline on desktop, block on mobile */
 .hero-line-1b {
   font-size: clamp(2.5rem, 6.5vw, 5.5rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  color: #0D0745;
   line-height: 1.15;
   margin-top: 0;
   display: inline;
+}
+
+/* Dark mode - White text */
+[data-theme="dark"] .hero-line-1b {
+  color: #ffffff;
 }
 
 /* Line 2: "I'm a Full-Stack Developer" - SMALLER subtitle with vibrant gradient */

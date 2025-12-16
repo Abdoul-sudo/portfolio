@@ -26,11 +26,16 @@
 .contact-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: #0D0745;
   margin: 0 0 var(--spacing-md) 0;
   font-family: var(--font-display);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Dark mode - White text */
+[data-theme="dark"] .contact-title {
+  color: #ffffff;
 }
 
 .contact-divider {

@@ -9,8 +9,8 @@ export const METABALL_THEMES = {
     name: 'Light Mode',
     backgroundColor: new THREE.Color(0xFAFBFC), // Off-white
     bodyBackgroundColor: '#FAFBFC',
-    textColor: '#1a1a1a',
-    textSecondaryColor: '#666666',
+    textColor: '#0D0745',
+    textSecondaryColor: '#4a4a6a',
 
     // Soft pastel colors (visible and elegant)
     sphereColors: [
