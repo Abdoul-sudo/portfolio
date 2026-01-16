@@ -8,18 +8,41 @@ const WorkSection = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const projectsRef = useRef([]);
+
+  // Filter configuration
+  const filters = [
+    { id: 'all', label: 'All' },
+    { id: 'web', label: 'Web' },
+    { id: 'games', label: 'Game' }
+  ];
+
+  // Filter projects based on active filter
+  const filteredProjects = activeFilter === 'all'
+    ? projectsData
+    : projectsData.filter(project => project.categories.includes(activeFilter));
 
   // Initialize on mount - set mobile state and default project
   useEffect(() => {
     const mobile = window.innerWidth <= 1024;
     setIsMobile(mobile);
-    if (mobile && projectsData.length > 0) {
-      setSelectedProject(projectsData[0]);
+    if (mobile && filteredProjects.length > 0) {
+      setSelectedProject(filteredProjects[0]);
     }
   }, []); // Run once on mount
+
+  // Update selected project when filter changes (mobile)
+  useEffect(() => {
+    if (isMobile && filteredProjects.length > 0) {
+      // If current selection is not in filtered list, select first
+      if (!selectedProject || !filteredProjects.find(p => p.id === selectedProject.id)) {
+        setSelectedProject(filteredProjects[0]);
+      }
+    }
+  }, [activeFilter, isMobile]);
 
   // Handle resize - update mobile state only
   useEffect(() => {
@@ -200,11 +223,24 @@ const WorkSection = () => {
             <h2 className="work-title" ref={titleRef}>
               WORK
             </h2>
-            <span className="work-count">{projectsData.length}</span>
+            <span className="work-count">{filteredProjects.length}</span>
+          </div>
+
+          {/* Filter buttons */}
+          <div className="work-filters">
+            {filters.map(filter => (
+              <button
+                key={filter.id}
+                className={`work-filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
+                onClick={() => setActiveFilter(filter.id)}
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
 
           <div className="work-list">
-            {projectsData.map((project, index) => {
+            {filteredProjects.map((project, index) => {
               const isSelected = isMobile && selectedProject?.id === project.id;
 
               return (
