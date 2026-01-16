@@ -34,7 +34,8 @@
 
 .work-image-container {
     width: 95%;
-    height: 550px;
+    height: 500px;
+    aspect-ratio: 16/9;
     border-radius: 0 48px 0 0;
     overflow: hidden;
     position: relative;
@@ -90,6 +91,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
 }
 
@@ -508,7 +510,8 @@
         width: auto;
         margin: 0;
         padding: 0;
-        height: clamp(280px, 40vh, 600px);
+        aspect-ratio: 16/9;
+        max-height: 45vh;
         border-radius: 0 20px 5px 0;
         margin-right: var(--spacing-sm);
         cursor: pointer;
@@ -656,7 +659,8 @@
     }
 
     .work-image-container {
-        height: clamp(220px, 40vh, 450px);
+        aspect-ratio: 16/9;
+        max-height: 40vh;
         border-radius: 0 18px 4px 0;
     }
 
@@ -725,10 +729,10 @@
 
 @media (max-width: 480px) {
     .work-image-container {
-        width: auto; /* Minimal margin on very small screens */
-        /* margin-left: var(--spacing-xs); */
+        width: auto;
         margin-right: var(--spacing-xs);
-        height: clamp(200px, 35vh, 400px); /* Smaller height for tiny screens */
+        aspect-ratio: 16/9;
+        max-height: 35vh;
         border-radius: 0 15px 3px 0;
     }
 

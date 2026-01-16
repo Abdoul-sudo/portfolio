@@ -5,6 +5,8 @@ import slime_adventure from '../assets/projects/slime_adventure.png';
 import gamefeat from '../assets/projects/gamefeat.png';
 import juicy from '../assets/projects/juicy.png';
 import fb_clone from '../assets/projects/fb_clone.png';
+import neonblast from '../assets/projects/neonblast.png';
+import flowmora from '../assets/projects/flowmora.png';
 
 export const projectCategories = [
   { id: "all", name: "All Projects" },
@@ -85,6 +87,34 @@ export const projectsData = [
     problem: "Home cooks need an easy way to share and discover recipes in a social format.",
     approach: "Developed a recipe sharing platform with Next.js, focusing on visual presentation and community features.",
     result: "Launched intuitive recipe platform enabling users to share culinary creations and discover new dishes."
+  },
+  {
+    id: "neonblast",
+    name: "NeonBlast",
+    categories: ["web", "games"],
+    description: "Vampire Survivors-style shooter with neon aesthetics and wave-based survival.",
+    techs: ["React"],
+    demo_link: "https://neonblast.vercel.app",
+    cover: neonblast,
+    role: "Game Developer",
+    year: "2024",
+    problem: "Creating an engaging browser-based survival shooter with smooth performance.",
+    approach: "Built with React for reactive UI, implementing wave spawning and upgrade systems.",
+    result: "Developed addictive arcade shooter with satisfying progression and retro-neon visuals."
+  },
+  {
+    id: "flowmora",
+    name: "Flowmora",
+    categories: ["web"],
+    description: "Smart money manager to track expenses and visualize spending habits.",
+    techs: ["Next.js", "Tailwind", "Supabase"],
+    demo_link: "https://flowmora.vercel.app",
+    cover: flowmora,
+    role: "Full-Stack Developer",
+    year: "2024",
+    problem: "People struggle to track and understand their spending patterns.",
+    approach: "Built with Next.js and Supabase for real-time data sync and intuitive expense categorization.",
+    result: "Delivered a clean finance dashboard helping users gain control over their budgets."
   }
 ];
 
