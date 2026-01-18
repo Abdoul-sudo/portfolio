@@ -5,6 +5,7 @@ import godotIcon from '../assets/tech/godot.png';
 import figmaIcon from '../assets/tech/figma.png';
 import chatgptIcon from '../assets/tech/chatgpt.png';
 import upstashIcon from '../assets/tech/upstash.svg';
+import supabaseIcon from '../assets/tech/supabase.svg';
 
 // Import react-icons as fallback
 import {
@@ -38,7 +39,8 @@ export const techIconImages = {
   // APIs & Services
   'ChatGPT API': chatgptIcon,
   'GPT API': chatgptIcon,
-  'Upstash': upstashIcon
+  'Upstash': upstashIcon,
+  'Supabase': supabaseIcon
 };
 
 /**

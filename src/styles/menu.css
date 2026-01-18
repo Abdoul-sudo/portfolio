@@ -239,8 +239,8 @@
   }
 }
 
-/* Hide theme and audio toggles when menu is open */
-body.menu-open .theme-toggle,
+/* Hide theme and audio toggles when menu is open (except the one in menu) */
+body.menu-open .theme-toggle:not(.menu-theme-toggle),
 body.menu-open .audio-toggle {
   opacity: 0;
   pointer-events: none;
@@ -268,51 +268,21 @@ body.menu-open .audio-toggle {
 }
 
 /* ============================================
-   MENU THEME TOGGLE (Icon only)
+   MENU THEME TOGGLE (Position override only)
+   Uses ThemeToggle component styles from themeToggle.css
    ============================================ */
 
-.menu-theme-toggle {
-  position: absolute;
+.menu-theme-toggle.theme-toggle {
+  position: fixed;
   top: calc(var(--spacing-lg) + var(--spacing-md));
   right: calc(var(--spacing-lg) + var(--spacing-sm) + 48px + var(--spacing-sm));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #0D0745;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-[data-theme="dark"] .menu-theme-toggle {
-  color: #ffffff;
-}
-
-.menu-theme-toggle:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.menu-theme-toggle:active {
-  transform: scale(0.95);
+  z-index: 10000;
 }
 
 @media (max-width: 768px) {
-  .menu-theme-toggle {
+  .menu-theme-toggle.theme-toggle {
     top: calc(var(--spacing-md) * 2);
     right: calc(var(--spacing-sm) * 2 + 40px + var(--spacing-xs));
-    width: 44px;
-    height: 44px;
-  }
-}
-
-@media (max-width: 480px) {
-  .menu-theme-toggle {
-    width: 40px;
-    height: 40px;
   }
 }
 

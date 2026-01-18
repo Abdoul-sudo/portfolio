@@ -64,8 +64,6 @@ const ProjectDetail = ({ project, onBack }) => {
                   <span className="pd-category">{categoryLabel}</span>
                   <span className="pd-divider">·</span>
                   <span className="pd-year">{project.year}</span>
-                  <span className="pd-divider">·</span>
-                  <span className="pd-role">{project.role}</span>
                 </div>
 
                 <h1 className="pd-title" id="project-title">

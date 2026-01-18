@@ -282,9 +282,9 @@
 }
 
 .work-filter-btn.active {
-    color: rgba(34, 211, 238, 1);
-    border-color: rgba(34, 211, 238, 0.5);
-    background: rgba(34, 211, 238, 0.1);
+    color: #0d0745;
+    border-color: rgba(13, 7, 69, 0.4);
+    background: rgba(13, 7, 69, 0.08);
 }
 
 /* Dark mode filter buttons */
@@ -324,17 +324,17 @@
 }
 
 .work-list::-webkit-scrollbar-track {
-    background: rgba(34, 211, 238, 0.15);
+    background: rgba(13, 7, 69, 0.1);
     border-radius: 10px;
 }
 
 .work-list::-webkit-scrollbar-thumb {
-    background: rgba(34, 211, 238, 0.6);
+    background: rgba(13, 7, 69, 0.3);
     border-radius: 10px;
 }
 
 .work-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(34, 211, 238, 0.8);
+    background: rgba(13, 7, 69, 0.5);
 }
 
 /* Dark mode scrollbar */
@@ -452,19 +452,19 @@
 
 /* Selected state for mobile */
 .work-item.selected {
-    background: rgba(34, 211, 238, 0.15); /* Stronger highlight */
-    border-color: rgba(34, 211, 238, 0.4);
-    border-left: 3px solid rgba(34, 211, 238, 1); /* Visual indicator */
+    background: rgba(13, 7, 69, 0.08);
+    border-color: rgba(13, 7, 69, 0.2);
+    border-left: 3px solid #0d0745;
     padding-left: calc(var(--spacing-xs) - 3px); /* Compensate for border */
 }
 
 .work-item.selected .work-item-name {
-    color: rgba(34, 211, 238, 1);
+    color: #0d0745;
     font-weight: var(--font-weight-bold);
 }
 
 .work-item.selected .work-item-type {
-    color: rgba(34, 211, 238, 0.8);
+    color: rgba(13, 7, 69, 0.7);
     opacity: 1;
 }
 
@@ -473,7 +473,26 @@
     width: 1.5em;
     margin-right: 1.33rem;
     transform: translateX(0);
-    color: rgba(34, 211, 238, 1);
+    color: #0d0745;
+}
+
+/* Dark mode selected state */
+[data-theme="dark"] .work-item.selected {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    border-left: 3px solid #ffffff;
+}
+
+[data-theme="dark"] .work-item.selected .work-item-name {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .work-item.selected .work-item-type {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .work-item.selected .work-item-arrow {
+    color: #ffffff;
 }
 
 /* Mobile Adjustments */
@@ -577,7 +596,7 @@
 
     .work-item:active {
         transform: translateX(4px) scale(0.98);
-        background: rgba(34, 211, 238, 0.08);
+        background: rgba(13, 7, 69, 0.06);
     }
 
     .work-item-arrow {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../styles/themeToggle.css';
 
-const ThemeToggle = ({ currentTheme, onThemeChange }) => {
+const ThemeToggle = ({ currentTheme, onThemeChange, className = '', tabIndex = 0 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleToggle = () => {
@@ -16,10 +16,11 @@ const ThemeToggle = ({ currentTheme, onThemeChange }) => {
 
   return (
     <button
-      className={`theme-toggle ${isAnimating ? 'animating' : ''}`}
+      className={`theme-toggle ${isAnimating ? 'animating' : ''} ${className}`}
       onClick={handleToggle}
       aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
       title={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
+      tabIndex={tabIndex}
     >
       <div className="theme-toggle-icon">
         {currentTheme === 'light' ? (
