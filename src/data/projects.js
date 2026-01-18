@@ -91,7 +91,7 @@ export const projectsData = [
   {
     id: "neonblast",
     name: "NeonBlast",
-    categories: ["web", "games"],
+    categories: ["games"],
     description: "Vampire Survivors-style shooter with neon aesthetics and wave-based survival.",
     techs: ["React"],
     demo_link: "https://neonblast.vercel.app",

@@ -116,12 +116,12 @@
 .hamburger.open .rect {
   opacity: 1;
   transform: scale(1);
-  stroke: #606887; /* Light mode */
+  stroke: #0D0745; /* Light mode - same as normal */
 }
 
-/* Dark mode - lighter stroke when open */
+/* Dark mode - same color as normal */
 [data-theme="dark"] .hamburger.open .rect {
-  stroke: rgba(255, 255, 255, 0.6);
+  stroke: #ffffff;
 }
 
 /* Menu Overlay - Glass morphism effect */
@@ -266,3 +266,53 @@ body.menu-open .audio-toggle {
     transform: none !important;
   }
 }
+
+/* ============================================
+   MENU THEME TOGGLE (Icon only)
+   ============================================ */
+
+.menu-theme-toggle {
+  position: absolute;
+  top: calc(var(--spacing-lg) + var(--spacing-md));
+  right: calc(var(--spacing-lg) + var(--spacing-sm) + 48px + var(--spacing-sm));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #0D0745;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="dark"] .menu-theme-toggle {
+  color: #ffffff;
+}
+
+.menu-theme-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.menu-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .menu-theme-toggle {
+    top: calc(var(--spacing-md) * 2);
+    right: calc(var(--spacing-sm) * 2 + 40px + var(--spacing-xs));
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+

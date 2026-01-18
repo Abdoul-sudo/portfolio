@@ -4,26 +4,26 @@ import { projectsData } from '../data/projects';
 import { getTechIcon } from '../utils/techIcons';
 import '../styles/work.css';
 
-const WorkSection = () => {
+const WorkSection = ({ onProjectClick }) => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('web');
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const projectsRef = useRef([]);
 
   // Filter configuration
   const filters = [
-    { id: 'all', label: 'All' },
     { id: 'web', label: 'Web' },
     { id: 'games', label: 'Game' }
   ];
 
-  // Filter projects based on active filter
-  const filteredProjects = activeFilter === 'all'
+  // Filter projects based on active filter and sort alphabetically
+  const filteredProjects = (activeFilter === 'all'
     ? projectsData
-    : projectsData.filter(project => project.categories.includes(activeFilter));
+    : projectsData.filter(project => project.categories.includes(activeFilter))
+  ).sort((a, b) => a.name.localeCompare(b.name));
 
   // Initialize on mount - set mobile state and default project
   useEffect(() => {
@@ -103,15 +103,16 @@ const WorkSection = () => {
       );
   };
 
-  const handleProjectClick = (project, e) => {
+  const handleProjectItemClick = (project, e) => {
     if (isMobile) {
       // On mobile, clicking project selects it (updates preview)
       e.preventDefault();
       setSelectedProject(project);
     } else {
-      // On desktop, clicking opens the link
-      if (project.demo_link) {
-        window.open(project.demo_link, '_blank', 'noopener,noreferrer');
+      // On desktop, clicking opens the detail page
+      e.preventDefault();
+      if (onProjectClick) {
+        onProjectClick(project);
       }
     }
   };
@@ -127,10 +128,10 @@ const WorkSection = () => {
   };
 
   const handleImageClick = () => {
-    // Clicking image opens currently selected/hovered project
+    // Clicking image opens project detail page
     const activeProject = isMobile ? selectedProject : hoveredProject;
-    if (activeProject?.demo_link) {
-      window.open(activeProject.demo_link, '_blank', 'noopener,noreferrer');
+    if (activeProject && onProjectClick) {
+      onProjectClick(activeProject);
     }
   };
 
@@ -204,39 +205,28 @@ const WorkSection = () => {
               );
             })}
           </div>
-          {/* {hoveredProject && (
-            <div className="work-project-info">
-              <h3 className="work-project-name">{hoveredProject.name}</h3>
-              <p className="work-project-description">{hoveredProject.description}</p>
-              <div className="work-project-techs">
-                {hoveredProject.techs.map((tech, i) => (
-                  <span key={i} className="tech-badge">{tech}</span>
-                ))}
-              </div>
-            </div>
-          )} */}
         </div>
 
         {/* Right side - Project List */}
         <div className="work-content">
-          <div className="work-header">
-            <h2 className="work-title" ref={titleRef}>
-              WORK
-            </h2>
-            <span className="work-count">{filteredProjects.length}</span>
-          </div>
+          <div className="work-header" ref={titleRef}>
+            <div className="work-header-left">
+              <h2 className="work-title">WORK</h2>
+              <span className="work-count">{filteredProjects.length}</span>
+            </div>
 
-          {/* Filter buttons */}
-          <div className="work-filters">
-            {filters.map(filter => (
-              <button
-                key={filter.id}
-                className={`work-filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
-                onClick={() => setActiveFilter(filter.id)}
-              >
-                {filter.label}
-              </button>
-            ))}
+            {/* Filter buttons */}
+            <div className="work-filters">
+              {filters.map(filter => (
+                <button
+                  key={filter.id}
+                  className={`work-filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
+                  onClick={() => setActiveFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="work-list">
@@ -248,7 +238,7 @@ const WorkSection = () => {
                   key={project.id}
                   className={`work-item interactive ${isSelected ? 'selected' : ''}`}
                   ref={(el) => (projectsRef.current[index] = el)}
-                  onClick={(e) => handleProjectClick(project, e)}
+                  onClick={(e) => handleProjectItemClick(project, e)}
                   onTouchStart={() => handleTouchStart(project)}
                   onMouseEnter={!isMobile ? () => handleProjectHover(project) : undefined}
                   onMouseLeave={!isMobile ? handleProjectLeave : undefined}

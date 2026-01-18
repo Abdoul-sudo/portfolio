@@ -12,6 +12,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
 import ContactSection from './components/ContactSection';
+import ProjectDetail from './components/ProjectDetail';
 import { getTheme } from './config/metaballThemes';
 
 // Import all styles
@@ -21,6 +22,8 @@ import './styles/app.css';
 const AppNew = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const previousSectionRef = useRef(0);
 
   // Get theme from URL: / = dark, /light = light
   const getThemeFromURL = () => {
@@ -31,7 +34,7 @@ const AppNew = () => {
   const [theme, setTheme] = useState(getThemeFromURL());
   const menuRef = useRef(null);
 
-  const sections = ['home', 'about', 'work', 'contact'];
+  const sections = ['home', 'about', 'work', 'contact', 'project-detail'];
 
   // Show home section on mount
   useEffect(() => {
@@ -145,6 +148,19 @@ const AppNew = () => {
     );
   };
 
+  // Open project detail page
+  const openProjectDetail = (project) => {
+    previousSectionRef.current = currentSection;
+    setSelectedProject(project);
+    transitionToSection('project-detail');
+  };
+
+  // Go back from project detail to work section
+  const closeProjectDetail = () => {
+    setSelectedProject(null);
+    transitionToSection('work');
+  };
+
   return (
     <>
       <NoiseBackground theme={theme} />
@@ -157,15 +173,18 @@ const AppNew = () => {
       <div className="app">
         <Cursor />
         <Logo onNavigate={transitionToSection} menuRef={menuRef} theme={theme} />
-        <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
+        {sections[currentSection] !== 'project-detail' && (
+          <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
+        )}
         <AudioToggle />
-        <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} />
+        <Menu ref={menuRef} onNavigate={transitionToSection} currentSection={sections[currentSection]} theme={theme} onThemeChange={handleThemeChange} />
 
         <main className="main-content">
           <HeroSection onNavigate={transitionToSection} />
           <AboutSection />
-          <WorkSection />
+          <WorkSection onProjectClick={openProjectDetail} />
           <ContactSection />
+          <ProjectDetail project={selectedProject} onBack={closeProjectDetail} />
         </main>
       </div>
     </>
