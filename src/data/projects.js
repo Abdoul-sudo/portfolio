@@ -35,12 +35,8 @@ export const projectsData = [
     cover: pixel_dunking,
     role: "Game Developer",
     year: "2025",
-    problem:
-      "Creating an engaging multiplayer basketball experience in 2D while maintaining competitive balance.",
-    approach:
-      "Built dynamic court systems and team-based mechanics using Godot's networking capabilities.",
-    result:
-      "Launched successful 2v2 basketball game with smooth multiplayer interactions and positive player feedback.",
+    inspiration:
+      "Growing up watching NBA games, I always wanted to capture that fast-paced, competitive energy in a pixelated format. The goal was to make basketball accessible and fun in a couch co-op setting.",
   },
   {
     id: "onirix",
@@ -54,12 +50,8 @@ export const projectsData = [
     cover: onirix,
     role: "Full-Stack Developer",
     year: "2023",
-    problem:
-      "Building an intuitive AI-powered dream interpretation platform within a 24-hour hackathon timeframe.",
-    approach:
-      "Integrated GPT API with a React frontend, focusing on user experience and rapid prototyping.",
-    result:
-      "Secured 3rd place at Webcup Madagascar, delivering a functional and engaging dream analysis tool.",
+    inspiration:
+      "Dreams have always fascinated me - they're mysterious windows into our subconscious. I wanted to build something that helps people explore the meaning behind their dreams using AI, making dream analysis accessible to everyone.",
   },
   {
     id: "slime-adventure",
@@ -72,12 +64,8 @@ export const projectsData = [
     cover: slime_adventure,
     role: "Game Developer",
     year: "2024",
-    problem:
-      "Creating a charming platformer with tight controls and engaging level design.",
-    approach:
-      "Designed intuitive movement mechanics and progressive difficulty using Unity's 2D tools.",
-    result:
-      "Published on itch.io with positive player reviews highlighting responsive controls and visual charm.",
+    inspiration:
+      "I love how simple characters can tell powerful stories. A slime seemed like the perfect protagonist - bouncy, cute, and underestimated. This game explores growth through a tiny creature's big adventure.",
   },
   {
     id: "gamefeat",
@@ -89,12 +77,8 @@ export const projectsData = [
     cover: gamefeat,
     role: "Full-Stack Developer",
     year: "2024",
-    problem:
-      "Discovering new indie games is challenging; gamers need fresh recommendations.",
-    approach:
-      "Built a randomization system with Upstash Redis to showcase curated games on each page load.",
-    result:
-      "Deployed game discovery platform that introduces users to diverse indie titles daily.",
+    inspiration:
+      "As an indie game enthusiast, I noticed how hard it is to discover hidden gems. GameFeat was born from the idea of serendipity - every refresh brings a new surprise, just like stumbling upon a great game by chance.",
   },
   {
     id: "juicy",
@@ -106,12 +90,8 @@ export const projectsData = [
     cover: juicy,
     role: "Full-Stack Developer",
     year: "2025",
-    problem:
-      "Home cooks need an easy way to share and discover recipes in a social format.",
-    approach:
-      "Developed a recipe sharing platform with Next.js, focusing on visual presentation and community features.",
-    result:
-      "Launched intuitive recipe platform enabling users to share culinary creations and discover new dishes.",
+    inspiration:
+      "Food brings people together. I wanted to create a space where home cooks could share their creations and inspire others - like a digital cookbook that grows with every contribution from the community.",
   },
   {
     id: "neonblast",
@@ -124,12 +104,8 @@ export const projectsData = [
     cover: neonblast,
     role: "Game Developer",
     year: "2025",
-    problem:
-      "Creating an engaging browser-based survival shooter with smooth performance.",
-    approach:
-      "Built with React for reactive UI, implementing wave spawning and upgrade systems.",
-    result:
-      "Developed addictive arcade shooter with satisfying progression and retro-neon visuals.",
+    inspiration:
+      "Vampire Survivors showed me how addictive simple mechanics can be. I wanted to bring that 'just one more run' feeling to the browser with a synthwave aesthetic - no download required, instant action.",
   },
   {
     id: "flowmora",
@@ -171,6 +147,9 @@ export const projectsData = [
       },
       {
         image: flowmoraSettings,
+        title: "Settings",
+        description:
+          "Customize your experience. Manage categories, set currency preferences, and personalize your dashboard.",
       },
     ],
   },

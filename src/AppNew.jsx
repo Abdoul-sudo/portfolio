@@ -14,6 +14,7 @@ import WorkSection from './components/WorkSection';
 import ContactSection from './components/ContactSection';
 import ProjectDetail from './components/ProjectDetail';
 import { getTheme } from './config/metaballThemes';
+import { projectsData } from './data/projects';
 
 // Import all styles
 import './styles/base.css';
@@ -161,6 +162,27 @@ const AppNew = () => {
     transitionToSection('work');
   };
 
+  // Get next project in the list (loops back to first)
+  const getNextProject = () => {
+    if (!selectedProject) return null;
+    const currentIndex = projectsData.findIndex(p => p.id === selectedProject.id);
+    const nextIndex = (currentIndex + 1) % projectsData.length;
+    return projectsData[nextIndex];
+  };
+
+  // Navigate to next project
+  const navigateToProject = (project) => {
+    // Scroll to top
+    const scrollWrapper = document.querySelector('.project-detail-scroll-wrapper');
+    if (scrollWrapper) {
+      scrollWrapper.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Short delay to let scroll start, then change project
+    setTimeout(() => {
+      setSelectedProject(project);
+    }, 100);
+  };
+
   return (
     <>
       <NoiseBackground theme={theme} />
@@ -184,7 +206,12 @@ const AppNew = () => {
           <AboutSection />
           <WorkSection onProjectClick={openProjectDetail} />
           <ContactSection />
-          <ProjectDetail project={selectedProject} onBack={closeProjectDetail} />
+          <ProjectDetail
+            project={selectedProject}
+            onBack={closeProjectDetail}
+            nextProject={getNextProject()}
+            onNavigateToProject={navigateToProject}
+          />
         </main>
       </div>
     </>

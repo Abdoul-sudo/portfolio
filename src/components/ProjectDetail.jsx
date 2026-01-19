@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { getTechIcon } from "../utils/techIcons";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { HiArrowUpRight, HiArrowRight } from "react-icons/hi2";
 import "../styles/projectDetail.css";
 
-const ProjectDetail = ({ project, onBack }) => {
+const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const imageWrapperRef = useRef(null);
@@ -215,26 +215,27 @@ const ProjectDetail = ({ project, onBack }) => {
                   <span className="pd-section-label">What you can do</span>
                   <div className="pd-features-list">
                     {project.features.map((feature, i) => (
-                      <div
-                        key={i}
-                        className={`pd-feature-item ${feature.description ? "has-description" : "image-only"}`}
-                      >
+                      <div key={i} className="pd-feature-item">
                         {feature.image && (
-                          <div className="pd-feature-image">
-                            <img
-                              src={feature.image}
-                              alt={feature.title || `Feature ${i + 1}`}
-                            />
-                          </div>
-                        )}
-                        {feature.description && (
-                          <div className="pd-feature-content">
-                            {feature.title && (
-                              <h3 className="pd-feature-title">{feature.title}</h3>
+                          <div className="pd-feature-slider">
+                            <div className="pd-feature-image">
+                              <img
+                                src={feature.image}
+                                alt={feature.title || `Feature ${i + 1}`}
+                              />
+                            </div>
+                            {(feature.title || feature.description) && (
+                              <div className="pd-feature-content">
+                                {feature.title && (
+                                  <h3 className="pd-feature-title">{feature.title}</h3>
+                                )}
+                                {feature.description && (
+                                  <p className="pd-feature-description">
+                                    {feature.description}
+                                  </p>
+                                )}
+                              </div>
                             )}
-                            <p className="pd-feature-description">
-                              {feature.description}
-                            </p>
                           </div>
                         )}
                       </div>
@@ -243,8 +244,8 @@ const ProjectDetail = ({ project, onBack }) => {
                 </div>
               )}
 
-              {/* Visit link - refined CTA */}
-              {project.demo_link && (
+              {/* Visit link - only show if there are features */}
+              {project.demo_link && project.features && project.features.length > 0 && (
                 <div className="pd-cta">
                   <a
                     href={project.demo_link}
@@ -267,6 +268,20 @@ const ProjectDetail = ({ project, onBack }) => {
                       </svg>
                     </span>
                   </a>
+                </div>
+              )}
+
+              {/* Next Project Navigation */}
+              {nextProject && (
+                <div className="pd-next-project">
+                  <button
+                    className="pd-next-project-link"
+                    onClick={() => onNavigateToProject(nextProject)}
+                  >
+                    <span className="pd-next-label">Next Project</span>
+                    <span className="pd-next-name">{nextProject.name}</span>
+                    <HiArrowRight className="pd-next-arrow" />
+                  </button>
                 </div>
               )}
             </article>
