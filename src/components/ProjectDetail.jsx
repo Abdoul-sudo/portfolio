@@ -213,31 +213,26 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
               {project.features && project.features.length > 0 && (
                 <div className="pd-features">
                   <span className="pd-section-label">What you can do</span>
-                  <div className="pd-features-list">
+                  <div className="pd-feature-rows">
                     {project.features.map((feature, i) => (
-                      <div key={i} className="pd-feature-item">
+                      <div key={i} className="pd-feature-row">
                         {feature.image && (
-                          <div className="pd-feature-slider">
-                            <div className="pd-feature-image">
-                              <img
-                                src={feature.image}
-                                alt={feature.title || `Feature ${i + 1}`}
-                              />
-                            </div>
-                            {(feature.title || feature.description) && (
-                              <div className="pd-feature-content">
-                                {feature.title && (
-                                  <h3 className="pd-feature-title">{feature.title}</h3>
-                                )}
-                                {feature.description && (
-                                  <p className="pd-feature-description">
-                                    {feature.description}
-                                  </p>
-                                )}
-                              </div>
-                            )}
+                          <div className="pd-feature-image">
+                            <img
+                              src={feature.image}
+                              alt={feature.title || `Feature ${i + 1}`}
+                            />
                           </div>
                         )}
+                        <div className="pd-feature-content">
+                          <span className="pd-feature-number">{String(i + 1).padStart(2, '0')}</span>
+                          {feature.title && (
+                            <h3 className="pd-feature-title">{feature.title}</h3>
+                          )}
+                          {feature.description && (
+                            <p className="pd-feature-desc">{feature.description}</p>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>

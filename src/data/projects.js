@@ -124,32 +124,27 @@ export const projectsData = [
       {
         image: flowmoraHome,
         title: "Dashboard",
-        description:
-          "Get a clear overview of your finances with spending breakdowns and recent activity.",
+        description: "Overview of your finances with spending breakdowns.",
       },
       {
         image: flowmoraTransactions,
         title: "Transactions",
-        description:
-          "Log and categorize expenses easily. Search, filter, and manage all your transactions in one place.",
+        description: "Log, categorize, and manage all your transactions.",
       },
       {
         image: flowmoraSchedules,
         title: "Scheduled Payments",
-        description:
-          "Never miss a bill. Set up recurring payments and get reminders before they're due.",
+        description: "Set up recurring payments and bill reminders.",
       },
       {
         image: flowmoraGoals,
         title: "Savings Goals",
-        description:
-          "Set financial goals and track your progress. Stay motivated with visual milestones.",
+        description: "Track your savings progress with visual milestones.",
       },
       {
         image: flowmoraSettings,
         title: "Settings",
-        description:
-          "Customize your experience. Manage categories, set currency preferences, and personalize your dashboard.",
+        description: "Manage categories, currency, and preferences.",
       },
     ],
   },
