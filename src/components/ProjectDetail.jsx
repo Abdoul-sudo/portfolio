@@ -199,31 +199,47 @@ const ProjectDetail = ({ project, onBack }) => {
               </div>
             </div>
 
-            {/* Project Story - Editorial Style */}
+            {/* Project Details */}
             <article className="pd-story">
-              {/* The narrative content */}
-              {(project.problem || project.approach || project.result) && (
-                <div className="pd-narrative">
-                  {project.problem && (
-                    <div className="pd-narrative-block">
-                      <span className="pd-narrative-label">Challenge</span>
-                      <p className="pd-narrative-text">{project.problem}</p>
-                    </div>
-                  )}
+              {/* Inspiration section */}
+              {project.inspiration && (
+                <div className="pd-section-block">
+                  <span className="pd-section-label">Inspiration</span>
+                  <p className="pd-section-text">{project.inspiration}</p>
+                </div>
+              )}
 
-                  {project.approach && (
-                    <div className="pd-narrative-block">
-                      <span className="pd-narrative-label">Approach</span>
-                      <p className="pd-narrative-text">{project.approach}</p>
-                    </div>
-                  )}
-
-                  {project.result && (
-                    <div className="pd-narrative-block">
-                      <span className="pd-narrative-label">Outcome</span>
-                      <p className="pd-narrative-text">{project.result}</p>
-                    </div>
-                  )}
+              {/* Features section */}
+              {project.features && project.features.length > 0 && (
+                <div className="pd-features">
+                  <span className="pd-section-label">What you can do</span>
+                  <div className="pd-features-list">
+                    {project.features.map((feature, i) => (
+                      <div
+                        key={i}
+                        className={`pd-feature-item ${feature.description ? "has-description" : "image-only"}`}
+                      >
+                        {feature.image && (
+                          <div className="pd-feature-image">
+                            <img
+                              src={feature.image}
+                              alt={feature.title || `Feature ${i + 1}`}
+                            />
+                          </div>
+                        )}
+                        {feature.description && (
+                          <div className="pd-feature-content">
+                            {feature.title && (
+                              <h3 className="pd-feature-title">{feature.title}</h3>
+                            )}
+                            <p className="pd-feature-description">
+                              {feature.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -254,23 +270,6 @@ const ProjectDetail = ({ project, onBack }) => {
                 </div>
               )}
             </article>
-
-            {/* Screenshots gallery - placeholder for future */}
-            {project.screenshots && project.screenshots.length > 0 && (
-              <div className="pd-gallery">
-                <div className="pd-gallery-label">Gallery</div>
-                <div className="pd-gallery-grid">
-                  {project.screenshots.map((screenshot, i) => (
-                    <div key={i} className="pd-gallery-item">
-                      <img
-                        src={screenshot}
-                        alt={`${project.name} screenshot ${i + 1}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       )}

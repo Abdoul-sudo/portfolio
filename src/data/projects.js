@@ -8,6 +8,13 @@ import fb_clone from "../assets/projects/fb_clone.png";
 import neonblast from "../assets/projects/neonblast.png";
 import flowmora from "../assets/projects/flowmora.png";
 
+// Flowmora feature images
+import flowmoraHome from "../assets/projects/flowmora/home.png";
+import flowmoraTransactions from "../assets/projects/flowmora/transactions.png";
+import flowmoraSchedules from "../assets/projects/flowmora/schedules.png";
+import flowmoraGoals from "../assets/projects/flowmora/goals.png";
+import flowmoraSettings from "../assets/projects/flowmora/settings.jpg";
+
 export const projectCategories = [
   { id: "all", name: "All Projects" },
   { id: "games", name: "Game Development" },
@@ -135,11 +142,37 @@ export const projectsData = [
     cover: flowmora,
     role: "Full-Stack Developer",
     year: "2026",
-    problem: "People struggle to track and understand their spending patterns.",
-    approach:
-      "Built with Next.js and Supabase for real-time data sync and intuitive expense categorization.",
-    result:
-      "Delivered a clean finance dashboard helping users gain control over their budgets.",
+    inspiration:
+      "I wanted a simple, beautiful way to track my spending without the complexity of traditional finance apps. Most budgeting tools feel overwhelming - Flowmora focuses on clarity.",
+    features: [
+      {
+        image: flowmoraHome,
+        title: "Dashboard",
+        description:
+          "Get a clear overview of your finances with spending breakdowns and recent activity.",
+      },
+      {
+        image: flowmoraTransactions,
+        title: "Transactions",
+        description:
+          "Log and categorize expenses easily. Search, filter, and manage all your transactions in one place.",
+      },
+      {
+        image: flowmoraSchedules,
+        title: "Scheduled Payments",
+        description:
+          "Never miss a bill. Set up recurring payments and get reminders before they're due.",
+      },
+      {
+        image: flowmoraGoals,
+        title: "Savings Goals",
+        description:
+          "Set financial goals and track your progress. Stay motivated with visual milestones.",
+      },
+      {
+        image: flowmoraSettings,
+      },
+    ],
   },
 ];
 
