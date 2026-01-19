@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { getTechIcon } from "../utils/techIcons";
-import { HiArrowUpRight, HiArrowRight } from "react-icons/hi2";
+import { HiArrowUpRight } from "react-icons/hi2";
 import "../styles/projectDetail.css";
 
 const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) => {
@@ -244,46 +244,25 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
                 </div>
               )}
 
-              {/* Visit link - only show if there are features */}
-              {project.demo_link && project.features && project.features.length > 0 && (
-                <div className="pd-cta">
-                  <a
-                    href={project.demo_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pd-visit-link"
-                  >
-                    <span className="pd-visit-text">View Live Project</span>
-                    <span className="pd-visit-arrow">
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-              )}
-
-              {/* Next Project Navigation */}
-              {nextProject && (
-                <div className="pd-next-project">
+              {/* Footer Section - Next Project */}
+              <div className="pd-footer">
+                {/* Next Project Navigation */}
+                {nextProject && (
                   <button
-                    className="pd-next-project-link"
+                    className="pd-next-card"
                     onClick={() => onNavigateToProject(nextProject)}
                   >
-                    <span className="pd-next-label">Next Project</span>
-                    <span className="pd-next-name">{nextProject.name}</span>
-                    <HiArrowRight className="pd-next-arrow" />
+                    <div className="pd-next-info">
+                      <span className="pd-next-label">Next Project</span>
+                      <span className="pd-next-name">{nextProject.name}</span>
+                      <span className="pd-next-desc">{nextProject.description}</span>
+                    </div>
+                    <div className="pd-next-preview">
+                      <img src={nextProject.cover} alt={nextProject.name} />
+                    </div>
                   </button>
-                </div>
-              )}
+                )}
+              </div>
             </article>
           </div>
         </div>

@@ -301,38 +301,38 @@ a.pd-hero-image-wrapper {
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 
 .pd-meta {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .pd-category,
 .pd-year,
 .pd-role {
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.02em;
 }
 
 [data-theme="light"] .pd-category,
 [data-theme="light"] .pd-year,
 [data-theme="light"] .pd-role {
-    color: rgba(13, 7, 69, 0.8);
+    color: rgba(13, 7, 69, 0.55);
 }
 
 .pd-divider {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="light"] .pd-divider {
-    color: rgba(13, 7, 69, 0.2);
+    color: rgba(13, 7, 69, 0.15);
 }
 
 .pd-title-row {
@@ -362,7 +362,7 @@ a.pd-hero-image-wrapper {
     gap: 0.375rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
+    color: #a78bfa;
     text-decoration: none;
     transition: color 0.2s ease;
     white-space: nowrap;
@@ -384,7 +384,7 @@ a.pd-hero-image-wrapper {
 }
 
 .pd-title-link:hover {
-    color: rgba(255, 255, 255, 0.9);
+    color: #c4b5fd;
 }
 
 .pd-title-link:hover .pd-title-link-text::after {
@@ -400,11 +400,11 @@ a.pd-hero-image-wrapper {
 }
 
 [data-theme="light"] .pd-title-link {
-    color: rgba(13, 7, 69, 0.4);
+    color: #7c3aed;
 }
 
 [data-theme="light"] .pd-title-link:hover {
-    color: rgba(13, 7, 69, 0.8);
+    color: #6d28d9;
 }
 
 .pd-description {
@@ -434,29 +434,29 @@ a.pd-hero-image-wrapper {
     align-items: center;
     gap: 0.4rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.8);
     transition: all 0.2s ease;
 }
 
 .pd-tech-badge:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 [data-theme="light"] .pd-tech-badge {
-    background: rgba(13, 7, 69, 0.06);
-    border: 1px solid rgba(13, 7, 69, 0.12);
-    color: rgba(13, 7, 69, 0.8);
+    background: rgba(13, 7, 69, 0.05);
+    border: 1px solid rgba(13, 7, 69, 0.1);
+    color: rgba(13, 7, 69, 0.75);
 }
 
 [data-theme="light"] .pd-tech-badge:hover {
-    background: rgba(13, 7, 69, 0.1);
-    border-color: rgba(13, 7, 69, 0.2);
+    background: rgba(13, 7, 69, 0.08);
+    border-color: rgba(13, 7, 69, 0.15);
 }
 
 .pd-tech-icon {
@@ -845,122 +845,150 @@ a.pd-hero-image-wrapper {
 }
 
 /* ============================================
-   VISIT LINK (CTA) - Refined Editorial Style
+   FOOTER SECTION - CTA & Next Project
    ============================================ */
 
-.pd-cta {
+.pd-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
-    justify-content: flex-start;
-    padding-top: 0.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.pd-visit-link {
+[data-theme="light"] .pd-footer {
+    border-top: 1px solid rgba(13, 7, 69, 0.08);
+}
+
+/* CTA Button - Visit Live Project (Compact Style) */
+.pd-cta-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    padding: 0.875rem 0;
-    color: rgba(255, 255, 255, 0.9);
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 0.9375rem;
+    transition: all 0.25s ease;
+    width: fit-content;
+}
+
+.pd-cta-button:hover {
+    background: rgba(139, 92, 246, 0.18);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateX(4px);
+}
+
+.pd-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pd-cta-label {
+    display: none;
+}
+
+.pd-cta-title {
+    font-size: 0.9rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #a78bfa;
+    letter-spacing: -0.01em;
 }
 
-.pd-visit-text {
-    position: relative;
-}
-
-.pd-visit-text::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 30%;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.4;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-}
-
-.pd-visit-link:hover .pd-visit-text::after {
-    width: 100%;
-    opacity: 0.7;
-}
-
-.pd-visit-arrow {
+.pd-cta-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.6;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pd-visit-link:hover .pd-visit-arrow {
-    opacity: 1;
-    transform: translate(3px, -3px);
-}
-
-.pd-visit-link:hover {
     color: #a78bfa;
+    transition: transform 0.25s ease;
 }
 
-[data-theme="light"] .pd-visit-link {
-    color: rgba(13, 7, 69, 0.75);
+.pd-cta-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
-[data-theme="light"] .pd-visit-link:hover {
+.pd-cta-button:hover .pd-cta-icon {
+    transform: translate(2px, -2px);
+}
+
+[data-theme="light"] .pd-cta-button {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.2);
+}
+
+[data-theme="light"] .pd-cta-button:hover {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.35);
+}
+
+[data-theme="light"] .pd-cta-title {
     color: #7c3aed;
 }
 
-/* ============================================
-   NEXT PROJECT NAVIGATION
-   ============================================ */
-
-.pd-next-project {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+[data-theme="light"] .pd-cta-icon {
+    color: #7c3aed;
 }
 
-[data-theme="light"] .pd-next-project {
-    border-top: 1px solid rgba(13, 7, 69, 0.1);
-}
-
-.pd-next-project-link {
-    display: flex;
+/* Next Project Card */
+.pd-next-card {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 2rem;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
-    padding: 1.5rem 0;
-    background: none;
-    border: none;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     cursor: pointer;
     text-align: left;
     transition: all 0.3s ease;
 }
 
+.pd-next-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+[data-theme="light"] .pd-next-card {
+    background: rgba(13, 7, 69, 0.02);
+    border-color: rgba(13, 7, 69, 0.08);
+}
+
+[data-theme="light"] .pd-next-card:hover {
+    background: rgba(13, 7, 69, 0.04);
+    border-color: rgba(13, 7, 69, 0.12);
+}
+
+.pd-next-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .pd-next-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.5);
-    display: block;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.12em;
+    color: rgba(139, 92, 246, 0.8);
 }
 
 [data-theme="light"] .pd-next-label {
-    color: rgba(13, 7, 69, 0.5);
+    color: rgba(124, 58, 237, 0.7);
 }
 
 .pd-next-name {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: -0.02em;
-    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
     transition: color 0.3s ease;
 }
 
@@ -968,49 +996,93 @@ a.pd-hero-image-wrapper {
     color: rgba(13, 7, 69, 0.9);
 }
 
-.pd-next-arrow {
-    width: 32px;
-    height: 32px;
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+.pd-next-card:hover .pd-next-name {
+    color: #a78bfa;
 }
 
-[data-theme="light"] .pd-next-arrow {
+[data-theme="light"] .pd-next-card:hover .pd-next-name {
+    color: #7c3aed;
+}
+
+.pd-next-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.5);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+[data-theme="light"] .pd-next-desc {
     color: rgba(13, 7, 69, 0.5);
 }
 
-.pd-next-project-link:hover .pd-next-name {
-    color: #a78bfa;
+.pd-next-preview {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.pd-next-project-link:hover .pd-next-arrow {
-    color: #a78bfa;
-    transform: translateX(5px);
+.pd-next-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-[data-theme="light"] .pd-next-project-link:hover .pd-next-name {
-    color: #7c3aed;
+.pd-next-card:hover .pd-next-preview img {
+    transform: scale(1.05);
 }
 
-[data-theme="light"] .pd-next-project-link:hover .pd-next-arrow {
-    color: #7c3aed;
-}
 
-/* Mobile adjustments for next project */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .pd-next-project {
+    .pd-footer {
         margin-top: 2rem;
         padding-top: 1.5rem;
+        gap: 1rem;
+    }
+
+    .pd-cta-button {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .pd-cta-title {
+        font-size: 1.1rem;
+    }
+
+    .pd-cta-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .pd-cta-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .pd-next-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.25rem;
     }
 
     .pd-next-name {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 
-    .pd-next-arrow {
-        width: 24px;
-        height: 24px;
+    .pd-next-preview {
+        width: 100%;
+        height: 140px;
+        order: -1;
+    }
+
+    .pd-next-desc {
+        -webkit-line-clamp: 2;
     }
 }
 
