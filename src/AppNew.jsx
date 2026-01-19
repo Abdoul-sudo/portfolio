@@ -162,12 +162,26 @@ const AppNew = () => {
     transitionToSection('work');
   };
 
-  // Get next project in the list (loops back to first)
+  // Get next project - sorted by type (web, then games) and alphabetically within each type
   const getNextProject = () => {
     if (!selectedProject) return null;
-    const currentIndex = projectsData.findIndex(p => p.id === selectedProject.id);
-    const nextIndex = (currentIndex + 1) % projectsData.length;
-    return projectsData[nextIndex];
+
+    // Sort projects: web first (alphabetically), then games (alphabetically)
+    const sortedProjects = [...projectsData].sort((a, b) => {
+      const aIsWeb = a.categories?.includes('web');
+      const bIsWeb = b.categories?.includes('web');
+
+      // Web projects come first
+      if (aIsWeb && !bIsWeb) return -1;
+      if (!aIsWeb && bIsWeb) return 1;
+
+      // Within same type, sort alphabetically
+      return a.name.localeCompare(b.name);
+    });
+
+    const currentIndex = sortedProjects.findIndex(p => p.id === selectedProject.id);
+    const nextIndex = (currentIndex + 1) % sortedProjects.length;
+    return sortedProjects[nextIndex];
   };
 
   // Navigate to next project
