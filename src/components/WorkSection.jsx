@@ -105,9 +105,16 @@ const WorkSection = ({ onProjectClick }) => {
 
   const handleProjectItemClick = (project, e) => {
     if (isMobile) {
-      // On mobile, clicking project selects it (updates preview)
       e.preventDefault();
-      setSelectedProject(project);
+      // If already selected, open details
+      if (selectedProject?.id === project.id) {
+        if (onProjectClick) {
+          onProjectClick(project);
+        }
+      } else {
+        // Otherwise, select it
+        setSelectedProject(project);
+      }
     } else {
       // On desktop, clicking opens the detail page
       e.preventDefault();
@@ -254,6 +261,7 @@ const WorkSection = ({ onProjectClick }) => {
                       <span className="work-item-type">
                         {project.categories.includes('games') ? 'Game Development' : 'Web Development'}
                       </span>
+                      <span className="work-item-view">View</span>
                     </div>
                   </div>
                 </button>

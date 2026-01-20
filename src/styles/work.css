@@ -476,6 +476,33 @@
     color: #0d0745;
 }
 
+/* View hint - hidden by default */
+.work-item-view {
+    display: none;
+}
+
+/* Show on selected item (mobile only) */
+@media (max-width: 1024px) {
+    .work-item.selected .work-item-view {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #7c3aed;
+        padding: 0.25rem 0.625rem;
+        background: rgba(124, 58, 237, 0.1);
+        border-radius: 4px;
+    }
+
+    [data-theme="dark"] .work-item.selected .work-item-view {
+        color: #a78bfa;
+        background: rgba(167, 139, 250, 0.15);
+    }
+}
+
 /* Dark mode selected state */
 [data-theme="dark"] .work-item.selected {
     background: rgba(255, 255, 255, 0.08);

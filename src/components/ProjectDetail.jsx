@@ -225,10 +225,12 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
                           </div>
                         )}
                         <div className="pd-feature-content">
-                          <span className="pd-feature-number">{String(i + 1).padStart(2, '0')}</span>
-                          {feature.title && (
-                            <h3 className="pd-feature-title">{feature.title}</h3>
-                          )}
+                          <div className="pd-feature-header">
+                            {feature.title && (
+                              <h3 className="pd-feature-title">{feature.title}</h3>
+                            )}
+                            <span className="pd-feature-number">{String(i + 1).padStart(2, '0')}</span>
+                          </div>
                           {feature.description && (
                             <p className="pd-feature-desc">{feature.description}</p>
                           )}

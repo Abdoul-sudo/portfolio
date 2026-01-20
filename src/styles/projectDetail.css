@@ -608,6 +608,13 @@ a.pd-hero-image-wrapper {
     padding-top: 0.5rem;
 }
 
+/* Feature header - contains title and number */
+.pd-feature-header {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+}
+
 /* Feature number - monospace style */
 .pd-feature-number {
     font-size: 0.75rem;
@@ -688,12 +695,12 @@ a.pd-hero-image-wrapper {
 /* Responsive - Mobile: simple stack */
 @media (max-width: 680px) {
     .pd-feature-rows {
-        gap: 2.5rem;
+        gap: 3rem;
     }
 
     .pd-feature-row {
         grid-template-columns: 1fr;
-        gap: 0.875rem;
+        gap: 1.25rem;
     }
 
     /* Reset direction on mobile */
@@ -702,7 +709,12 @@ a.pd-hero-image-wrapper {
     }
 
     .pd-feature-image {
-        border-radius: 12px 12px 4px 4px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] .pd-feature-image {
+        border-color: rgba(13, 7, 69, 0.08);
     }
 
     .pd-feature-content {
@@ -710,13 +722,23 @@ a.pd-hero-image-wrapper {
         gap: 0.5rem;
     }
 
+    .pd-feature-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
     .pd-feature-number {
         font-size: 0.7rem;
+        order: 2;
+        padding-top: 0.25rem;
     }
 
     .pd-feature-title {
         font-size: 1.125rem;
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.625rem;
+        order: 1;
     }
 
     .pd-feature-title::after {
@@ -732,19 +754,19 @@ a.pd-hero-image-wrapper {
 /* Responsive - Small Mobile */
 @media (max-width: 480px) {
     .pd-feature-rows {
-        gap: 2.25rem;
+        gap: 2.5rem;
     }
 
     .pd-feature-row {
-        gap: 0.75rem;
+        gap: 1rem;
     }
 
     .pd-feature-image {
-        border-radius: 10px 10px 4px 4px;
+        border-radius: 10px;
     }
 
     .pd-feature-title {
-        font-size: 1.0625rem;
+        font-size: 1rem;
     }
 
     .pd-feature-desc {
@@ -1294,7 +1316,6 @@ a.pd-hero-image-wrapper {
     .pd-title-link:hover svg {
         transform: none;
     }
-
 }
 
 /* Focus styles for accessibility */
