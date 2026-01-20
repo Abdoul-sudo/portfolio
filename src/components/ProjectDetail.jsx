@@ -6,6 +6,7 @@ import "../styles/projectDetail.css";
 const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
+  const scrollWrapperRef = useRef(null);
   const imageWrapperRef = useRef(null);
   const cursorLabelRef = useRef(null);
 
@@ -19,15 +20,17 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
 
     document.addEventListener("keydown", handleEscape);
 
-    // Scroll to top when component mounts with a project
-    if (project) {
-      window.scrollTo(0, 0);
-    }
-
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [onBack, project]);
+
+  // Scroll to top when project changes
+  useEffect(() => {
+    if (project && scrollWrapperRef.current) {
+      scrollWrapperRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [project?.id]);
 
   // Handle cursor following on image hover with delay
   useEffect(() => {
@@ -104,7 +107,7 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
 
       {/* Scrollable content wrapper */}
       {project && (
-        <div className="project-detail-scroll-wrapper">
+        <div className="project-detail-scroll-wrapper" ref={scrollWrapperRef}>
           {/* Main content */}
           <div className="project-detail-content" ref={contentRef}>
             {/* Hero section with image */}

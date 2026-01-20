@@ -124,13 +124,12 @@ const WorkSection = ({ onProjectClick }) => {
     }
   };
 
-  const handleTouchStart = (project) => {
+  const handleTouchStart = () => {
     if (isMobile) {
       // Haptic feedback if available
       if (window.navigator.vibrate) {
         window.navigator.vibrate(10);
       }
-      setSelectedProject(project);
     }
   };
 
