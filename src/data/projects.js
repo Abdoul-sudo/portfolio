@@ -15,6 +15,11 @@ import flowmoraSchedules from "../assets/projects/flowmora/schedules.png";
 import flowmoraGoals from "../assets/projects/flowmora/goals.png";
 import flowmoraSettings from "../assets/projects/flowmora/settings.jpg";
 
+// GameFeat feature images
+import gamefeatHero from "../assets/projects/gamefeat/hero.png";
+import gamefeatScreenshots from "../assets/projects/gamefeat/screenshots.png";
+import gamefeatFooter from "../assets/projects/gamefeat/footer.png";
+
 export const projectCategories = [
   { id: "all", name: "All Projects" },
   { id: "games", name: "Game Development" },
@@ -71,14 +76,31 @@ export const projectsData = [
     id: "gamefeat",
     name: "GameFeat",
     categories: ["web"],
-    description: "Features a different game on every refresh.",
+    description: "Showcase a different game with every refresh.",
     techs: ["Next.js", "Tailwind", "Upstash"],
     demo_link: "https://gamefeat.vercel.app/",
     cover: gamefeat,
     role: "Full-Stack Developer",
     year: "2024",
     inspiration:
-      "As an indie game enthusiast, I noticed how hard it is to discover hidden gems. GameFeat was born from the idea of serendipity - every refresh brings a new surprise, just like stumbling upon a great game by chance.",
+      "As an indie game enthusiast, I noticed how hard it is to discover hidden gems. With GameFeat, I wanted to showcase games in an original way, something that makes you want to play the game.",
+    features: [
+      {
+        image: gamefeatHero,
+        title: "First Impression",
+        description: "Every refresh, a new game to discover.",
+      },
+      {
+        image: gamefeatScreenshots,
+        title: "See It in Action",
+        description: "Screenshots that sell the experience.",
+      },
+      {
+        image: gamefeatFooter,
+        title: "Know Before You Play",
+        description: "Price, stats, and a direct link to Steam.",
+      },
+    ],
   },
   {
     id: "juicy",
