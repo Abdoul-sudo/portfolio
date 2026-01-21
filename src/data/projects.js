@@ -20,6 +20,11 @@ import gamefeatHero from "../assets/projects/gamefeat/hero.png";
 import gamefeatScreenshots from "../assets/projects/gamefeat/screenshots.png";
 import gamefeatFooter from "../assets/projects/gamefeat/footer.png";
 
+// Juicy feature images
+import juicyHome from "../assets/projects/juicy/home.png";
+import juicyAllRecipes from "../assets/projects/juicy/all_recipes.png";
+import juicyRecipe from "../assets/projects/juicy/recipe.png";
+
 export const projectCategories = [
   { id: "all", name: "All Projects" },
   { id: "games", name: "Game Development" },
@@ -113,7 +118,24 @@ export const projectsData = [
     role: "Full-Stack Developer",
     year: "2025",
     inspiration:
-      "Food brings people together. I wanted to create a space where home cooks could share their creations and inspire others - like a digital cookbook that grows with every contribution from the community.",
+      "Food and cooking have always been one of my passions. With Juicy, I wanted to build a space to help home cooks share their creations and discover new recipes from around the world.",
+    features: [
+      {
+        image: juicyHome,
+        title: "Discover",
+        description: "Popular cuisines and featured recipes at a glance.",
+      },
+      {
+        image: juicyAllRecipes,
+        title: "Browse & Filter",
+        description: "Find exactly what you're craving.",
+      },
+      {
+        image: juicyRecipe,
+        title: "Cook Along",
+        description: "Step-by-step instructions, no fluff.",
+      },
+    ],
   },
   {
     id: "neonblast",
