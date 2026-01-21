@@ -11,37 +11,39 @@ import '../styles/mobileBalls.css';
 // x: [-1.5, 1.5] -> [0%, 100%]
 // y: [3, -3] -> [0%, 100%] (inverted)
 // radius: 0.25-0.65 -> 80-200px
-const toViewport = (x, y, radius) => ({
+const toViewport = (x, y, radius, color) => ({
   x: ((x + 1.5) / 3) * 100,
   y: ((3 - y) / 6) * 100,
-  size: Math.round(radius * 280)
+  size: Math.round(radius * 280),
+  color
 });
 
 // Ball configurations matching metaballPositions.js mobile config
+// Colors match the sphere colors: blue, pink, purple, mint
 const BALL_CONFIGS = {
   home: [
-    toViewport(-1.2, 2.5, 0.65),   // Top left
-    toViewport(0.5, 0.6, 0.5),     // Center right
-    toViewport(-1.0, -0.8, 0.35),  // Mid left
-    toViewport(1.3, -2.0, 0.65)    // Bottom right
+    toViewport(-1.2, 2.5, 0.65, 'blue'),    // Top left
+    toViewport(0.5, 0.6, 0.5, 'pink'),      // Center right
+    toViewport(-1.0, -0.8, 0.35, 'purple'), // Mid left
+    toViewport(1.3, -2.0, 0.65, 'mint')     // Bottom right
   ],
   work: [
-    toViewport(-1.3, 2.5, 0.6),    // Top left
-    toViewport(1.3, 2.8, 0.5),     // Top right
-    toViewport(-0.1, -0.3, 0.65),  // Center
-    toViewport(1.2, 0.5, 0.35)     // Mid right
+    toViewport(-1.3, 2.5, 0.6, 'blue'),     // Top left
+    toViewport(1.3, 2.8, 0.5, 'pink'),      // Top right
+    toViewport(-0.1, -0.3, 0.65, 'purple'), // Center
+    toViewport(1.2, 0.5, 0.35, 'mint')      // Mid right
   ],
   about: [
-    toViewport(-1.3, 2.2, 0.55),   // Upper left
-    toViewport(-1.7, -1.5, 0.65),  // Lower left
-    toViewport(-0.3, 0.1, 0.25),   // Mid center
-    toViewport(1.4, -1.0, 0.55)    // Lower right
+    toViewport(-1.3, 2.2, 0.55, 'blue'),    // Upper left
+    toViewport(-1.7, -1.5, 0.65, 'pink'),   // Lower left
+    toViewport(-0.3, 0.1, 0.25, 'purple'),  // Mid center
+    toViewport(1.4, -1.0, 0.55, 'mint')     // Lower right
   ],
   contact: [
-    toViewport(-1.2, 2.5, 0.5),    // Upper left
-    toViewport(-0.4, -0.9, 0.3),   // Center left
-    toViewport(0.9, 2.0, 0.45),    // Top right
-    toViewport(1.3, -1.4, 0.6)     // Lower right
+    toViewport(-1.2, 2.5, 0.5, 'blue'),     // Upper left
+    toViewport(-0.4, -0.9, 0.3, 'pink'),    // Center left
+    toViewport(0.9, 2.0, 0.45, 'purple'),   // Top right
+    toViewport(1.3, -1.4, 0.6, 'mint')      // Lower right
   ]
 };
 
@@ -71,7 +73,7 @@ const MobileBalls = ({ currentSection = 'home', theme = 'light' }) => {
       {balls.map((ball, index) => (
         <div
           key={`${currentSection}-${index}`}
-          className="mobile-ball"
+          className={`mobile-ball mobile-ball--${ball.color}`}
           style={{
             left: `${ball.x}%`,
             top: `${ball.y}%`,

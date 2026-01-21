@@ -59,14 +59,14 @@ export const METABALL_THEMES = {
     textColor: '#ffffff',
     textSecondaryColor: '#cccccc',
 
-    // Single sphere color (original uses one base color, not per-sphere)
+    // Multicolor spheres (darker versions of light theme colors)
     sphereColors: [
-      new THREE.Color(0x050510),
-      new THREE.Color(0x050510),
-      new THREE.Color(0x050510),
-      new THREE.Color(0x050510),
-      new THREE.Color(0x050510),
-      new THREE.Color(0x050510)
+      new THREE.Color(0x1a2540), // Dark blue
+      new THREE.Color(0x3d1a2a), // Dark coral/pink
+      new THREE.Color(0x2a1a3d), // Dark purple/lavender
+      new THREE.Color(0x1a3d2a), // Dark mint green
+      new THREE.Color(0x1a3040), // Dark sky blue
+      new THREE.Color(0x3d1a30)  // Dark rose
     ],
 
     lightColor: new THREE.Color(0xccaaff),  // Purple-pink light

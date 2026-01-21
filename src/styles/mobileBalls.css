@@ -16,35 +16,122 @@
   will-change: left, top;
 }
 
-/* ========== LIGHT THEME - Purple balls ========== */
-.mobile-balls.light .mobile-ball {
+/* ========== LIGHT THEME ========== */
+.mobile-balls.light .mobile-ball--blue {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(220, 242, 255, 0.95) 0%,
+    rgba(196, 228, 255, 0.85) 40%,
+    rgba(172, 214, 255, 0.7) 70%,
+    rgba(148, 200, 255, 0.5) 100%
+  );
+  box-shadow:
+    inset -20px -20px 40px rgba(148, 200, 255, 0.3),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.8),
+    0 10px 40px rgba(172, 214, 255, 0.3);
+}
+
+.mobile-balls.light .mobile-ball--pink {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 229, 238, 0.95) 0%,
+    rgba(255, 210, 225, 0.85) 40%,
+    rgba(255, 190, 210, 0.7) 70%,
+    rgba(255, 170, 195, 0.5) 100%
+  );
+  box-shadow:
+    inset -20px -20px 40px rgba(255, 170, 195, 0.3),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.8),
+    0 10px 40px rgba(255, 190, 210, 0.3);
+}
+
+.mobile-balls.light .mobile-ball--purple {
   background: radial-gradient(
     circle at 30% 30%,
     rgba(240, 230, 255, 0.95) 0%,
-    rgba(220, 200, 255, 0.85) 40%,
-    rgba(200, 170, 255, 0.7) 70%,
-    rgba(180, 140, 255, 0.5) 100%
+    rgba(225, 210, 255, 0.85) 40%,
+    rgba(210, 190, 255, 0.7) 70%,
+    rgba(195, 170, 255, 0.5) 100%
   );
   box-shadow:
-    inset -20px -20px 40px rgba(160, 120, 255, 0.3),
+    inset -20px -20px 40px rgba(195, 170, 255, 0.3),
     inset 10px 10px 30px rgba(255, 255, 255, 0.8),
-    0 10px 40px rgba(200, 170, 255, 0.3);
+    0 10px 40px rgba(210, 190, 255, 0.3);
 }
 
-/* ========== DARK THEME - Purple balls ========== */
-.mobile-balls.dark .mobile-ball {
+.mobile-balls.light .mobile-ball--mint {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(224, 255, 237, 0.95) 0%,
+    rgba(200, 245, 220, 0.85) 40%,
+    rgba(176, 235, 200, 0.7) 70%,
+    rgba(152, 225, 180, 0.5) 100%
+  );
+  box-shadow:
+    inset -20px -20px 40px rgba(152, 225, 180, 0.3),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.8),
+    0 10px 40px rgba(176, 235, 200, 0.3);
+}
+
+/* ========== DARK THEME ========== */
+.mobile-balls.dark .mobile-ball--blue {
   background: radial-gradient(
     circle at 35% 35%,
-    rgba(100, 70, 150, 0.75) 0%,
-    rgba(70, 45, 120, 0.65) 30%,
-    rgba(50, 30, 100, 0.55) 60%,
-    rgba(30, 18, 70, 0.4) 100%
+    rgba(80, 100, 160, 0.7) 0%,
+    rgba(50, 70, 130, 0.6) 30%,
+    rgba(30, 45, 100, 0.5) 60%,
+    rgba(15, 25, 70, 0.35) 100%
+  );
+  box-shadow:
+    inset -15px -15px 35px rgba(10, 15, 50, 0.6),
+    inset 8px 8px 25px rgba(120, 150, 220, 0.2),
+    0 0 60px rgba(80, 100, 160, 0.25),
+    0 0 100px rgba(50, 70, 130, 0.15);
+}
+
+.mobile-balls.dark .mobile-ball--pink {
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(140, 80, 110, 0.7) 0%,
+    rgba(110, 50, 85, 0.6) 30%,
+    rgba(80, 30, 60, 0.5) 60%,
+    rgba(50, 15, 40, 0.35) 100%
+  );
+  box-shadow:
+    inset -15px -15px 35px rgba(35, 10, 30, 0.6),
+    inset 8px 8px 25px rgba(200, 140, 170, 0.2),
+    0 0 60px rgba(140, 80, 110, 0.25),
+    0 0 100px rgba(110, 50, 85, 0.15);
+}
+
+.mobile-balls.dark .mobile-ball--purple {
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(100, 70, 150, 0.7) 0%,
+    rgba(70, 45, 120, 0.6) 30%,
+    rgba(50, 30, 100, 0.5) 60%,
+    rgba(30, 18, 70, 0.35) 100%
   );
   box-shadow:
     inset -15px -15px 35px rgba(20, 10, 45, 0.6),
-    inset 8px 8px 25px rgba(140, 110, 200, 0.2),
+    inset 8px 8px 25px rgba(160, 130, 220, 0.2),
     0 0 60px rgba(100, 70, 150, 0.25),
     0 0 100px rgba(70, 45, 120, 0.15);
+}
+
+.mobile-balls.dark .mobile-ball--mint {
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(60, 120, 100, 0.7) 0%,
+    rgba(40, 95, 75, 0.6) 30%,
+    rgba(25, 70, 55, 0.5) 60%,
+    rgba(12, 45, 35, 0.35) 100%
+  );
+  box-shadow:
+    inset -15px -15px 35px rgba(8, 30, 25, 0.6),
+    inset 8px 8px 25px rgba(120, 180, 160, 0.2),
+    0 0 60px rgba(60, 120, 100, 0.25),
+    0 0 100px rgba(40, 95, 75, 0.15);
 }
 
 /* Subtle floating animation */
