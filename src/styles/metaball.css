@@ -33,12 +33,17 @@
   z-index: 1;
 }
 
-/* Performance optimization for mobile */
+/* Hide WebGL on mobile - use CSS balls instead */
 @media (max-width: 768px) {
   .metaball-background {
-    /* Slightly reduce quality on mobile if needed */
-    transform: translateZ(0);
-    will-change: transform;
+    display: none !important;
+  }
+}
+
+/* Also hide on portrait tablets */
+@media (max-width: 900px) and (orientation: portrait) {
+  .metaball-background {
+    display: none !important;
   }
 }
 

@@ -8,6 +8,7 @@ import AudioToggle from './components/AudioToggle';
 import { spatialAudio } from './utils/spatialAudio';
 import NoiseBackground from './components/NoiseBackground';
 import MetaballBackground from './components/MetaballBackground';
+import MobileBalls from './components/MobileBalls';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
@@ -203,6 +204,11 @@ const AppNew = () => {
       {/* Key prop forces remount when theme changes for proper shader initialization */}
       <MetaballBackground
         key={theme}
+        currentSection={sections[currentSection]}
+        theme={theme}
+      />
+      {/* CSS balls for mobile - replaces WebGL for better appearance */}
+      <MobileBalls
         currentSection={sections[currentSection]}
         theme={theme}
       />

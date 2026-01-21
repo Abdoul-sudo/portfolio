@@ -337,7 +337,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
               return ambient + diffuse + rimGlow + emissive;
             }
 
-            // Dark mode: EXACT desktop holographic shader
+            // Dark mode: Holographic shader
             vec3 viewDir = -rd;
             vec3 ambient = uLightColor * uAmbientIntensity;
             vec3 lightDir = normalize(vec3(0.9, 0.9, 1.2));
@@ -421,8 +421,8 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
               float fogStrength = uIsLightMode > 0.5 ? 0.2 : 0.3;
               color = mix(color, uBackgroundColor.rgb, fogAmount * fogStrength);
 
-              // Mobile: Always show at max opacity (like cursor is always near)
-              float mobileOpacity = uIsDesktop > 0.5 ? uBaseOpacity : uMaxOpacity;
+              // Mobile: Fixed opacity
+              float mobileOpacity = 0.65;
               gl_FragColor = vec4(color, mobileOpacity);
             } else {
               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);

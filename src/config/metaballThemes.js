@@ -54,7 +54,6 @@ export const METABALL_THEMES = {
 
   dark: {
     name: 'Dark Mode',
-    // EXACT holographic preset from original
     backgroundColor: new THREE.Color(0x0a0a15),
     bodyBackgroundColor: '#0a0a15',
     textColor: '#ffffff',
@@ -62,7 +61,7 @@ export const METABALL_THEMES = {
 
     // Single sphere color (original uses one base color, not per-sphere)
     sphereColors: [
-      new THREE.Color(0x050510), // Dark base color
+      new THREE.Color(0x050510),
       new THREE.Color(0x050510),
       new THREE.Color(0x050510),
       new THREE.Color(0x050510),
@@ -76,10 +75,10 @@ export const METABALL_THEMES = {
     // Exact holographic preset lighting
     ambientIntensity: 0.12,
     diffuseIntensity: 1.2,
-    specularIntensity: 2.5,  // High specular for shine
-    specularPower: 3,        // Low power = wide highlights
-    fresnelPower: 0.8,       // Strong edge glow
-    glowIntensity: 1.2,      // Moderate overall glow
+    specularIntensity: 2.5,
+    specularPower: 3,
+    fresnelPower: 0.8,
+    glowIntensity: 1.2,
     rimPower: 0.8,
 
     // Original settings
@@ -88,13 +87,13 @@ export const METABALL_THEMES = {
     contrast: 1.6,
     fogDensity: 0.06,
 
-    // Cursor glow - exact from holographic preset
+    // Cursor glow
     cursorGlowIntensity: 1.2,
     cursorGlowRadius: 2.2,
 
     // Opacity reveal settings (desktop only)
-    baseOpacity: 0.15,          // Barely visible at rest
-    maxOpacity: 1.0,            // Full opacity near cursor
+    baseOpacity: 0.15,
+    maxOpacity: 1.0,
 
     // Noise overlay
     noiseOpacity: 0.2
