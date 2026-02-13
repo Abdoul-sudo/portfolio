@@ -46,7 +46,7 @@ export const projectsData = [
     role: "Game Developer",
     year: "2025",
     inspiration:
-      "Growing up watching NBA games, I always wanted to capture that fast-paced, competitive energy in a pixelated format. The goal was to make basketball accessible and fun in a couch co-op setting.",
+      "Made during a gamejam with my team. The theme was 'Competition and Cooperation' - we wanted to create a basketball game but with an original twist that captures both aspects.",
   },
   {
     id: "onirix",

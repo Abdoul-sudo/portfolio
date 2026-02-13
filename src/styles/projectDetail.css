@@ -583,9 +583,90 @@ a.pd-hero-image-wrapper {
 .pd-feature-image {
     border-radius: 20px;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.12),
         0 12px 48px rgba(0, 0, 0, 0.08);
+}
+
+.pd-feature-image:hover {
+    transform: scale(1.01);
+    box-shadow:
+        0 6px 32px rgba(0, 0, 0, 0.16),
+        0 16px 56px rgba(0, 0, 0, 0.12);
+}
+
+.pd-feature-image:active {
+    transform: scale(0.99);
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+
+.pd-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    animation: lightboxFadeIn 0.25s ease;
+    padding: 2rem;
+}
+
+.pd-lightbox-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    cursor: default;
+    animation: lightboxZoomIn 0.25s ease;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+}
+
+.pd-lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.pd-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes lightboxFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes lightboxZoomIn {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Hide logo and menu when lightbox is open */
+body.lightbox-open .logo,
+body.lightbox-open .hamburger {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
 
 [data-theme="light"] .pd-feature-image {
@@ -763,6 +844,7 @@ a.pd-hero-image-wrapper {
 
     .pd-feature-image {
         border-radius: 10px;
+        pointer-events: none;
     }
 
     .pd-feature-title {

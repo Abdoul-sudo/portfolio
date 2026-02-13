@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getTechIcon } from "../utils/techIcons";
 import { HiArrowUpRight } from "react-icons/hi2";
 import "../styles/projectDetail.css";
@@ -9,12 +9,17 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
   const scrollWrapperRef = useRef(null);
   const imageWrapperRef = useRef(null);
   const cursorLabelRef = useRef(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
 
-  // Handle escape key to go back
+  // Handle escape key to close lightbox or go back
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape" && project) {
-        onBack();
+      if (e.key === "Escape") {
+        if (lightboxImage) {
+          setLightboxImage(null);
+        } else if (project) {
+          onBack();
+        }
       }
     };
 
@@ -23,7 +28,22 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [onBack, project]);
+  }, [onBack, project, lightboxImage]);
+
+  // Close lightbox when project changes
+  useEffect(() => {
+    setLightboxImage(null);
+  }, [project?.id]);
+
+  // Toggle body class for lightbox (hides nav elements)
+  useEffect(() => {
+    if (lightboxImage) {
+      document.body.classList.add('lightbox-open');
+    } else {
+      document.body.classList.remove('lightbox-open');
+    }
+    return () => document.body.classList.remove('lightbox-open');
+  }, [lightboxImage]);
 
   // Scroll to top when project changes
   useEffect(() => {
@@ -220,7 +240,10 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
                     {project.features.map((feature, i) => (
                       <div key={i} className="pd-feature-row">
                         {feature.image && (
-                          <div className="pd-feature-image">
+                          <div
+                            className="pd-feature-image"
+                            onClick={() => setLightboxImage(feature.image)}
+                          >
                             <img
                               src={feature.image}
                               alt={feature.title || `Feature ${i + 1}`}
@@ -265,6 +288,24 @@ const ProjectDetail = ({ project, onBack, nextProject, onNavigateToProject }) =>
               </div>
             </article>
           </div>
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {lightboxImage && (
+        <div className="pd-lightbox" onClick={() => setLightboxImage(null)}>
+          <button className="pd-lightbox-close" onClick={() => setLightboxImage(null)}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <img
+            src={lightboxImage}
+            alt=""
+            className="pd-lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
     </section>
