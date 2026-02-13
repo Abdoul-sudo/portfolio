@@ -21,11 +21,12 @@ import { projectsData } from './data/projects';
 import './styles/base.css';
 import './styles/app.css';
 
+// Animatable children selectors for GSAP transitions
+const SECTION_CHILDREN_SELECTOR = '.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper';
+
 const AppNew = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const previousSectionRef = useRef(0);
-  const isInitialMount = useRef(true);
 
   // Get theme from URL: / = dark, /light = light
   const getThemeFromURL = () => {
@@ -49,9 +50,6 @@ const AppNew = () => {
 
   // Get initial state from URL hash
   const initialState = parseHash();
-  const initialProject = initialState.projectId
-    ? projectsData.find(p => p.id === initialState.projectId) || null
-    : null;
   const initialSectionIndex = ['home', 'about', 'work', 'contact', 'project-detail'].indexOf(
     initialState.section
   );
@@ -94,7 +92,7 @@ const AppNew = () => {
           gsap.set(homeEl, { display: 'flex', opacity: 1 });
         }
         setCurrentSection(0);
-        isInitialMount.current = false;
+
         return;
       }
     }
@@ -111,13 +109,12 @@ const AppNew = () => {
       gsap.set(targetEl, { display: 'flex', opacity: 1 });
       // Reset children to visible state, but skip home (it has its own entrance animation)
       if (section !== 'home') {
-        const children = targetEl.querySelectorAll('.about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+        const children = targetEl.querySelectorAll(SECTION_CHILDREN_SELECTOR);
         gsap.set(children, { y: 0, opacity: 1 });
       }
     }
 
     setCurrentSection(sectionIndex >= 0 ? sectionIndex : 0);
-    isInitialMount.current = false;
   }, []);
 
   // Listen for browser back/forward
@@ -153,7 +150,7 @@ const AppNew = () => {
       tl.set(targetEl, { display: 'flex', opacity: 0 });
       tl.to(targetEl, { opacity: 1, duration: 0.3, ease: 'power2.out' });
 
-      const targetChildren = targetEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+      const targetChildren = targetEl.querySelectorAll(SECTION_CHILDREN_SELECTOR);
       tl.fromTo(targetChildren, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.04, ease: 'power2.out' }, '-=0.1');
     };
 
@@ -214,7 +211,7 @@ const AppNew = () => {
     });
 
     // Animate all children out (bottom to top)
-    const currentChildren = currentEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+    const currentChildren = currentEl.querySelectorAll(SECTION_CHILDREN_SELECTOR);
 
     tl.to(currentChildren, {
       y: -60,
@@ -243,7 +240,7 @@ const AppNew = () => {
     });
 
     // Animate all children in (top to bottom)
-    const targetChildren = targetEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+    const targetChildren = targetEl.querySelectorAll(SECTION_CHILDREN_SELECTOR);
 
     tl.fromTo(
       targetChildren,
@@ -261,7 +258,6 @@ const AppNew = () => {
 
   // Open project detail page
   const openProjectDetail = (project) => {
-    previousSectionRef.current = currentSection;
     setSelectedProject(project);
     updateHash('project-detail', project.id);
     transitionToSection('project-detail', { pushState: false });

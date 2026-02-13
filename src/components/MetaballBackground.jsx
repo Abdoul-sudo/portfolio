@@ -77,10 +77,7 @@ const MetaballBackground = ({ currentSection = 'home', theme = 'light' }) => {
       preserveDrawingBuffer: false
     });
 
-    // Increase pixel ratio on mobile for better quality
-    const pixelRatio = isMobile
-      ? Math.min(window.devicePixelRatio || 1, 1.5)
-      : Math.min(window.devicePixelRatio || 1, 1.5);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
     renderer.setPixelRatio(pixelRatio);
 
     const viewportWidth = window.innerWidth;
