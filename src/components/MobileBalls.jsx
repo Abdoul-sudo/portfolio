@@ -72,7 +72,7 @@ const MobileBalls = ({ currentSection = 'home', theme = 'light' }) => {
     <div className={`mobile-balls ${theme}`}>
       {balls.map((ball, index) => (
         <div
-          key={`${currentSection}-${index}`}
+          key={index}
           className={`mobile-ball mobile-ball--${ball.color}`}
           style={{
             left: `${ball.x}%`,
