@@ -22,10 +22,10 @@ import './styles/base.css';
 import './styles/app.css';
 
 const AppNew = () => {
-  const [currentSection, setCurrentSection] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const previousSectionRef = useRef(0);
+  const isInitialMount = useRef(true);
 
   // Get theme from URL: / = dark, /light = light
   const getThemeFromURL = () => {
@@ -33,29 +33,133 @@ const AppNew = () => {
     return path === '/light' ? 'light' : 'dark';
   };
 
+  // Parse hash to get section and optional project ID
+  const parseHash = () => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash || hash === 'home') return { section: 'home', projectId: null };
+    if (hash.startsWith('project/')) {
+      const projectId = hash.replace('project/', '');
+      return { section: 'project-detail', projectId };
+    }
+    if (['about', 'work', 'contact'].includes(hash)) {
+      return { section: hash, projectId: null };
+    }
+    return { section: 'home', projectId: null };
+  };
+
+  // Get initial state from URL hash
+  const initialState = parseHash();
+  const initialProject = initialState.projectId
+    ? projectsData.find(p => p.id === initialState.projectId) || null
+    : null;
+  const initialSectionIndex = ['home', 'about', 'work', 'contact', 'project-detail'].indexOf(
+    initialState.section
+  );
+
+  const [currentSection, setCurrentSection] = useState(initialSectionIndex >= 0 ? initialSectionIndex : 0);
   const [theme, setTheme] = useState(getThemeFromURL());
   const menuRef = useRef(null);
 
   const sections = ['home', 'about', 'work', 'contact', 'project-detail'];
 
-  // Show home section on mount
-  useEffect(() => {
-    const homeSection = document.querySelector('#home');
-    if (homeSection) {
-      homeSection.classList.add('active');
-      gsap.set(homeSection, { display: 'flex', opacity: 1 });
+  // Update URL hash (without triggering popstate)
+  const updateHash = (sectionId, projectId = null) => {
+    let hash = '';
+    if (sectionId === 'home') {
+      hash = '';
+    } else if (sectionId === 'project-detail' && projectId) {
+      hash = `#project/${projectId}`;
+    } else {
+      hash = `#${sectionId}`;
     }
+    const url = window.location.pathname + hash;
+    window.history.pushState({ section: sectionId, projectId }, '', url);
+  };
+
+  // Show correct section on mount (instant, no animation)
+  useEffect(() => {
+    const { section, projectId } = parseHash();
+    const sectionIndex = sections.indexOf(section);
+
+    // If project detail, set the project
+    if (section === 'project-detail' && projectId) {
+      const project = projectsData.find(p => p.id === projectId);
+      if (project) {
+        setSelectedProject(project);
+      } else {
+        // Project not found, fall back to home
+        const homeEl = document.querySelector('#home');
+        if (homeEl) {
+          homeEl.classList.add('active');
+          gsap.set(homeEl, { display: 'flex', opacity: 1 });
+        }
+        setCurrentSection(0);
+        isInitialMount.current = false;
+        return;
+      }
+    }
+
+    // Hide all sections, then show the target
+    sections.forEach(s => {
+      const el = document.querySelector(`#${s}`);
+      if (el) gsap.set(el, { display: 'none', opacity: 0 });
+    });
+
+    const targetEl = document.querySelector(`#${section}`);
+    if (targetEl) {
+      targetEl.classList.add('active');
+      gsap.set(targetEl, { display: 'flex', opacity: 1 });
+      // Reset children to visible state, but skip home (it has its own entrance animation)
+      if (section !== 'home') {
+        const children = targetEl.querySelectorAll('.about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+        gsap.set(children, { y: 0, opacity: 1 });
+      }
+    }
+
+    setCurrentSection(sectionIndex >= 0 ? sectionIndex : 0);
+    isInitialMount.current = false;
   }, []);
 
-  // Listen for URL changes (browser back/forward)
+  // Listen for browser back/forward
   useEffect(() => {
-    const handlePopState = () => {
+    const handlePopState = (e) => {
       setTheme(getThemeFromURL());
+
+      const { section, projectId } = parseHash();
+      const targetIndex = sections.indexOf(section);
+      if (targetIndex === -1 || targetIndex === currentSection) return;
+
+      // Set project if navigating to project detail
+      if (section === 'project-detail' && projectId) {
+        const project = projectsData.find(p => p.id === projectId);
+        if (project) setSelectedProject(project);
+      }
+
+      // Use GSAP transition for back/forward too
+      const currentEl = document.querySelector(`#${sections[currentSection]}`);
+      const targetEl = document.querySelector(`#${section}`);
+      if (!currentEl || !targetEl) return;
+
+      setIsTransitioning(true);
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setCurrentSection(targetIndex);
+          setIsTransitioning(false);
+        }
+      });
+
+      tl.to(currentEl, { opacity: 0, duration: 0.3, ease: 'power2.in' });
+      tl.set(currentEl, { display: 'none' });
+      tl.set(targetEl, { display: 'flex', opacity: 0 });
+      tl.to(targetEl, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+
+      const targetChildren = targetEl.querySelectorAll('.hero-line, .about-title, .about-description, .expertise-block, .work-header, .work-item, .contact-title, .contact-description, .contact-link-wrapper');
+      tl.fromTo(targetChildren, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.04, ease: 'power2.out' }, '-=0.1');
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [currentSection]);
 
   // Handle theme changes - update CSS variables and body background
   useEffect(() => {
@@ -75,13 +179,13 @@ const AppNew = () => {
   }, [theme]);
 
   const handleThemeChange = (newTheme) => {
-    // Update URL without reload
+    // Update URL without reload, preserve hash
     const newPath = newTheme === 'light' ? '/light' : '/';
-    window.history.pushState({}, '', newPath);
+    window.history.pushState({}, '', newPath + window.location.hash);
     setTheme(newTheme);
   };
 
-  const transitionToSection = (targetSectionId) => {
+  const transitionToSection = (targetSectionId, { pushState = true } = {}) => {
     const targetIndex = sections.indexOf(targetSectionId);
 
     if (targetIndex === -1 || targetIndex === currentSection || isTransitioning) {
@@ -90,6 +194,11 @@ const AppNew = () => {
 
     // Fade out any playing audio when changing sections
     spatialAudio.fadeAllSounds();
+
+    // Update URL hash
+    if (pushState) {
+      updateHash(targetSectionId, targetSectionId === 'project-detail' ? selectedProject?.id : null);
+    }
 
     setIsTransitioning(true);
 
@@ -154,13 +263,15 @@ const AppNew = () => {
   const openProjectDetail = (project) => {
     previousSectionRef.current = currentSection;
     setSelectedProject(project);
-    transitionToSection('project-detail');
+    updateHash('project-detail', project.id);
+    transitionToSection('project-detail', { pushState: false });
   };
 
   // Go back from project detail to work section
   const closeProjectDetail = () => {
     setSelectedProject(null);
-    transitionToSection('work');
+    updateHash('work');
+    transitionToSection('work', { pushState: false });
   };
 
   // Get next project - sorted by type (web, then games) and alphabetically within each type
@@ -195,6 +306,7 @@ const AppNew = () => {
     // Short delay to let scroll start, then change project
     setTimeout(() => {
       setSelectedProject(project);
+      updateHash('project-detail', project.id);
     }, 100);
   };
 

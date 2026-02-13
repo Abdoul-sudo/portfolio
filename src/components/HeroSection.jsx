@@ -166,7 +166,7 @@ const HeroSection = ({ onNavigate }) => {
             I'm a Full-Stack Developer
           </h1>
           <h1 className="hero-line hero-line-3" ref={line3Ref}>
-            I build Websites, Games & AI-powered experiences
+            I build Web, Games & AI-powered experiences
           </h1>
         </div>
 
