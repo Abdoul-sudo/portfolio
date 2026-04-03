@@ -13,6 +13,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorkSection from './components/WorkSection';
 import ContactSection from './components/ContactSection';
+import { Analytics } from '@vercel/analytics/react';
 import ProjectDetail from './components/ProjectDetail';
 import { getTheme } from './config/metaballThemes';
 import { projectsData } from './data/projects';
@@ -342,6 +343,7 @@ const AppNew = () => {
           />
         </main>
       </div>
+      <Analytics />
     </>
   );
 };
